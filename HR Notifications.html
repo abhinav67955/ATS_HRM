@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Notification Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: consolas;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1200px;
+        }
+
+        .container .box {
+            position: relative;
+            width: 450px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 30px;
+            padding-top:40px ;
+            transition: 0.5s;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .container .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .container .box .content {
+            position: relative;
+            padding: 20px 40px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1;
+            color: #333;
+            transition: transform 0.5s, padding 0.3s;
+        }
+
+        .container .box:hover .content {
+            padding: 30px 40px;
+            transform: translateY(-10px);
+        }
+
+        .container .box .content h2 {
+            font-size: 1.6em;
+            color: #7e3900;
+            margin-bottom: 10px;
+        }
+
+        .container .box .content p {
+            font-size: 1em;
+            margin-bottom: 15px;
+            line-height: 1.4em;
+            color: #636e72;
+        }
+
+        .container .box .content a {
+            display: inline-block;
+            font-size: 1em;
+            color: #fff;
+            background: #0984e3;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container .box .content a:hover {
+            background-color: #74b9ff;
+        }
+
+        .container .box span {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container .box span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-radius: 8px;
+            background: rgb(255, 0, 247);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: 0.1s;
+            animation: animate 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .container .box:hover span::before {
+            top: -50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+
+        .container .box span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: rgba(0, 255, 153, 0.993);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: 0.5s;
+            animation: animate 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            animation-delay: -1s;
+        }
+
+        .container .box:hover span:after {
+            bottom: -50px;
+            right: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+
+        @keyframes animate {
+            0%, 100% {
+                transform: translateY(10px);
+            }
+
+            50% {
+                transform: translate(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box">
+        <span></span>
+        <div class="content">
+            <h2>Employee Performance Reviews</h2>
+            <p>Performance reviews are due by November 15, 2024. Please ensure your evaluations are submitted on time.</p>
+            <a href="#">Submit Reviews</a>
+        </div>
+    </div>
+    <div class="box">
+        <span></span>
+        <div class="content">
+            <h2>New Hire Orientation</h2>
+            <p>New hire orientation is on November 10, 2024. Make sure all materials and welcome packets are ready for the new team members.</p>
+            <a href="#">View Details</a>
+        </div>
+    </div>
+    <div class="box">
+        <span></span>
+        <div class="content">
+            <h2>Compliance Training</h2>
+            <p>Annual compliance training must be completed by November 20, 2024. Please ensure all HR staff finish it by the deadline.</p>
+            <a href="#">Start Training</a>
+        </div>
+    </div>
+    <div class="box">
+        <span></span>
+        <div class="content">
+            <h2>Policy Review Meeting</h2>
+            <p>Join us for the Policy Review Meeting on November 18, 2024. Your input is crucial for updating our HR policies.</p>
+            <a href="#">More Info</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Assets Management</title>
+    <style>
+        * {
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 30px;
+            color: #72105d;
+            margin-left: 80px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin-left: 30px;
+            padding: 40px 20px;
+        }
+
+        .employee-card, .request-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .employee-card:hover, .request-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .employee-card-header, .request-card-header {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4c8bf5;
+            margin-bottom: 15px;
+        }
+
+        .employee-card p, .request-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .asset-status {
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        .asset-date {
+            color: #888;
+        }
+
+        .track-button {
+            background-color: #4c8bf5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .track-button:hover {
+            background-color: #3579d1;
+        }
+
+        .track-button:focus {
+            outline: none;
+        }
+
+        .request-status {
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Employee Assets Management</h1>
+
+    <div class="container">
+       
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 1</div>
+            <p class="employee-position">Asset: Laptop</p>
+            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-date">Issue Date: March 15, 2022</p>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
+        </div>
+
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 2</div>
+            <p class="employee-position">Asset: Smartphone</p>
+            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-date">Issue Date: June 5, 2022</p>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
+        </div>
+
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 3</div>
+            <p class="employee-position">Asset: Desktop PC</p>
+            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-date">Issue Date: January 10, 2023</p>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
+        </div>
+
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 4</div>
+            <p class="employee-position">Asset: Office Chair</p>
+            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-date">Issue Date: August 22, 2024</p>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
+        </div>
+
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 5</div>
+            <p class="employee-position">Asset: Headphones</p>
+            <p class="asset-status">Status: Assigned</p>
+            <p class="asset-date">Issue Date: February 12, 2023</p>
+            <a href="./assets management.html" class="track-button">View Asset Details</a>
+        </div>
+
+    </div>
+
+    <h1>Employee Asset Requests</h1>
+    <div id="requests-container" class="container">
+        
+        <div class="request-card">
+            <div class="request-card-header">Employee 1</div>
+            <p class="request-status">Request: Laptop</p>
+            <p class="request-status">Status: Pending</p>
+            <p class="request-date">Request Date: December 5, 2024</p>
+            <a href="" class="track-button">View Request Details</a>
+        </div>
+
+        <div class="request-card">
+            <div class="request-card-header">Employee 2</div>
+            <p class="request-status">Request: Tablet</p>
+            <p class="request-status">Status: Approved</p>
+            <p class="request-date">Request Date: March 10, 2024</p>
+            <a href="" class="track-button">View Request Details</a>
+        </div>
+
+        <div class="request-card">
+            <div class="request-card-header">Employee 3</div>
+            <p class="request-status">Request: Printer</p>
+            <p class="request-status">Status: Denied</p>
+            <p class="request-date">Request Date: February 25, 2024</p>
+            <a href="" class="track-button">View Request Details</a>
+        </div>
+
+        <div class="request-card">
+            <div class="request-card-header">Employee 4</div>
+            <p class="request-status">Request: Office Chair</p>
+            <p class="request-status">Status: Pending</p>
+            <p class="request-date">Request Date:December 22, 2024</p>
+            <a href="" class="track-button">View Request Details</a>
+        </div>
+
+        <div class="request-card">
+            <div class="request-card-header">Employee 5</div>
+            <p class="request-status">Request: Headphones</p>
+            <p class="request-status">Status: Approved</p>
+            <p class="request-date">Request Date: February 28, 2024</p>
+            <a href="" class="track-button">View Request Details</a>
+        </div>
+
+    </div>
+
+    <script>
+       
+        function renderSavedRequests() {
+         
+            const requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+            const requestsContainer = document.getElementById('requests-container');
+
+            requests.forEach(request => {
+                const requestCard = document.createElement('div');
+                requestCard.classList.add('request-card');
+                
+                requestCard.innerHTML = `
+                    <div class="request-card-header">${request.employeeName}</div>
+                    <p class="request-status">Request: ${request.name}</p>
+                    <p class="request-status">Status: ${request.status || 'Pending'}</p>
+                    <p class="request-date">Request Date: ${request.requestDate}</p>
+                    <a href="./request-details.html" class="track-button">View Request Details</a>
+                `;
+             
+                requestsContainer.appendChild(requestCard);
+            });
+        }
+
+  
+        window.onload = renderSavedRequests;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Offboarding Form</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      padding: 50px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    h2 i {
+      margin-right: 10px;
+      color: #3d0492;
+    }
+
+    label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+      color: #555;
+    }
+
+    input, select, textarea {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #4d6aff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      width: auto;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button i {
+      margin-right: 10px;
+    }
+
+    button:hover {
+      border-top: 2px solid blueviolet;
+      border-left: 2px solid blueviolet;
+      border-bottom: 2px solid rgb(238, 103, 238);
+      border-right: 2px solid rgb(238, 103, 238);
+      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .form-container {
+        padding: 15px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Employee Offboarding Form</h1>
+<div class="form-container">
+    
+  <form id="offboarding-form">
+  <div class="section">
+    <h2><i class="fas fa-user"></i> Employee Information</h2>
+    <label for="employee-name">Full Name</label>
+    <input type="text" id="employee-name" name="employee-name" required  minlength="3" 
+    pattern="[A-Za-z .]+" 
+    title="Only alphabetic characters are allowed">
+    
+    <label for="employee-id">Employee ID</label>
+    <input type="text" id="employee-id" name="employee-id" required
+    minlength="7" 
+    maxlength="7" 
+    pattern="[A-Z]{3}[0-9]{4}" 
+    title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
+    
+    <label for="employee-department">Department</label>
+    <input type="text" id="employee-department" name="employee-department" required minlength="3">
+  </div>
+
+  <div class="section">
+    <h2><i class="fas fa-laptop"></i> Equipment Return</h2>
+    <label for="laptop-returned">Laptop Returned</label>
+    <select id="laptop-returned" name="laptop-returned" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    
+    <label for="phone-returned">Phone Returned</label>
+    <select id="phone-returned" name="phone-returned" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    
+    <label for="access-cards">Access Cards/Keys Returned</label>
+    <select id="access-cards" name="access-cards" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h2><i class="fas fa-rupee-sign"></i> Final Paycheck Details</h2>
+    <label for="final-paycheck">Final Paycheck Amount</label>
+    <input type="number" id="final-paycheck" name="final-paycheck" required min="1">
+    
+    <label for="benefits-cleared">Benefits Cleared</label>
+    <select id="benefits-cleared" name="benefits-cleared" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+    <div class="section">
+      <h2><i class="fas fa-comments"></i> Exit Interview</h2>
+      <label for="exit-interview">Please share your feedback</label>
+      <textarea id="exit-interview" name="exit-interview" rows="4" required minlength="10"></textarea>
+      
+      <label for="reason-for-leaving">Reason for Leaving</label>
+      <select id="reason-for-leaving" name="reason-for-leaving" required>
+        <option value="career-growth">Career Growth</option>
+        <option value="personal-reasons">Personal Reasons</option>
+        <option value="work-environment">Work Environment</option>
+        <option value="relocation">Relocation</option>
+      </select>
+    </div>
+  </form>
+  
+<div class="submit-section">
+    <button type="button" id="submit-button"><i class="fas fa-paper-plane"></i> Submit Offboarding Form</button>
+  </div>
+</div>
+
+<script>
+  function validateForm() {
+    const form = document.getElementById('offboarding-form');
+    const employeeName = document.getElementById('employee-name');
+    const employeeId = document.getElementById('employee-id');
+    const employeeDepartment = document.getElementById('employee-department');
+    const exitInterview = document.getElementById('exit-interview');
+    const finalPaycheck = document.getElementById('final-paycheck');
+  
+    if (employeeName.value.length < 3) {
+      alert("Full Name must be at least 3 characters long.");
+      return false;
+    }
+    if (employeeId.value.length !== 7) {
+      alert("Employee ID must be at  7 characters long.");
+      return false;
+    }
+    if (employeeDepartment.value.length < 3) {
+      alert("Department must be at least 3 characters long.");
+      return false;
+    }
+    if (exitInterview.value.length < 10) {
+      alert("Exit Interview feedback must be at least 10 characters long.");
+      return false;
+    }
+
+    if (parseFloat(finalPaycheck.value) < 1) {
+      alert("Final Paycheck Amount must be a positive number greater than or equal to 1.");
+      return false;
+    }
+
+    return true;
+  }
+
+  function saveFormData() {
+    const formData = {
+      employeeName: document.getElementById('employee-name').value,
+      employeeId: document.getElementById('employee-id').value,
+      employeeDepartment: document.getElementById('employee-department').value,
+      laptopReturned: document.getElementById('laptop-returned').value,
+      phoneReturned: document.getElementById('phone-returned').value,
+      accessCardsReturned: document.getElementById('access-cards').value,
+      finalPaycheck: document.getElementById('final-paycheck').value,
+      benefitsCleared: document.getElementById('benefits-cleared').value,
+      exitInterview: document.getElementById('exit-interview').value,
+      reasonForLeaving: document.getElementById('reason-for-leaving').value
+    };
+
+    localStorage.setItem('offboardingData', JSON.stringify(formData));
+
+    alert('Your offboarding data has been saved.');
+  }
+
+  document.getElementById('submit-button').addEventListener('click', function (event) {
+  event.preventDefault();
+  
+  const form = document.getElementById('offboarding-form');
+  
+  if (validateForm()) {
+    saveFormData();
+    form.reset(); 
+  }
+});
+
+</script>
+
+</body>
+</html>

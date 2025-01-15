@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Lobster&family=Satisfy&family=Silkscreen:wght@400;700&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-content {
+            display: flex;
+            padding: 40px;
+            gap: 40px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .payslipcontainer {
+            background-color: #fff;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 5%;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(244, 6, 105, 0.5), 0 0 15px rgba(7, 168, 141, 0.5), 0 0 25px rgba(17, 12, 83, 0.5);
+            text-align: center;
+        }
+
+        .payslipcontainer h2 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #580b01;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+            .btn,
+            .btn *,
+            .btn :after,
+            .btn :before,
+            .btn:after,
+            .btn:before {
+            border: 0 solid;
+            box-sizing: border-box;
+            }
+
+            .btn {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: button;
+            background-color: #000000;
+            background-image: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+                Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            font-size: 100%;
+            font-weight: 900;
+            line-height: 1.5;
+            margin: 0;
+            
+            -webkit-mask: -webkit-radial-gradient(#000, #fff);
+            padding: 0;
+            text-transform: uppercase;
+            }
+
+            .btn:disabled {
+            cursor: default;
+            }
+
+            .btn:-moz-focusring {
+            outline: auto;
+            }
+
+            .btn svg {
+            display: block;
+            }
+
+            .btn [hidden] {
+            display: none;
+            }
+
+            .btn {
+            border-radius: 99rem;
+            border-width: 2px;
+            overflow: hidden;
+            padding: 0.8rem 3rem;
+            position: relative;
+            }
+
+            .btn span {
+            mix-blend-mode: difference;
+            }
+
+            .btn:after,
+            .btn:before {
+            background: linear-gradient(
+                90deg,
+                #fff 25%,
+                transparent 0,
+                transparent 50%,
+                #fff 0,
+                #fff 75%,
+                transparent 0
+            );
+            content: "";
+            inset: 0;
+            position: absolute;
+            transform: translateY(var(--progress, 100%));
+            transition: transform 0.2s ease;
+            }
+
+            .btn:after {
+            --progress: -100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0,
+                transparent 25%,
+                #fff 0,
+                #fff 50%,
+                transparent 0,
+                transparent 75%,
+                #fff 0
+            );
+            z-index: -1;
+            }
+
+            .btn:hover:after,
+            .btn:hover:before {
+            --progress: 0;
+            }
+
+        .payslip-container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            display: none;
+        }
+
+        .card {
+            background: linear-gradient(rgba(255, 249, 238, 0.543), rgba(255, 255, 255, 0.281), rgba(236, 254, 255, 0.582));
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 8px rgba(244, 6, 105, 0.5), 0 0 15px rgba(7, 168, 141, 0.5), 0 0 25px rgba(17, 12, 83, 0.5);
+        }
+
+        .card h4 {
+            color: #580b01;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .payslip-details {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .payslip-details label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .payslip-details p {
+            color: #555;
+            margin: 0;
+        }
+
+        .total {
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .Attendance-container, .payslip-container {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="payslipcontainer">
+            <h2>Payslip Generator</h2>
+            <form id="payslipForm" onsubmit="return generatePayslip()">
+                <div class="input-group">
+                    <label for="employeeName">Employee Name (Required)</label>
+                    <input 
+                        id="employeeName" 
+                        type="text" 
+                        placeholder="Enter your Name" 
+                        required 
+                        minlength="3" 
+                        pattern="[A-Za-z .]+" 
+                        title="Only alphabetic characters are allowed">
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email Address (Required)</label>
+                    <input 
+                        id="email" 
+                        type="email" 
+                        placeholder="Enter your Email ID" 
+                        required 
+                        title="Please enter a valid email address">
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password (Required)</label>
+                    <input 
+                        id="password" 
+                        type="password" 
+                        placeholder="Enter your password (min 1 letter, 1 number, 1 symbol)" 
+                        required 
+                        minlength="5" 
+                        pattern="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$" 
+                        title="Password must be at least 5 characters long and include at least one letter, one number, and one symbol (e.g., @, #, $, %)">
+                </div>
+                
+                
+                <div class="input-group">
+                    <label for="startMonth">Select Start Month (Required):</label>
+                    <input 
+                        type="month" 
+                        id="startMonth" 
+                        name="startMonth" 
+                        placeholder="Select start month" 
+                        required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="endMonth">Select End Month (optional):</label>
+                    <input 
+                        type="month" 
+                        id="endMonth" 
+                        name="endMonth" 
+                        placeholder="Select end month">
+                </div>
+                
+    
+                <button type="submit" class="btn"><span>Generator Payslip</span></button>
+            </form>
+        </div>
+
+        <div class="payslip-container" id="payslipContainer">
+            <div class="card">
+                <h4>Employee Details & Net Pay</h4>
+                <div class="payslip-details">
+                    <label for="employeeNameDisplay">Employee:</label>
+                    <p id="employeeNameDisplay">Employee Name</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="employeeId">Employee ID:</label>
+                    <p>12345</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="department">Department:</label>
+                    <p>Software Developer</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="payPeriod">Pay Period:</label>
+                    <p id="payPeriod">Oct 2024</p>
+                </div>
+                <div class="payslip-details total">
+                    <label for="netPay">Net Pay:</label>
+                    <p id="netPay">₹24,528.00</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Earnings</h4>
+                <div class="payslip-details">
+                    <label for="basicSalary">Basic Salary:</label>
+                    <p>₹16,250.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="dearnessAllowance">Dearness Allowance:</label>
+                    <p>₹550.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="houseRentAllowance">House Rent Allowance:</label>
+                    <p>₹1,650.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="wageAllowance">Wage Allowance:</label>
+                    <p>₹120.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="medicalAllowance">Medical Allowance:</label>
+                    <p>₹3,000.00</p>
+                </div>
+                <div class="payslip-details total">
+                    <label>Total Earnings:</label>
+                    <p>₹21,670.00</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Deductions</h4>
+                <div class="payslip-details">
+                    <label for="providentFund">Provident Fund:</label>
+                    <p>₹1,800.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="employeeStateInsurance">Employee State Insurance:</label>
+                    <p>₹142.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="taxDeductedAtSource">Tax Deducted at Source:</label>
+                    <p>₹0.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="leaveWithoutPay">Leave Without Pay:</label>
+                    <p>₹0.00</p>
+                </div>
+                <div class="payslip-details">
+                    <label for="specialDeduction">Special Deduction:</label>
+                    <p>₹500.00</p>
+                </div>
+                <div class="payslip-details total">
+                    <label>Total Deductions:</label>
+                    <p>₹2,442.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generatePayslip() {
+            const employeeName = document.getElementById('employeeName').value;
+            const startMonth = document.getElementById('startMonth').value;
+            const endMonth = document.getElementById('endMonth').value;
+    
+            
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();
+            const currentMonth = currentDate.getMonth() + 1; 
+    
+            const startMonthDate = new Date(startMonth);
+            const startMonthYear = startMonthDate.getFullYear();
+            const startMonthMonth = startMonthDate.getMonth();
+    
+            const endMonthDate = endMonth ? new Date(endMonth) : null;
+            const endMonthYear = endMonthDate ? endMonthDate.getFullYear() : null;
+            const endMonthMonth = endMonthDate ? endMonthDate.getMonth() : null;
+    
+           
+            if (!employeeName || !startMonth || startMonthYear >= currentYear || (startMonthYear === currentYear && startMonthMonth >= currentMonth)) {
+                alert("Invalid selection. Start month cannot be the current or any future month.");
+                return false;
+            }
+    
+            if (endMonth && (endMonthYear >= currentYear || (endMonthYear === currentYear && endMonthMonth >= currentMonth))) {
+                alert("Invalid selection. End month cannot be the current or any future month.");
+                return false;
+            }
+    
+            document.getElementById('employeeNameDisplay').textContent = employeeName;
+    
+            const startMonthName = startMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+            const endMonthName = endMonth ? endMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' }) : startMonthName;
+            document.getElementById('payPeriod').textContent = `${startMonthName} - ${endMonthName}`;
+    
+            document.getElementById('payslipContainer').style.display = 'flex';
+    
+            return false;
+        }
+    </script>
+    
+</body>
+</html>

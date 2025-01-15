@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Applications - HRMS Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            font-family: monospace;
+            color: #333;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column; 
+            width: 1300px;
+            height: auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .job-applications {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .application-card {
+            display: flex;
+            flex-direction: column;
+            width: 330px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .application-card p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .application-card .status {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .application-card .status.pending {
+            color: orange;
+        }
+
+        .application-card .status.approved {
+            color: green;
+        }
+
+        .application-card .status.rejected {
+            color: red;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px; 
+            background-color: #238dff;
+            color: #fff;
+        }
+
+        button:hover {
+            background-color: #1a6cb3; 
+        }
+
+        .employee-list {
+            list-style-type: none; 
+            padding: 0;
+        }
+
+        .employee-list li {
+            margin: 5px 0; 
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            transition: background-color 0.3s ease;
+        }
+
+        .employee-list li:hover {
+            background-color: #d1e7dd; 
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <h1>Job Applications</h1>
+        
+        <div class="job-applications">
+            <div class="application-card">
+                <p><strong>Applicant Name:</strong> Applicant 1</p>
+                <p><strong>Position Applied:</strong> Software Developer</p>
+                <p><strong>Application Date:</strong> 01-10-2024</p>
+                <p><strong>Skills:</strong> JavaScript, Node.js, React</p>
+                <p><strong>Experience:</strong> 3 years</p>
+                <p class="status pending">Status: Pending</p>
+                <button>View Details</button>
+            </div>
+
+            <div class="application-card">
+                <p><strong>Applicant Name:</strong> Applicant 2</p>
+                <p><strong>Position Applied:</strong> UI/UX Designer</p>
+                <p><strong>Application Date:</strong> 05-10-2024</p>
+                <p><strong>Skills:</strong> Figma, Sketch, Adobe XD</p>
+                <p><strong>Experience:</strong> 2 years</p>
+                <p class="status approved">Status: Approved</p>
+                <button>View Details</button>
+            </div>
+
+            <div class="application-card">
+                <p><strong>Applicant Name:</strong> Applicant 3</p>
+                <p><strong>Position Applied:</strong> Project Manager</p>
+                <p><strong>Application Date:</strong> 08-10-2024</p>
+                <p><strong>Skills:</strong> Agile, Scrum, Leadership</p>
+                <p><strong>Experience:</strong> 5 years</p>
+                <p class="status rejected">Status: Rejected</p>
+                <button>View Details</button>
+            </div>
+
+            <div class="application-card">
+                <p><strong>Applicant Name:</strong> Applicant 4</p>
+                <p><strong>Position Applied:</strong> Frontend Developer</p>
+                <p><strong>Application Date:</strong> 10-10-2024</p>
+                <p><strong>Skills:</strong> HTML, CSS, JavaScript, React</p>
+                <p><strong>Experience:</strong> 4 years</p>
+                <p class="status pending">Status: Pending</p>
+                <button>View Details</button>
+            </div>
+
+            <div class="application-card">
+                <p><strong>Applicant Name:</strong> Applicant 5</p>
+                <p><strong>Position Applied:</strong> Backend Developer</p>
+                <p><strong>Application Date:</strong> 12-10-2024</p>
+                <p><strong>Skills:</strong> Node.js, Express, MongoDB</p>
+                <p><strong>Experience:</strong> 6 years</p>
+                <p class="status approved">Status: Approved</p>
+                <button>View Details</button>
+            </div>
+
+            <div class="application-card">
+                <p><strong>Applicant Name:</strong> Applicant 6</p>
+                <p><strong>Position Applied:</strong> Marketing Manager</p>
+                <p><strong>Application Date:</strong> 14-10-2024</p>
+                <p><strong>Skills:</strong> SEO, Google Analytics, Social Media Marketing</p>
+                <p><strong>Experience:</strong> 7 years</p>
+                <p class="status rejected">Status: Rejected</p>
+                <button>View Details</button>
+            </div>
+
+            <div class="application-card">
+                <p><strong>Applicant Name:</strong> Applicant 7</p>
+                <p><strong>Position Applied:</strong> Data Scientist</p>
+                <p><strong>Application Date:</strong> 16-10-2024</p>
+                <p><strong>Skills:</strong> Python, R, Machine Learning</p>
+                <p><strong>Experience:</strong> 3 years</p>
+                <p class="status pending">Status: Pending</p>
+                <button>View Details</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

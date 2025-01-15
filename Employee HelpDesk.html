@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Helpdesk & Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      overflow-y: auto; 
+      padding: 20px;
+    }
+
+    .helpdesk-container {
+      width: 80%;
+      max-width: 900px;
+      min-height: 80vh; 
+      padding: 30px;
+      padding-top: 40px; 
+      padding-bottom: 40px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      margin-top: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 36px;
+    }
+
+    .helpdesk-description {
+      text-align: center;
+      color: #7f8c8d;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .ticket-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 16px;
+      color: #333;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #7129b9;
+      color: white;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      border-top: 2px solid blueviolet;
+      border-left: 2px solid blueviolet;
+      border-bottom: 2px solid rgb(238, 103, 238);
+      border-right: 2px solid rgb(238, 103, 238);
+      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px;
+    }
+
+    .ticket-list {
+      margin-top: 40px;
+    }
+
+    .ticket-item {
+      padding: 15px;
+      background-color: #ecf0f1;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ticket-item p {
+      margin-bottom: 10px;
+    }
+
+    .ticket-item .status {
+      font-weight: bold;
+      color: #2ecc71;
+    }
+
+    .ticket-item .status.pending {
+      color: #f39c12;
+    }
+
+    .ticket-item .status.closed {
+      color: #e74c3c;
+    }
+
+    .no-tickets {
+      text-align: center;
+      color: #aaa;
+    }
+
+    .delete-btn {
+      background-color: #ff5542;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="helpdesk-container">
+    <h1>Employee Helpdesk & Support</h1>
+    <p class="helpdesk-description">Please submit your queries or issues, and our HR team will assist you shortly.</p>
+
+    <form class="ticket-form" id="ticket-form" onsubmit="submitTicket(event)">
+      <div class="input-group">
+        <label for="employee-name">Your Name</label>
+        <input 
+          type="text" 
+          id="employee-name" 
+          name="employee-name" 
+          placeholder="Enter Employee Name" 
+          required 
+          minlength="3" 
+          pattern="[A-Za-z .]+" 
+          title="Only alphabetic characters are allowed"
+        >
+      </div>
+    
+      <div class="input-group">
+        <label for="email">Your Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="Enter your email address" 
+          required
+        >
+      </div>
+    
+      <div class="input-group">
+        <label for="issue">Describe Your Issue</label>
+        <textarea 
+          id="issue" 
+          name="issue" 
+          placeholder="Please provide a brief description of your issue" 
+          required 
+          minlength="5"
+        ></textarea>
+      </div>
+    
+      <button type="submit">Submit Ticket</button>
+    </form>
+    
+    <div class="ticket-list" id="ticket-list">
+      <div class="no-tickets">No support tickets submitted yet</div>
+    </div>
+    
+  </div>
+
+  <script>
+    window.onload = function() {
+      const ticketList = document.getElementById('ticket-list');
+      const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+
+      if (tickets.length === 0) {
+        ticketList.innerHTML = '<div class="no-tickets">No tickets submitted yet</div>';
+      } else {
+        ticketList.innerHTML = '';
+        tickets.forEach((ticket, index) => {
+          const ticketItem = document.createElement('div');
+          ticketItem.classList.add('ticket-item');
+          ticketItem.innerHTML = `
+            <div>
+              <p><strong>Name:</strong> ${ticket.name}</p>
+              <p><strong>Email:</strong> ${ticket.email}</p>
+              <p><strong>Issue:</strong> ${ticket.issue}</p>
+              <p><strong>Status:</strong> <span class="status ${ticket.status.toLowerCase()}">${ticket.status}</span></p>
+            </div>
+            <button class="delete-btn" onclick="deleteTicket(${index})">Delete</button>
+          `;
+          ticketList.appendChild(ticketItem);
+        });
+      }
+    };
+
+    function submitTicket() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const issue = document.getElementById('issue').value;
+
+      if (!name || !email || !issue) {
+        return alert("Please fill in all fields!");
+      }
+
+      const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+
+      const newTicket = {
+        name,
+        email,
+        issue,
+        status: 'Pending'
+      };
+
+      tickets.push(newTicket);
+
+      localStorage.setItem('tickets', JSON.stringify(tickets));
+
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('issue').value = '';
+
+      window.location.reload();
+    }
+
+    function deleteTicket(index) {
+      const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+
+      tickets.splice(index, 1);
+
+      localStorage.setItem('tickets', JSON.stringify(tickets));
+
+      window.location.reload();
+    }
+  </script>
+
+</body>
+</html>

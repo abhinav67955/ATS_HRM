@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Meeting Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      box-sizing: border-box;
+      font-size: 100%;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Source Code Pro', monospace;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      max-width: 1200px;
+      margin-left: 20px;
+      margin-top: 20px;
+      padding: 20px;
+    }
+
+    .meeting-form-container {
+      background-color: #000000;
+      padding: 20px;
+      border-radius: 1% 10% 1% 2%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      flex: 1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: #ffffff;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .meeting-form {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .meeting-form input,
+    .meeting-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .meeting-form input:focus, .meeting-form textarea:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .meeting-form button,
+    .meeting-actions button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      margin: 10px 0;
+      transition: background-color 0.3s;
+      outline: none;
+    }
+
+    .meeting-form button:hover {
+      background-color: #218838;
+    }
+
+    .meeting-cards-container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+
+    .meeting-cards-container h3 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #343a40;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 55px;
+      width: 700px;
+    }
+
+    .card {
+      width: 17rem;
+      color: #000000da;
+      padding: 1.5rem;
+      background-color: #ffffff;
+      pointer-events: auto;
+      transform: scale(1);
+      opacity: 1;
+      transition: all 150ms ease-in-out;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card-title {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .date {
+      color: #bb86fc;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .description {
+      font-size: 0.9rem;
+    }
+
+    .cards:hover > .card:hover {
+      transform: scale(1.09);
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      z-index: 10;
+      border-top: 4px solid rgb(186, 111, 12);
+    }
+
+    .cards:hover > .card:not(:hover) {
+      opacity: 0.5;
+    }
+
+    .meeting-actions .edit-btn {
+      background-color: #ffc107;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s;
+    }
+    .meeting-actions .cancel-btn {
+      background-color: #ff1c7b;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s;
+    }
+    .meeting-actions .update-btn {
+      background-color: #6f79ff;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s;
+    }
+    .meeting-actions .edit-btn:hover {
+      background-color: #e0a800;
+    }
+
+    .update-btn {
+      background-color: #cbc8da;
+    }
+
+    .update-btn:hover {
+      background-color: #091d52;
+    }
+
+    .cancel-btn {
+      background-color: #e81f33;
+    }
+
+    .cancel-btn:hover {
+      background-color: #c82333;
+    }
+
+    .glowing-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 50px;
+    }
+
+    .circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      animation: glow 1.6s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+      20% {
+        transform: scale(1.2);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+      }
+      50% {
+        transform: scale(1.4);
+        box-shadow: 0 0 50px rgba(255, 255, 255, 1);
+      }
+      80% {
+        transform: scale(1.2);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .glowing-container .circle:nth-child(1) {
+      background: #fff000;
+      animation-delay: -1.4s;
+      box-shadow: 0 0 10px #fff000;
+    }
+
+    .glowing-container .circle:nth-child(2) {
+      background: #f06292;
+      animation-delay: -1.2s;
+      box-shadow: 0 0 10px #f06292;
+    }
+
+    .glowing-container .circle:nth-child(3) {
+      background: #4fc3f7;
+      animation-delay: -1.0s;
+      box-shadow: 0 0 10px #4fc3f7;
+    }
+
+    .glowing-container .circle:nth-child(4) {
+      background: #f57c00;
+      animation-delay: -0.8s;
+      box-shadow: 0 0 10px #f57c00;
+    }
+
+    .glowing-container .circle:nth-child(5) {
+      background: #673ab7;
+      animation-delay: -0.6s;
+      box-shadow: 0 0 10px #673ab7;
+    }
+
+    .glowing-container .circle:nth-child(6) {
+      background: #ba68c8;
+      animation-delay: -0.4s;
+      box-shadow: 0 0 10px #ba68c8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="meeting-form-container">
+      <div class="header">
+        <h1>Create a Meeting</h1>
+      </div>
+      <form class="meeting-form" id="meeting-form">
+        <input type="text" id="meeting-title" placeholder="Meeting Title" required minlength="3">
+        <input type="date" id="meeting-date" required minlength="3">
+        <input type="text" id="meeting-link" placeholder="Meeting Link" required minlength="5">
+        <textarea id="meeting-agenda" placeholder="Agenda" rows="4" required minlength="10"></textarea>
+        <button type="submit">Create Meeting</button>
+      </form>
+      <div class="glowing-container">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+    </div>
+
+    <div class="meeting-cards-container">
+      <h3>Upcoming Meetings</h3>
+      <div class="cards" id="cards-container">
+        <div class="card meeting-card">
+          <h4 class="card-title">Employee Performance Review</h4>
+          <p class="date">Date: 2024-11-10</p>
+          <p class="description">Location: Conference Room 2</p>
+          <div class="meeting-agenda">
+            <strong>Agenda:</strong>
+            <ul>
+              <li>Quarterly review of employee performance</li>
+            </ul>
+          </div>
+          <div class="meeting-actions">
+            <button class="edit-btn">Edit</button>
+            <button class="update-btn">Update</button>
+            <button class="cancel-btn">Cancel</button>
+          </div>
+        </div>
+
+        <div class="card meeting-card">
+          <h4 class="card-title">New Hire Orientation</h4>
+          <p class="date">Date: 2024-11-12</p>
+          <p class="description">Location: HR Office, Main Building</p>
+          <div class="meeting-agenda">
+            <strong>Agenda:</strong>
+            <ul>
+              <li>Introduction to company policies</li>
+            </ul>
+          </div>
+          <div class="meeting-actions">
+            <button class="edit-btn">Edit</button>
+            <button class="update-btn">Update</button>
+            <button class="cancel-btn">Cancel</button>
+          </div>
+        </div>
+
+        <div class="card meeting-card">
+          <h4 class="card-title">Compliance Training</h4>
+          <p class="date">Date: 2024-11-15</p>
+          <p class="description">Location: Online Webinar</p>
+          <div class="meeting-agenda">
+            <strong>Agenda:</strong>
+            <ul>
+              <li>Annual compliance updates</li>
+            </ul>
+          </div>
+          <div class="meeting-actions">
+            <button class="edit-btn">Edit</button>
+            <button class="update-btn">Update</button>
+            <button class="cancel-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('meeting-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('meeting-title').value;
+      const date = document.getElementById('meeting-date').value;
+      const link = document.getElementById('meeting-link').value;
+      const agenda = document.getElementById('meeting-agenda').value;
+
+      const newCard = document.createElement('div');
+      newCard.classList.add('card', 'meeting-card');
+
+      newCard.innerHTML = `
+        <h4 class="card-title">${title}</h4>
+        <p class="date">Date: ${date}</p>
+        <p class="description">Location: ${link}</p>
+        <div class="meeting-agenda">
+          <strong>Agenda:</strong>
+          <ul>
+            <li>${agenda}</li>
+          </ul>
+        </div>
+        <div class="meeting-actions">
+          <button class="edit-btn">Edit</button>
+          <button class="update-btn">Update</button>
+          <button class="cancel-btn">Cancel</button>
+        </div>
+      `;
+
+      document.getElementById('cards-container').appendChild(newCard);
+
+      document.getElementById('meeting-form').reset();
+    });
+  </script>
+
+</body>
+</html>

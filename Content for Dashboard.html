@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRMS Project Deployment</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        text-align: center;
+
+        overflow: hidden;
+      }
+
+      .left-box {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        transition: transform 3s ease-in-out;
+      }
+      .right-box {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        right: 50px;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 3s ease-in-out;
+      }
+
+      .item {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+      }
+
+      .item-1 {
+        background-color: rgb(250, 87, 103);
+        top: 0;
+        left: 0;
+        z-index: 1;
+        animation: item-1_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+      }
+
+      .item-2 {
+        background-color: rgb(121, 68, 228);
+        top: 0;
+        right: 0;
+        animation: item-2_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+      }
+
+      .item-3 {
+        background-color: rgb(27, 145, 247);
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        animation: item-3_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+      }
+
+      .item-4 {
+        background-color: rgb(250, 194, 76);
+        bottom: 0;
+        left: 0;
+        animation: item-4_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+      }
+
+      @keyframes item-1_move {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(0, 50px);
+        }
+        50% {
+          transform: translate(50px, 50px);
+        }
+        75% {
+          transform: translate(50px, 0);
+        }
+      }
+
+      @keyframes item-2_move {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-50px, 0);
+        }
+        50% {
+          transform: translate(-50px, 50px);
+        }
+        75% {
+          transform: translate(0, 50px);
+        }
+      }
+
+      @keyframes item-3_move {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(0, -50px);
+        }
+        50% {
+          transform: translate(-50px, -50px);
+        }
+        75% {
+          transform: translate(-50px, 0);
+        }
+      }
+
+      @keyframes item-4_move {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(50px, 0);
+        }
+        50% {
+          transform: translate(50px, -50px);
+        }
+        75% {
+          transform: translate(0, -50px);
+        }
+      }
+
+      .welcome-text {
+        font-size: 44px;
+        font-weight: bold;
+        color: #333;
+        opacity: 0;
+        transition: opacity 1s ease-in-out 2s;
+        z-index: 10;
+        white-space: nowrap;
+      }
+
+      .welcome-text span {
+        display: inline-block;
+        opacity: 0;
+        animation: reveal-text 0.1s forwards;
+      }
+
+      @keyframes reveal-text {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .container.active .left-box {
+        transform: translateX(-150px);
+      }
+
+      .container.active .right-box {
+        transform: translateX(150px);
+      }
+
+      .container.active .welcome-text {
+        opacity: 1;
+      }
+
+      .container.active .welcome-text span {
+        animation-delay: calc(0.1s * var(--i));
+      }
+      .main-container {
+        display: flex;
+        flex-direction: row;
+        margin-top: 30px;
+        gap: 20px;
+      }
+      .projectcontainer {
+        display: flex;
+        flex-direction: row;
+
+        gap: 50px;
+        padding: 20px;
+        border-radius: 50px;
+      }
+
+      .left-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        margin-left: 120px;
+        width: 60%;
+      }
+
+      .right-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 100px;
+        border-radius: 50px;
+        align-items: center;
+        padding-top: 20px;
+        width: 38%;
+      }
+
+      .left-card {
+        width: 200px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .left-card .icon {
+        font-size: 60px;
+        color: #000000;
+        margin-bottom: 10px;
+      }
+
+      .left-card h2 {
+        margin: 10px 0;
+        font-size: 20px;
+        color: #333;
+      }
+
+      .left-card p {
+        color: #555;
+        font-size: 16px;
+      }
+
+      .left-card-1 {
+        background: linear-gradient(
+          rgb(255, 247, 221),
+          rgba(255, 255, 255, 0),
+          rgb(255, 221, 244)
+        );
+      }
+
+      .left-card-2 {
+        background: linear-gradient(
+          rgb(221, 255, 221),
+          rgba(255, 255, 255, 0),
+          rgb(244, 255, 221)
+        );
+      }
+
+      .left-card-3 {
+        background: linear-gradient(
+          rgba(255, 232, 195, 0.543),
+          rgba(255, 218, 218, 0.352),
+          rgb(221, 254, 255)
+        );
+      }
+      .left-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .right-calendar {
+        width: 90%;
+        background: linear-gradient(
+          rgb(221, 221, 255),
+          rgba(255, 255, 255, 0),
+          rgb(221, 221, 255)
+        );
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        border-radius: 8px;
+      }
+
+      h2 {
+        color: #333;
+        margin-top: 0;
+      }
+
+      #calendar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .weekdays,
+      .days-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+      }
+
+      .weekday,
+      .day,
+      .empty-day {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .weekday {
+        font-weight: bold;
+        background-color: #eb04f87d;
+        color: white;
+      }
+
+      .day {
+        color: #333;
+        background-color: #ffffff;
+        cursor: pointer;
+      }
+
+      .day:hover {
+        background-color: #d4edda;
+      }
+
+      .empty-day {
+        background-color: transparent;
+        border: none;
+      }
+
+      .right-pie-chart {
+        text-align: center;
+        width: 100%;
+      }
+
+      canvas {
+        max-width: 100%;
+        max-height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-box">
+        <div class="item item-1"></div>
+        <div class="item item-2"></div>
+        <div class="item item-3"></div>
+        <div class="item item-4"></div>
+      </div>
+
+      <div class="welcome-text">
+        <span style="--i: 0">W</span>
+        <span style="--i: 1">e</span>
+        <span style="--i: 2">l</span>
+        <span style="--i: 3">c</span>
+        <span style="--i: 4">o</span>
+        <span style="--i: 5">m</span>
+        <span style="--i: 6">e</span>
+        <span style="--i: 7"> </span>
+        <span style="--i: 8">t</span>
+        <span style="--i: 9">o</span>
+        <span style="--i: 10"> </span>
+        <span style="--i: 11">H</span>
+        <span style="--i: 12">R</span>
+        <span style="--i: 13">M</span>
+        <span style="--i: 14">S</span>
+        <span style="--i: 15"> </span>
+        <span style="--i: 16">P</span>
+        <span style="--i: 17">o</span>
+        <span style="--i: 18">r</span>
+        <span style="--i: 19">t</span>
+        <span style="--i: 20">a</span>
+        <span style="--i: 21">l</span>
+      </div>
+
+      <div class="right-box">
+        <div class="item item-1"></div>
+        <div class="item item-2"></div>
+        <div class="item item-3"></div>
+        <div class="item item-4"></div>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="left-container">
+        <div class="projectcontainer">
+          <div class="left-card left-card-1">
+            <div class="icon">
+              <i class="material-icons">work_outline</i>
+            </div>
+            <h2>HRMS Deployment</h2>
+            <p>
+              <strong>Stage:</strong> Testing
+              <i class="material-icons" id="icon">trending_up</i>
+            </p>
+          </div>
+          <div class="left-card left-card-2">
+            <div class="icon">
+              <i class="material-icons">work_outline</i>
+            </div>
+            <h2>Dairy Project</h2>
+            <p>
+              <strong>Status:</strong> Developing
+              <i class="material-icons" id="icon">trending_up</i>
+            </p>
+          </div>
+          <div class="left-card left-card-3">
+            <div class="icon">
+              <i class="material-icons">work_outline</i>
+            </div>
+            <h2>Banking Project</h2>
+            <p>
+              <strong>Status:</strong> Developing
+              <i class="material-icons" id="icon">trending_up</i>
+            </p>
+          </div>
+        </div>
+
+        <div class="calendarcontainer">
+          <div class="right-calendar">
+            <h2>January Calendar</h2>
+            <div id="calendar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-container">
+        <div class="right-pie-chart">
+          <h2>Employees</h2>
+          <canvas id="employeePieChart" width="400" height="400"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const calendar = document.getElementById("calendar");
+        const date = new Date();
+        const [year, month] = [date.getFullYear(), date.getMonth()];
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        calendar.innerHTML = `
+                <div class="weekdays">${weekdays
+                  .map((day) => `<div class="weekday">${day}</div>`)
+                  .join("")}</div>
+                <div class="days-grid">
+                    ${'<div class="empty-day"></div>'.repeat(firstDay)}
+                    ${Array.from(
+                      { length: daysInMonth },
+                      (_, i) => `<div class="day">${i + 1}</div>`
+                    ).join("")}
+                </div>
+            `;
+
+        const pieChartData = {
+          labels: ["Frontend", "Backend", "Cloud", "Testing", "Other"],
+          datasets: [
+            {
+              data: [25, 15, 5, 10, 10],
+              backgroundColor: [
+                "#69247C",
+                "#344CB7",
+                "#79D7BE",
+                "#F0BB78",
+                "#A294F9",
+              ],
+              borderColor: "#fff",
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        const ctx = document
+          .getElementById("employeePieChart")
+          .getContext("2d");
+        const employeePieChart = new Chart(ctx, {
+          type: "bar",
+          data: pieChartData,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top",
+                labels: {
+                  usePointStyle: true,
+                  pointStyle: "circle",
+                },
+              },
+              datalabels: {
+                display: true,
+                color: "#fff",
+                font: {
+                  weight: "bold",
+                  size: 14,
+                },
+                formatter: function (value, context) {
+                  return context.chart.data.labels[context.dataIndex];
+                },
+              },
+            },
+          },
+        });
+      });
+      setTimeout(function () {
+        document.querySelector(".container").classList.add("active");
+      }, 1000);
+    </script>
+  </body>
+</html>

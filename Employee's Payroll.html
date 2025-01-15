@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container { 
+            background: linear-gradient(5deg, #11b35c4c 60%, #ee97ff32 40%);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 1000px;
+            margin: 50px auto;
+        }
+        .form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+            width: 400px; 
+            height: 350px; 
+            margin: 50px auto;
+        }
+        .form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form label {
+            display: block;
+            font-size: 14px;
+            margin: 10px 0 5px;
+        }
+        .form input {
+            padding: 10px;
+            width: 90%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        } 
+        .form select{
+            padding: 10px;
+            width: 96%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        button {
+  --color: #560bad; 
+  --bg-color: #fff; 
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color 0.5s, background 0.5s;
+  z-index: 1;
+  width: 320px;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+  background-color: var(--bg-color); 
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color); 
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+  transition: all 0.7s;
+}
+
+button:hover {
+  color: var(--bg-color); 
+  background-color: var(--color); 
+}
+
+button:before {
+  top: 100%;
+  left: 100%;
+}
+
+button:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+button:active:before {
+  background: #ffffff; 
+  transition: background 0s;
+}
+
+button:active {
+  color: var(--color); 
+  background-color: #ffffff; 
+}
+
+        .payslip {
+            display: none;
+            margin-top: 30px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h3 {
+            font-weight: bold;
+            font-size: 2em;
+        }
+        .header span {
+            display: block;
+            font-size: 22px;
+        }
+        .branch {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        .details {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 0;
+            margin-bottom: 20px; 
+        }
+        .section {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+            margin-top: 10px; 
+        }
+        .net {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .in-words {
+            margin-top: 10px;
+        }
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+        }
+        .border {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .column {
+            flex: 1;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form">
+        <h2>Enter Payslip Details</h2>
+        <form id="payslip-form">
+            <form>
+                <label for="employee-name">Employee Name:</label>
+                <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required minlength="3" pattern="[A-Za-z\s]+" title="Only alphabetic characters are allowed">            
+                <label for="employeeID">Employee ID:</label>
+                <input type="text" id="employeeID" name="employeeID" placeholder="Enter EmployeeID" required minlength="7" maxlength="7" pattern="^[A-Z]{3}[0-9]{4}$" title="ID must start with 3 capital letters followed by 4 digits">
+            
+                <label for="month">Select Month:</label>
+                <input type="month" name="month" id="month" required>
+            
+                <button type="submit">Generate Payslip</button>
+            </form>
+            
+        </form>
+    </div>
+
+    <div class="payslip" id="payslip">
+        <div class="header">
+            <h3>Payslip</h3>
+            <span id="month-span">Payment slip for the month of October 2024</span>
+        </div>
+
+        <div class="branch">
+            <div>Working Branch: Hyderabad</div>
+        </div>
+
+        <div class="details">
+            <div><strong>EMP Code:</strong> 39124</div>
+            <div><strong>EMP Name:</strong> <span id="employee-name-span">Employee name</span></div>
+        </div>
+        <div class="details">
+            <div><strong>PF No.:</strong> 101523065714</div>
+            <div><strong>Working Days:</strong> 28</div>
+        </div>
+        <div class="details">
+            <div><strong>ESI No.:</strong> 1234567890</div>
+            <div><strong>Mode of Pay:</strong> Digital</div>
+        </div>
+        <div class="details">
+            <div><strong>Designation:</strong> Developer</div>
+            <div><strong>Ac No.:</strong> *******0701</div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <strong>Earnings</strong>
+                <div class="section"><div>Basic Salary</div></div>
+                <div class="section"><div>Dearness Allowance</div></div>
+                <div class="section"><div>House Rent Allowance</div></div>
+                <div class="section"><div>Wage Allowance</div></div>
+                <div class="section"><div>Medical Allowance</div></div>
+            </div>
+            <div class="column">
+                <strong>Amount</strong>
+                <div class="section"><div>16,250.00</div></div>
+                <div class="section"><div>550.00</div></div>
+                <div class="section"><div>1,650.00</div></div>
+                <div class="section"><div>120.00</div></div>
+                <div class="section"><div>3,000.00</div></div>
+            </div>
+            <div class="column">
+                <strong>Deductions</strong>
+                <div class="section"><div>Provident Fund</div></div>
+                <div class="section"><div>Employee State Insurance</div></div>
+                <div class="section"><div>Tax Deducted at Source</div></div>
+                <div class="section"><div>Leave Without Pay</div></div>
+                <div class="section"><div>Special Deduction</div></div>
+            </div>
+            <div class="column">
+                <strong>Amount</strong>
+                <div class="section"><div>1,800.00</div></div>
+                <div class="section"><div>142.00</div></div>
+                <div class="section"><div>0.00</div></div>
+                <div class="section"><div>0.00</div></div>
+                <div class="section"><div>500.00</div></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column net">
+                <span>Net Pay: 24,528.00</span>
+            </div>
+            <div class="column border">
+                <div>
+                    <span>In Words</span>
+                    <span>Twenty Four thousand five hundred twenty-eight only</span>
+                </div>
+            </div>
+        </div>
+        <div class="signature">
+            <div><strong>Astrolite Tech Solutions</strong></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('payslip-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const employeeName = document.getElementById('employee-name').value;
+        const month = document.getElementById('month').value;
+
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+
+        const selectedYear = parseInt(month.split('-')[0]);
+        const selectedMonth = parseInt(month.split('-')[1]);
+
+        if (selectedYear >= currentYear && selectedMonth >= currentMonth) {
+            alert("Invalid selection. You cannot select the current or any future month.");
+            return;
+        }
+
+        document.getElementById('employee-name-span').innerText = employeeName;
+        document.getElementById('month-span').innerText = "Payment slip for the month of " + month;
+        document.getElementById('payslip').style.display = 'block';
+        document.querySelector('.form').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Work from Home</title>
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+          
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+           
+        }
+        
+        
+        .form-container {
+            width: 1200px;
+            height: auto;
+            background-color: #fff;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; 
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            position: relative;
+            background: linear-gradient(135deg, #d3dfff83, #fae1ff89); 
+            animation: gradientMotion 10s ease infinite;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            font-family:sans-serif;
+            animation: headingMotion 5s ease-in-out infinite;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        
+        @keyframes headingMotion {
+            0% {
+                transform: translateX(-50px);
+                color: #05840e;
+            }
+            50% {
+                transform: translateX(20px);
+                color: #050565;
+            }
+            100% {
+                transform: translateX(-50px);
+                color: #ff6347;
+            }
+        }
+
+        form {
+            width: 100%;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+      
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .input-group > div {
+            width: 48%;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #000000;
+            outline: none;
+        }
+
+        #reason {
+          width: 98%;
+          height: 60px;
+          border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        button {
+            margin-top: 20px;
+      width: 80%;
+      padding: 12px;
+      background-color: #7129b9;
+      color: white;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-top: 2px solid blueviolet;
+      border-left: 2px solid blueviolet;
+      border-bottom: 2px solid rgb(238, 103, 238);
+      border-right: 2px solid rgb(238, 103, 238);
+      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px;
+    }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+      
+        @media screen and (max-width: 880px) {
+            .form-container {
+                width: 90%;
+                height: auto;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .input-group > div {
+                width: 100%; 
+            }
+
+            .input-group input, .input-group textarea {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Request Work from Home</h2>
+        <form id="wfhForm">
+            <div class="input-group">
+                <div>
+                    <label for="employeeName">Employee Name:</label>
+                    <input type="text" id="employeeName"   
+                           placeholder="Enter your Name" 
+                           required 
+                           minlength="3" 
+                           pattern="[A-Za-z .]+" 
+                           title="Only alphabetic characters are allowed">
+                </div>
+            
+                <div>
+                    <label for="employeeID">Employee ID:</label>
+                    <input type="text" id="employeeID" name="employeeID" 
+                           placeholder="Enter Your ID"
+                           required 
+                           minlength="7" 
+                           maxlength="7" 
+                           pattern="[A-Z]{3}[0-9]{4}" 
+                           title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div>
+                    <label for="employeeEmail">Employee Email:</label>
+                    <input type="email" id="employeeEmail" name="employeeEmail" 
+                           placeholder="Enter your Email" 
+                           required>
+                </div>
+            
+                <div>
+                    <label for="workingProject">Working Project:</label>
+                    <input type="text" id="workingProject" name="workingProject" 
+                           placeholder="Enter Project Name" 
+                           required minlength="3">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div>
+                    <label for="reportingManager">Reporting Manager:</label>
+                    <input type="text" id="reportingManager" name="reportingManager"      
+                           placeholder="Enter Manager's Name" 
+                           required 
+                           minlength="3" 
+                           pattern="[A-Za-z .]+" 
+                           title="Only alphabetic characters are allowed">
+                </div>
+            
+                <div>
+                    <label for="wfhLocation">WFH Location:</label>
+                    <input type="text" id="wfhLocation" name="wfhLocation" 
+                           placeholder="Enter your WFH Location" 
+                           required minlength="3">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <div>
+                    <label for="fromDate">From Date:</label>
+                    <input type="date" id="fromDate" name="fromDate" required>
+                </div>
+            
+                <div>
+                    <label for="toDate">To Date:</label>
+                    <input type="date" id="toDate" name="toDate" required>
+                </div>
+            </div>
+            
+            <label for="reason">Reason for Work from Home:</label>
+            <textarea id="reason" name="reason" placeholder="Enter your reason for WFH" required minlength="10"></textarea><br>
+            
+            <button type="submit">Submit Request</button>
+            
+        </form>
+    </div>
+
+    <script>
+      
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('wfhForm');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const employeeName = document.getElementById('employeeName').value;
+                const employeeID = document.getElementById('employeeID').value;
+                const employeeEmail = document.getElementById('employeeEmail').value;
+                const workingProject = document.getElementById('workingProject').value;
+                const reportingManager = document.getElementById('reportingManager').value;
+                const wfhLocation = document.getElementById('wfhLocation').value;
+                const fromDate = document.getElementById('fromDate').value;
+                const toDate = document.getElementById('toDate').value;
+                const reason = document.getElementById('reason').value;
+
+                const request = {
+                    name: employeeName,
+                    id: employeeID,
+                    email: employeeEmail,
+                    project: workingProject,
+                    manager: reportingManager,
+                    location: wfhLocation,
+                    from: fromDate,
+                    to: toDate,
+                    reason: reason
+                };
+
+                let submissions = JSON.parse(localStorage.getItem('wfhRequests')) || [];
+
+                submissions.push(request);
+
+                localStorage.setItem('wfhRequests', JSON.stringify(submissions));
+
+                form.reset();
+
+                alert('Request submitted successfully!');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Leave Application</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Anton&family=Archivo+Black&family=Arima:wght@100..700&family=Baloo+Tammudu+2:wght@400..800&family=Bruno+Ace+SC&family=Denk+One&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Jockey+One&family=Lobster&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&family=Paytone+One&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Racing+Sans+One&family=Rajdhani:wght@300;400;500;600;700&family=Rufina:wght@400;700&family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Satisfy&family=Silkscreen:wght@400;700&family=Sixtyfour+Convergence&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            padding: 20px;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .leave-container {
+            width: 1200px;
+            height: auto;
+            padding: 30px;
+            margin-left: 150px;
+            height: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; 
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            position: relative;
+            background: linear-gradient(135deg, #79b0bc83, #aa89e489); 
+            animation: gradientMotion 10s ease infinite;
+        }
+
+        .leave-container h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000000;
+            font-family: "Anta", serif;
+        }
+
+        .leave-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 0 40px;
+            justify-items: stretch;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+
+        .form-group select,
+        .form-group input[type="date"] {
+            height: 50px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .submit-container {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+
+        .btn,
+            .btn *,
+            .btn :after,
+            .btn :before,
+            .btn:after,
+            .btn:before {
+            border: 0 solid;
+            box-sizing: border-box;
+            }
+
+            .btn {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: button;
+            background-color: #000000;
+            background-image: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+                Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            font-size: 100%;
+            font-weight: 900;
+            line-height: 1.5;
+            margin: 0;
+            
+            -webkit-mask: -webkit-radial-gradient(#000, #fff);
+            padding: 0;
+            text-transform: uppercase;
+            }
+
+            .btn:disabled {
+            cursor: default;
+            }
+
+            .btn:-moz-focusring {
+            outline: auto;
+            }
+
+            .btn svg {
+            display: block;
+            }
+
+            .btn [hidden] {
+            display: none;
+            }
+
+            .btn {
+            border-radius: 99rem;
+            border-width: 2px;
+            overflow: hidden;
+            padding: 0.8rem 3rem;
+            position: relative;
+            }
+
+            .btn span {
+            mix-blend-mode: difference;
+            }
+
+            .btn:after,
+            .btn:before {
+            background: linear-gradient(
+                90deg,
+                #fff 25%,
+                transparent 0,
+                transparent 50%,
+                #fff 0,
+                #fff 75%,
+                transparent 0
+            );
+            content: "";
+            inset: 0;
+            position: absolute;
+            transform: translateY(var(--progress, 100%));
+            transition: transform 0.2s ease;
+            }
+
+            .btn:after {
+            --progress: -100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0,
+                transparent 25%,
+                #fff 0,
+                #fff 50%,
+                transparent 0,
+                transparent 75%,
+                #fff 0
+            );
+            z-index: -1;
+            }
+
+            .btn:hover:after,
+            .btn:hover:before {
+            --progress: 0;
+            }
+            @media (max-width: 1024px) {
+            .leave-container {
+                width: 90%;
+                margin-left: 50px;
+                padding: 25px;
+            }
+
+            .leave-form {
+                grid-template-columns: 1fr 1fr;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .leave-container {
+                width: 100%;
+                margin-left: 20px;
+                padding: 20px;
+                height: auto;
+            }
+
+            .leave-form {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+
+            .btn {
+                padding: 0.6rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .leave-container {
+                width: 100%;
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .leave-form {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+
+            .btn {
+                padding: 0.5rem 1.5rem;
+            }
+
+            .form-group {
+                font-size: 14px;
+            }
+
+            .form-group label {
+                font-size: 16px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="leave-container">
+        <h2>Employee Leave Application</h2>
+        <form class="leave-form" id="leave-form">
+            <div class="form-group">
+                <label for="name">Employee Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" 
+                pattern="[A-Za-z ]+" 
+                title="Only alphabetic characters are allowed">
+            </div>
+
+            <div class="form-group">
+                <label for="emp-id">Employee ID:</label>
+                <input type="text" id="emp-id" name="emp-id" placeholder="Enter your Employee ID" required minlength="7" maxlength="7"  pattern="^[A-Z]{3}[0-9]{4}$" 
+                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits"
+              >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Employee Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="leave-type">Leave Type:</label>
+                <select id="leave-type" name="leave-type" required>
+                    <option value="sick">Sick Leave</option>
+                    <option value="casual">Casual Leave</option>
+                    <option value="earned">Earned Leave</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="from-date">From Date:</label>
+                <input type="date" id="from-date" name="from-date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="to-date">To Date:</label>
+                <input type="date" id="to-date" name="to-date" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="reason">Reason for Leave:</label>
+                <textarea id="reason" name="reason" placeholder="Enter your reason" required rows="5" minlength="5"></textarea>
+            </div>
+
+            <div class="submit-container">
+                <button type="submit" class="btn"><Span>Submit Leave</Span></button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        
+        document.getElementById('leave-form').addEventListener('submit', function(event) {
+            event.preventDefault();  
+    
+            const name = document.getElementById('name').value;
+            const empId = document.getElementById('emp-id').value;
+            const email = document.getElementById('email').value;
+            const leaveType = document.getElementById('leave-type').value;
+            const fromDate = document.getElementById('from-date').value;
+            const toDate = document.getElementById('to-date').value;
+            const reason = document.getElementById('reason').value;
+    
+           
+            const leaveDetails = {
+                name,
+                empId,
+                email,
+                leaveType,
+                fromDate,
+                toDate,
+                reason
+            };
+    
+            let leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+    
+            leaveApplications.push(leaveDetails);
+    
+            localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
+    
+            alert('Leave application submitted successfully!');
+    
+            document.getElementById('leave-form').reset();
+        });
+    </script>
+    
+</body>
+</html>

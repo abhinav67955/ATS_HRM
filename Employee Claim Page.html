@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            color: #333;
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            width: 900px;
+            border-radius: 30px;
+            margin-left: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            width: 1000px;
+            flex-wrap: wrap;
+            padding: 30px;
+        }
+
+        .card {
+            background-color: white;
+            width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            width: 30%;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #4facfe;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #555;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .card i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #4facfe;
+        }
+
+        .arrow-btn {
+            font-size: 18px;
+            color: #28a745;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .arrow-btn:hover {
+            color: #218838;
+        }
+
+        .claim-form {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            margin-left: 240px;
+            margin-bottom: 30px;
+            border-top: 6px solid rgb(3, 48, 92);
+        }
+
+        .claim-form:hover {
+            border-bottom: 6px solid rgb(3, 48, 92);
+            border-top: 1px solid white;
+        }
+
+        .claim-form input,
+        .claim-form select,
+        .claim-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .claim-form button {
+            padding: 10px 20px;
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .claim-form button:hover {
+            background-color: #3a9cdb;
+        }
+
+        .claim-requested {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #28a745;
+            color: white;
+            font-size: 24px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 1200px) {
+            .banner {
+                width: 100%;
+                padding: 20px;
+                box-shadow: none;
+            }
+
+            .card-container {
+                width: 90%;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .card {
+                width: 220px;
+                margin-bottom: 20px;
+            }
+
+            .claim-form {
+                width: 400px;
+                margin-left: 50px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            body {
+                margin-left: 10px;
+                padding: 20px;
+            }
+
+            .banner {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            .claim-form {
+                width: 90%;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 28px;
+            }
+
+            .card {
+                width: 85%;
+                padding: 15px;
+            }
+
+            .claim-form {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner h1 {
+                font-size: 24px;
+                padding: 20px;
+            }
+
+            .card {
+                width: 100%;
+                padding: 12px;
+            }
+
+            .card i {
+                font-size: 30px;
+            }
+
+            .claim-form {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .claim-form input,
+            .claim-form select,
+            .claim-form textarea {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .claim-form button {
+                padding: 8px 16px;
+            }
+
+            .claim-requested {
+                font-size: 20px;
+                padding: 15px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="banner">
+        <h1>Welcome to the Claims Portal</h1>
+        <p>Click on any claim type to submit your claim.</p>
+    </div>
+
+    <div class="card-container">
+        <div class="card" data-claim-type="Medical Claims">
+            <i class="fas fa-hospital"></i>
+            <h3>Medical Claims</h3>
+            <p>5 claims available</p>
+            <a href="javascript:void(0);" class="arrow-btn" id="arrow-medical">→</a>
+        </div>
+
+        <div class="card" data-claim-type="Travel Claims">
+            <i class="fas fa-plane"></i>
+            <h3>Travel Claims</h3>
+            <p>3 claims available</p>
+            <a href="javascript:void(0);" class="arrow-btn" id="arrow-travel">→</a>
+        </div>
+
+        <div class="card" data-claim-type="Expense Claims">
+            <i class="fas fa-credit-card"></i>
+            <h3>Expense Claims</h3>
+            <p>7 claims available</p>
+            <a href="javascript:void(0);" class="arrow-btn" id="arrow-expense">→</a>
+        </div>
+
+        <div class="card" data-claim-type="Insurance Claims">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Insurance Claims</h3>
+            <p>2 claims available</p>
+            <a href="javascript:void(0);" class="arrow-btn" id="arrow-insurance">→</a>
+        </div>
+
+        <div class="card" data-claim-type="Leave Claims">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>Leave Claims</h3>
+            <p>4 claims available</p>
+            <a href="javascript:void(0);" class="arrow-btn" id="arrow-leave">→</a>
+        </div>
+
+        <div class="card" data-claim-type="Educational Claims">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Educational Claims</h3>
+            <p>1 claim available</p>
+            <a href="javascript:void(0);" class="arrow-btn" id="arrow-education">→</a>
+        </div>
+    </div>
+
+    <div id="claim-form" class="claim-form">
+        <h2>Submit Your Claim</h2>
+        <form id="claimForm">
+            <label for="emp-name">Employee Name</label>
+            <input type="text" id="employeeName"   
+                           placeholder="Enter your Name" 
+                           required 
+                           minlength="3" 
+                           pattern="[A-Za-z .]+" 
+                           title="Only alphabetic characters are allowed"> 
+
+            <label for="emp-email">Employee Email</label>
+            <input type="email" id="emp-email" placeholder="Enter your email" required>
+
+            <label for="claim-type">Claim Type</label>
+            <select id="claim-type" required>
+                <option value="">Select Claim Type</option>
+                <option value="Medical Claims">Medical Claims</option>
+                <option value="Travel Claims">Travel Claims</option>
+                <option value="Expense Claims">Expense Claims</option>
+                <option value="Insurance Claims">Insurance Claims</option>
+                <option value="Leave Claims">Leave Claims</option>
+                <option value="Educational Claims">Educational Claims</option>
+            </select>
+
+            <label for="claim-description">Claim Description</label>
+            <textarea id="claim-description" placeholder="Enter the details of your claim" required minlength="3"></textarea>
+
+            <label for="claim-amount">Claim Amount</label>
+            <input type="number" id="claim-amount" placeholder="Enter the claim amount" required minlength="3" pattern="[0-9]">
+
+            <label for="claim-date">Date</label>
+            <input type="date" id="claim-date" required>
+
+            <button type="submit">Submit Claim</button>
+        </form>
+    </div>
+
+    <div class="claim-requested">
+        Claim Requested Successfully!
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                const claimType = card.getAttribute('data-claim-type');
+                document.getElementById('claim-type').value = claimType;
+                document.getElementById("claim-form").style.display = "block";
+            });
+        });
+
+        document.getElementById("claimForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const empName = document.getElementById("emp-name").value;
+            const empEmail = document.getElementById("emp-email").value;
+            const claimType = document.getElementById("claim-type").value;
+            const claimDescription = document.getElementById("claim-description").value;
+            const claimAmount = document.getElementById("claim-amount").value;
+            const claimDate = document.getElementById("claim-date").value;
+
+            const claims = JSON.parse(localStorage.getItem("claims")) || [];
+            claims.push({
+                empName,
+                empEmail,
+                claimType,
+                claimDescription,
+                claimAmount,
+                claimDate
+            });
+            localStorage.setItem("claims", JSON.stringify(claims));
+
+            const claimRequestedMsg = document.querySelector('.claim-requested');
+            claimRequestedMsg.style.display = 'block';
+
+            setTimeout(() => {
+                claimRequestedMsg.style.display = 'none';
+            }, 3000);
+
+            document.getElementById("claimForm").reset();
+            document.getElementById("claim-form").style.display = "none";
+        });
+    </script>
+</body>
+
+</html>

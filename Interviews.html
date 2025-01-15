@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Scheduling - HRMS Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .interview-form {
+            display: flex;
+            background:linear-gradient(rgba(224, 224, 255, 0.45), rgba(253, 240, 227, 0.61), rgba(247, 222, 255, 0.568));
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .interview-form input, .interview-form select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 98%;
+        }
+
+        .interview-form button {
+            padding: 12px 18px;
+            background-color: #1f7b3b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 400px;
+            align-self: center;
+        }
+
+        .interview-form button:hover {
+            border-top: 2px solid blueviolet;
+            border-left: 2px solid blueviolet;
+            border-bottom: 2px solid rgb(238, 103, 238);
+            border-right: 2px solid rgb(238, 103, 238);
+            box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+                        rgba(240, 46, 170, 0.2) 15px 15px;
+        }
+
+        .interview-schedules {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .schedule-card {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: linear-gradient(145deg, #e0e0e0, #ffffff);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            width: 250px;
+            height: 200px;
+            background-size: 40px 40px;
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%),
+                              linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%);
+            background-position: 0 0, 20px 20px;
+            background-repeat: repeat;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .schedule-card p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .schedule-card button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            background-color: #238dff;
+            color: #fff;
+        }
+
+        .schedule-card button:hover {
+            border-top: 2px solid blueviolet;
+            border-left: 2px solid blueviolet;
+            border-bottom: 2px solid rgb(238, 103, 238);
+            border-right: 2px solid rgb(238, 103, 238);
+            box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+                        rgba(240, 46, 170, 0.2) 15px 15px;
+        }
+
+        .schedule-card:hover {
+            background: linear-gradient(145deg, #d0d0d0, #ffffff);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 0 50px rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <form class="interview-form" onsubmit="scheduleInterview(event)">
+            <h2>Schedule an Interview</h2>
+            <input type="text" placeholder="Candidate Name" id="candidate-name" required 
+            minlength="3" 
+            pattern="[A-Za-z .]+" 
+            title="Candidate name should only contain alphabetic characters and spaces">
+            <input type="email" placeholder="Candidate Email" id="candidate-email" required minlength="6">
+            <input type="date" id="interview-date" required>
+            <select id="interview-time" required>
+                <option value="">Select Time</option>
+                <option value="9:00 AM">9:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="1:00 PM">1:00 PM</option>
+                <option value="3:00 PM">3:00 PM</option>
+            </select>
+            <select id="interview-position" required>
+                <option value="">Select Position</option>
+                <option value="Software Developer">Software Developer</option>
+                <option value="Project Manager">Project Manager</option>
+                <option value="Marketing Manager">Marketing Manager</option>
+            </select>
+            <button type="submit">Schedule Interview</button>
+        </form>
+
+        <div class="interview-schedules" id="interview-schedules">
+            <div class="schedule-card">
+                <p><strong>Candidate:</strong> Applicant 1</p>
+                <p><strong>Position:</strong> Software Developer</p>
+                <p><strong>Interview Date:</strong> 05-10-2024</p>
+                <p><strong>Time:</strong> 11:00 AM</p>
+                <button>View Details</button>
+            </div>
+            <div class="schedule-card">
+                <p><strong>Candidate:</strong> Applicant 2</p>
+                <p><strong>Position:</strong> Marketing Manager</p>
+                <p><strong>Interview Date:</strong> 07-10-2024</p>
+                <p><strong>Time:</strong> 9:00 AM</p>
+                <button>View Details</button>
+            </div>
+            <div class="schedule-card">
+                <p><strong>Candidate:</strong> Applicant 3</p>
+                <p><strong>Position:</strong> Project Manager</p>
+                <p><strong>Interview Date:</strong> 09-10-2024</p>
+                <p><strong>Time:</strong> 1:00 PM</p>
+                <button>View Details</button>
+            </div>
+            <div class="schedule-card">
+                <p><strong>Candidate:</strong> Applicant 4</p>
+                <p><strong>Position:</strong> Software Developer</p>
+                <p><strong>Interview Date:</strong> 12-10-2024</p>
+                <p><strong>Time:</strong> 3:00 PM</p>
+                <button>View Details</button>
+            </div>
+            <div class="schedule-card">
+                <p><strong>Candidate:</strong> Applicant 5</p>
+                <p><strong>Position:</strong> Marketing Manager</p>
+                <p><strong>Interview Date:</strong> 15-10-2024</p>
+                <p><strong>Time:</strong> 9:00 AM</p>
+                <button>View Details</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        function scheduleInterview(event) {
+            
+            event.preventDefault();
+
+
+            var candidateName = document.getElementById('candidate-name').value;
+            var candidateEmail = document.getElementById('candidate-email').value;
+            var interviewDate = document.getElementById('interview-date').value;
+            var interviewTime = document.getElementById('interview-time').value;
+            var interviewPosition = document.getElementById('interview-position').value;
+
+        
+            if (!candidateName || !candidateEmail || !interviewDate || !interviewTime || !interviewPosition) {
+                alert("Please fill out all fields correctly.");
+                return;
+            }
+
+            var newCard = document.createElement('div');
+            newCard.classList.add('schedule-card');
+
+            newCard.innerHTML = `
+                <p><strong>Candidate:</strong> ${candidateName}</p>
+                <p><strong>Position:</strong> ${interviewPosition}</p>
+                <p><strong>Interview Date:</strong> ${new Date(interviewDate).toLocaleDateString()}</p>
+                <p><strong>Time:</strong> ${interviewTime}</p>
+                <button>View Details</button>
+            `;
+
+            
+            document.getElementById('interview-schedules').appendChild(newCard);
+
+            document.querySelector('.interview-form').reset();
+        }
+    </script>
+</body>
+</html>

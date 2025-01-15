@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Shift Scheduling</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      margin: 20px;
+      top: 20px;
+      padding: 20px;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+      margin-top: 30px;
+    }
+
+    .card-wrapper::before,
+    .card-wrapper::after {
+      position: absolute;
+      content: "";
+      top: -15%;
+      left: 50%;
+      width: 90%;
+      height: 90%;
+      transform: translate(-50%);
+      background: #ced8ff;
+      z-index: -2;
+      transform-origin: bottom;
+      border-radius: inherit;
+      opacity: 0;
+      transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card-wrapper::after {
+      top: -20%;
+      left: 50%;
+      width: 85%;
+      height: 85%;
+      background: #e7ecff;
+      z-index: -1;
+    }
+
+    .card-wrapper:hover::before,
+    .card-wrapper:hover::after {
+      opacity: 1;
+    }
+
+    .card-wrapper:hover::before {
+      rotate: -8deg;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .card-wrapper:hover::after {
+      rotate: 8deg;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      width: 100%;
+      max-width: 45%;
+    }
+
+    input[type="text"], input[type="time"], select {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #7129b9;
+      color: white;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-top: 2px solid blueviolet;
+      border-left: 2px solid blueviolet;
+      border-bottom: 2px solid rgb(238, 103, 238);
+      border-right: 2px solid rgb(238, 103, 238);
+      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px;
+    }
+
+    .schedule-list {
+      margin-top: 30px;
+    }
+
+    .schedule-item {
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .schedule-item:nth-child(even) {
+      background-color: #f4f7fb;
+    }
+
+    .schedule-item:hover {
+      background-color: #ecf0f1;
+    }
+
+    .no-schedule {
+      text-align: center;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .form-container {
+        flex-direction: column;
+      }
+
+      .input-group {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-wrapper">
+    <div class="container">
+      <h1>Task Shift Scheduling</h1>
+
+      <div class="form-container">
+        <div class="input-group">
+          <label for="task-name">Task Name</label>
+          <input type="text" id="task-name" placeholder="Enter task name" required  minlength="3">
+        </div>
+
+        <div class="input-group">
+          <label for="shift-time">Shift Time</label>
+          <input type="time" id="shift-time" required>
+        </div>
+
+        <div class="input-group">
+          <label for="shift-day">Day</label>
+          <select id="shift-day" required>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="addSchedule()">Add Task</button>
+
+      <div class="schedule-list" id="schedule-list">
+        <div class="no-schedule">No shifts scheduled yet</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function addSchedule() {
+      const taskName = document.getElementById('task-name').value;
+      const shiftTime = document.getElementById('shift-time').value;
+      const shiftDay = document.getElementById('shift-day').value;
+
+      if (!taskName || !shiftTime || !shiftDay) {
+        return alert("Please fill in all fields!");
+      }
+
+      const scheduleList = document.getElementById('schedule-list');
+      const noScheduleRow = scheduleList.querySelector('.no-schedule');
+      if (noScheduleRow) {
+        noScheduleRow.remove();
+      }
+
+      const newItem = document.createElement('div');
+      newItem.classList.add('schedule-item');
+      newItem.innerHTML = `<strong>${taskName}</strong><br>${shiftTime} - ${shiftDay}`;
+      scheduleList.appendChild(newItem);
+
+      document.getElementById('task-name').value = '';
+      document.getElementById('shift-time').value = '';
+      document.getElementById('shift-day').value = 'Monday';
+    }
+  </script>
+
+</body>
+</html>

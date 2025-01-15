@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Review</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin-top: 20px;
+            gap: 30px;
+        }
+
+        .left-side {
+            width: 40%;
+            background: linear-gradient(rgba(224, 224, 255, 0.45), rgba(253, 240, 227, 0.61), rgba(247, 222, 255, 0.568));
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-side h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+        }
+
+        .star {
+            font-size: 25px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .star.selected {
+            color: gold;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #4cafa7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            border-top: 2px solid blueviolet;
+            border-left: 2px solid blueviolet;
+            border-bottom: 2px solid rgb(238, 103, 238);
+            border-right: 2px solid rgb(238, 103, 238);
+            box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+            rgba(240, 46, 170, 0.2) 15px 15px;
+        }
+
+        .right-side {
+            width: 60%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            height: 900px;
+            overflow-y: scroll;
+            justify-content: flex-start;
+        }
+
+        .appraisal-card {
+            background-color: #8e35e857;
+            color: rgb(0, 0, 0);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgb(0, 0, 0, 0.1);
+            width: 80%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .appraisal-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .appraisal-card .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .appraisal-card .details {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form class="left-side" onsubmit="submitReview(event)">
+            <h3>Employee Appraisal</h3>
+
+            <div class="form-group">
+                <label for="emp-name-input">Employee Name</label>
+                <input type="text" id="emp-name-input" placeholder="Enter Employee Name" required minlength="3"
+                pattern="[A-Za-z ]+" 
+                title="Only alphabetic characters are allowed">
+            </div>
+
+            <div class="form-group">
+                <label for="emp-id-input">Employee ID</label>
+                <input type="text" id="emp-id-input" placeholder="Enter Employee ID" required 
+                    pattern="[A-Z]{3}[0-9]{4}">
+            </div>
+
+            <div class="form-group">
+                <label for="task-input">Present Task</label>
+                <input type="text" id="task-input" placeholder="Enter Task" required minlength="3">
+            </div>
+
+            <div class="form-group">
+                <label for="project-input">Project</label>
+                <input type="text" id="project-input" placeholder="Enter Project" required minlength="3">
+            </div>
+
+            <div class="form-group">
+                <label>Review</label>
+                <select id="review-select" required>
+                    <option value="Select Review" selected>Select Review</option>
+                    <option>Good</option>
+                    <option>Bad</option>
+                    <option>Excellent</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Remarks</label>
+                <textarea id="remarks-input" rows="3" placeholder="Add Comments" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Rating</label>
+                <div class="star-rating">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div class="right-side">
+         
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function () {
+                const rating = this.getAttribute('data-value');
+                const stars = this.closest('.star-rating').querySelectorAll('.star');
+                
+                stars.forEach(star => star.classList.toggle('selected', star.getAttribute('data-value') <= rating));
+            });
+        });
+
+        window.onload = function() {
+            loadAppraisalCards();
+        }
+
+        function submitReview(event) {
+            event.preventDefault();
+
+            const empNameInput = document.getElementById("emp-name-input");
+            const empIdInput = document.getElementById("emp-id-input");
+            const taskInput = document.getElementById("task-input");
+            const projectInput = document.getElementById("project-input");
+            const reviewSelect = document.getElementById("review-select");
+            const remarksInput = document.getElementById("remarks-input");
+            const selectedRating = document.querySelectorAll(".left-side .star.selected").length;
+
+            const empName = empNameInput.value.trim();
+            const empId = empIdInput.value.trim();
+            const task = taskInput.value.trim();
+            const project = projectInput.value.trim();
+            const review = reviewSelect.value;
+            const remarks = remarksInput.value.trim();
+
+            const newAppraisal = {
+                empName,
+                empId,
+                task,
+                project,
+                review,
+                rating: selectedRating,
+                remarks
+            };
+
+            const storedAppraisals = JSON.parse(localStorage.getItem('appraisals')) || [];
+            storedAppraisals.push(newAppraisal);
+            localStorage.setItem('appraisals', JSON.stringify(storedAppraisals));
+
+            const rightSideContainer = document.querySelector(".right-side");
+            const newAppraisalCard = document.createElement("div");
+            newAppraisalCard.classList.add("appraisal-card");
+
+            newAppraisalCard.innerHTML = `
+                <div class="title">${empName} - Recent Appraisal (ID: ${empId})</div>
+                <div class="details">Task: ${task}</div>
+                <div class="details">Project: ${project}</div>
+                <div class="details">Review: ${review}</div>
+                <div class="details">Rating: ${selectedRating} ★</div>
+                <div class="details">Remarks: ${remarks}</div>
+            `;
+
+            rightSideContainer.appendChild(newAppraisalCard);
+
+            empNameInput.value = "";
+            empIdInput.value = "";
+            taskInput.value = "";
+            projectInput.value = "";
+            reviewSelect.value = "Select Review";
+            remarksInput.value = "";
+            document.querySelectorAll(".left-side .star").forEach(star => star.classList.remove("selected"));
+        }
+
+        function loadAppraisalCards() {
+            const storedAppraisals = JSON.parse(localStorage.getItem('appraisals')) || [];
+            const rightSideContainer = document.querySelector(".right-side");
+
+            storedAppraisals.forEach(appraisal => {
+                const newAppraisalCard = document.createElement("div");
+                newAppraisalCard.classList.add("appraisal-card");
+
+                newAppraisalCard.innerHTML = `
+                    <div class="title">${appraisal.empName} - Recent Appraisal (ID: ${appraisal.empId})</div>
+                    <div class="details">Task: ${appraisal.task}</div>
+                    <div class="details">Project: ${appraisal.project}</div>
+                    <div class="details">Review: ${appraisal.review}</div>
+                    <div class="details">Rating: ${appraisal.rating} ★</div>
+                    <div class="details">Remarks: ${appraisal.remarks}</div>
+                `;
+
+                rightSideContainer.appendChild(newAppraisalCard);
+            });
+        }
+    </script>
+
+</body>
+</html>

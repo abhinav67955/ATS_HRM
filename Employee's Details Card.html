@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: consolas;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #ffffff;
+            flex-direction: column;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            top: 30%;
+            max-width: 1300px;
+            padding: 20px;
+        }
+
+        .employee-card {
+            position: relative;
+            width: 450px;
+            height: 350px;
+            margin: 40px 0;
+            padding-top: 40px;
+            transition: 0.5s;
+            border-radius: 8px;
+            background: #ffffff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .employee-card:hover {
+            width: 900px;
+            flex-direction: row;
+        }
+
+        .employee-card .employee-image {
+            position: relative;
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .employee-card .employee-details {
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(rgba(222, 253, 246, 0.475) 50%, rgba(186, 212, 225, 0.502) 50%);
+            color: #333;
+            transition: all 0.5s ease;
+            text-align: center;
+        }
+
+        .employee-details .name {
+            font-size: 1.4em;
+            color: #7e3900;
+            margin-bottom: 10px;
+        }
+
+        .employee-details p {
+            margin-bottom: 10px;
+            line-height: 1.4em;
+            color: #636e72;
+        }
+
+        .employee-details a {
+            display: inline-block;
+            font-size: 1em;
+            color: #fff;
+            background: #0984e3;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .employee-details a:hover {
+            background-color: #74b9ff;
+        }
+
+        .employee-card:hover .employee-image {
+            width: 50%;
+            height: 100%;
+            opacity: 1;
+        }
+
+        .employee-card:hover .employee-details {
+            width: 50%;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main-content">
+    <div class="employee-card">
+        <div class="employee-details">
+            <p class="name"><i class="fa-solid fa-user"></i>Name: <strong>Ajay Kumar</strong></p>
+            <p><i class="fa-solid fa-id-badge"></i>Employee ID: ATS0121</p>
+            <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
+            <p><i class="fa-solid fa-person"></i>Gender: Male</p>
+            <p><i class="fa-solid fa-cake-candles"></i>DOB: 08-06-2002</p>
+            <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+            <a href="./employee details.html">View Profile</a>
+        </div>
+        <div class="employee-image">
+            <img src="https://img.freepik.com/free-photo/man-with-crossed-arms_23-2147574164.jpg"  alt="Employee Image">
+        </div>
+    </div>
+
+    <div class="employee-card">
+        <div class="employee-details">
+            <p class="name"><i class="fa-solid fa-user"></i>Name: <strong>Veera Raghava</strong></p>
+            <p><i class="fa-solid fa-id-badge"></i>Employee ID: ATS0122</p>
+            <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
+            <p><i class="fa-solid fa-person"></i>Gender: Male</p>
+            <p><i class="fa-solid fa-cake-candles"></i>DOB: 10-09-2001</p>
+            <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+            <a href="./employee details.html">View Profile</a>
+        </div>
+        <div class="employee-image">
+            <img src="https://fekrait.com/uploads/topics/16750304198773.jpg" alt="Employee Image">
+        </div>
+    </div>
+    <div class="employee-card">
+        <div class="employee-details">
+            <p class="name"><i class="fa-solid fa-user"></i>Name: <strong>Latish</strong></p>
+            <p><i class="fa-solid fa-id-badge"></i>Employee ID: ATS0123</p>
+            <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
+            <p><i class="fa-solid fa-person"></i>Gender: Male</p>
+            <p><i class="fa-solid fa-cake-candles"></i>DOB: 12-07-2001</p>
+            <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+            <a href="./employee details.html">View Profile</a>
+        </div>
+        <div class="employee-image">
+            <img src="https://fekrait.com/uploads/topics/16750304198773.jpg" alt="Employee Image">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

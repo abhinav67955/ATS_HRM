@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Requests</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .leave-cards {
+            width: 400px;
+            height: 300px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(225, 0, 255, 0.6);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .leave-cards:hover {
+            box-shadow: inset 0 0 20px rgba(0, 255, 0, 1);
+        }
+        .leave-cards p {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .leave-cards strong {
+            color: #2c3e50;
+        }
+        button {
+            width: 100px;
+            height: 30px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .approve {
+            background-color: springgreen;
+        }
+        .approve:hover {
+            background-color: #28a745;
+        }
+        .reject {
+            background-color: tomato;
+        }
+        .reject:hover {
+            background-color: #dc3545;
+        }
+        .see-details {
+            font-size: 12px;
+            color: #ffffff;
+            background: rgb(91, 91, 237);
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .status {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .approved {
+            color: green;
+        }
+        .rejected {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main" id="leave-requests">
+    </div>
+
+    <script>
+     
+        function displayLeaveRequests() {
+           
+            const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+
+            const leaveRequestsContainer = document.getElementById('leave-requests');
+
+            leaveRequestsContainer.innerHTML = '';
+
+            
+            leaveApplications.forEach((leaveDetails, index) => {
+                const leaveRequestCard = document.createElement('div');
+                leaveRequestCard.classList.add('leave-cards');
+
+                leaveRequestCard.innerHTML = `
+                    <p>Name: <strong>${leaveDetails.name}</strong></p>
+                    <p>Employee ID: ${leaveDetails.empId}</p>
+                    <p>Leave Type: ${leaveDetails.leaveType}</p>
+                    <p>Leave Period: ${leaveDetails.fromDate} to ${leaveDetails.toDate}</p>
+                    <p>Reason for Leave: <button class="see-details">See Details</button></p>
+                    <button class="approve">Approve</button>
+                    <button class="reject">Reject</button>
+                    <div class="status" id="status-${index}"></div>
+                `;
+
+               
+                const approveButton = leaveRequestCard.querySelector('.approve');
+                const rejectButton = leaveRequestCard.querySelector('.reject');
+                const statusDiv = leaveRequestCard.querySelector(`#status-${index}`);
+
+                approveButton.addEventListener('click', function() {
+                    
+                    statusDiv.textContent = 'Approved';
+                    statusDiv.classList.add('approved');
+                    statusDiv.classList.remove('rejected');
+                    updateStatusInLocalStorage(index, 'Approved');
+                });
+
+                rejectButton.addEventListener('click', function() {
+                  
+                    statusDiv.textContent = 'Rejected';
+                    statusDiv.classList.add('rejected');
+                    statusDiv.classList.remove('approved');
+                    updateStatusInLocalStorage(index, 'Rejected');
+                });
+
+              
+                leaveRequestsContainer.appendChild(leaveRequestCard);
+            });
+        }
+
+        function updateStatusInLocalStorage(index, status) {
+            const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+            leaveApplications[index].status = status;  
+            localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
+        }
+
+      
+        window.onload = function() {
+            displayLeaveRequests();
+        };
+    </script>
+
+</body>
+</html>

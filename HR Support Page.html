@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Support Ticket Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .management-container {
+      width: 80%;
+      max-width: 900px;
+      min-height: 80vh;
+      padding: 30px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      margin-top: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 36px;
+    }
+
+    .ticket-list {
+      margin-top: 20px;
+    }
+
+    .ticket-item {
+      padding: 15px;
+      background-color: #ecf0f1;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+
+    .ticket-item p {
+      margin-bottom: 10px;
+    }
+
+    .status {
+      font-weight: bold;
+    }
+
+    .status.pending {
+      color: #f39c12;
+    }
+
+    .status.in-progress {
+      color: #3498db;
+    }
+
+    .status.complete {
+      color: #2ecc71;
+    }
+
+    .action-button {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-button:hover {
+      background-color: #27ae60;
+    }
+
+    select {
+      padding: 5px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .status-label {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="management-container">
+    <h1>HR Support Ticket Management</h1>
+    <div class="ticket-list" id="ticket-list">
+      <div class="ticket-item">
+        <p><strong>Name:</strong> Employee Name 1</p>
+        <p><strong>Email:</strong> employeename1@gmail.com</p>
+        <p><strong>Issue:</strong> Request for clarification on leave benefits</p>
+        <label class="status-label">Status:</label>
+        <p><span class="status pending">Pending</span></p>
+        <select onchange="this.previousElementSibling.innerText = this.value; 
+                        this.previousElementSibling.className = 'status ' + this.value.toLowerCase().replace(' ', '-')">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Complete</option>
+        </select>
+        <button class="action-button">Submit</button>
+      </div>
+
+      <div class="ticket-item">
+        <p><strong>Name:</strong> Employee Name 2</p>
+        <p><strong>Email:</strong> employeename2@gmail.com</p>
+        <p><strong>Issue:</strong> Query about payroll for the last month</p>
+        <label class="status-label">Status:</label>
+        <p><span class="status pending">Pending</span></p>
+        <select onchange="this.previousElementSibling.innerText = this.value; 
+                        this.previousElementSibling.className = 'status ' + this.value.toLowerCase().replace(' ', '-')">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Complete</option>
+        </select>
+        <button class="action-button">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const ticketList = document.getElementById('ticket-list');
+      const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+
+      tickets.forEach(ticket => {
+        const ticketItem = document.createElement('div');
+        ticketItem.classList.add('ticket-item');
+        ticketItem.innerHTML = `
+          <p><strong>Name:</strong> ${ticket.name}</p>
+          <p><strong>Email:</strong> ${ticket.email}</p>
+          <p><strong>Issue:</strong> ${ticket.issue}</p>
+          <label class="status-label">Status:</label>
+          <p><span class="status ${ticket.status.toLowerCase()}">${ticket.status}</span></p>
+          <select onchange="this.previousElementSibling.innerText = this.value;
+                          this.previousElementSibling.className = 'status ' + this.value.toLowerCase().replace(' ', '-')">
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Complete</option>
+          </select>
+          <button class="action-button">Submit</button>
+        `;
+        ticketList.appendChild(ticketItem);
+      });
+    };
+  </script>
+
+</body>
+</html>

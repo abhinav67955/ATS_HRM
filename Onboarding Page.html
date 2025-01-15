@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Onboarding Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif; 
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            line-height: 50px;
+            text-align: left;
+            margin-left: 400px;
+        }
+        form {
+            max-width: 1000px; 
+            margin-left: 140px;
+        
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-sections {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; 
+        }
+
+        .form-section {
+            border: none;
+            padding: 20px;
+            width: calc(50% - 20px); 
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+        .form-section.completed {
+            background-color: #ddf7dda8;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #712f03;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], 
+        input[type="date"], input[type="file"], select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1.1em;
+            background-color: #f8f8f8;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, 
+        input[type="date"]:focus, input[type="file"]:focus, select:focus, textarea:focus {
+            border-color: #0073e6;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
+            outline: none;
+        }
+
+        input[type="text"]:hover, input[type="email"]:hover, input[type="tel"]:hover, 
+        input[type="date"]:hover, input[type="file"]:hover, select:hover, textarea:hover {
+            border-color: #005bb5;
+            background-color: #eef7ff;
+        }
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.1em;
+    background-color: #f8f8f8;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: #0073e6;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
+    outline: none;
+}
+
+input[type="number"]:hover {
+    border-color: #005bb5;
+    background-color: #eef7ff;
+}
+
+        .required:after {
+            content: "*";
+            color: red;
+        }
+
+     
+
+       
+        .icon {
+            position: fixed;
+            z-index: 1000;
+            font-size: 40px;
+            color: rgba(3, 114, 225, 0.2);
+        }
+         
+       
+button.action-button {
+    color: purple;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid purple;
+    padding: 10px 20px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 50px;
+    background: transparent;
+    position: relative;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    border-radius: 30px; 
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3em;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+button.action-button::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: 0;
+    transform: skewX(45deg);
+    background-color: purple;
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+button.action-button:hover {
+    color: #fff;  
+    background-color: purple;  
+}
+
+button.action-button:hover::before {
+    width: 100%; 
+}
+
+
+button.action-button:hover {
+    color: #fff;  
+    background-color: purple;
+}
+
+        .icon-1 { top: 10%; left: 15%; }
+        .icon-2 { top: 20%; left: 50%; }
+        .icon-3 { top: 35%; left: 30%; }
+        .icon-4 { top: 60%; left: 10%; }
+        .icon-5 { top: 70%; left: 70%; }
+        .icon-6 { top: 50%; left: 80%; }
+        .icon-7 { top: 15%; left: 75%; }
+        .icon-8 { top: 80%; left: 40%; }
+        .icon-9 { top: 25%; left: 20%; }
+        .icon-10 { top: 40%; left: 60%; }
+    </style>
+</head>
+<body>
+
+    <h1>Employee Onboarding Form</h1>
+
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+        <div class="form-sections">
+
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <label class="required" for="fullName">First Name:</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="Enter your First name"
+                minlength="3" 
+                pattern="[A-Za-z ]+" 
+                title="Only alphabetic characters are allowed">
+
+                <label class="required" for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Enter your Last name" minlength="1" 
+                pattern="[A-Za-z ]+" 
+                title="Only alphabetic characters are allowed">
+                <label class="required" for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                <label class="required" for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="Enter your phone number (10 digits)" minlength="10" maxlength="10">
+                <label class="required" for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-section">
+                <h2>Address Information</h2>
+                <label class="required" for="address">Current Address:</label>
+                <input type="text" id="address" name="address" required placeholder="Enter your current address" minlength="5">
+                <label class="required" for="city">City:</label>
+                <input type="text" id="city" name="city" required placeholder="Enter your city" minlength="3">
+                <label class="required" for="state">State:</label>
+                <input type="text" id="state" name="state" required placeholder="Enter your state" minlength="5" 
+                pattern="[A-Za-z ]+" 
+                title="Only alphabetic characters are allowed">
+                <label class="required" for="zipCode">ZIP Code:</label>
+                <input type="number" id="zipCode" name="zipCode" required placeholder="Enter your ZIP code" minlength="6" maxlength="6">
+            </div>
+
+            <div class="form-section">
+                <h2>Emergency Contact Information</h2>
+                <label class="required" for="emergencyName">Emergency Contact Name:</label>
+                <input type="text" id="emergencyName" name="emergencyName" required placeholder="Enter emergency contact name"  minlength="3" 
+                pattern="[A-Za-z .]+" 
+                title="Only alphabetic characters are allowed">
+                <label class="required" for="emergencyPhone">Emergency Contact Phone:</label>
+                <input type="tel" id="emergencyPhone" name="emergencyPhone" required pattern="[0-9]{10}" placeholder="Enter emergency contact phone number (10 digits)" minlength="10" maxlength="10">
+                <label class="required" for="relationship">Relationship to Emergency Contact:</label>
+                <input type="text" id="relationship" name="relationship" required placeholder="Enter relationship (e.g., spouse, parent)" minlength="4">
+                <label class="required" for="emergencyAddress">Emergency Contact Address:</label>
+                <input type="text" id="emergencyAddress" name="emergencyAddress" required placeholder="Enter emergency contact address" minlength="5">
+            </div>
+
+            <div class="form-section">
+                <h2>Job Role and Department</h2>
+                <label class="required" for="jobTitle">Job Title:</label>
+                <input type="text" id="jobTitle" name="jobTitle" required placeholder="Enter your job title" minlength="3">
+                <label class="required" for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="" disabled selected>Select a department</option>
+                    <option value="HR">Human Resources</option>
+                    <option value="Engineering">Developer</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Finance">Finance</option>
+                </select>
+                <label class="required" for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" required>
+            </div>
+
+            <div class="form-section">
+                <h2>Bank Account Details (for Payroll)</h2>
+                <label class="required" for="bankName">Bank Name:</label>
+                <input type="text" id="bankName" name="bankName" required placeholder="Enter your bank name"  minlength="3" pattern="[A-Za-z .]+" >
+                <label class="required" for="accountNumber">Account Number:</label>
+                <input type="text" id="accountNumber" name="accountNumber" required placeholder="Enter your bank account number" pattern="[0-9]+" minlength="9" maxlength="22">
+                <label class="required" for="routingNumber">Account Mobile Number:</label>
+                <input type="tel" id="routingNumber" name="routingNumber" required placeholder="Enter your account mobile number" pattern="[0-9]+" minlength="10" maxlength="10">
+            </div>
+
+            <div class="form-section">
+                <h2>Health Insurance Information</h2>
+                <label for="insuranceProvider">Insurance Provider:</label>
+                <input type="text" id="insuranceProvider" name="insuranceProvider" placeholder="Enter your health insurance provider (optional)">
+                <label for="policyNumber">Policy Number:</label>
+                <input type="text" id="policyNumber" name="policyNumber" placeholder="Enter your insurance policy number (optional)">
+            </div>
+
+            <div class="form-section">
+                <h2>Upload Required Documents</h2>
+                <label class="required" for="taxForm">Extra Certifications:</label>
+                <input type="file" id="taxForm" name="taxForm" accept=".pdf, .docx, .jpg, .jpeg, .png" required>
+                <label class="required" for="contract">Signed Employment Contract:</label>
+                <input type="file" id="contract" name="contract" accept=".pdf, .docx" required>
+                <label class="required" for="idProof">Proof of Identity (e.g., ID or Passport):</label>
+                <input type="file" id="idProof" name="idProof" accept=".jpg, .jpeg, .png, .pdf" required>
+            </div>
+
+      
+            <div class="form-section">
+                <h2>Upload Educational Documents</h2>
+                <label class="required" for="highSchool">High School Certificate:</label>
+                <input type="file" id="highSchool" name="highSchool" accept=".pdf, .jpg, .jpeg, .png" required>
+                <label class="required" for="intermediate">Intermediate/Diploma Certificate:</label>
+                <input type="file" id="intermediate" name="intermediate" accept=".pdf, .jpg, .jpeg, .png" required>
+                <label class="required" for="higherEducation">Higher Education Certificate:</label>
+                <input type="file" id="higherEducation" name="higherEducation" accept=".pdf, .jpg, .jpeg, .png" required>
+            </div>
+
+        </div>
+
+        <div class="button">
+           
+            <button type="submit" class="action-button">SUBMIT</button>
+        </div>
+
+    </form>
+    <i class="icon fas fa-graduation-cap icon-1"></i>
+    <i class="icon fas fa-laptop icon-2"></i>
+    <i class="icon fas fa-cogs icon-3"></i>
+    <i class="icon fas fa-book icon-4"></i>
+    <i class="icon fas fa-lightbulb icon-5"></i>
+    <i class="icon fas fa-robot icon-6"></i>
+    <i class="icon fas fa-desktop icon-7"></i>
+    <i class="icon fas fa-code icon-8"></i>
+    <i class="icon fas fa-chart-line icon-9"></i>
+   
+
+    <script>
+        
+        function checkSectionCompletion(section) {
+            const inputs = section.querySelectorAll('input[required], select[required], textarea[required]');
+            const allFilled = [...inputs].every(input => input.value || (input.type === 'file' && input.files.length > 0));
+            
+            section.classList.toggle('completed', allFilled);
+        }
+    
+  
+        document.querySelectorAll('input[required], select[required], textarea[required]').forEach(input => {
+            input.addEventListener('input', () => checkSectionCompletion(input.closest('.form-section')));
+        });
+    
+        
+        document.querySelectorAll('.form-section').forEach(checkSectionCompletion);
+    </script>
+    
+</body>
+</html>

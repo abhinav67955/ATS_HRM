@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Assets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 40px;
+            font-family:sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 30px;
+        }
+
+        .Assets-List {
+            padding: 20px;
+            background: linear-gradient(rgb(255, 255, 255), rgba(220, 242, 220, 0.527));
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .Assets-List:hover {
+            transform: translateY(-5px);
+        }
+
+        .Assets-List h3 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #9e0086;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .Assets-List p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .Assets-List button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        button.view-details {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
+        }
+
+        button.view-details:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(38, 50, 56, 0.3);
+        }
+
+        button.view-details:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        button.submit-request {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
+        }
+
+        button.submit-request:hover {
+            background: linear-gradient(135deg, #feb47b, #ff7e5f);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(38, 50, 56, 0.3);
+        }
+
+        button.submit-request:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+        .request-form button {
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+            color: white;
+            font-weight: bold;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            display: block;           
+            margin: 0 auto;         
+        }
+
+
+        .request-form button:hover {
+            background: linear-gradient(135deg, #8bc34a, #4caf50);
+            box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .request-form button:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        .request-form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            width: 1200px;
+        }
+
+        .request-form h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .request-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .request-form input,
+        .request-form select{
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .request-form textarea {
+            width: 98%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .request-form input{
+            width: 98%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .show-form-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .show-form-btn button {
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            background-color: #01c8ff;
+            color: black;
+        }
+
+        .show-form-btn button:hover {
+            background-color: #138496;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Assets</h1>
+    <div class="container">
+        <div class="Assets-List allocated-laptop">
+            <h3><i class="fas fa-laptop icon"></i>Allocated Laptop</h3>
+            <p><i class="fas fa-laptop icon"></i>Brand: Lenovo</p>
+            <p><i class="fas fa-cogs icon"></i>Model: ThinkPad</p>
+            <p><i class="fas fa-code-branch icon"></i>Version: 10.0.22631</p>
+            <p><i class="fas fa-calendar-alt icon"></i>Allocated Date: 06-09-2024</p>
+            <button class="view-details" onclick="showdetails('Allocated Laptop: Lenovo ThinkPad')"><i class="fas fa-info-circle icon"></i>View Details</button>
+        </div>
+
+        <div class="Assets-List office-supplies">
+            <h3><i class="fas fa-boxes icon"></i>Office Supplies</h3>
+            <p><i class="fas fa-book icon"></i>Note Book</p>
+            <p><i class="fas fa-pen icon"></i>Pen</p>
+            <p><i class="fas fa-mouse icon"></i>Mouse, Laptop Bag</p>
+            <p><i class="fas fa-calendar-alt icon"></i>Allocated Date: 06-09-2024</p>
+            <button class="view-details" onclick="showdetails('Office Supplies: Note Book, Pen, Mouse, Laptop Bag')"><i class="fas fa-info-circle icon"></i>View Details</button>
+        </div>
+
+        <div class="Assets-List current-project">
+            <h3><i class="fas fa-project-diagram icon"></i>Current Project</h3>
+            <p><i class="fas fa-clipboard-list icon"></i>Project: New HRMS Website</p>
+            <p><i class="fas fa-calendar-alt icon"></i>Started: 07-09-2024</p>
+            <p><i class="fas fa-calendar-check icon"></i>Due Date: 31-12-2024</p>
+            <button class="view-details" onclick="showdetails('Current Project: HRMS Portal')"><i class="fas fa-info-circle icon"></i>View Details</button>
+        </div>
+
+        <div class="Assets-List current-assignment">
+            <h3><i class="fas fa-tasks icon"></i>Current Assignment</h3>
+            <p><i class="fas fa-clipboard-check icon"></i>Project: UI Designs</p>
+            <p><i class="fas fa-calendar-alt icon"></i>Started: 10-10-2024</p>
+            <p><i class="fas fa-calendar-check icon"></i>Due Date: 15-10-2024</p>
+            <button class="view-details" onclick="showdetails('Current Assignment: UI Designs')"><i class="fas fa-info-circle icon"></i>View Details</button>
+        </div>
+
+        <div class="Assets-List bonus">
+            <h3><i class="fas fa-dollar-sign icon"></i>Bonus</h3>
+            <p><i class="fas fa-money-bill icon"></i>Amount: $$$</p>
+            <p><i class="fas fa-calendar-alt icon"></i>Credited Date: 01-10-2024</p>
+            <button class="view-details" onclick="showdetails('Bonus: 100$ Credited!!')"><i class="fas fa-info-circle icon"></i>View Details</button>
+        </div>
+
+        <div class="Assets-List training-program">
+            <h3><i class="fas fa-graduation-cap icon"></i>Training Program</h3>
+            <p><i class="fas fa-book-open icon"></i>Course: Full Stack Web Development</p>
+            <p><i class="fas fa-laptop-code icon"></i>Current Topic: __</p>
+            <p><i class="fas fa-tv icon"></i>Mode: Online</p>
+            <p><i class="fas fa-chalkboard-teacher icon"></i>Platform: Udemy</p>
+            <button class="view-details" onclick="showdetails('Training: Udemy, Web Development')"><i class="fas fa-info-circle icon"></i>View Details</button>
+        </div>
+    </div>
+
+    <div class="show-form-btn">
+        <button class="show-form-btn" onclick="document.getElementById('request-form').style.display='block'">Request New Asset</button>
+    </div>
+
+    <div id="request-form" class="request-form" style="display:none;">
+        <h2>Request New Asset</h2>
+        <form id="asset-request-form">
+            <label for="emp-name">Employee Name</label>
+            <input type="text" id="employeeName"   
+                           required 
+                           minlength="3" 
+                           pattern="[A-Za-z .]+" 
+                           title="Only alphabetic characters are allowed">
+
+            <label for="emp-email">Email ID</label>
+            <input type="email" id="emp-email"  name="emp-email" required>
+
+            <label for="request-date">Date of Request</label>
+            <input type="date" id="request-date" name="request-date" required>
+
+            <label for="asset-type">Asset Type</label>
+            <select id="asset-type" name="asset-type" required>
+                <option value="">Select Asset Type</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Office Supplies">Office Supplies</option>
+                <option value="Training Program">Training Program</option>
+                <option value="Project">Project</option>
+                <option value="Bonus">Bonus</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="asset-name">Asset Name</label>
+            <input type="text" id="asset-name" name="asset-name" required minlength="2">
+
+            <label for="asset-details">Additional Details</label>
+            <textarea id="asset-details" name="asset-details" rows="4" required minlength="3"></textarea>
+
+            <button class="submit-request" type="submit">Submit Request</button>
+        </form>
+    </div>
+
+    <script>
+      
+        document.getElementById('asset-request-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const empName = document.getElementById('emp-name').value;
+            const empEmail = document.getElementById('emp-email').value;
+            const requestDate = document.getElementById('request-date').value;
+            const assetType = document.getElementById('asset-type').value;
+            const assetName = document.getElementById('asset-name').value;
+            const assetDetails = document.getElementById('asset-details').value;
+
+           
+            let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+
+            const newRequest = {
+                employeeName: empName,
+                email: empEmail,
+                requestDate: requestDate,
+                type: assetType,
+                name: assetName,
+                details: assetDetails,
+                date: new Date().toLocaleDateString()
+            };
+
+         
+            requests.push(newRequest);
+
+            localStorage.setItem('assetRequests', JSON.stringify(requests));
+
+            alert('Asset Request Submitted');
+            document.getElementById('request-form').style.display = 'none';
+
+            displayRequests();
+        });
+
+        
+        function displayRequests() {
+            const savedRequests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+            if (savedRequests.length > 0) {
+                console.log("Saved Requests:", savedRequests);
+             
+            }
+        }
+
+
+        window.onload = function() {
+            displayRequests();
+        };
+    </script>
+</body>
+
+</html>

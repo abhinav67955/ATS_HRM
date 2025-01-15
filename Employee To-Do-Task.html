@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Task Allocation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .main-container {
+            display: flex;
+            height: 80%;
+            background: linear-gradient(rgba(238, 238, 255, 0.781), rgba(255, 231, 231, 0.785));
+            width: 100%;
+            border-bottom-right-radius:30px ;
+        }
+        .tasks-section {
+            width: 55%;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding-left: 20px;
+            border-radius: 30px;
+            gap: 20px;
+            overflow-y: auto;
+           
+        }
+        .taskscard {
+           background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            width: 350px;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        .employee-name, .employee-id, .project-name, .allocated-task, .submission-time, .deadline {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 8px;
+        }
+        .task-status {
+            font-weight: bold;
+        }
+    
+        .form-section {
+            width: 45%;
+            padding: 20px;
+            margin: 30px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .form-container {
+            background-color:rgb(227, 241, 255);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            width: 100%;
+        }
+        .form-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+        }
+        .form-container input, .form-container select, .form-container textarea {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            width: 100%;
+        }
+        .form-container input[type="file"] {
+            padding: 7px;
+            margin-bottom: 20px;
+        }
+        .form-container button {
+            background-color: #b6fac6;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+        }
+        .form-container button:hover {
+            border-top: 2px solid blueviolet;
+            border-left: 2px solid blueviolet;
+            border-bottom: 2px solid rgb(238, 103, 238);
+            border-right: 2px solid rgb(238, 103, 238);
+            box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px;
+        }
+        .history-section {
+            height: 30%;
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 20px;
+            background:linear-gradient(rgba(232, 252, 255, 0.605),rgba(227, 255, 227, 0.5));
+            overflow-y: auto;
+            margin-top:5px;
+            border-radius: 30px;
+        }
+        .history-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .history-card .task-info {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .history-card .task-time {
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+
+        <div class="tasks-section" id="taskContainer">
+
+        </div>
+        
+        <div class="form-section" id="taskForm">
+            <h2 style="text-align: center;">Upload Completed Task</h2>
+            <div class="form-container">
+                <form id="completedTaskForm" onsubmit="saveCompletedTask(event)">
+                    <label for="task-name">Task Name</label>
+                    <input type="text" id="task-name" name="task-name" required minlength="5" placeholder="Enter Task name ">
+                
+                    <label for="employee-name">Employee Name</label>
+                    <input type="text" id="employeeName"   
+                    placeholder="Enter your Name" 
+                    required 
+                    minlength="3" 
+                    pattern="[A-Za-z .]+" 
+                    title="Only alphabetic characters are allowed">
+                
+                    <label for="employee-id">Employee ID</label>
+                    <input type="text" id="employee-id" name="employee-id" required minlength="7" maxlength="7" 
+                           placeholder="Enter Your ID" pattern="[A-Z]{3}[0-9]{4}" 
+                           title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
+                
+                    <label for="upload-doc">Upload Document</label>
+                    <input type="file" id="upload-doc" name="upload-doc" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
+                           title="Acceptable file formats: PDF, DOC, DOCX, JPG, JPEG, PNG, TXT">
+                
+                    <label for="task-status">Task Status</label>
+                    <select id="task-status" name="task-status" required>
+                        <option value="completed">Completed</option>
+                        <option value="inprocess">In Process</option>
+                    </select>
+                
+
+                    <button type="submit">Submit Completed Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="history-section" id="taskHistory">
+        <h2>Task History</h2>
+        
+    </div>
+
+    <script>
+       
+        let taskHistory = [];
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const container = document.getElementById('taskContainer');
+            container.innerHTML = '';
+
+            tasks.forEach(task => {
+                const taskCard = document.createElement('div');
+                taskCard.classList.add('taskscard');
+                taskCard.innerHTML = `
+                    <div class="employee-name"><strong>Employee Name:</strong> ${task.employeeName}</div>
+                    <div class="employee-id"><strong>Employee ID:</strong> ${task.employeeId}</div>
+                    <div class="project-name"><strong>Project Name:</strong> HRMS Portal</div>
+                    <div class="allocated-task"><strong>Allocated Task:</strong> ${task.taskName}</div>
+                    <div class="submission-time"><strong>Allocated Time:</strong> ${task.allocatedTime}</div>
+                    <div class="deadline"><strong>Deadline:</strong> ${task.deadline}</div>
+
+                `;
+                container.appendChild(taskCard);
+            });
+        }
+
+        function saveCompletedTask(event) {
+    event.preventDefault();
+
+    const taskData = {
+        taskName: document.getElementById('task-name').value,
+        employeeName: document.getElementById('employee-name').value,
+        employeeId: document.getElementById('employee-id').value,
+        uploadDoc: document.getElementById('upload-doc').files, 
+        taskStatus: document.getElementById('task-status').value,
+        allocatedTime: new Date().toLocaleString(),
+    };
+
+ 
+    const taskHistory = JSON.parse(localStorage.getItem('taskHistory')) || [];
+
+    taskHistory.push(taskData);
+
+    
+    localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
+
+    document.getElementById('completedTaskForm').reset();
+
+    
+    loadHistory();
+}
+
+
+function loadHistory() {
+    const taskHistory = JSON.parse(localStorage.getItem('taskHistory')) || [];
+    const historyContainer = document.getElementById('taskHistory');
+    historyContainer.innerHTML = '<h2>Task History</h2>'; 
+
+    
+    taskHistory.forEach(task => {
+        const historyCard = document.createElement('div');
+        historyCard.classList.add('history-card');
+        historyCard.innerHTML = `
+            <div class="task-info">
+                <strong>Task:</strong> ${task.taskName} | <strong>Status:</strong> ${task.taskStatus}
+            </div>
+            <div class="task-time"><strong>Submitted on:</strong> ${task.allocatedTime}</div>
+          
+        `;
+        historyContainer.appendChild(historyCard);
+    });
+}
+
+window.onload = function() {
+    loadHistory();  
+};
+
+
+       
+        window.onload = function() {
+            loadTasks();
+            loadHistory();
+        };
+    </script>
+</body>
+</html>
