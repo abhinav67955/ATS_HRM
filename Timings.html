@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Information</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3133/3133158.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         
+        }
+        
+        .info-card {
+            padding: 20px;
+            width: 800px;
+            background: linear-gradient(to right, #8f94fb, #4e54c8);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+        }
+        .back-btn, .logout-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover, .logout-btn:hover {
+            background-color: #2980b9;
+        }
+        .logout{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-card">
+        <h2>Session Information</h2>
+        <p><strong>Username:</strong> <span id="username-info"></span></p>
+        <p><strong>Login Time:</strong> <span id="login-time-info"></span></p>
+        <p class="logout"><strong>Logout Time:</strong> <span id="logout-time-info"></span></p>
+        <button class="logout-btn" onclick="logout()">Save TimeSheet</button>
+    </div>
+
+    <script>
+        
+        const sessionData = JSON.parse(localStorage.getItem('sessions')) || [];
+
+        const username = localStorage.getItem('username');
+        const loggedinn = localStorage.getItem('loginTime');
+
+       
+        if (!loggedinn || !username) {
+            console.error('Login time or username is not available!');
+            alert('No active session found. Please log in first.');
+            window.location.href = './login.html';  
+        }
+
+        document.getElementById('username-info').textContent = username || 'Not available';
+        document.getElementById('login-time-info').textContent = loggedinn || 'Not available';
+
+        const storedLogoutTime = localStorage.getItem('logoutTime');
+        const logoutTime = storedLogoutTime || 'Not available'; 
+        document.getElementById('logout-time-info').textContent = logoutTime;
+
+        function logout() {
+            const currentDate = new Date();
+            const logoutTime = currentDate.toLocaleTimeString();
+            const logoutDate = currentDate.toLocaleDateString();
+
+            sessionData.push({
+                username: username,
+                loginTime: loggedinn,
+                logoutTime: `${logoutDate} ${logoutTime}`
+            });
+
+            localStorage.setItem('sessions', JSON.stringify(sessionData));
+
+            localStorage.setItem('logoutTime', `${logoutDate} ${logoutTime}`);
+
+            window.location.href = 'Login.html'; 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3a3f58;
+            color: white;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 2.5em;
+        }
+        nav h2 {
+            font-size: 1.8em;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: 20px;
+            padding: 30px;
+            padding-right: 90px;
+        }
+        .dashboard {
+            grid-column: span 12;
+            display: flex;
+           gap: 30px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .card {
+            border: 2px solid #007bff; 
+            border-radius: 10px;
+            color: #007bff; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 120px; 
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            width: 100%;
+            background-image: url('https://images.pexels.com/photos/1102797/pexels-photo-1102797.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            
+            color: rgb(255, 255, 255);
+        }
+        .card h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .card p {
+            font-size: 1.2em;
+        }
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; 
+            grid-column: span 12;
+        }
+        .cards-row {
+            display: flex;
+            gap: 20px; 
+            grid-column: span 6;
+        }
+        .Training, .certificates {
+            padding-bottom: 30px;
+        }
+        .Training-cards, .certificate-cards {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 250px;
+            border: 1px solid;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .Training-cards:hover {
+            transform: scale(1.05);
+            transform: translateY(-10px);
+        }
+        .certificate-cards:hover{
+            transform: scale(1.05);
+            background-image: url('https://cliply.co/wp-content/uploads/2019/08/371908020_CONFETTI_400px.gif');
+            box-shadow: 1px 4px 8px rgba(163, 209, 255, 0.621);
+        }
+        .Status-ongoing, .Status-completed, .Status-not-published, .Status-published {
+            border-radius: 20px;
+            border: none;
+            font-size: 1em;
+            width: 50%; height: 35px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .Status-ongoing {
+            background-color: #f39c12;
+        }
+        .Status-completed {
+            background-color: #28a745;
+        }
+        .Status-not-published {
+            background-color: #e74c3c;
+        }
+        .Status-published {
+            background-color: #4eff77;
+        }
+        .Status-ongoing:hover {
+            background-color: #e67e22;
+        }
+        .Status-completed:hover {
+            background-color: #218838;
+        }
+        .Status-not-published:hover {
+            background-color: #c0392b;
+        }
+        .Training-cards h3, .certificate-cards h3 {
+            font-size: 1.3em;
+            margin: 10px 0;
+        }
+        .Training-cards h4, .certificate-cards h4 {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+        .heading {
+            font-size: 2em;
+            color: #1a1a1a;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            grid-column: span 12;
+        }
+        .web-development {
+            background-image: url('https://images.pexels.com/photos/97077/pexels-photo-97077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            color: white;
+            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+        }
+        .database {
+            background-image: url('https://pypl.github.io/DB/All.png'); 
+            background-size: cover;
+            color: white;
+        }
+        .machine-learning {
+            background-image: url('https://cloud2data.com/wp-content/uploads/2023/03/Machine-Learning-3.jpg');
+            background-size: cover;
+            color: white;
+            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+        }
+        .ui-ux {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWm71qCaDazjIybYSxH56HuDTh15RrLMpgSw&s');
+            background-size: cover;
+            color: white;
+            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+        }
+        .project-management {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmafNqcOzUdERskooDNcJ6PMWU1TC9E4TlCL_SeseNdGfF4Z05Xw1teOgMewG2pZurrvs&usqp=CAU');
+            background-size: cover;
+            color: white;
+            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+        }
+        
+        .cyber-security {
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/006/950/568/small/cyber-security-data-protection-business-concept-on-virtual-screen-shield-protect-icon-in-wireframe-robotic-hand-antivirus-interface-illustration-vector.jpg'); 
+            background-size: cover;
+            color: white;
+            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+        }
+        .digital-marketing {
+            background-image: url('https://media.licdn.com/dms/image/D4D12AQHqYyPmfJcQhg/article-cover_image-shrink_720_1280/0/1678773863258?e=2147483647&v=beta&t=35jhEIGynhAeT5rlT5ZZpHNeOLGpCwmwtP7IF4v3g8w'); 
+            background-size: cover;
+            color: white;
+            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+        }
+        .cloud-computing {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrqey2UbCBeVsAlJhO2d6C1VL-YhQBqEUtA&s');
+            background-size: cover;
+            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+            color: white; 
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="dashboard">
+            <div class="card">
+                <h2>Ongoing Training</h2>
+                <p>20 Employees</p>
+            </div>
+            <div class="card">
+                <h2>Pending Certifications</h2>
+                <p>10 Employees</p>
+            </div>
+            <div class="card">
+                <h2>Completed Training</h2>
+                <p>20 Employees</p>
+            </div>
+        </div>
+        <h2 class="heading">Training</h2>
+        <div class="Training section">
+            <div class="cards-row">
+                <div class="Training-cards web-development">
+                    <h3>Employee Name</h3>
+                    <h4>Course: Web Development</h4>
+                    <p>Start Date: 01-10-2024</p>
+                    <p>Completed Date: 15-11-2024</p>
+                    <button class="Status-completed">Completed</button>
+                </div>
+                <div class="Training-cards database">
+                    <h3>Employee Name</h3>
+                    <h4>Course: Database</h4>
+                    <p>Start Date: 04-10-2024</p>
+                    <p>Completed Date: 10-11-2024</p>
+                    <button class="Status-completed">Completed</button>
+                </div>
+                <div class="Training-cards machine-learning">
+                    <h3>Employee Name</h3>
+                    <h4>Course: Machine Learning</h4>
+                    <p>Start Date: 02-10-2024</p>
+                    <button class="Status-ongoing">Ongoing</button>
+                </div>
+                <div class="Training-cards ui-ux">
+                    <h3>Employee Name</h3>
+                    <h4>Course: UI/UX Design</h4>
+                    <p>Start Date: 15-10-2024</p>
+                    <button class="Status-ongoing">Ongoing</button>
+                </div>
+            </div>
+            <div class="cards-row">
+                <div class="Training-cards project-management">
+                    <h3>Employee Name</h3>
+                    <h4>Course: Project Management</h4>
+                    <p>Start Date: 25-10-2024</p>
+                    <button class="Status-ongoing">Ongoing</button>
+                </div>
+                <div class="Training-cards cloud-computing">
+                    <h3>Employee Name</h3>
+                    <h4>Course: Cloud Computing</h4>
+                    <p>Start Date: 30-10-2024</p>
+                    <button class="Status-ongoing">Ongoing</button>
+                </div>
+                <div class="Training-cards cyber-security">
+                    <h3>Employee Name</h3>
+                    <h4>Course: Cyber Security</h4>
+                    <p>Start Date: 05-11-2024</p>
+                    <button class="Status-ongoing">Ongoing</button>
+                </div>
+                <div class="Training-cards digital-marketing">
+                    <h3>Employee Name</h3>
+                    <h4>Course: Digital Marketing</h4>
+                    <p>Start Date: 10-11-2024</p>
+                    <button class="Status-ongoing">Ongoing</button>
+                </div>
+            </div>
+        </div>
+        <h2 class="heading">Certificates</h2>
+        <div class="certificates section">
+            <div class="cards-row">
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: Web Development</h4>
+                    <p>Issued Date: 20-10-2024</p>
+                    <button class="Status-published">Published</button>
+                </div>
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: Database</h4>
+                    <p>Issued Date: 25-10-2024</p>
+                    <button class="Status-published">Published</button>
+                </div>
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: Machine Learning</h4>
+                    <p>Issued Date: 30-10-2024</p>
+                    <button class="Status-not-published">Not Published</button>
+                </div>
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: UI/UX Design</h4>
+                    <p>Issued Date: 05-10-2024</p>
+                    <button class="Status-not-published">Not Published</button>
+                </div>
+            </div>
+            <div class="cards-row">
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: Project Management</h4>
+                    <p>Issued Date: 10-10-2024</p>
+                    <button class="Status-published">Published</button>
+                </div>
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: Data Science</h4>
+                    <p>Issued Date: 15-10-2024</p>
+                    <button class="Status-published">Published</button>
+                </div>
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: Cyber Security</h4>
+                    <p>Issued Date: 20-10-2024</p>
+                    <button class="Status-not-published">Not Published</button>
+                </div>
+                <div class="certificate-cards">
+                    <h3>Employee Name</h3>
+                    <h4>Certification: Digital Marketing</h4>
+                    <p>Issued Date: 25-10-2024</p>
+                    <button class="Status-not-published">Not Published</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

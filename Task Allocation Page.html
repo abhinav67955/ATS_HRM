@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Task Allocation - HRMS</title>
+    <style>
+        * {
+          
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 1200px;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        .employee-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .employee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .employee-name, .employee-id, .project-name, .allocated-task, .submission-time, .deadline {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        .task-status {
+            font-weight: bold;
+        }
+
+        .task-status.completed {
+            color: #28a745;
+        }
+
+        .task-status.incomplete {
+            color: #ff7f50;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 48%;
+        }
+
+        .task-details-button {
+            background-color: #007bff;
+        }
+
+        .task-details-button:hover {
+            background-color: #0056b3;
+        }
+
+        .download-task-button {
+            background-color: #28a745;
+        }
+
+        .download-task-button:hover {
+            background-color: #218838;
+        }
+
+        .incomplete-task-button {
+            background-color: #ff7f50;
+        }
+
+        .incomplete-task-button:hover {
+            background-color: #ff6347;
+        }
+
+        .shape {
+            position: absolute;
+            z-index: -1;
+            border-radius: 10px;
+        }
+
+        .shape.circle1 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, rgba(40, 167, 69, 0.6), rgba(0, 123, 255, 0.4));
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            transform: rotate(15deg);
+        }
+
+        .shape.square1 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(145deg, rgba(0, 123, 255, 0.6), rgba(0, 123, 255, 0.3));
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(30deg);
+        }
+
+        .shape.triangle2 {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid rgba(255, 193, 7, 0.6);
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            transform: rotate(20deg);
+        }
+
+        .shape.square2 {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(145deg, rgba(220, 53, 69, 0.6), rgba(220, 53, 69, 0.3));
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(-15deg);
+        }
+
+        .shape.circle3 {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(145deg, rgba(23, 162, 184, 0.6), rgba(23, 162, 184, 0.3));
+            border-radius: 50%;
+            top: 15px;
+            left: 15px;
+            transform: rotate(10deg);
+        }
+
+        .shape.triangle3 {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid rgba(0, 255, 255, 0.6);
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            transform: rotate(-30deg);
+        }
+
+        .shape.triangle4 {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid rgba(255, 0, 0, 0.6);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transform: rotate(45deg);
+        }
+
+        .shape.square4 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(145deg, rgba(153, 102, 255, 0.6), rgba(153, 102, 255, 0.3));
+            position: absolute;
+            bottom: 15px;
+            right: 10px;
+            transform: rotate(-10deg);
+        }
+
+        .shape.circle5 {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, rgba(0, 123, 255, 0.6), rgba(0, 123, 255, 0.3));
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+            transform: rotate(-20deg);
+        }
+
+        .shape.square5 {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(145deg, rgba(0, 255, 127, 0.6), rgba(0, 255, 127, 0.3));
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+            transform: rotate(25deg);
+        }
+        .allocate-task-btn {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 15px;
+            width: 300px;
+            font-size: 1.2em;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .allocate-task-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container {
+            display: none;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 900px;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container input, .form-container textarea, .form-container select {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .form-container textarea {
+            resize: vertical;
+        }
+
+        .form-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-container button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .form-container button:hover {
+            border-top: 2px solid blueviolet;
+      border-left: 2px solid blueviolet;
+      border-bottom: 2px solid rgb(238, 103, 238);
+      border-right: 2px solid rgb(238, 103, 238);
+      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="taskContainer">
+        
+        <div class="employee-card">
+            <div class="shape circle1"></div>
+            <div class="shape square1"></div>
+            <div class="employee-name"><strong>Employee Name:</strong> Employee 1</div>
+            <div class="employee-id"><strong>Employee ID:</strong> 001</div>
+            <div class="project-name"><strong>Project Name:</strong> HRMS Portal</div>
+            <div class="allocated-task"><strong>Allocated Task:</strong> Development of HR Modules</div>
+            <div class="submission-time"><strong>Allocated Time:</strong> 01-11-2024</div>
+            <div class="deadline"><strong>Deadline:</strong> 04-11-2024</div>
+            <div class="task-status"><strong>Task Status:</strong> <span class="completed">Completed</span></div>
+            <div class="button-container">
+                <button class="button task-details-button">Task Details</button>
+                <button class="button download-task-button">Download Task</button>
+            </div>
+        </div>
+      
+    </div>
+
+    <button class="allocate-task-btn" onclick="showForm()">Allocate New Task</button>
+
+  
+    <div class="form-container" id="taskForm">
+        <h2>Allocate New Task</h2>
+        <form id="taskForm" onsubmit="saveTaskData(event)">
+            <label for="task-name">Task Name</label>
+            <input type="text" id="task-name" name="task-name" required minlength="5" placeholder="Enter task name">
+
+            <label for="employee-name">Employee Name</label>
+            <input 
+                type="text" 
+                id="employee-name" 
+                name="employee-name" 
+                required 
+                minlength="3" 
+                pattern="[A-Za-z .]+" 
+                title="Employee name should only contain alphabetic characters and spaces"
+                placeholder="Enter employee name">
+            
+            <label for="employee-id">Employee ID</label>
+            <input 
+                type="text" 
+                id="employee-id" 
+                name="employee-id" 
+                required 
+                minlength="7" 
+                maxlength="7" 
+                pattern="^[A-Z]{3}[0-9]{4}$" 
+                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits"
+                placeholder="Enter employee ID">
+            
+
+            <label for="employee-email">Employee Email</label>
+            <input type="email" id="employee-email" name="employee-email" required placeholder="Enter employee email">
+
+            <label for="task-description">Task Description</label>
+            <textarea id="task-description" name="task-description" required minlength="20" placeholder="Describe the task"></textarea>
+
+            <label for="allocated-time">Allocated Time</label>
+            <input type="date" id="allocated-time" name="allocated-time" required>
+
+            <label for="deadline">Deadline</label>
+            <input type="date" id="deadline" name="deadline" required>
+
+            <button type="submit">Allocate Task</button>
+        </form>
+    </div>
+
+    <script>
+       
+        function showForm() {
+            document.getElementById('taskForm').style.display = 'block';
+        }
+
+       
+        function saveTaskData(event) {
+            event.preventDefault(); 
+            
+            
+            const taskData = {
+                taskName: document.getElementById('task-name').value,
+                employeeName: document.getElementById('employee-name').value,
+                employeeId: document.getElementById('employee-id').value,
+                employeeEmail: document.getElementById('employee-email').value,
+                taskDescription: document.getElementById('task-description').value,
+                allocatedTime: document.getElementById('allocated-time').value,
+                deadline: document.getElementById('deadline').value,
+            };
+
+           
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push(taskData);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+
+
+            const container = document.getElementById('taskContainer');
+            const newCard = document.createElement('div');
+            newCard.classList.add('employee-card');
+
+            newCard.innerHTML = `
+                <div class="shape circle5"></div>
+                <div class="shape square5"></div>
+                <div class="employee-name"><strong>Employee Name:</strong> ${taskData.employeeName}</div>
+                <div class="employee-id"><strong>Employee ID:</strong> ${taskData.employeeId}</div>
+                <div class="project-name"><strong>Project Name:</strong> HRMS Portal</div>
+                <div class="allocated-task"><strong>Allocated Task:</strong> ${taskData.taskName}</div>
+                <div class="submission-time"><strong>Allocated Time:</strong> ${taskData.allocatedTime}</div>
+                <div class="deadline"><strong>Deadline:</strong> ${taskData.deadline}</div>
+                <div class="task-status"><strong>Task Status:</strong> <span class="incomplete">In Process</span></div>
+                <div class="button-container">
+                    <button class="button task-details-button">Task Details</button>
+                    <button class="button incomplete-task-button">Incomplete</button>
+                </div>
+            `;
+
+           
+            container.appendChild(newCard);
+
+            alert("Task Allocated Successfully!");
+
+            document.querySelector('form').reset();
+            document.getElementById('taskForm').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

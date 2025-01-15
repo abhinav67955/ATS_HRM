@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to HRMS Project</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; 
+            position: relative;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0; 
+            left: -8%; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden;
+            z-index: -1; 
+        }
+
+        .background-gif {
+            width: 89%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .welcome-text {
+            position: absolute; 
+            top: 10%; 
+            left: 10px;
+            color: #000000;
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 20px; 
+            z-index: 1; 
+            border-radius: 8px;
+        }
+
+        .welcome-text h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            font-size: 1.7rem;
+            margin-top: 10px;
+            margin-left: 30px;
+        }
+
+        button {
+            background-color: rgb(7, 88, 110); 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            padding: 10px 20px; 
+            font-size: 1rem; 
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(5, 70, 90); 
+        }
+
+        .main-container {
+            display: flex;
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            position: absolute;
+            top: 5%; 
+            left: 70%; 
+            z-index: 1;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .card {
+            width: 300px; 
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            color: rgb(7, 88, 110);
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .card .action-button {
+            display: none;
+            background-color: rgb(7, 88, 110);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .card:hover .action-button {
+            display: inline-block;
+        }
+
+        .job-applications { background-color: #f8f9fa; }
+        .job-posting { background-color: #e9f7fc; }
+        .interviews { background-color: #fff9e6; }
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+        <img class="background-gif" src="https://i.pinimg.com/originals/a9/6a/1f/a96a1f90b5365733ca7342483e041736.gif" alt="Background GIF">
+    </div>
+
+    <div class="welcome-text">
+        <h1>Welcome to Recruitment Portal</h1>
+        <p>Manage the recruitment process</p>
+    </div>
+
+    <div class="main-container">
+        <div class="cards-container">
+            <div class="card job-applications">
+                <h3>Job Applications</h3>
+                <p>View and manage current job applicants.</p>
+                <a href="./job applications.html" class="action-button">View Applications</a>
+            </div>
+
+            <div class="card job-posting">
+                <h3>Job Posting</h3>
+                <p>Create and manage job postings.</p>
+                <a href="./job posting.html" class="action-button">Post New Job</a>
+            </div>
+
+            <div class="card interviews">
+                <h3>Interviews</h3>
+                <p>Schedule and manage interviews with applicants.</p>
+                <a href="./interviews.html" class="action-button">Schedule Interview</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
