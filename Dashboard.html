@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRMS Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="./Dashboard.css">
+    <link rel="icon" href="ATS Logo.png" type="image/png">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <img src="ATS Logo.png" alt="Logo" />
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." />
+          <button><i class="material-icons">search</i></button>
+        </div>
+       
+          <i class="material-icons" class="dark-mode-toggle" onclick="toggleDarkMode()">dark_mode</i> 
+      
+      </div>
+      <div class="header-right">
+        <div class="icons">
+          <i class="material-icons">notifications</i>
+        </div>
+        <div class="language">
+          <i class="fas fa-globe icon" id="globe"></i>
+          <select id="languageSelect" class="language-select">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="zh">Chinese</option>
+          </select>
+        </div>
+        <div class="active-status">
+          <div class="status-button" id="statusButton">
+            <div class="circle active"></div> Active
+          </div>
+          <div class="dropdown-content" id="dropdownContent">
+            <div class="active" data-status="active">
+              <div class="circle active"></div> Active
+            </div>
+            <div class="away" data-status="away">
+              <div class="circle away"></div> Away
+            </div>
+            <div class="do-not-disturb" data-status="do-not-disturb">
+              <div class="circle do-not-disturb"></div> Do Not Disturb
+            </div>
+          </div>
+        </div>
+        <div class="profile" id="profile" onclick="toggleDropdown()">
+          <img src="https://cdn-icons-png.flaticon.com/512/6069/6069202.png" alt="Profile Image" />
+          <div class="profile-time">
+            <div class="profile-status">
+            <span id="usernames"></span>
+            <div class="status-dot" id="statusDot"></div>
+        </div>
+             <span class="time" id="current-time">Loading time...</span>
+        </div>
+        
+          <div class="dropdown">
+            <a href="Timings.html" id="logout">Logout</a>
+          </div>
+        </div>
+        <div class="hamburger" onclick="togg()">
+            <span class="material-icons">menu</span>
+          </div>
+          
+        
+
+      </div>
+    </header>
+
+    <div class="circle-container">
+      <div class="outer-circle" id="outer-circle">
+        <div class="circle-section" style="transform: rotate(0deg)" onclick="toggleMenu('blue')">
+          <a href="javascript:void(0)" title="EMPLOYEE"></a>
+          <div class="blue-text">
+            <span class="bluecircle">EMP</span>
+          </div>
+        </div>
+        <div class="circle-section" style="transform: rotate(120deg)" onclick="toggleMenu('green')">
+          <a href="javascript:void(0)" title="HR"></a>
+          <div class="green-text">
+            <span class="greencircle">HR</span>
+          </div>
+        </div>
+        <div class="circle-section" style="transform: rotate(240deg)" onclick="toggleMenu('yellow')">
+          <a href="javascript:void(0)" title="ADMIN"></a>
+          <div class="yellow-text">
+            <span class="yellocircle">ADMIN</span>
+          </div>
+        </div>
+        <div class="inner-circle">HRMS</div>
+      </div>
+      <div id="blue-menu" class="menu blue-menu">
+        <a href="Employee Profile.html" target="iframe-content">
+          <i class="material-icons">person</i> Employee
+        </a>
+        <a href="Employee's Payroll.html" target="iframe-content">
+          <i class="material-icons">attach_money</i> Payroll History
+        </a>
+        <a href="Employee Leave Page.html" target="iframe-content">
+          <i class="material-icons">calendar_today</i> Leaves Request
+        </a>
+        <a href="Employee Attendance.html" target="iframe-content">
+          <i class="material-icons">check_circle</i> Attendance
+        </a>
+        <a href="Employee To-Do-Task.html" target="iframe-content">
+          <i class="material-icons">checklist</i> To-Do Tasks
+        </a>
+        <a href="Calendar.html" target="iframe-content">
+          <i class="material-icons">event</i> Calendar
+        </a>
+        <a href="Employee Notifications.html" target="iframe-content">
+          <i class="material-icons">notifications</i> Notifications
+        </a>
+        <a href="Employee WFH Request.html" target="iframe-content">
+          <i class="material-icons">home</i> WFH Request
+        </a>
+        <a href="Employee Appraisal.html" target="iframe-content">
+          <i class="material-icons">star</i> Appraisal
+        </a>
+        <a href="Employee Claim Page.html" target="iframe-content">
+          <i class="material-icons">receipt</i> Claim
+        </a>
+        <a href="Employee Assets page.html" target="iframe-content">
+          <i class="material-icons">business_center</i> My Assets
+        </a>
+        <a href="Employee Career Development.html" target="iframe-content">
+          <i class="material-icons">school</i> Career Development
+        </a>
+        <a href="Employee Onboarding.html" target="iframe-content">
+          <i class="material-icons">how_to_reg</i> Onboarding
+        </a>
+        <a href="Offboarding Page.html" target="iframe-content">
+          <i class="material-icons">exit_to_app</i> Offboarding
+        </a>
+        <a href="Employee Benefits Page.html" target="iframe-content">
+          <i class="material-icons">card_giftcard</i> Employee Benefits
+        </a>
+        <a href="Employee Bonus & PF.html" target="iframe-content">
+          <i class="material-icons">attach_money</i> Bonus & PF
+        </a>
+        <a href="Employee Task Scheduling.html" target="iframe-content">
+          <i class="material-icons">schedule</i> Task Scheduling
+        </a>
+        <a href="Employee HelpDesk.html" target="iframe-content">
+          <i class="material-icons">help_outline</i> Helpdesk & Support
+        </a>
+        <a href="javascript:void(0)" class="dark-mode-toggle" onclick="toggleDarkMode()">
+          <i class="material-icons">dark_mode</i> Dark Mode
+        </a>
+      </div>
+
+      <div id="green-menu" class="menu green-menu">
+        <a href="HR Profile.html" target="iframe-content">
+          <i class="material-icons">account_circle</i> Profile
+        </a>
+        <a href="Employee's Details Card.html" target="iframe-content">
+          <i class="material-icons">badge</i> Employees Management
+        </a>
+        <a href="Employee's Details.html" target="iframe-content">
+          <i class="material-icons">assignment_ind</i> Employees Details
+        </a>
+        <a href="Employee's Payroll.html" target="iframe-content">
+          <i class="material-icons">credit_card</i> Payslip
+        </a>
+        <a href="Employee's Leave Requests.html" target="iframe-content">
+          <i class="material-icons">flight_takeoff</i> Leave Requests
+        </a>
+        <a href="Employee's TimeSheet.html" target="iframe-content">
+          <i class="material-icons">timer</i> Attendance Management
+        </a>
+        <a href="Weekly Attendance.html" target="iframe-content">
+          <i class="material-icons">event_note</i> Attendance Weekly
+        </a>
+        <a href="Monthly Attendance Report.html" target="iframe-content">
+          <i class="material-icons">date_range</i> Attendance Reports Monthly
+        </a>
+        <a href="Yearly Attendance Report.html" target="iframe-content">
+          <i class="material-icons">insert_chart</i> Attendance Reports Yearly
+        </a>
+        <a href="HR Notifications.html" target="iframe-content">
+          <i class="material-icons">notifications_active</i> Notifications
+        </a>
+        <a href="Notifications for Staff.html" target="iframe-content">
+          <i class="material-icons">send</i> Notification to Staff
+        </a>
+        <a href="HR Appraisals For Employee.html" target="iframe-content">
+          <i class="material-icons">trending_up</i> Appraisal
+        </a>
+        <a href="Projects Page.html" target="iframe-content">
+          <i class="material-icons">work_outline</i> Projects
+        </a>
+        <a href="Project's Details Page.html" target="iframe-content">
+          <i class="material-icons">folder</i> Project History
+      </a>
+      <a href="Project Details.html" target="iframe-content">
+          <i class="material-icons">history</i> Project Details
+      </a>
+      <a href="Task Allocation Page.html" target="iframe-content">
+        <i class="material-icons">task</i> Allocated Tasks
+    </a>
+    <a href="Calendar.html" target="iframe-content">
+      <i class="material-icons">event</i> Calendar
+    </a>
+        <a href="Recruitment Page.html" target="iframe-content">
+          <i class="material-icons">group_add</i> Recruitment
+        </a>
+        <a href="Job posting.html" target="iframe-content">
+          <i class="material-icons">business_center</i> Job Posting
+      </a>
+      <a href="Job applications.html" target="iframe-content">
+          <i class="material-icons">assignment</i> Job Applications
+      </a>
+      <a href="Interviews.html" target="iframe-content">
+          <i class="material-icons">people_alt</i> Interviews
+      </a>      
+        <a href="Training and Development Page.html" target="iframe-content">
+          <i class="material-icons">fitness_center</i> Training and Development
+        </a>
+        <a href="Meets Page.html" target="iframe-content">
+          <i class="material-icons">video_call</i> Meetings
+        </a>
+        <a href="Onboarding Page.html" target="iframe-content">
+          <i class="material-icons">how_to_reg</i> Onboarding
+        </a>
+        <a href="Offboarding Page.html" target="iframe-content">
+          <i class="material-icons">exit_to_app</i> Offboarding
+        </a>
+        <a href="Onboarding Form Review.html" target="iframe-content">
+          <i class="material-icons">how_to_reg</i> Onboarding review
+        </a>
+        <a href="Offboarding Form Review.html" target="iframe-content">
+          <i class="material-icons">exit_to_app</i> Offboarding review
+        </a>
+        <a href="Career Progression Page.html" target="iframe-content">
+          <i class="material-icons">timeline</i> Career Progress
+        </a>
+        <a href="Employee's Assets Page.html" target="iframe-content">
+          <i class="material-icons">inventory</i> Asset Management
+        </a>
+        <a href="Bonus & PF Incremental Page.html" target="iframe-content">
+          <i class="material-icons">attach_money</i> Increment/Bonus
+        </a>
+        <a href="HR Support Page.html" target="iframe-content">
+          <i class="material-icons">help_outline</i> Helpdesk & Support
+        </a>
+        <a href="javascript:void(0)" class="dark-mode-toggle" onclick="toggleDarkMode()">
+          <i class="material-icons">dark_mode</i> Dark Mode
+        </a>
+      </div>
+
+      <div id="yellow-menu" class="menu yellow-menu">
+        <a href="../CRM/Sales.html" target="iframe-content"><i class="fas fa-chart-line"></i> Sales</a>
+        <a href="../CRM/services.html" target="iframe-content"><i class="fas fa-cogs"></i> Services</a>
+        <a href="../CRM/orders.html" target="iframe-content"><i class="fas fa-box"></i> Orders</a>
+        <a href="../CRM/clients.html" target="iframe-content"><i class="fas fa-users"></i> Clients</a>
+        <a href="../Employee Modules/Employee Calender.html" target="iframe-content">
+          <i class="material-icons">event</i> Calendar
+        </a>
+        <a href="../CRM/marketing.html" target="iframe-content"><i class="fas fa-bullhorn"></i> Marketing</a>
+        <a href="../CRM/products.html" target="iframe-content"><i class="fas fa-bullhorn"></i> Products</a>
+        <a href="../CRM/product analysis.html" target="iframe-content"><i class="fas fa-bullhorn"></i> Product Analysis</a>
+        <a href="../CRM/production page.html" target="iframe-content"><i class="fas fa-bullhorn"></i> Production</a>
+        <a href="../workflow.html" target="iframe-content"><i class="fas fa-tasks"></i> Workflow</a>
+        <a href="../CRM/our clients.html" target="iframe-content"><i class="fas fa-handshake"></i> Our Clients</a>
+        <a href="../CRM/Helpdesk.html" target="iframe-content"><i class="fas fa-headset"></i> Helpdesk</a>
+
+        <a href="javascript:void(0)" class="dark-mode-toggle" onclick="toggleDarkMode()">
+          <i class="material-icons">dark_mode</i> Dark Mode
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="iframe-container">
+        <iframe src="Content for Dashboard.html" title="Main-Content" name="iframe-content" ></iframe>
+      </div>
+ 
+
+    <div class="bubbles"></div>
+
+    <script src="./Dashboard.js"></script>
+  </body>
+</html>
+
