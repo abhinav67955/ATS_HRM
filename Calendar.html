@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h2{
+            text-align: center;
+            margin-top: 180px;
+            font-size: 3em;
+            font-family: monospace;
+        }
+
+        #calendar {
+            display: flex;
+            flex-direction: column;
+            width: 800px;
+            gap: 10px;
+            margin: 20px auto;
+            margin-top: 10px;
+        }
+
+        .weekdays, .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .weekday, .day, .empty-day {
+            text-align: center;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .weekday {
+            font-weight: bold;
+            background-color: #03017fb6;
+            color: white;
+        }
+
+        .day {
+            color: #333;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .day:hover {
+            background-color: #d4edda;
+        }
+
+        .empty-day {
+            background-color: transparent;
+            border: none;
+        }
+        .holiday {
+            background-color: #f7ccff; 
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>January Calendar</h2>
+    <div id="calendar"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const calendar = document.getElementById('calendar');
+            const date = new Date();
+            const [year, month] = [date.getFullYear(), date.getMonth()];
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay();
+            const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+            const holidays = [
+                '1',  
+                '13',
+                '14',
+                '15',
+            ];
+
+            calendar.innerHTML = `
+                <div class="weekdays">${weekdays.map(day => `<div class="weekday">${day}</div>`).join('')}</div>
+                <div class="days-grid">
+                    ${'<div class="empty-day"></div>'.repeat(firstDay)}
+                    ${Array.from({ length: daysInMonth }, (_, i) => {
+                        const day = i + 1;
+                        const dayOfWeek = (firstDay + i) % 7;
+                        const isSaturday = dayOfWeek === 6;
+                        const isSunday = dayOfWeek === 0;
+                        const isHoliday = holidays.includes(day.toString());
+
+                        let dayClass = '';
+                        if (isSaturday) dayClass = 'saturday';
+                        if (isSunday) dayClass = 'sunday';
+                        if (isHoliday) dayClass = 'holiday';
+                        if (isSaturday || isSunday || isHoliday) dayClass += ' holiday';
+
+                        return `<div class="day ${dayClass}">${day}</div>`;
+                    }).join('')}
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Career Development Tracker</title>
+    <style>
+       
+        * {
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 30px;
+            color: #72105d;
+            margin-left: 80px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin-left: 30px;
+            padding: 40px 20px;
+        }
+
+        .employee-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .employee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .employee-card-header {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4c8bf5;
+            margin-bottom: 15px;
+        }
+
+        .employee-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .employee-card .employee-position {
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        .employee-card .employee-date {
+            color: #888;
+        }
+
+        .track-button {
+            background-color: #4c8bf5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .track-button:hover {
+            background-color: #3579d1;
+        }
+
+        .track-button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Employee Career Development Tracker</h1>
+
+    <div class="container">
+       
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 1</div>
+            <p class="employee-position">Position: Software Developer</p>
+            <p class="employee-date">Date of Joining: March 15, 2022</p>
+            <a href="./cd emp1.html" class="track-button">Track Career Development</a>
+        </div>
+
+       
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 2</div>
+            <p class="employee-position">Position: DevOps Engineer</p>
+            <p class="employee-date">Date of Joining: June 5, 2022</p>
+            <a href="./cd emp2.html" class="track-button">Track Career Development</a>
+        </div>
+
+       
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 3</div>
+            <p class="employee-position">Position: Backend Developer</p>
+            <p class="employee-date">Date of Joining: January 10, 2023</p>
+            <a href="./cd emp3.html" class="track-button">Track Career Development</a>
+        </div>
+
+        
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 4</div>
+            <p class="employee-position">Position: UI/UX Designer</p>
+            <p class="employee-date">Date of Joining: August 22, 2024</p>
+            <a href="./cd emp4.html" class="track-button">Track Career Development</a>
+        </div>
+
+        <div class="employee-card">
+            <div class="employee-card-header">Employee 5</div>
+            <p class="employee-position">Position: Full Stack Developer</p>
+            <p class="employee-date">Date of Joining: February 12, 2023</p>
+            <a href="./cd emp5.html" class="track-button">Track Career Development</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

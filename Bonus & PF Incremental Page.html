@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Approvals & History</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        main {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .form-container {
+            background-image: url('https://assets.codepen.io/4927073/hero10.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            color: white;
+            text-shadow: 4px 0 10px #639efd;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        form input, form select, form textarea, form button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        form button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+            border-radius: 5px;
+        }
+
+        form button:hover {
+ border-top: 2px solid blueviolet;
+      border-left: 2px solid blueviolet;
+      border-bottom: 2px solid rgb(238, 103, 238);
+      border-right: 2px solid rgb(238, 103, 238);
+      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px;
+        }
+
+        form button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        select {
+            height: 40px;
+        }
+
+        .history {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: auto;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid #10a3ff;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .header .title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        .header .date {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .body {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size : 14px;
+            transition: background-color 0.3s, transform 0.2s;
+            border-radius: 5px;
+        }
+
+        .actions button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .create-entry h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <h1>Incremental Bonus and Payroll</h1>
+
+    <div class="form-container">
+        <section class="create-entry">
+            <h2>Create Payroll Entry</h2>
+            <form id="payroll-form">
+                <label for="entry-type">Entry Type:</label>
+                <select id="entry-type" name="entry-type">
+                    <option value="increment">Salary Increment</option>
+                    <option value="bonus">Bonus Payment</option>
+                    <option value="payroll">Payroll Adjustment</option>
+                </select>
+
+                <label for="employee-name">Employee Name:</label>
+                <input type="text" id="employee-name" name="employee-name" required minlength="3"   pattern="[A-Za-z .]+" 
+                title="Only alphabetic characters are allowed">
+
+                <label for="entry-amount">Amount (₹):</label>
+                <input type="number" id="entry-amount" name="entry-amount" required minlength="3">
+
+                <label for="reason">Reason for Entry:</label>
+                <textarea id="reason" name="reason" rows="5" required minlength="10"></textarea>
+
+                <button type="submit">Submit Entry</button>
+            </form>
+        </section>
+    </div>
+
+    <div class="history">
+        <h2>Payroll History</h2>
+        <div id="payroll-history">
+            <div class="card">
+                <div class="header">
+                    <span class="title">Salary Increment for Employee 1</span>
+                    <span class="date">2024-11-10</span>
+                </div>
+                <div class="body">
+                    <p>Reason: Performance-based increment for the year.</p>
+                    <p>Amount: ₹5000</p>
+                </div>
+                <div class="actions">
+                    <button style="background-color: #27ae60;">Approved</button>
+                    <button>Details</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="header">
+                    <span class="title">Bonus Payment for Employee 2</span>
+                    <span class="date">2024-11-08</span>
+                </div>
+                <div class="body">
+                    <p>Reason: End-of-year bonus based on performance.</p>
+                    <p>Amount: ₹2000</p>
+                </div>
+                <div class="actions">
+                    <button style="background-color: #27ae60;">Approved</button>
+                    <button>Details</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="header">
+                    <span class="title">Payroll Adjustment for Employee 3</span>
+                    <span class="date">2024-11-07</span>
+                </div>
+                <div class="body">
+                    <p>Reason: Adjustment for overtime hours worked in October.</p>
+                    <p>Amount: ₹1500</p>
+                </div>
+                <div class="actions">
+                    <button style="background-color: #27ae60;">Approved</button>
+                    <button>Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    function addPayrollEntry(entryType, employeeName, entryAmount, reason) {
+        const historyContainer = document.getElementById('payroll-history');
+        
+        const newCard = document.createElement('div');
+        newCard.classList.add('card');
+
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        newCard.innerHTML = `
+            <div class="header">
+                <span class="title">${entryType.charAt(0).toUpperCase() + entryType.slice(1)} for ${employeeName}</span>
+                <span class="date">${currentDate}</span>
+            </div>
+            <div class="body">
+                <p>Reason: ${reason}</p>
+                <p>Amount: ₹${entryAmount}</p>
+            </div>
+            <div class="actions">
+                <button style="background-color: #27ae60;">Approved</button>
+                <button>Details</button>
+            </div>
+        `;
+
+        historyContainer.appendChild(newCard);
+    }
+
+    document.getElementById('payroll-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const entryType = document.getElementById('entry-type').value;
+        const employeeName = document.getElementById('employee-name').value;
+        const entryAmount = document.getElementById('entry-amount').value;
+        const reason = document.getElementById('reason').value;
+
+        addPayrollEntry(entryType, employeeName, entryAmount, reason);
+
+        event.target.reset();
+    });
+</script>
+
+</body>
+</html>
