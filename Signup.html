@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&di
+splay=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="https://www.vhv.rs/dpng/d/511-5111355_register-super-admin-icon-png-transparent-png.png"
+      type="image/png"
+      style="color: #4e54c8"
+    />
+    <style media="screen">
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #c3c6fa;
+        background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+        width: 100%;
+        height: 100vh;
+        color: rgb(0, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+      }
+      .circles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .circles li {
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        animation: animate 15s linear infinite;
+        bottom: -150px;
+      }
+      .circles li:nth-child(1) {
+        left: 25%;
+        width: 80px;
+        height: 80px;
+        animation-delay: 0s;
+      }
+      .circles li:nth-child(2) {
+        left: 10%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 1s;
+        animation-duration: 10s;
+      }
+      .circles li:nth-child(3) {
+        left: 70%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 2s;
+      }
+      .circles li:nth-child(4) {
+        left: 40%;
+        width: 60px;
+        height: 60px;
+        animation-delay: 0s;
+        animation-duration: 12s;
+      }
+      .circles li:nth-child(5) {
+        left: 65%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 0s;
+      }
+      .circles li:nth-child(6) {
+        left: 75%;
+        width: 110px;
+        height: 110px;
+        animation-delay: 2s;
+      }
+      .circles li:nth-child(7) {
+        left: 35%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 4s;
+      }
+      .circles li:nth-child(8) {
+        left: 50%;
+        width: 25px;
+        height: 25px;
+        animation-delay: 8s;
+        animation-duration: 35s;
+      }
+      .circles li:nth-child(9) {
+        left: 20%;
+        width: 15px;
+        height: 15px;
+        animation-delay: 1s;
+        animation-duration: 25s;
+      }
+      .circles li:nth-child(10) {
+        left: 85%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 0s;
+        animation-duration: 8s;
+      }
+      @keyframes animate {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+          border-radius: 0;
+        }
+        100% {
+          transform: translateY(-1000px) rotate(720deg);
+          opacity: 0;
+          border-radius: 50%;
+        }
+      }
+      .form-container {
+        display: flex;
+        width: 900px;
+        height: 600px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        position: relative;
+        z-index: 2;
+      }
+      .image-container {
+        width: 450px;
+        height: 100%;
+        overflow: hidden;
+        z-index: 100;
+      }
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      form {
+        height: 100%;
+        width: 450px;
+        background-color: rgba(255, 255, 255, 0.13);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 35px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #000000;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      label {
+        color: #000000;
+        margin-top: 20px;
+        font-size: 16px;
+      }
+      input {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.07);
+        color: #000000;
+        border-radius: 5px;
+        margin-top: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        font-size: 14px;
+      }
+      button {
+        margin-top: 30px;
+        width: 100%;
+        background-color: #000000;
+        color: #ffffff;
+        padding: 12px 0;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+      }
+      button:hover {
+        background-image: linear-gradient(
+          to right,
+          rgb(250, 82, 82),
+          rgb(250, 82, 82) 16.65%,
+          rgb(190, 75, 219) 16.65%,
+          rgb(190, 75, 219) 33.3%,
+          rgb(76, 110, 245) 33.3%,
+          rgb(76, 110, 245) 49.95%,
+          rgb(64, 192, 87) 49.95%,
+          rgb(64, 192, 87) 66.6%,
+          rgb(250, 176, 5) 66.6%,
+          rgb(250, 176, 5) 83.25%,
+          rgb(253, 126, 20) 83.25%,
+          rgb(253, 126, 20) 100%,
+          rgb(250, 82, 82) 100%
+        );
+        animation: var(--timing) linear dance6123 infinite;
+        color: white;
+      }
+      .login-link {
+        color: #000000;
+        text-decoration: none;
+        font-size: 14px;
+        margin-top: 10px;
+        text-align: center;
+        display: block;
+      }
+      .login-link:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 768px) {
+        .form-container {
+          width: 100%;
+          height: auto;
+          flex-direction: column;
+        }
+
+        .image-container {
+          width: 100%;
+          height: 300px;
+        }
+
+        form {
+          width: 100%;
+          padding: 20px;
+        }
+
+        h2 {
+          font-size: 28px;
+        }
+
+        input {
+          font-size: 16px;
+        }
+
+        button {
+          font-size: 16px;
+          padding: 10px 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .form-container {
+          width: 100%;
+          height: auto;
+        }
+
+        .image-container {
+          width: 100%;
+          height: 250px;
+        }
+
+        form {
+          width: 100%;
+          padding: 15px;
+        }
+
+        h2 {
+          font-size: 24px;
+        }
+
+        input {
+          font-size: 14px;
+        }
+
+        button {
+          font-size: 14px;
+          padding: 8px 0;
+        }
+
+        .login-link {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="area">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="form-container">
+      <div class="image-container">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1677269465314-d5d2247a0b0c?q=
+80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1
+wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Signup Image"
+        />
+      </div>
+      <form onsubmit="event.preventDefault(); signup();">
+        <h2>Sign Up</h2>
+        <label for="username">Username</label>
+        <input type="text" id="username" required minlength="3" />
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" required minlength="3" />
+        <button type="submit">Sign Up</button>
+        <a href="Login.html" class="login-link"
+          >Already have an account? Login here.</a
+        >
+      </form>
+    </div>
+    <script>
+      function signup() {
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        if (!username || !email || !password) {
+          alert("Please fill in all fields.");
+          return;
+        }
+        fetch("http://localhost:3000/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.message);
+            if (data.message === "Signup successful") {
+              window.location.href = "Login.html";
+            }
+          })
+          .catch((error) => alert("Error: " + error));
+      }
+    </script>
+  </body>
+</html>
