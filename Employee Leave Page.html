@@ -17,24 +17,46 @@
         body {
             display: flex;
             height: 100vh;
+            flex-direction: column;
             padding: 20px;
             justify-content: flex-start;
             align-items: flex-start;
         }
+        .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
         .leave-container {
             width: 1200px;
             height: auto;
             padding: 30px;
-            margin-left: 150px;
+            margin: auto;
             height: 900px;
             display: flex;
             flex-direction: column;
             gap: 20px; 
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            position: relative;
+             position: relative;
             background: linear-gradient(135deg, #79b0bc83, #aa89e489); 
             animation: gradientMotion 10s ease infinite;
         }
@@ -210,75 +232,98 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .leave-container {
-                width: 100%;
-                margin-left: 20px;
-                padding: 20px;
-                height: auto;
-            }
 
-            .leave-form {
-                grid-template-columns: 1fr;
-                padding: 0 20px;
-            }
+        @media (max-width: 1024px) {
+    .leave-container {
+        width: 90%;
+        margin-left: 50px; 
+        padding: 25px;
+    }
 
-            .btn {
-                padding: 0.6rem 2rem;
-            }
-        }
+    .leave-form {
+        grid-template-columns: 1fr 1fr;
+        padding: 0 20px; 
+    }
+}
 
-        @media (max-width: 480px) {
-            .leave-container {
-                width: 100%;
-                margin-left: 0;
-                padding: 15px;
-            }
+@media (max-width: 768px) {
+    .leave-container {
+        width: 100%;
+        margin-left: 20px;
+        padding: 20px;
+        height: auto; 
+    }
 
-            .leave-form {
-                grid-template-columns: 1fr;
-                padding: 0 15px;
-            }
+    .leave-form {
+        grid-template-columns: 1fr; 
+        padding: 0 20px;
+    }
 
-            .btn {
-                padding: 0.5rem 1.5rem;
-            }
+    .btn {
+        padding: 0.6rem 2rem; 
+    }
+}
+@media (max-width: 480px) {
+    .leave-container {
+        width: 100%;
+        margin-left: 0; 
+        padding: 15px; 
+    }
 
-            .form-group {
-                font-size: 14px;
-            }
+    .leave-form {
+        grid-template-columns: 1fr; 
+        padding: 0 15px; 
+    }
 
-            .form-group label {
-                font-size: 16px;
-            }
-        }
+    .btn {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .form-group {
+        font-size: 14px; 
+    }
+
+    .form-group label {
+        font-size: 16px; 
+    }
+}
+
         
     </style>
 </head>
-<body>
+<body> <div class="banner">
+    <h1>Employee Leave Form <h1>
+        <p>Apply for leave here</p>
+</div>
 
     <div class="leave-container">
-        <h2>Employee Leave Application</h2>
+        <h2>Employee Leave Form</h2>
         <form class="leave-form" id="leave-form">
             <div class="form-group">
                 <label for="name">Employee Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" 
-                pattern="[A-Za-z ]+" 
-                title="Only alphabetic characters are allowed">
+                <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" maxlength="50"
+                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+    title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
             </div>
-
+    
             <div class="form-group">
                 <label for="emp-id">Employee ID:</label>
-                <input type="text" id="emp-id" name="emp-id" placeholder="Enter your Employee ID" required minlength="7" maxlength="7"  pattern="^[A-Z]{3}[0-9]{4}$" 
-                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits"
-              >
+                <input type="text" id="emp-id" name="emp-id" placeholder="Enter your Employee ID" required minlength="7" maxlength="7" pattern="^[A-Z]{3}0[0-9]{3}$" 
+                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits">
             </div>
-
+    
             <div class="form-group">
                 <label for="email">Employee Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input 
+                id="email" 
+                type="email" 
+                placeholder="Enter your Email ID" 
+                required  
+                minlength="8"
+                maxlength="50"
+                title="Please enter a valid email address that ends with .com">
             </div>
-
+    
             <div class="form-group">
                 <label for="leave-type">Leave Type:</label>
                 <select id="leave-type" name="leave-type" required>
@@ -287,63 +332,162 @@
                     <option value="earned">Earned Leave</option>
                 </select>
             </div>
-
+    
             <div class="form-group">
                 <label for="from-date">From Date:</label>
                 <input type="date" id="from-date" name="from-date" required>
             </div>
-
+    
             <div class="form-group">
                 <label for="to-date">To Date:</label>
                 <input type="date" id="to-date" name="to-date" required>
             </div>
-
+    
+            <div id="hour-selection" class="form-group" style="display: none;">
+                <label for="from-hour">From Hour:</label>
+                <input type="time" id="from-hour" name="from-hour">
+                <label for="to-hour">To Hour:</label>
+                <input type="time" id="to-hour" name="to-hour">
+            </div>
+    
             <div class="form-group full-width">
                 <label for="reason">Reason for Leave:</label>
-                <textarea id="reason" name="reason" placeholder="Enter your reason" required rows="5" minlength="5"></textarea>
+                <textarea id="reason" name="reason" placeholder="Enter your reason" required rows="5" minlength="5" maxlength="200"></textarea>
             </div>
-
+    
             <div class="submit-container">
-                <button type="submit" class="btn"><Span>Submit Leave</Span></button>
+                <button type="submit" class="btn"><span>Submit Leave</span></button>
             </div>
         </form>
     </div>
-
+    
     <script>
+       document.getElementById('leave-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const empId = document.getElementById('emp-id').value;
+    const email = document.getElementById('email').value;
+    const leaveType = document.getElementById('leave-type').value;
+    const fromDate = document.getElementById('from-date').value;
+    const toDate = document.getElementById('to-date').value;
+    const reason = document.getElementById('reason').value;
+    const fromHour = document.getElementById('from-hour').value;
+    const toHour = document.getElementById('to-hour').value;
+
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    if (fromDate < currentDate) {
+        alert('Please select a valid From Date');
+        return false;
+    }
+
+    if (toDate < fromDate) {
+        alert('Please Select a valid To Date.');
+        return false;
+    }
+
+    if (fromDate === toDate && fromHour && toHour) {
+        if (fromHour > toHour) {
+            alert('The "To Hour" cannot be earlier than the "From Hour".');
+            return false;
+        }
+
         
-        document.getElementById('leave-form').addEventListener('submit', function(event) {
-            event.preventDefault();  
-    
-            const name = document.getElementById('name').value;
-            const empId = document.getElementById('emp-id').value;
-            const email = document.getElementById('email').value;
-            const leaveType = document.getElementById('leave-type').value;
-            const fromDate = document.getElementById('from-date').value;
-            const toDate = document.getElementById('to-date').value;
-            const reason = document.getElementById('reason').value;
-    
-           
-            const leaveDetails = {
-                name,
-                empId,
-                email,
-                leaveType,
-                fromDate,
-                toDate,
-                reason
-            };
-    
-            let leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
-    
-            leaveApplications.push(leaveDetails);
-    
-            localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
-    
-            alert('Leave application submitted successfully!');
-    
-            document.getElementById('leave-form').reset();
-        });
-    </script>
-    
+        const [fromHourVal, fromMinuteVal] = fromHour.split(':').map(Number);
+        const [toHourVal, toMinuteVal] = toHour.split(':').map(Number);
+
+        const fromTotalMinutes = fromHourVal * 60 + fromMinuteVal;
+        const toTotalMinutes = toHourVal * 60 + toMinuteVal;
+
+        const timeDifference = toTotalMinutes - fromTotalMinutes; 
+
+        if (timeDifference < 30) {
+            alert('The time difference should be at least 30 minutes.');
+            return false;
+        }
+    }
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    const leaveDetails = {
+        name,
+        empId,
+        email,
+        leaveType,
+        fromDate,
+        toDate,
+        fromHour,
+        toHour,
+        reason
+    };
+
+    let leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+
+    leaveApplications.push(leaveDetails);
+
+    localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
+
+    alert('Leave application submitted successfully!');
+
+    document.getElementById('leave-form').reset();
+    document.getElementById('hour-selection').style.display = 'none'; 
+});
+
+document.getElementById('from-date').addEventListener('change', function() {
+    toggleHourSelection();
+});
+
+document.getElementById('to-date').addEventListener('change', function() {
+    toggleHourSelection();
+});
+
+document.getElementById('from-hour').addEventListener('change', function() {
+    validateHours();
+});
+
+document.getElementById('to-hour').addEventListener('change', function() {
+    validateHours();
+});
+
+function toggleHourSelection() {
+    const fromDate = document.getElementById('from-date').value;
+    const toDate = document.getElementById('to-date').value;
+
+    if (fromDate === toDate) {
+        document.getElementById('hour-selection').style.display = 'block';
+    } else {
+        document.getElementById('hour-selection').style.display = 'none';
+    }
+}
+
+function validateHours() {
+    const fromHour = document.getElementById('from-hour').value;
+    const toHour = document.getElementById('to-hour').value;
+
+    if (fromHour && toHour && fromHour > toHour) {
+        alert('The "To Hour" cannot be earlier than the "From Hour".');
+    }
+
+    if (fromHour && toHour) {
+        const [fromHourVal, fromMinuteVal] = fromHour.split(':').map(Number);
+        const [toHourVal, toMinuteVal] = toHour.split(':').map(Number);
+
+        const fromTotalMinutes = fromHourVal * 60 + fromMinuteVal;
+        const toTotalMinutes = toHourVal * 60 + toMinuteVal;
+
+        const timeDifference = toTotalMinutes - fromTotalMinutes; 
+
+        if (timeDifference < 30) {
+            alert('The time difference should be at least 30 minutes.');
+        }
+    }
+}
+    </script> 
 </body>
 </html>
+
