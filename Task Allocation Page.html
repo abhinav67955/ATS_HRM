@@ -18,6 +18,28 @@
             gap: 20px;
             justify-content: flex-start;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
 
         .employee-card {
             background: white;
@@ -253,7 +275,8 @@
         }
 
         .form-container textarea {
-            resize: vertical;
+            resize: none;
+            height: 120px;
         }
 
         .form-container label {
@@ -272,17 +295,19 @@
         }
 
         .form-container button:hover {
-            border-top: 2px solid blueviolet;
-      border-left: 2px solid blueviolet;
-      border-bottom: 2px solid rgb(238, 103, 238);
-      border-right: 2px solid rgb(238, 103, 238);
-      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px;
+            background-color: #007bff;
         }
-
+h2{
+    display: flex;
+    justify-content: center;
+}
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Task Allocation Page</h1>
+        <p>Allocate new tasks for employees</p>
+    </div>
     <div class="container" id="taskContainer">
         
         <div class="employee-card">
@@ -310,7 +335,7 @@
         <h2>Allocate New Task</h2>
         <form id="taskForm" onsubmit="saveTaskData(event)">
             <label for="task-name">Task Name</label>
-            <input type="text" id="task-name" name="task-name" required minlength="5" placeholder="Enter task name">
+            <input type="text" id="task-name" name="task-name" required minlength="5" maxlength="50" placeholder="Enter task name">
 
             <label for="employee-name">Employee Name</label>
             <input 
@@ -319,8 +344,9 @@
                 name="employee-name" 
                 required 
                 minlength="3" 
-                pattern="[A-Za-z .]+" 
-                title="Employee name should only contain alphabetic characters and spaces"
+                maxlength="50"
+                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed."
                 placeholder="Enter employee name">
             
             <label for="employee-id">Employee ID</label>
@@ -331,16 +357,16 @@
                 required 
                 minlength="7" 
                 maxlength="7" 
-                pattern="^[A-Z]{3}[0-9]{4}$" 
+                pattern="^[A-Z]{3}0[0-9]{3}$" 
                 title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits"
                 placeholder="Enter employee ID">
             
 
             <label for="employee-email">Employee Email</label>
-            <input type="email" id="employee-email" name="employee-email" required placeholder="Enter employee email">
+            <input type="email" id="employee-email" name="employee-email" required placeholder="Enter employee email" minlength="3" maxlength="50">
 
             <label for="task-description">Task Description</label>
-            <textarea id="task-description" name="task-description" required minlength="20" placeholder="Describe the task"></textarea>
+            <textarea id="task-description" name="task-description" required minlength="20" maxlength="400" placeholder="Describe the task"></textarea>
 
             <label for="allocated-time">Allocated Time</label>
             <input type="date" id="allocated-time" name="allocated-time" required>
@@ -353,36 +379,64 @@
     </div>
 
     <script>
-       
         function showForm() {
             document.getElementById('taskForm').style.display = 'block';
         }
-
-       
+    
         function saveTaskData(event) {
             event.preventDefault(); 
+    
+    
+            const taskName = document.getElementById('task-name').value;
+            const employeeName = document.getElementById('employee-name').value;
+            const employeeId = document.getElementById('employee-id').value;
+            const employeeEmail = document.getElementById('employee-email').value;
+            const taskDescription = document.getElementById('task-description').value;
+            const allocatedTime = document.getElementById('allocated-time').value;
+            const deadline = document.getElementById('deadline').value;
+    
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+    
+          
+            const allocatedDate = new Date(allocatedTime);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); 
+            if (allocatedDate < today) {
+                alert("Allocated time must be today or a future date.");
+                return;
+            }
+    
             
-            
-            const taskData = {
-                taskName: document.getElementById('task-name').value,
-                employeeName: document.getElementById('employee-name').value,
-                employeeId: document.getElementById('employee-id').value,
-                employeeEmail: document.getElementById('employee-email').value,
-                taskDescription: document.getElementById('task-description').value,
-                allocatedTime: document.getElementById('allocated-time').value,
-                deadline: document.getElementById('deadline').value,
-            };
-
+            const deadlineDate = new Date(deadline);
+            if (deadlineDate < allocatedDate) {
+                alert("Deadline must be greater than the allocated time.");
+                return;
+            }
+    
            
+            const taskData = {
+                taskName: taskName,
+                employeeName: employeeName,
+                employeeId: employeeId,
+                employeeEmail: employeeEmail,
+                taskDescription: taskDescription,
+                allocatedTime: allocatedTime,
+                deadline: deadline,
+            };
+    
+        
             let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
             tasks.push(taskData);
             localStorage.setItem('tasks', JSON.stringify(tasks));
-
-
+   
             const container = document.getElementById('taskContainer');
             const newCard = document.createElement('div');
             newCard.classList.add('employee-card');
-
+    
             newCard.innerHTML = `
                 <div class="shape circle5"></div>
                 <div class="shape square5"></div>
@@ -398,15 +452,16 @@
                     <button class="button incomplete-task-button">Incomplete</button>
                 </div>
             `;
-
-           
+    
             container.appendChild(newCard);
-
+    
             alert("Task Allocated Successfully!");
-
+    
             document.querySelector('form').reset();
             document.getElementById('taskForm').style.display = 'none';
         }
     </script>
+    
 </body>
 </html>
+
