@@ -1,154 +1,301 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HR - Employee Offboarding Details</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Onboarding Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+           
+        }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      padding: 50px;
-      margin: 0;
-    }
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
 
-    .form-container {
-      background:linear-gradient(rgba(224, 224, 255, 0.45), rgba(253, 240, 227, 0.61), rgba(247, 222, 255, 0.568));
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 20px;
+        }
 
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      max-width: 900px;
-      margin: 0 auto;
-    }
+        .submission-item {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(240, 248, 255, 0.9));
+            padding: 25px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 1rem;
+        }
 
-    h2 {
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-    }
+        .submission-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
 
-    h2 i {
-      margin-right: 10px;
-      color: #3d0492;
-    }
+        .submission-item h3 {
+            font-size: 1.2rem;
+            background-color: #0066cc;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
 
-    label {
-      font-size: 14px;
-      margin-bottom: 8px;
-      display: block;
-      color: #555;
-    }
+        .submission-item p {
+            margin: 8px 0;
+            font-size: 16px;
+            color: #333;
+        }
 
-    .details-container {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
+        .submission-item strong {
+            color: #2f4f90;
+        }
 
-    .details-container p {
-      margin: 8px 0;
-    }
+        .delete-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #e74c3c;
+            background-color: transparent;
+            border: none;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
 
-    .submit-section {
-      text-align: center;
-      margin-top: 20px;
-    }
+        .delete-icon:hover {
+            color: #c0392b;
+        }
+        .download-btn, .remove-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+    margin-right: 10px;
+}
 
-    button {
-      background-color: #069a5a;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      width: 60%;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-    }
 
-    button:hover {
-      border-top: 2px solid blueviolet;
-      border-left: 2px solid blueviolet;
-      border-bottom: 2px solid rgb(238, 103, 238);
-      border-right: 2px solid rgb(238, 103, 238);
-      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px;
-    }
-  </style>
+.download-btn {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+}
+
+.download-btn:hover {
+    background-color: #0056b3; 
+    transform: scale(1.05);
+}
+
+.download-btn:active {
+    background-color: #004494;
+    transform: scale(0.98);
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.remove-btn:hover {
+    background-color: #b02a37;
+    transform: scale(1.05);
+}
+
+.remove-btn:active {
+    background-color: #8b1e28;
+    transform: scale(0.98);
+}
+
+        @media (max-width: 768px) {
+            .cards-container {
+                gap: 20px;
+            }
+
+            .submission-item {
+                width: 90%;
+            }
+        }
+
+        .back-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background-color: #0066cc;
+            color: #fff;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            text-align: center;
+            width: 200px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background-color: #005bb5;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-<h1>Employee Offboarding Details</h1>
+    <div class="banner">
+        <h1>Employee Onboarding Review Page</h1>
+        <p>Review and download employee submitted Onboarding details</p>
+    </div>
 
-<div class="form-container">
-  <h2><i class="fas fa-user"></i> Employee Information</h2>
-  <div class="details-container" id="employee-info">
+    <div class="cards-container" id="submissionList"></div>
     
-  </div>
-
-  <h2><i class="fas fa-laptop"></i> Equipment Return</h2>
-  <div class="details-container" id="equipment-return">
-  
-  </div>
-
-  <h2><i class="fas fa-rupee-sign"></i> Final Paycheck Details</h2>
-  <div class="details-container" id="paycheck-details">
- 
-  </div>
-
-  <h2><i class="fas fa-comments"></i> Exit Interview</h2>
-  <div class="details-container" id="exit-interview">
-   
-  </div>
-
-  <div class="submit-section">
-    <button id="confirmButton">Confirm</button>
-  </div>
-</div>
-
-<script>
- 
-  window.onload = function() {
-    const savedData = JSON.parse(localStorage.getItem('offboardingData'));
-
-    if (savedData) {
-      
-      document.getElementById('employee-info').innerHTML = `
-        <p><strong>Full Name:</strong> ${savedData.employeeName}</p>
-        <p><strong>Employee ID:</strong> ${savedData.employeeId}</p>
-        <p><strong>Department:</strong> ${savedData.employeeDepartment}</p>
-      `;
-
-     
-      document.getElementById('equipment-return').innerHTML = `
-        <p><strong>Laptop Returned:</strong> ${savedData.laptopReturned}</p>
-        <p><strong>Phone Returned:</strong> ${savedData.phoneReturned}</p>
-        <p><strong>Access Cards/Keys Returned:</strong> ${savedData.accessCardsReturned}</p>
-      `;
-
-      document.getElementById('paycheck-details').innerHTML = `
-        <p><strong>Final Paycheck Amount:</strong> ₹${savedData.finalPaycheck}</p>
-        <p><strong>Benefits Cleared:</strong> ${savedData.benefitsCleared}</p>
-      `;
-
-
-      document.getElementById('exit-interview').innerHTML = `
-        <p><strong>Feedback:</strong> ${savedData.exitInterview}</p>
-        <p><strong>Reason for Leaving:</strong> ${savedData.reasonForLeaving}</p>
-      `;
-    } else {
-      document.body.innerHTML = "<h1>No offboarding data found.</h1>";
-    }
-  };
-</script>
-
-</body>
-</html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submissionList = document.getElementById('submissionList');
+            submissionList.innerHTML = ''; 
+    
+            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+    
+            submissions.forEach(function(submission, index) {
+                const submissionItem = document.createElement('div');
+                submissionItem.classList.add('submission-item');
+    
+                submissionItem.innerHTML = `
+                    <h3>Employee Details</h3>
+                    <p><strong>Full Name:</strong> ${submission.fullName}</p>
+                    <p><strong>Email:</strong> ${submission.email}</p>
+                    <p><strong>Phone:</strong> ${submission.phone}</p>
+                    <p><strong>Address:</strong> ${submission.address}</p>
+                    <p><strong>Job Title:</strong> ${submission.jobTitle}</p>
+                    <p><strong>Department:</strong> ${submission.department}</p>
+                    <p><strong>Emergency Contact Name:</strong> ${submission.emergencyName}</p>
+                    <p><strong>State:</strong> ${submission.state}</p>
+                    <p><strong>Emergency Phone:</strong> ${submission.emergencyPhone}</p>
+                    <p><strong>Bank Name:</strong> ${submission.bankName}</p>
+                    <p><strong>Account Number:</strong> ${submission.accountNumber}</p>
+                    <p><strong>Extra Certification:</strong> ${submission.taxForm}</p>
+                    <p><strong>Signed Contract:</strong> ${submission.contract}</p>
+                    <p><strong>ID Proof:</strong> ${submission.idProof}</p>
+                    <p><strong>High School Certificate:</strong> ${submission.highSchool}</p>
+                    <p><strong>Intermediate Certificate:</strong> ${submission.intermediate}</p>
+                    <p><strong>Higher Education Certifications:</strong> ${submission.higherEducation}</p>
+                    <div class="action-buttons">
+                        <button onclick="downloadSubmission(${index})" class="download-btn">Download</button>
+                        <button onclick="confirmRemove(${index})" class="remove-btn">Remove</button>
+                    </div>
+                    <div class="temporary-message" id="message-${index}" style="display:none;"></div>
+                `;
+    
+                submissionList.appendChild(submissionItem);
+            });
+    
+            if (submissions.length === 0) {
+                submissionList.innerHTML = '<p>No submissions found.</p>';
+            }
+        });
+    
+        function confirmRemove(index) {
+            const messageContainer = document.getElementById(`message-${index}`);
+            messageContainer.innerHTML = `
+                <p>Are you sure you want to remove this submission?</p>
+                <button onclick="executeRemove(${index})">Yes</button>
+                <button  onclick="cancelRemove(${index})">No</button>
+            `;
+            messageContainer.style.display = 'block';
+        }
+    
+        function executeRemove(index) {
+            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+            submissions.splice(index, 1);
+            localStorage.setItem('submissions', JSON.stringify(submissions));
+            location.reload();
+        }
+    
+        function cancelRemove(index) {
+            const messageContainer = document.getElementById(`message-${index}`);
+            messageContainer.style.display = 'none';
+        }
+    
+        function downloadSubmission(index) {
+            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+            const submission = submissions[index];
+    
+            if (!submission) {
+                alert("Submission not found.");
+                return;
+            }
+    
+            let csvContent = "data:text/csv;charset=utf-8,";
+    
+            // CSV Header Row
+            csvContent += "Field,Value\n";
+    
+            // Data Rows
+            const dataRows = [
+                ["Full Name", submission.fullName],
+                ["Email", submission.email],
+                ["Phone", submission.phone],
+                ["Address", submission.address],
+                ["Job Title", submission.jobTitle],
+                ["Department", submission.department],
+                ["Emergency Contact Name", submission.emergencyName],
+                ["State", submission.state],
+                ["Emergency Phone", submission.emergencyPhone],
+                ["Bank Name", submission.bankName],
+                ["Account Number", submission.accountNumber],
+                ["Extra Certification", submission.taxForm],
+                ["Signed Contract", submission.contract],
+                ["ID Proof", submission.idProof],
+                ["High School Certificate", submission.highSchool],
+                ["Intermediate Certificate", submission.intermediate],
+                ["Higher Education Certifications", submission.higherEducation]
+            ];
+    
+            dataRows.forEach(row => {
+                csvContent += `"${row[0]}","${row[1]}"\n`;
+            });
+    
+            // Create download link
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `${submission.fullName}_details.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+    </body>
+    </html>
+    
