@@ -1,185 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Onboarding Review</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-           
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR - Employee Offboarding Details</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-        h2 {
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      padding: 50px;
+      margin: 0;
+    }
+
+    .banner {
+            background-color: #3b145b;
+            color: white;
             text-align: center;
-            font-size: 2.5rem;
-            margin-top: 20px;
-            color: #020065;
-        }
-
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 30px;
-            padding: 20px;
-        }
-
-        .submission-item {
-            background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(240, 248, 255, 0.9));
-            padding: 25px;
-            width: 350px;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 20px;
-            text-align: left;
-            font-size: 1rem;
-        }
-
-        .submission-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .submission-item h3 {
-            font-size: 1.2rem;
-            background-color: #0066cc;
-            color: #fff;
+            height: auto;
             padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .submission-item p {
-            margin: 8px 0;
-            font-size: 16px;
-            color: #333;
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
         }
 
-        .submission-item strong {
-            color: #2f4f90;
-        }
 
-        .delete-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
+    .form-container {
+      background:linear-gradient(rgba(224, 224, 255, 0.45), rgba(253, 240, 227, 0.61), rgba(247, 222, 255, 0.568));
+
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    h2 i {
+      margin-right: 10px;
+      color: #3d0492;
+    }
+
+    label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+      color: #555;
+    }
+
+    .details-container {
+      font-size:19px;
+      margin-bottom: 20px;
+    }
+
+    .details-container p {
+      margin: 8px 0;
+    }
+
+    .submit-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 320px;
+            height: 2.6em;
+            line-height: 2.5em;
+            margin: 20px;
+            position: relative;
             cursor: pointer;
-            color: #e74c3c;
-            background-color: transparent;
-            border: none;
-            padding: 5px;
-            transition: color 0.3s ease;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 17px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--color);
+            background-color: var(--bg-color);
         }
-
-        .delete-icon:hover {
-            color: #c0392b;
-        }
-        @media (max-width: 768px) {
-            .cards-container {
-                gap: 20px;
-            }
-
-            .submission-item {
-                width: 90%;
-            }
-        }
-
-        .back-btn {
-            display: block;
-            margin: 30px auto;
-            padding: 12px 25px;
-            background-color: #0066cc;
-            color: #fff;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            text-align: center;
+        button:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background: var(--color);
+            height: 150px;
             width: 200px;
-            text-decoration: none;
+            border-radius: 50%;
+            transition: all 0.7s;
+        }
+        button:hover {
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+        button:active {
+            color: var(--color);
+            background-color: #ffffff;
         }
 
-        .back-btn:hover {
-            background-color: #005bb5;
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </style>
 </head>
 <body>
 
-    <h2>Review Employee Onboarding</h2>
+  <div class="banner">
+    <h1>Employee Offboarding Form Review Page</h1>
+    <p>Review and download employee submitted Offboarding details</p>
+</div>
 
-   
-    <div class="cards-container" id="submissionList">
-     
+  <div class="form-container">
+    <h2><i class="fas fa-user"></i> Employee Information</h2>
+    <div class="details-container" id="employee-info"></div>
+  
+    <h2><i class="fas fa-laptop"></i> Equipment Return</h2>
+    <div class="details-container" id="equipment-return"></div>
+  
+    <h2><i class="fas fa-rupee-sign"></i> Final Paycheck Details</h2>
+    <div class="details-container" id="paycheck-details"></div>
+  
+    <h2><i class="fas fa-comments"></i> Exit Interview</h2>
+    <div class="details-container" id="exit-interview"></div>
+  
+    <div class="submit-section">
+      <button class="download-btn" onclick="downloadOffboardingData()">Download</button>
     </div>
-
-    
-
-    <script>
-      
-        document.addEventListener('DOMContentLoaded', function() {
-            const submissionList = document.getElementById('submissionList');
-            submissionList.innerHTML = ''; 
-
-            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-
-         
-            submissions.forEach(function(submission, index) {
-                const submissionItem = document.createElement('div');
-                submissionItem.classList.add('submission-item');
-
-                submissionItem.innerHTML = `
-                    <i class="fas fa-trash delete-icon" onclick="deleteSubmission(${index})"></i>
-                    <h3>Employee Details</h3>
-                    <p><strong>Full Name:</strong> ${submission.fullName}</p>
-                    <p><strong>Email:</strong> ${submission.email}</p>
-                    <p><strong>Phone:</strong> ${submission.phone}</p>
-                    <p><strong>Address:</strong> ${submission.address}</p>
-                    <p><strong>Job Title:</strong> ${submission.jobTitle}</p>
-                    <p><strong>Department:</strong> ${submission.department}</p>
-                    <p><strong>Emergency Contact Name:</strong> ${submission.emergencyName}</p>
-                    <p><strong>state:</strong> ${submission.state}</p>
-                    <p><strong>Emergency Contact:</strong> ${submission.emergencyPhone}</p>
-                    <p><strong>Bank Name:</strong> ${submission.bankName}</p>
-                    <p><strong>Account Number:</strong> ${submission.accountNumber}</p>
-                    <p><strong>Extra Certification:</strong> ${submission.taxForm}</p>
-                    <p><strong>Signed Contract:</strong> ${submission.contract}</p>
-                    <p><strong>ID Proof:</strong> ${submission.idProof}</p>
-                    <p><strong>HighSchool Certificate:</strong> ${submission.highSchool}</p>
-                    <p><strong>Intermediate Certificate:</strong> ${submission.intermediate}</p>
-                    <p><strong>HigherEductaion Certifications:</strong> ${submission.higherEducation}</p>
-
-                `;
-
-                submissionList.appendChild(submissionItem);
-            });
-
-            if (submissions.length === 0) {
-                submissionList.innerHTML = '<p>No submissions found.</p>';
-            }
-        });
-
-      
-        function deleteSubmission(index) {
-           
-            const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-
-            submissions.splice(index, 1);
-
-            
-            localStorage.setItem('submissions', JSON.stringify(submissions));
-
-        
-            location.reload();
-        }
-    </script>
-
+  </div>
+  
+  <script>
+    window.onload = function () {
+      const savedData = JSON.parse(localStorage.getItem('offboardingData'));
+  
+      if (savedData) {
+        document.getElementById('employee-info').innerHTML = `
+          <p><strong>Full Name:</strong> ${savedData.employeeName}</p>
+          <p><strong>Employee ID:</strong> ${savedData.employeeId}</p>
+          <p><strong>Department:</strong> ${savedData.employeeDepartment}</p>
+        `;
+  
+        document.getElementById('equipment-return').innerHTML = `
+          <p><strong>Laptop Returned:</strong> ${savedData.laptopReturned}</p>
+          <p><strong>Phone Returned:</strong> ${savedData.phoneReturned}</p>
+          <p><strong>Access Cards/Keys Returned:</strong> ${savedData.accessCardsReturned}</p>
+        `;
+  
+        document.getElementById('paycheck-details').innerHTML = `
+          <p><strong>Final Paycheck Amount:</strong> ₹${savedData.finalPaycheck}</p>
+          <p><strong>Benefits Cleared:</strong> ${savedData.benefitsCleared}</p>
+        `;
+  
+        document.getElementById('exit-interview').innerHTML = `
+          <p><strong>Feedback:</strong> ${savedData.exitInterview}</p>
+          <p><strong>Reason for Leaving:</strong> ${savedData.reasonForLeaving}</p>
+        `;
+      } else {
+        document.body.innerHTML = "<h1>No offboarding data found.</h1>";
+      }
+    };
+  
+    function downloadOffboardingData() {
+      const savedData = JSON.parse(localStorage.getItem('offboardingData'));
+  
+      if (!savedData) return;
+  
+      const data = `
+          Employee Offboarding Details\n
+          Full Name: ${savedData.employeeName}\n
+          Employee ID: ${savedData.employeeId}\n
+          Department: ${savedData.employeeDepartment}\n
+          \nEquipment Return:\n
+          Laptop Returned: ${savedData.laptopReturned}\n
+          Phone Returned: ${savedData.phoneReturned}\n
+          Access Cards/Keys Returned: ${savedData.accessCardsReturned}\n
+          \nFinal Paycheck Details:\n
+          Final Paycheck Amount: ₹${savedData.finalPaycheck}\n
+          Benefits Cleared: ${savedData.benefitsCleared}\n
+          \nExit Interview:\n
+          Feedback: ${savedData.exitInterview}\n
+          Reason for Leaving: ${savedData.reasonForLeaving}
+      `;
+  
+      const blob = new Blob([data], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `Offboarding_${savedData.employeeName.replace(/\s+/g, '_')}.txt`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+  
 </body>
 </html>
+
