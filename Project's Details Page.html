@@ -1,95 +1,119 @@
 
-            
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to HRMS Project</title>
+    <title>Project Details - HRMS Portal</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+       
+
+        .project-details {
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .video-container {
-            position: absolute;
-            top: 50px;
-            width: 100%;
-            height: calc(100% - 50px);
-            overflow: hidden;
-        }
-
-        .background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #e5dbfccb, #ffe0f600);
+            width: auto;
             height: 100%;
-            object-fit: cover;
-            z-index: -1;
+            padding-bottom: 100px;
+            margin-left: 20px;
+            margin-top: 20px;
         }
 
-        .welcome-text {
-            position: absolute;
-            top: 40%;
-            left: 30%;
-            color: #000000;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            z-index: 1;
-            border-radius: 8px;
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .welcome-text h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
         }
-
-        .welcome-text p {
-            font-size: 1.2rem;
+        .banner p {
+            font-size: 18px;
             margin-top: 10px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 38px;
+            text-decoration: underline;
+            margin: 10px 0;
+        }
+
+        p, ul {
+            font-size: 25px;
+            line-height: 1.4;
+            margin: 2px 0;
         }
 
         button {
-            background-color: rgb(7, 88, 110);
-            color: white;
+            margin-top: 40px;
+            padding: 10px;
             border: none;
             border-radius: 5px;
-            margin-left: auto;
-            padding: 10px 20px;
-            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
             cursor: pointer;
-            margin-top: 10px;
-            align-content: center;
+            width: 50%;
+            display: flex;
+           
+           justify-content: center;
+           
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
         }
 
         button:hover {
-            background-color: rgb(5, 70, 90);
+            background-color: #0056b3;
+        }
+        .icon{
+            display: flex;
+            justify-content: center;
+            font-size: 28px;
+            color: brown;
+            font-weight: bold;
         }
     </style>
 </head>
-<body>
-    <div class="video-container">
-        <video class="background-video" autoplay muted loop>
-            <source src="https://cdn.pixabay.com/video/2023/07/19/172170-846731303_large.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div class="welcome-text">
-        <h1>Welcome to HRMS Project</h1>
-        <p>Your one-stop solution for managing Employee operations efficiently.</p>
-        <a href="./project.html"><button>Project Details</button></a>
+<body> <div class="banner">
+    <h1>Project Details</h1>
+    <p>Track and download project Details</p>
+</div>
+    
+    <div class="project-details">
+        <h2>Project Details</h2>
+        <p><strong>Project Name:</strong> Human Resources Management System</p>
+        <p><strong>Client:</strong> Astrolite Tech Solutions</p>
+        <p><strong>Description:</strong> A comprehensive system to manage HR functions including employee records, attendance tracking, and payroll management.</p>
+        <p><strong>Technologies Used:</strong> HTML, CSS, JavaScript, Node.js, Angular, React, MongoDB</p>
+        <p><strong>Time Line:</strong></p>
+        <ul>
+            <li>Start Date: 01-08-2024</li>
+            <li>End Date: 31-12-2024</li>
+        </ul>
+        <p><strong>Team Size:</strong> 10 Members</p>
+        <p><strong>Project Status:</strong> In Progress</p>
+        <p class="icon">Complete Details: 👇</p>
+        <button class="Document">Download Documentation</button>
     </div>
 </body>
 </html>
