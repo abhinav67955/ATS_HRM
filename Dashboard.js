@@ -106,6 +106,16 @@ function changeInnerCircleText(color) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const profilePicture = localStorage.getItem('profilePicture');
+
+  if (profilePicture) {
+      document.getElementById('profile-picture').src = profilePicture; 
+  } else {
+      document.getElementById('profile-picture').src = 'https://t3.ftcdn.net/jpg/04/60/91/88/360_F_460918802_XVCymFr7MoziFpnInbTDvrlblYhvAOi2.jpg';
+  }
+});
+
 function updateTime() {
   const timeElement = document.getElementById("current-time");
   const now = new Date();
@@ -188,7 +198,7 @@ function togg() {
 
   if (circleContainer.classList.contains('visible')) {
      
-      iframeContainer.style.width = 'calc(100% - 300px)'; 
+      iframeContainer.style.width = 'calc(100% - 250px)'; 
   } else {
       
       iframeContainer.style.width = '100%';  
@@ -210,4 +220,6 @@ window.onload = () => {
     document.body.classList.add('dark-mode');
   }
 };
+
+
 
