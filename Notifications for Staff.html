@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +20,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
         main {
             display: flex;
             flex-wrap: wrap;
@@ -36,7 +57,7 @@
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 1200px;
+            width: 100%;
             
         }
 
@@ -46,7 +67,7 @@
             font-size: 50px;
             z-index: -1; 
             opacity: 0.4;
-            color: #0080ff;
+            color: #2867a5;
         }
 
         #icon1 {
@@ -120,23 +141,14 @@
             transition: background-color 0.3s, transform 0.2s;
         }
 
-        form button:hover, .notification-actions button:hover {
-            border-top: 2px solid blueviolet;
-            border-left: 2px solid blueviolet;
-            border-bottom: 2px solid rgb(132, 103, 238);
-            border-right: 2px solid rgb(148, 103, 238);
-            box-shadow: rgba(46, 49, 240, 0.4) 5px 5px, rgba(107, 46, 240, 0.3) 10px 10px,
-                rgba(111, 46, 240, 0.2) 15px 15px;
-            transform: translateY(-2px);
-        }
 
         form button:active, .notification-actions button:active {
             transform: translateY(1px);
         }
 
         textarea {
-            resize: vertical;
-            min-height: 80px;
+            min-height: 120px;
+            resize: none;
         }
 
         select {
@@ -160,7 +172,7 @@
             background-color: rgba(212, 232, 255, 0.436);
             padding: 15px;
             border-radius: 8px;
-            width: 200px;
+            width: auto;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             height: auto;
         }
@@ -226,6 +238,10 @@
 <body>
 
 <main>
+    <div class="banner">
+        <h1>Notification To Staff</h1>
+        <p>Create new notifications to staff</p>
+    </div>
     <div class="form-container">
         
         <i class="fa-solid fa-bell" id="icon1"></i>
@@ -239,10 +255,10 @@
             <h2>Create New Notification</h2>
             <form id="notification-form">
                 <label for="notification-title">Title:</label>
-                <input type="text" id="notification-title" name="notification-title" required minlength="3">
+                <input type="text" id="notification-title" name="notification-title" required minlength="3" maxlength="40">
 
                 <label for="message-body">Message:</label>
-                <textarea id="message-body" name="message-body" rows="5" required minlength="10"></textarea>
+                <textarea id="message-body" name="message-body" rows="5" required minlength="10" maxlength="200"></textarea>
 
                 <label for="notification-type">Notification Type:</label>
                 <select id="notification-type" name="notification-type" required>
@@ -260,9 +276,7 @@
                     <option value="employee">Specific Employee</option>
                 </select>
 
-                <label for="send-time">Send Date/Time:</label>
-                <input type="datetime-local" id="send-time" name="send-time" required>
-
+              
                 <div class="buttons">
                     <button type="submit">Send Now</button>
                     <button type="button" id="save-draft">Save as Draft</button>
