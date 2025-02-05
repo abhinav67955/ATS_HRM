@@ -20,6 +20,29 @@
             color: white;
             padding: 0 20px;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
         .logo {
             font-size: 2.5em;
         }
@@ -144,54 +167,64 @@
             margin-bottom: 10px;
             grid-column: span 12;
         }
-        .web-development {
-            background-image: url('https://images.pexels.com/photos/97077/pexels-photo-97077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-size: cover;
-            color: white;
-            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
-        }
-        .database {
-            background-image: url('https://pypl.github.io/DB/All.png'); 
-            background-size: cover;
-            color: white;
-        }
-        .machine-learning {
-            background-image: url('https://cloud2data.com/wp-content/uploads/2023/03/Machine-Learning-3.jpg');
-            background-size: cover;
-            color: white;
-            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
-        }
-        .ui-ux {
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWm71qCaDazjIybYSxH56HuDTh15RrLMpgSw&s');
-            background-size: cover;
-            color: white;
-            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
-        }
-        .project-management {
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmafNqcOzUdERskooDNcJ6PMWU1TC9E4TlCL_SeseNdGfF4Z05Xw1teOgMewG2pZurrvs&usqp=CAU');
-            background-size: cover;
-            color: white;
-            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
-        }
-        
-        .cyber-security {
-            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/006/950/568/small/cyber-security-data-protection-business-concept-on-virtual-screen-shield-protect-icon-in-wireframe-robotic-hand-antivirus-interface-illustration-vector.jpg'); 
-            background-size: cover;
-            color: white;
-            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
-        }
-        .digital-marketing {
-            background-image: url('https://media.licdn.com/dms/image/D4D12AQHqYyPmfJcQhg/article-cover_image-shrink_720_1280/0/1678773863258?e=2147483647&v=beta&t=35jhEIGynhAeT5rlT5ZZpHNeOLGpCwmwtP7IF4v3g8w'); 
-            background-size: cover;
-            color: white;
-            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
-        }
-        .cloud-computing {
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrqey2UbCBeVsAlJhO2d6C1VL-YhQBqEUtA&s');
-            background-size: cover;
-            box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
-            color: white; 
-        }
+        .web-development, .database, .machine-learning, .ui-ux, .project-management, .cyber-security, .digital-marketing, .cloud-computing {
+    position: relative;
+    color: rgb(0, 0, 0);
+    box-shadow: 1px 4px 8px rgba(34, 98, 162, 0.621);
+}
+
+.web-development h3, .database h3, .machine-learning h3, .ui-ux h3, .project-management h3, .cyber-security h3, .digital-marketing h3, .cloud-computing h3,
+.web-development h4, .database h4, .machine-learning h4, .ui-ux h4, .project-management h4, .cyber-security h4, .digital-marketing h4, .cloud-computing h4,
+.web-development p, .database p, .machine-learning p, .ui-ux p, .project-management p, .cyber-security p, .digital-marketing p, .cloud-computing p {
+    text-shadow: 2px 2px 5px rgb(220, 229, 255); 
+}
+
+
+
+.web-development::before, .database::before, .machine-learning::before, .ui-ux::before, .project-management::before, .cyber-security::before, .digital-marketing::before, .cloud-computing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.1; /* Adjust the opacity here */
+}
+
+/* .web-development {
+    background-image: url('https://images.pexels.com/photos/97077/pexels-photo-97077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.database {
+    background-image: url('https://pypl.github.io/DB/All.png'); 
+}
+
+.machine-learning {
+    background-image: url('https://cloud2data.com/wp-content/uploads/2023/03/Machine-Learning-3.jpg');
+}
+
+.ui-ux {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWm71qCaDazjIybYSxH56HuDTh15RrLMpgSw&s');
+}
+
+.project-management {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmafNqcOzUdERskooDNcJ6PMWU1TC9E4TlCL_SeseNdGfF4Z05Xw1teOgMewG2pZurrvs&usqp=CAU');
+}
+
+.cyber-security {
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/006/950/568/small/cyber-security-data-protection-business-concept-on-virtual-screen-shield-protect-icon-in-wireframe-robotic-hand-antivirus-interface-illustration-vector.jpg'); 
+}
+
+.digital-marketing {
+    background-image: url('https://media.licdn.com/dms/image/D4D12AQHqYyPmfJcQhg/article-cover_image-shrink_720_1280/0/1678773863258?e=2147483647&v=beta&t=35jhEIGynhAeT5rlT5ZZpHNeOLGpCwmwtP7IF4v3g8w'); 
+}
+
+.cloud-computing {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrqey2UbCBeVsAlJhO2d6C1VL-YhQBqEUtA&s');
+} */
+
           @media screen and (max-width: 1024px) {
             .main-content {
                 grid-template-columns: repeat(6, 1fr);
@@ -239,6 +272,10 @@
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Training and Certification Page</h1> 
+        <p>Track and manage employee trainings and certifications</p>
+    </div>
     <div class="main-content">
         <div class="dashboard">
             <div class="card">
