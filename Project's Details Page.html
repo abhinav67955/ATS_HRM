@@ -1,160 +1,95 @@
+
+            
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project History - HRMS Portal</title>
+    <title>Welcome to HRMS Project</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 36px;
-            font-family:monospace;
-            color: #333;
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: column; 
-            width: 1200px;
-            height: auto;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .project-history {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-        }
-
-        .part-1, .part-2 {
-            display: flex;
-            flex-direction: column; 
-            width: 550px;
-            height: auto;
-            padding: 20px;
-            background-color: #e8f0fe;
-            border-radius: 8px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        }
-        .part-1 ul {
-            list-style: none;
-            font-size: large;
-        }
-
-        .milestone {
-            margin-bottom: 10px; 
-            font-size: 22px; 
-            border-radius: 6px;
-            padding: 10px;
-            background-color: #d1e7dd;
-        }
-
-        .progress-bar {
-            width: 100%;
-            background-color: #e0e0e0; 
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 5px;
-        }
-
-        .progress {
-            height: 20px;
-            background-color: #0cef36; 
-            width: 70%; 
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 18px; 
-            background-color: #238dff;
-            color: #fff;
-        }
-
-        button:hover {
-            background-color: #1a6cb3; 
-        }
-
-        .employee-list {
-            list-style-type: none; 
             padding: 0;
         }
 
-        .employee-list li {
-            margin: 5px 0; 
-            padding: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            height: calc(100% - 50px);
+            overflow: hidden;
+        }
+
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .welcome-text {
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            color: #000000;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            z-index: 1;
+            border-radius: 8px;
+        }
+
+        .welcome-text h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: rgb(7, 88, 110);
+            color: white;
+            border: none;
             border-radius: 5px;
-            background-color: #e9ecef;
-            transition: background-color 0.3s ease;
+            margin-left: auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            align-content: center;
         }
 
-        .employee-list li:hover {
-            background-color: #d1e7dd; 
+        button:hover {
+            background-color: rgb(5, 70, 90);
         }
-
-        .milestones {
-            font-weight: bold;
-            margin-top: 20px;
-        }
-      
     </style>
 </head>
 <body>
-    <div class="main-content">
-        <h1>Project History</h1>
-        <div class="project-history">
-            <div class="part-1">
-                <p><strong>Name of the Project:</strong> HRMS Portal</p>
-                <p><strong>Current Phase:</strong> Development</p>
-                <p class="milestones"><strong>Milestones:</strong></p>
-                <div class="milestone">Project Kickoff - <span style="color: green;">Completed</span></div>
-                <div class="milestone">Requirements Gathering - <span style="color: green;">Completed</span></div>
-                <div class="milestone">Design Phase - <span style="color: green;">Completed</span></div>
-                <div class="milestone">Development Phase - <span style="color: red;">Upcoming</span></div>
-                <p class="milestones"><strong>Upcoming Deadlines:</strong></p>
-                <ul>
-                    <li>Design Phase Completion: <strong>15-08-2024</strong></li>
-                    <li>Development Phase Start: <strong>09-09-2024</strong></li>
-                </ul>
-            </div>
-            <div class="part-2">
-                <p class="milestones"><strong>Current Progress:</strong></p>
-                <div class="progress-bar">
-                    <div class="progress"></div>
-                </div>
-                <p>70% Complete</p>
-                <h3>Employee Contributions:</h3>
-                <ul class="employee-list">
-                    <li>Frontend Development: 5 Employees</li>
-                    <li>Backend Development: 4 Employees</li>
-                    <li>Database Management: 3 Employees</li>
-                    <li>UI/UX Design: 2 Employees</li>
-                    <li>Project Management: 1 Employee</li>
-                </ul>
-            </div>
-        </div>
+    <div class="video-container">
+        <video class="background-video" autoplay muted loop>
+            <source src="https://cdn.pixabay.com/video/2023/07/19/172170-846731303_large.mp4" type="video/mp4">
+        </video>
+    </div>
 
-        <div>
-           <h3>Employee Roles and Responsibilities: 
-               <a href="/Hr Modules/employee task details.html" style="text-decoration: none;">
-                   <button>Check Details</button>
-               </a>
-           </h3>
-        </div>
+    <div class="welcome-text">
+        <h1>Welcome to HRMS Project</h1>
+        <p>Your one-stop solution for managing Employee operations efficiently.</p>
+        <a href="./project.html"><button>Project Details</button></a>
     </div>
 </body>
 </html>
-            
