@@ -14,10 +14,30 @@
       margin: 0;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
 
     .form-container {
       background-color: #ffffff;
@@ -49,7 +69,7 @@
     }
 
     input, select, textarea {
-      width: 90%;
+      width: 97%;
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
@@ -58,8 +78,13 @@
     }
 
     textarea {
-      resize: vertical;
+      height: 120px;
+      resize: none;
     }
+    select{
+      width: 99.5%;
+    }
+
 
     button {
       background-color: #4d6aff;
@@ -106,26 +131,35 @@
 </head>
 <body>
 
-<h1>Employee Offboarding Form</h1>
+  <div class="banner">
+    <h1>Employee Offboarding Form</h1>
+    <p>submit your Offboarding here</p>
+</div>
 <div class="form-container">
     
   <form id="offboarding-form">
   <div class="section">
     <h2><i class="fas fa-user"></i> Employee Information</h2>
     <label for="employee-name">Full Name</label>
-    <input type="text" id="employee-name" name="employee-name" required  minlength="3" 
-    pattern="[A-Za-z .]+" 
-    title="Only alphabetic characters are allowed">
+    <input type="text" id="employee-name" name="employee-name" required  minlength="3"  maxlength="100"
+    pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+    title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+    
+    <label class="required" for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address" 
+                min="8"
+                maxlength="50"
+                title="Please enter a valid email address that ends with .com">
     
     <label for="employee-id">Employee ID</label>
     <input type="text" id="employee-id" name="employee-id" required
     minlength="7" 
     maxlength="7" 
-    pattern="[A-Z]{3}[0-9]{4}" 
+    pattern="[A-Z]{3}0[0-9]{3}" 
     title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
     
     <label for="employee-department">Department</label>
-    <input type="text" id="employee-department" name="employee-department" required minlength="3">
+    <input type="text" id="employee-department" name="employee-department" required minlength="3" maxlength="40">
   </div>
 
   <div class="section">
@@ -152,7 +186,7 @@
   <div class="section">
     <h2><i class="fas fa-rupee-sign"></i> Final Paycheck Details</h2>
     <label for="final-paycheck">Final Paycheck Amount</label>
-    <input type="number" id="final-paycheck" name="final-paycheck" required min="1">
+    <input type="number" id="final-paycheck" name="final-paycheck" required min="1" maxlength="10000">
     
     <label for="benefits-cleared">Benefits Cleared</label>
     <select id="benefits-cleared" name="benefits-cleared" required>
@@ -164,7 +198,7 @@
     <div class="section">
       <h2><i class="fas fa-comments"></i> Exit Interview</h2>
       <label for="exit-interview">Please share your feedback</label>
-      <textarea id="exit-interview" name="exit-interview" rows="4" required minlength="10"></textarea>
+      <textarea id="exit-interview" name="exit-interview" rows="4" required minlength="10" maxlength="400"></textarea>
       
       <label for="reason-for-leaving">Reason for Leaving</label>
       <select id="reason-for-leaving" name="reason-for-leaving" required>
@@ -182,59 +216,75 @@
 </div>
 
 <script>
-  function validateForm() {
-    const form = document.getElementById('offboarding-form');
-    const employeeName = document.getElementById('employee-name');
-    const employeeId = document.getElementById('employee-id');
-    const employeeDepartment = document.getElementById('employee-department');
-    const exitInterview = document.getElementById('exit-interview');
-    const finalPaycheck = document.getElementById('final-paycheck');
+ function validateForm() {
+  const form = document.getElementById('offboarding-form');
+  const employeeName = document.getElementById('employee-name');
+  const email = document.getElementById('email');
+  const employeeId = document.getElementById('employee-id');
+  const employeeDepartment = document.getElementById('employee-department');
+  const exitInterview = document.getElementById('exit-interview');
+  const finalPaycheck = document.getElementById('final-paycheck');
   
-    if (employeeName.value.length < 3) {
-      alert("Full Name must be at least 3 characters long.");
-      return false;
-    }
-    if (employeeId.value.length !== 7) {
-      alert("Employee ID must be at  7 characters long.");
-      return false;
-    }
-    if (employeeDepartment.value.length < 3) {
-      alert("Department must be at least 3 characters long.");
-      return false;
-    }
-    if (exitInterview.value.length < 10) {
-      alert("Exit Interview feedback must be at least 10 characters long.");
-      return false;
-    }
-
-    if (parseFloat(finalPaycheck.value) < 1) {
-      alert("Final Paycheck Amount must be a positive number greater than or equal to 1.");
-      return false;
-    }
-
-    return true;
+  
+  if (employeeName.value.length < 3) {
+    alert("Full Name must be at least 3 characters long.");
+    return false;
   }
 
-  function saveFormData() {
-    const formData = {
-      employeeName: document.getElementById('employee-name').value,
-      employeeId: document.getElementById('employee-id').value,
-      employeeDepartment: document.getElementById('employee-department').value,
-      laptopReturned: document.getElementById('laptop-returned').value,
-      phoneReturned: document.getElementById('phone-returned').value,
-      accessCardsReturned: document.getElementById('access-cards').value,
-      finalPaycheck: document.getElementById('final-paycheck').value,
-      benefitsCleared: document.getElementById('benefits-cleared').value,
-      exitInterview: document.getElementById('exit-interview').value,
-      reasonForLeaving: document.getElementById('reason-for-leaving').value
-    };
-
-    localStorage.setItem('offboardingData', JSON.stringify(formData));
-
-    alert('Your offboarding data has been saved.');
+  
+  if (!email.value.endsWith('.com')) {
+    alert('Email must end with .com');
+    return false;
   }
 
-  document.getElementById('submit-button').addEventListener('click', function (event) {
+
+  const employeeIdPattern = /^[A-Z]{3}[0-9]{4}$/;
+  if (!employeeIdPattern.test(employeeId.value)) {
+    alert("Employee ID must be in the format: 3 uppercase letters followed by 4 digits.");
+    return false;
+  }
+
+  
+  if (employeeDepartment.value.length < 3) {
+    alert("Department must be at least 3 characters long.");
+    return false;
+  }
+
+
+  if (exitInterview.value.length < 10) {
+    alert("Exit Interview feedback must be at least 10 characters long.");
+    return false;
+  }
+
+  
+  if (isNaN(finalPaycheck.value) || parseFloat(finalPaycheck.value) < 1) {
+    alert("Final Paycheck Amount must be a positive number greater than or equal to 1.");
+    return false;
+  }
+
+  return true;
+}
+
+function saveFormData() {
+  const formData = {
+    employeeName: document.getElementById('employee-name').value,
+    employeeId: document.getElementById('employee-id').value,
+    employeeDepartment: document.getElementById('employee-department').value,
+    laptopReturned: document.getElementById('laptop-returned').value,
+    phoneReturned: document.getElementById('phone-returned').value,
+    accessCardsReturned: document.getElementById('access-cards').value,
+    finalPaycheck: document.getElementById('final-paycheck').value,
+    benefitsCleared: document.getElementById('benefits-cleared').value,
+    exitInterview: document.getElementById('exit-interview').value,
+    reasonForLeaving: document.getElementById('reason-for-leaving').value
+  };
+
+  localStorage.setItem('offboardingData', JSON.stringify(formData));
+
+  alert('Your offboarding data has been saved.');
+}
+
+document.getElementById('submit-button').addEventListener('click', function (event) {
   event.preventDefault();
   
   const form = document.getElementById('offboarding-form');
@@ -245,7 +295,9 @@
   }
 });
 
+
 </script>
 
 </body>
 </html>
+
