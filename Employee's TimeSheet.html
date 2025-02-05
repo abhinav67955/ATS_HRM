@@ -13,6 +13,28 @@
             box-sizing: border-box;
         }
 
+        .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 120px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+
         .container {
             display: flex;
             flex-direction: row;
@@ -21,6 +43,7 @@
             align-items: center;
             padding: 30px;
         }
+       
 
         .employee-card {
             background: linear-gradient(rgb(254, 222, 255), rgba(207, 255, 243, 0.098), rgba(255, 251, 232, 0.537), rgb(226, 226, 255));
@@ -70,7 +93,7 @@
             margin-top: 20px;
         }
 
-        .approve-btn, .reject-btn, .delete-btn {
+        .approve-btn, .reject-btn{
             padding: 10px 20px;
             font-size: 14px;
             border-radius: 5px;
@@ -83,35 +106,35 @@
             justify-content: center;
         }
 
-        .approve-btn {
+        .confirm-btn,
+        .cancel-btn {
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            margin: 5px 5px;
+            width: 60px;
+        }
+
+        .approve-btn,.confirm-btn{
             background-color: #4CAF50;
             color: white;
         }
 
-        .approve-btn:hover {
+        .approve-btn:hover, .confirm-btn:hover {
             background-color: #45a049;
         }
 
-        .reject-btn {
+        .reject-btn,.cancel-btn {
             background-color: #f44336;
             color: white;
         }
 
-        .reject-btn:hover {
+        .reject-btn:hover, .cancel-btn:hover{
             background-color: #e53935;
         }
-
-        .delete-btn {
-            background-color: #e0e0e0;
-            color: #333;
-            font-size: 12px;
-        }
-
-        .delete-btn:hover {
-            background-color: #c7c7c7;
-        }
-
-        .approve-btn i, .reject-btn i, .delete-btn i {
+        .approve-btn i, .reject-btn i {
             margin-right: 8px;
         }
 
@@ -124,20 +147,22 @@
     </style>
 </head>
 <body>
-
+    <div class="banner">
+        <h1>Employee's Attendance Management Page</h1>
+        <p>Track and manage employee timesheet</p>
+    </div>
     <div class="container" id="attendance-container">
        
     </div>
 
     <script>
-        
         function createEmployeeCard(username, loginTime, logoutTime, sessionIndex) {
             const container = document.getElementById('attendance-container');
-
+    
             const card = document.createElement('div');
             card.classList.add('employee-card');
-            card.setAttribute('data-index', sessionIndex); 
-
+            card.setAttribute('data-index', sessionIndex);
+    
             card.innerHTML = `
                 <h3>Employee: <span>${username}</span></h3>
                 <p><i class="fas fa-calendar-alt"></i><strong>Date:</strong> <span>${new Date().toLocaleDateString()}</span></p>
@@ -145,45 +170,64 @@
                 <p><i class="fas fa-sign-out-alt"></i><strong>Logout Time:</strong> <span>${logoutTime}</span></p>
                 <p><i class="fas fa-briefcase"></i><strong>Work Type:</strong> <span>Remote</span></p>
                 <div class="action-buttons">
-                    <button class="approve-btn" onclick="deleteSession(${sessionIndex})"><i class="fas fa-check"></i>Approve</button>
-                    <button class="reject-btn" onclick="deleteSession(${sessionIndex})"><i class="fas fa-times"></i>Reject</button>
+                    <button class="approve-btn" onclick="confirmAction(${sessionIndex}, 'approve')"><i class="fas fa-check"></i>Approve</button>
+                    <button class="reject-btn" onclick="confirmAction(${sessionIndex}, 'reject')"><i class="fas fa-times"></i>Reject</button>
                 </div>
+                <div class="temporary-message" id="message-${sessionIndex}" style="display:none;"></div>
             `;
-
-            
+    
             container.appendChild(card);
         }
-
-       
+    
         function updateCardsWithUserData() {
             const sessionData = JSON.parse(localStorage.getItem('sessions')) || [];
-
+    
             sessionData.forEach((session, index) => {
                 createEmployeeCard(session.username, session.loginTime, session.logoutTime, index);
             });
         }
-
-        function deleteSession(sessionIndex) {
-         
-            const sessionData = JSON.parse(localStorage.getItem('sessions')) || [];
-
-        
-            sessionData.splice(sessionIndex, 1);
-
-           
-            localStorage.setItem('sessions', JSON.stringify(sessionData));
-
-         
-            const card = document.querySelector(`.employee-card[data-index="${sessionIndex}"]`);
-            if (card) {
-                card.remove();
-            }
+    
+        function confirmAction(sessionIndex, action) {
+            const messageContainer = document.getElementById(`message-${sessionIndex}`);
+            messageContainer.innerHTML = `
+                <p>Are you sure you want to ${action} this session?</p>
+                <button class="confirm-btn" onclick="executeAction(${sessionIndex}, '${action}')">Yes</button>
+                <button class="cancel-btn" onclick="cancelAction(${sessionIndex})">No</button>
+            `;
+            messageContainer.style.display = 'block';
         }
-
-        
-       
+    
+        function executeAction(sessionIndex, action) {
+            const sessionData = JSON.parse(localStorage.getItem('sessions')) || [];
+    
+            sessionData.splice(sessionIndex, 1);
+            localStorage.setItem('sessions', JSON.stringify(sessionData));
+    
+            const card = document.querySelector(`.employee-card[data-index="${sessionIndex}"]`);
+            const messageContainer = card.querySelector('.temporary-message');
+    
+            if (action === 'approve') {
+                messageContainer.textContent = 'Session Approved';
+                messageContainer.style.backgroundColor = '#4CAF50'; 
+            } else {
+                messageContainer.textContent = 'Session Rejected';
+                messageContainer.style.backgroundColor = '#f44336'; 
+            }
+    
+            messageContainer.style.display = 'block';
+            card.remove();
+        }
+    
+        function cancelAction(sessionIndex) {
+            const messageContainer = document.getElementById(`message-${sessionIndex}`);
+            messageContainer.style.display = 'none';
+        }
+    
         window.onload = updateCardsWithUserData;
     </script>
 
+    
+
 </body>
 </html>
+
