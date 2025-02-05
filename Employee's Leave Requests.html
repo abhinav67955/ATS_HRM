@@ -14,15 +14,39 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
         .main {
             display: flex;
+            width: 100%;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 20px;
         }
         .leave-cards {
-            width: 400px;
-            height: 300px;
+            width:300px;
+            overflow-wrap: break-word;
+            height: auto;
             margin-top: 20px;
             padding: 20px;
             background-color: #fff;
@@ -63,6 +87,16 @@
         .reject:hover {
             background-color: #dc3545;
         }
+        .temporary-message {
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: opacity 1s ease;
+}
+
         .see-details {
             font-size: 12px;
             color: #ffffff;
@@ -85,73 +119,124 @@
     </style>
 </head>
 <body>
-
+    <div class="banner">
+        <h1>Employee's Leave Management Page</h1>
+        <p>View and manage employee's leave requests</p>
+    </div>
     <div class="main" id="leave-requests">
     </div>
-
+    
     <script>
-     
-        function displayLeaveRequests() {
-           
+       
+       function displayLeaveRequests() {
             const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
-
             const leaveRequestsContainer = document.getElementById('leave-requests');
-
             leaveRequestsContainer.innerHTML = '';
-
-            
+    
             leaveApplications.forEach((leaveDetails, index) => {
                 const leaveRequestCard = document.createElement('div');
                 leaveRequestCard.classList.add('leave-cards');
-
+                leaveRequestCard.setAttribute('data-index', index);
+    
+                let leavePeriod = `${leaveDetails.fromDate} to ${leaveDetails.toDate}`;
+                if (leaveDetails.fromHour && leaveDetails.toHour) {
+                    leavePeriod += `, From: ${leaveDetails.fromHour} to ${leaveDetails.toHour}`;
+                }
+    
                 leaveRequestCard.innerHTML = `
                     <p>Name: <strong>${leaveDetails.name}</strong></p>
                     <p>Employee ID: ${leaveDetails.empId}</p>
                     <p>Leave Type: ${leaveDetails.leaveType}</p>
-                    <p>Leave Period: ${leaveDetails.fromDate} to ${leaveDetails.toDate}</p>
+                    <p>Leave Period: ${leavePeriod}</p>
                     <p>Reason for Leave: <button class="see-details">See Details</button></p>
+                    <div class="reason-details" style="display: none;"><p>${leaveDetails.reason}</p></div>
                     <button class="approve">Approve</button>
                     <button class="reject">Reject</button>
-                    <div class="status" id="status-${index}"></div>
+                    <div class="temporary-message" style="display:none;"></div>
                 `;
-
-               
+    
+                const seeDetailsButton = leaveRequestCard.querySelector('.see-details');
+                const reasonDetails = leaveRequestCard.querySelector('.reason-details');
                 const approveButton = leaveRequestCard.querySelector('.approve');
                 const rejectButton = leaveRequestCard.querySelector('.reject');
-                const statusDiv = leaveRequestCard.querySelector(`#status-${index}`);
-
+                const messageContainer = leaveRequestCard.querySelector('.temporary-message');
+    
+                seeDetailsButton.addEventListener('click', function() {
+                    reasonDetails.style.display = reasonDetails.style.display === 'none' ? 'block' : 'none';
+                });
+    
                 approveButton.addEventListener('click', function() {
-                    
-                    statusDiv.textContent = 'Approved';
-                    statusDiv.classList.add('approved');
-                    statusDiv.classList.remove('rejected');
-                    updateStatusInLocalStorage(index, 'Approved');
+                    messageContainer.innerHTML = `
+                        <p>Are you sure you want to approve this leave request?</p>
+                        <button class="confirm-approve">Yes</button>
+                        <button class="cancel">No</button>
+                    `;
+                    messageContainer.style.display = 'block';
+    
+                    const confirmApproveButton = messageContainer.querySelector('.confirm-approve');
+                    const cancelButton = messageContainer.querySelector('.cancel');
+    
+                    confirmApproveButton.addEventListener('click', function() {
+                        messageContainer.textContent = 'Approved';
+                        messageContainer.style.backgroundColor = '#4CAF50';
+    
+                        updateStatusInLocalStorage(index, 'Approved');
+                        removeLeaveRequestFromLocalStorage(index);
+    
+                        leaveRequestCard.remove();
+                    });
+    
+                    cancelButton.addEventListener('click', function() {
+                        messageContainer.style.display = 'none';
+                    });
                 });
-
+    
                 rejectButton.addEventListener('click', function() {
-                  
-                    statusDiv.textContent = 'Rejected';
-                    statusDiv.classList.add('rejected');
-                    statusDiv.classList.remove('approved');
-                    updateStatusInLocalStorage(index, 'Rejected');
+                    messageContainer.innerHTML = `
+                        <p>Are you sure you want to reject this leave request?</p>
+                        <button class="confirm-reject">Yes</button>
+                        <button class="cancel">No</button>
+                    `;
+                    messageContainer.style.display = 'block';
+    
+                    const confirmRejectButton = messageContainer.querySelector('.confirm-reject');
+                    const cancelButton = messageContainer.querySelector('.cancel');
+    
+                    confirmRejectButton.addEventListener('click', function() {
+                        messageContainer.textContent = 'Rejected';
+                        messageContainer.style.backgroundColor = '#f44336';
+    
+                        updateStatusInLocalStorage(index, 'Rejected');
+                        removeLeaveRequestFromLocalStorage(index);
+    
+                        leaveRequestCard.remove();
+                    });
+    
+                    cancelButton.addEventListener('click', function() {
+                        messageContainer.style.display = 'none';
+                    });
                 });
-
-              
+    
                 leaveRequestsContainer.appendChild(leaveRequestCard);
             });
         }
-
+    
         function updateStatusInLocalStorage(index, status) {
             const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
-            leaveApplications[index].status = status;  
+            leaveApplications[index].status = status;
             localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
         }
-
-      
+    
+        function removeLeaveRequestFromLocalStorage(index) {
+            const leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+            leaveApplications.splice(index, 1);  
+            localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));  
+        }
+    
         window.onload = function() {
             displayLeaveRequests();
         };
     </script>
-
 </body>
+
 </html>
