@@ -18,6 +18,29 @@
             width: 1000px;
             margin: 50px auto;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
         .form {
             margin-bottom: 30px;
             padding: 20px;
@@ -120,22 +143,25 @@ button:active {
         }
         .header h3 {
             font-weight: bold;
-            font-size: 2em;
+            font-size: 2.2em;
         }
         .header span {
             display: block;
-            font-size: 22px;
+            font-size: 24px;
         }
         .branch {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 20px;
+            font-size: 22px;
         }
         .details {
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid #dee2e6;
             padding: 10px 0;
+            font-size: 22px;
+            font-size: 18px;
             margin-bottom: 20px; 
         }
         .section {
@@ -155,6 +181,7 @@ button:active {
         .signature {
             margin-top: 40px;
             text-align: right;
+            font-size: 26px;
         }
         .border {
             border: 1px solid #dee2e6;
@@ -165,6 +192,7 @@ button:active {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
+            font-size: 18px;
         }
         .column {
             flex: 1;
@@ -173,16 +201,20 @@ button:active {
     </style>
 </head>
 <body>
-
+    <div class="banner">
+        <h1>Employee's Payroll Page</h1>
+        <p>Track complete details of employee payroll</p>
+    </div>
 <div class="container">
     <div class="form">
         <h2>Enter Payslip Details</h2>
         <form id="payslip-form">
             <form>
                 <label for="employee-name">Employee Name:</label>
-                <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required minlength="3" pattern="[A-Za-z\s]+" title="Only alphabetic characters are allowed">            
+                <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required minlength="3" maxlength="50" pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
                 <label for="employeeID">Employee ID:</label>
-                <input type="text" id="employeeID" name="employeeID" placeholder="Enter EmployeeID" required minlength="7" maxlength="7" pattern="^[A-Z]{3}[0-9]{4}$" title="ID must start with 3 capital letters followed by 4 digits">
+                <input type="text" id="employeeID" name="employeeID" placeholder="Enter EmployeeID" required minlength="7" maxlength="7" pattern="^[A-Z]{3}0[0-9]{3}$" title="ID must start with 3 capital letters followed by 4 digits">
             
                 <label for="month">Select Month:</label>
                 <input type="month" name="month" id="month" required>
@@ -200,7 +232,7 @@ button:active {
         </div>
 
         <div class="branch">
-            <div>Working Branch: Hyderabad</div>
+            <div>Working Branch: <strong>Hyderabad</strong></div>
         </div>
 
         <div class="details">
@@ -244,6 +276,7 @@ button:active {
                 <div class="section"><div>Tax Deducted at Source</div></div>
                 <div class="section"><div>Leave Without Pay</div></div>
                 <div class="section"><div>Special Deduction</div></div>
+                <div class="section"><div>Special Deduction</div></div>
             </div>
             <div class="column">
                 <strong>Amount</strong>
@@ -252,6 +285,7 @@ button:active {
                 <div class="section"><div>0.00</div></div>
                 <div class="section"><div>0.00</div></div>
                 <div class="section"><div>500.00</div></div>
+                <div class="section"><div>2,442.00</div></div>
             </div>
         </div>
 
