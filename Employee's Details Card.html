@@ -1,9 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee card</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -20,7 +23,28 @@
             background: #ffffff;
             flex-direction: column;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
         .main-content {
             display: flex;
             flex-direction: column;
@@ -29,6 +53,9 @@
             top: 30%;
             max-width: 1300px;
             padding: 20px;
+        }
+        i{
+            margin-right: 10px;
         }
 
         .employee-card {
@@ -83,6 +110,8 @@
 
         .employee-details p {
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
             line-height: 1.4em;
             color: #636e72;
         }
@@ -116,20 +145,94 @@
             background-color: #ffffff;
             text-align: left;
         }
+        @media (max-width: 1024px) {
+            .employee-card {
+                width: 90%;
+                height: auto;
+                flex-direction: column;
+            }
+
+            .employee-card:hover {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .employee-card .employee-image {
+                height: 40%;
+                width: 100%;
+                opacity: 1;
+            }
+
+            .employee-card:hover .employee-image {
+                height: 40%;
+                width: 100%;
+            }
+
+            .employee-card:hover .employee-details {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .employee-card {
+                width: 100%;
+                height: auto;
+                margin: 20px 0;
+            }
+
+            .employee-card .employee-details {
+                padding: 15px;
+            }
+
+            .employee-details .name {
+                font-size: 1.2em;
+            }
+
+            .employee-details a {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .employee-card {
+                width: 95%;
+                height: auto;
+            }
+
+            .employee-details p {
+                font-size: 0.9em;
+            }
+
+            .employee-details .name {
+                font-size: 1.1em;
+            }
+
+            .employee-details a {
+                padding: 6px 12px;
+                font-size: 0.85em;
+            }
+        }
 
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Employee's Profile Page</h1>
+        <p>Track Employee details</p>
+    </div>
+
 
 <div class="main-content">
     <div class="employee-card">
         <div class="employee-details">
-            <p class="name"><i class="fa-solid fa-user"></i>Name: <strong>Ajay Kumar</strong></p>
-            <p><i class="fa-solid fa-id-badge"></i>Employee ID: ATS0121</p>
-            <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
-            <p><i class="fa-solid fa-person"></i>Gender: Male</p>
-            <p><i class="fa-solid fa-cake-candles"></i>DOB: 08-06-2002</p>
-            <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+            <p class="name"><i class="fa-solid fa-user"></i><strong>Name: Ajay Kumar</strong></p>
+            <p><i class="fa-solid fa-id-badge"></i><strong> Employee ID:</strong> ATS0121</p>
+            <p><i class="fa-solid fa-briefcase"></i> <strong> Role:</strong> Front-end Developer</p>
+            <p><i class="fa-solid fa-person"></i><Strong>Gender:</Strong> Male</p>
+            <p><i class="fa-solid fa-cake-candles"></i> <Strong>DOB:</Strong> 08-06-2002</p>
+            <p><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> Hyderabad</p>
             <a href="./employee details.html">View Profile</a>
         </div>
         <div class="employee-image">
@@ -139,12 +242,12 @@
 
     <div class="employee-card">
         <div class="employee-details">
-            <p class="name"><i class="fa-solid fa-user"></i>Name: <strong>Veera Raghava</strong></p>
-            <p><i class="fa-solid fa-id-badge"></i>Employee ID: ATS0122</p>
-            <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
-            <p><i class="fa-solid fa-person"></i>Gender: Male</p>
-            <p><i class="fa-solid fa-cake-candles"></i>DOB: 10-09-2001</p>
-            <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+            <p class="name"><i class="fa-solid fa-user"></i><strong>Name: Veera Raghava</strong></p>
+            <p><i class="fa-solid fa-id-badge"></i><strong> Employee ID:</strong> ATS0122</p>
+            <p><i class="fa-solid fa-briefcase"></i> <strong> Role:</strong> Front-end Developer</p>
+            <p><i class="fa-solid fa-person"></i><Strong>Gender:</Strong> Male</p>
+            <p><i class="fa-solid fa-cake-candles"></i> <Strong>DOB:</Strong> 10-09-2001</p>
+            <p><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> Hyderabad</p>
             <a href="./employee details.html">View Profile</a>
         </div>
         <div class="employee-image">
@@ -153,12 +256,12 @@
     </div>
     <div class="employee-card">
         <div class="employee-details">
-            <p class="name"><i class="fa-solid fa-user"></i>Name: <strong>Latish</strong></p>
-            <p><i class="fa-solid fa-id-badge"></i>Employee ID: ATS0123</p>
-            <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
-            <p><i class="fa-solid fa-person"></i>Gender: Male</p>
-            <p><i class="fa-solid fa-cake-candles"></i>DOB: 12-07-2001</p>
-            <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+            <p class="name"><i class="fa-solid fa-user"></i><strong>Name: Latish Singh</strong></p>
+            <p><i class="fa-solid fa-id-badge"></i><strong> Employee ID:</strong> ATS0123</p>
+            <p><i class="fa-solid fa-briefcase"></i> <strong> Role:</strong> Front-end Developer</p>
+            <p><i class="fa-solid fa-person"></i><Strong>Gender:</Strong> Male</p>
+            <p><i class="fa-solid fa-cake-candles"></i> <Strong>DOB:</Strong> 12-07-2001</p>
+            <p><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> Hyderabad</p>
             <a href="./employee details.html">View Profile</a>
         </div>
         <div class="employee-image">
