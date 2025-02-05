@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,22 +14,32 @@
             font-family: Arial, sans-serif; 
             color: #333;
         }
-
-        h1 {
+        .banner {
+            background-color: #3b145b;
+            color: white;
             text-align: center;
-            color: #000000;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 20px;
-            line-height: 50px;
-            text-align: left;
-            margin-left: 400px;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+
         form {
-            max-width: 1000px; 
-            margin-left: 140px;
-        
+            background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -198,9 +209,11 @@ button.action-button:hover {
 </head>
 <body>
 
-    <h1>Employee Onboarding Form</h1>
-
-    <form action="/submit" method="POST" enctype="multipart/form-data">
+    <div class="banner">
+        <h1>Onboarding Form</h1>
+        <p>Complete employee Onboarding form here</p>
+    </div>
+    <form id="onboarding-form" action="/submit" method="POST" enctype="multipart/form-data">
         <div class="form-sections">
 
             <div class="form-section">
@@ -208,29 +221,34 @@ button.action-button:hover {
                 <label class="required" for="fullName">First Name:</label>
                 <input type="text" id="fullName" name="fullName" required placeholder="Enter your First name"
                 minlength="3" 
-                pattern="[A-Za-z ]+" 
-                title="Only alphabetic characters are allowed">
+                maxlength="50"
+                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
 
                 <label class="required" for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required placeholder="Enter your Last name" minlength="1" 
-                pattern="[A-Za-z ]+" 
-                title="Only alphabetic characters are allowed">
+                <input type="text" id="lastName" name="lastName" required placeholder="Enter your Last name" minlength="1"  maxlength="40"
+                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
                 <label class="required" for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                <input type="email" id="email" name="email" required placeholder="Enter your email address" 
+                min="8"
+                maxlength="50"
+                title="Please enter a valid email address that ends with .com">
+
                 <label class="required" for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="Enter your phone number (10 digits)" minlength="10" maxlength="10">
                 <label class="required" for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" required>
+                <input type="date" id="dob" name="dob" required min="">
             </div>
 
             <div class="form-section">
                 <h2>Address Information</h2>
                 <label class="required" for="address">Current Address:</label>
-                <input type="text" id="address" name="address" required placeholder="Enter your current address" minlength="5">
+                <input type="text" id="address" name="address" required placeholder="Enter your current address" minlength="5" maxlength="100">
                 <label class="required" for="city">City:</label>
-                <input type="text" id="city" name="city" required placeholder="Enter your city" minlength="3">
+                <input type="text" id="city" name="city" required placeholder="Enter your city" minlength="3" maxlength="50"  pattern="[A-Za-z ]+"  title="Only alphabetic characters are allowed">
                 <label class="required" for="state">State:</label>
-                <input type="text" id="state" name="state" required placeholder="Enter your state" minlength="5" 
+                <input type="text" id="state" name="state" required placeholder="Enter your state" minlength="5" maxlength="20"
                 pattern="[A-Za-z ]+" 
                 title="Only alphabetic characters are allowed">
                 <label class="required" for="zipCode">ZIP Code:</label>
@@ -240,21 +258,21 @@ button.action-button:hover {
             <div class="form-section">
                 <h2>Emergency Contact Information</h2>
                 <label class="required" for="emergencyName">Emergency Contact Name:</label>
-                <input type="text" id="emergencyName" name="emergencyName" required placeholder="Enter emergency contact name"  minlength="3" 
-                pattern="[A-Za-z .]+" 
-                title="Only alphabetic characters are allowed">
+                <input type="text" id="emergencyName" name="emergencyName" required placeholder="Enter emergency contact name"  minlength="3" maxlength="100"
+                pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
                 <label class="required" for="emergencyPhone">Emergency Contact Phone:</label>
                 <input type="tel" id="emergencyPhone" name="emergencyPhone" required pattern="[0-9]{10}" placeholder="Enter emergency contact phone number (10 digits)" minlength="10" maxlength="10">
                 <label class="required" for="relationship">Relationship to Emergency Contact:</label>
-                <input type="text" id="relationship" name="relationship" required placeholder="Enter relationship (e.g., spouse, parent)" minlength="4">
+                <input type="text" id="relationship" name="relationship" required placeholder="Enter relationship (e.g., spouse, parent)" minlength="4 " maxlength="50"  pattern="[A-Za-z ]+" title="Only alphabetic characters are allowed">
                 <label class="required" for="emergencyAddress">Emergency Contact Address:</label>
-                <input type="text" id="emergencyAddress" name="emergencyAddress" required placeholder="Enter emergency contact address" minlength="5">
+                <input type="text" id="emergencyAddress" name="emergencyAddress" required placeholder="Enter emergency contact address" minlength="5" maxlength="100">
             </div>
 
             <div class="form-section">
                 <h2>Job Role and Department</h2>
                 <label class="required" for="jobTitle">Job Title:</label>
-                <input type="text" id="jobTitle" name="jobTitle" required placeholder="Enter your job title" minlength="3">
+                <input type="text" id="jobTitle" name="jobTitle" required placeholder="Enter your job title" minlength="3" maxlength="50">
                 <label class="required" for="department">Department:</label>
                 <select id="department" name="department" required>
                     <option value="" disabled selected>Select a department</option>
@@ -271,7 +289,7 @@ button.action-button:hover {
             <div class="form-section">
                 <h2>Bank Account Details (for Payroll)</h2>
                 <label class="required" for="bankName">Bank Name:</label>
-                <input type="text" id="bankName" name="bankName" required placeholder="Enter your bank name"  minlength="3" pattern="[A-Za-z .]+" >
+                <input type="text" id="bankName" name="bankName" required placeholder="Enter your bank name"  minlength="3" pattern="[A-Za-z .]+" maxlength="40" >
                 <label class="required" for="accountNumber">Account Number:</label>
                 <input type="text" id="accountNumber" name="accountNumber" required placeholder="Enter your bank account number" pattern="[0-9]+" minlength="9" maxlength="22">
                 <label class="required" for="routingNumber">Account Mobile Number:</label>
@@ -315,7 +333,7 @@ button.action-button:hover {
         </div>
 
     </form>
-    <i class="icon fas fa-graduation-cap icon-1"></i>
+    <!-- <i class="icon fas fa-graduation-cap icon-1"></i>
     <i class="icon fas fa-laptop icon-2"></i>
     <i class="icon fas fa-cogs icon-3"></i>
     <i class="icon fas fa-book icon-4"></i>
@@ -324,24 +342,63 @@ button.action-button:hover {
     <i class="icon fas fa-desktop icon-7"></i>
     <i class="icon fas fa-code icon-8"></i>
     <i class="icon fas fa-chart-line icon-9"></i>
-   
+    -->
 
     <script>
         
-        function checkSectionCompletion(section) {
-            const inputs = section.querySelectorAll('input[required], select[required], textarea[required]');
-            const allFilled = [...inputs].every(input => input.value || (input.type === 'file' && input.files.length > 0));
+     
+function checkSectionCompletion(section) {
+    const inputs = section.querySelectorAll('input[required], select[required], textarea[required]');
+    const allFilled = [...inputs].every(input => input.value || (input.type === 'file' && input.files.length > 0));
+    
+   
+    section.classList.toggle('completed', allFilled);
+}
+
+document.querySelectorAll('input[required], select[required], textarea[required]').forEach(input => {
+    input.addEventListener('input', () => checkSectionCompletion(input.closest('.form-section')));
+});
+
+document.querySelectorAll('.form-section').forEach(checkSectionCompletion);
+
+
+function validateForm() {
+
+    const dob = document.getElementById('dob').value;
+    const startDate = document.getElementById('startDate').value;
+    const email = document.getElementById('email').value;
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
             
-            section.classList.toggle('completed', allFilled);
-        }
+    const dobDate = new Date(dob);
+    const age = new Date().getFullYear() - dobDate.getFullYear();
+
+    if (age < 20 || age > 80) {
+        alert('Your age must be between 20 and 80 years.');
+        return false;
+    }
+
+
+    const today = new Date().toISOString().split('T')[0];
+    if (startDate < today) {
+        alert('Start date must be today or a future date.');
+        return false;
+    }
+
     
-  
-        document.querySelectorAll('input[required], select[required], textarea[required]').forEach(input => {
-            input.addEventListener('input', () => checkSectionCompletion(input.closest('.form-section')));
-        });
-    
-        
-        document.querySelectorAll('.form-section').forEach(checkSectionCompletion);
+    return true;
+}
+
+document.getElementById('yourFormId').addEventListener('submit', function(event) {
+    if (!validateForm()) {
+        event.preventDefault();
+    }
+});
+
     </script>
     
 </body>
