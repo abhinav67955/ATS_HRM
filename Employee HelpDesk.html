@@ -15,18 +15,44 @@
     body {
       font-family: 'Poppins', sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
-      height: 100vh;
       overflow-y: auto; 
       padding: 20px;
     }
+     
+    .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 120px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
 
     .helpdesk-container {
-      width: 80%;
-      max-width: 900px;
+      width: 60%;
+      margin-left: 20%;
       min-height: 80vh; 
       padding: 30px;
+      justify-content: center;
       padding-top: 40px; 
       padding-bottom: 40px;
       background-color: #ffffff;
@@ -75,7 +101,7 @@
 
     textarea {
       height: 150px;
-      resize: vertical;
+      resize: none;
     }
 
     button {
@@ -105,7 +131,7 @@
 
     .ticket-item {
       padding: 15px;
-      background-color: #ecf0f1;
+      background-color: #ffffff;
       border: 1px solid #ddd;
       margin-bottom: 15px;
       border-radius: 5px;
@@ -113,22 +139,30 @@
       justify-content: space-between;
       align-items: center;
     }
+    .ticket-item:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.685), rgba(123, 123, 247, 0.616));
+  transform: scale(1.05);
+}
 
     .ticket-item p {
       margin-bottom: 10px;
+      font-size: large;
     }
 
     .ticket-item .status {
       font-weight: bold;
       color: #2ecc71;
+      font-size: larger;
     }
 
     .ticket-item .status.pending {
-      color: #f39c12;
+      color: #8f5902;
+      font-size: larger;
     }
 
     .ticket-item .status.closed {
       color: #e74c3c;
+      font-size: larger;
     }
 
     .no-tickets {
@@ -152,7 +186,10 @@
   </style>
 </head>
 <body>
-
+  <div class="banner">
+    <h1>Employee Support & Helpdesk<h1>
+      <p>Track and raise your tickets </p>
+</div>
   <div class="helpdesk-container">
     <h1>Employee Helpdesk & Support</h1>
     <p class="helpdesk-description">Please submit your queries or issues, and our HR team will assist you shortly.</p>
@@ -167,9 +204,9 @@
           placeholder="Enter Employee Name" 
           required 
           minlength="3" 
-          pattern="[A-Za-z .]+" 
-          title="Only alphabetic characters are allowed"
-        >
+          maxlength="50"
+          pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+          title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
       </div>
     
       <div class="input-group">
@@ -177,6 +214,8 @@
         <input 
           type="email" 
           id="email" 
+          minlength="5"
+          maxlength="50"
           name="email" 
           placeholder="Enter your email address" 
           required
@@ -191,6 +230,7 @@
           placeholder="Please provide a brief description of your issue" 
           required 
           minlength="5"
+          maxlength="100"
         ></textarea>
       </div>
     
@@ -200,18 +240,21 @@
     <div class="ticket-list" id="ticket-list">
       <div class="no-tickets">No support tickets submitted yet</div>
     </div>
-    
   </div>
 
   <script>
     window.onload = function() {
+      renderTickets();
+    };
+  
+    function renderTickets() {
       const ticketList = document.getElementById('ticket-list');
       const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
-
+  
       if (tickets.length === 0) {
         ticketList.innerHTML = '<div class="no-tickets">No tickets submitted yet</div>';
       } else {
-        ticketList.innerHTML = '';
+        ticketList.innerHTML = '';  
         tickets.forEach((ticket, index) => {
           const ticketItem = document.createElement('div');
           ticketItem.classList.add('ticket-item');
@@ -227,47 +270,56 @@
           ticketList.appendChild(ticketItem);
         });
       }
-    };
-
-    function submitTicket() {
-      const name = document.getElementById('name').value;
+    }
+  
+    function submitTicket(event) {
+      event.preventDefault();  
+  
+      const name = document.getElementById('employee-name').value;
       const email = document.getElementById('email').value;
       const issue = document.getElementById('issue').value;
-
-      if (!name || !email || !issue) {
-        return alert("Please fill in all fields!");
-      }
-
+  
+     
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
       const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
-
+  
       const newTicket = {
         name,
         email,
         issue,
         status: 'Pending'
       };
-
+  
       tickets.push(newTicket);
-
+  
       localStorage.setItem('tickets', JSON.stringify(tickets));
-
-      document.getElementById('name').value = '';
+  
+      
+      document.getElementById('employee-name').value = '';
       document.getElementById('email').value = '';
       document.getElementById('issue').value = '';
+  
 
-      window.location.reload();
+      renderTickets();
     }
-
+  
     function deleteTicket(index) {
       const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
-
+  
+     
       tickets.splice(index, 1);
-
+  
+      
       localStorage.setItem('tickets', JSON.stringify(tickets));
-
-      window.location.reload();
+  
+      renderTickets();
     }
   </script>
 
 </body>
 </html>
+
