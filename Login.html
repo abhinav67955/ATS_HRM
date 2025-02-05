@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login Page</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -20,117 +20,12 @@
             background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
             width: 100%;
             height: 100vh;
-            color: black;
+            color: rgb(0, 0, 0);
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             position: relative;
-        }
-        .area {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .circles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .circles li {
-            position: absolute;
-            display: block;
-            list-style: none;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            animation: animate 15s linear infinite;
-            bottom: -150px;
-        }
-        .circles li:nth-child(1) {
-            left: 25%;
-            width: 80px;
-            height: 80px;
-            animation-delay: 0s;
-        }
-        .circles li:nth-child(2) {
-            left: 10%;
-            width: 20px;
-            height: 20px;
-            animation-delay: 1s;
-            animation-duration: 10s;
-        }
-        .circles li:nth-child(3) {
-            left: 70%;
-            width: 20px;
-            height: 20px;
-            animation-delay: 2s;
-        }
-        .circles li:nth-child(4) {
-            left: 40%;
-            width: 60px;
-            height: 60px;
-            animation-delay: 0s;
-            animation-duration: 12s;
-        }
-        .circles li:nth-child(5) {
-            left: 65%;
-            width: 20px;
-            height: 20px;
-            animation-delay: 0s;
-        }
-        .circles li:nth-child(6) {
-            left: 75%;
-            width: 110px;
-            height: 110px;
-            animation-delay: 2s;
-        }
-        .circles li:nth-child(7) {
-            left: 35%;
-            width: 150px;
-            height: 150px;
-            animation-delay: 4s;
-        }
-        .circles li:nth-child(8) {
-            left: 50%;
-            width: 25px;
-            height: 25px;
-            animation-delay: 8s;
-            animation-duration: 35s;
-        }
-        .circles li:nth-child(9) {
-            left: 20%;
-            width: 15px;
-            height: 15px;
-            animation-delay: 1s;
-            animation-duration: 25s;
-        }
-        .circles li:nth-child(10) {
-            left: 85%;
-            width: 150px;
-            height: 150px;
-            animation-delay: 0s;
-            animation-duration: 8s;
-        }
-        @keyframes animate {
-            0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-            border-radius: 0;
-            }
-            100% {
-            transform: translateY(-1000px) rotate(720deg);
-            opacity: 0;
-            border-radius: 50%;
-            }
         }
         .form-container {
             display: flex;
@@ -279,6 +174,52 @@
         .user-info-card button:hover {
             background-color: #3c3c99;
         }
+        .error-modal {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+        z-index: 1000;
+    }
+
+    .error-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #error-icon {
+        font-size: 40px;
+        color: #ff0000;
+        margin-bottom: 10px;
+    }
+
+    .error-content p {
+        font-size: 18px;
+        color: #ff0000;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .error-content button {
+        background-color: #4e54c8;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+   
+
         @media (max-width: 768px) {
             .form-container {
                 flex-direction: column;
@@ -310,103 +251,130 @@
     </style>
 </head>
 <body>
-    <div class="area">
-        <ul class="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
+
     <div class="form-container">
         <div class="image-container">
             <img src="https://plus.unsplash.com/premium_photo-1682023587521-19219d9f8741?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Login Image">
         </div>
+        
         <form onsubmit="event.preventDefault(); login();">
             <h2>Login</h2>
             <label for="email">Email</label>
-            <input type="email" id="email" required>
+            <input type="email" id="email" required minlength="8" maxlength="50">
+            
             <label for="password">Password</label>
-            <input type="password" id="password" required min="3">
-            <a href="change password.html" class="forgot-password">Forgot Password?</a>
+            <input type="password" id="password" required minlength="5" maxlength="50">
+            
+            <a href="./change password page.html" class="forgot-password">Forgot Password?</a>
             <button type="submit">Login</button>
-            <a href="Signup.html" class="signup-link">Don't have an account? Sign Up here.</a>
+            
+            <a href="./signup page.html" class="signup-link">Don't have an account? Sign Up here.</a>
         </form>
     </div>
 
-    <div class="fingerprint-container" id="fingerprint-container">
+    <div class="fingerprint-container" id="fingerprint-container" style="display: none;">
         <i class="fa-solid fa-fingerprint" onclick="authenticateFingerprint()" id="icon"></i>
         <p>Click to authenticate using your fingerprint.</p>
         <button onclick="authenticateFingerprint()">Authenticate</button>
-        <div class="user-info-card">
+        
+        <div class="user-info-card" style="display: none;">
             <h3>Welcome, <span id="username"></span></h3>
             <p>Login Time: <span id="login-time"></span></p>
-            <button onclick="saveUserInfo()">Save Info</button>
+            <p>Location: <span id="location"></span></p>
+            <button onclick="saveUserInfo()">Continue</button>
         </div>
     </div>
-    <script>
+
    
-document.getElementById('fingerprint-container').style.display = 'none';
+    <div class="error-modal" id="error-modal" style="display: none;">
+        <div class="error-content">
+            <i class="fa-solid fa-triangle-exclamation" id="error-icon"></i> <!-- Error Icon -->
+            <p id="error-message">Invalid email or password. Please try again.</p>
+            <button onclick="closeErrorModal()">Try Again</button>
+        </div>
+    </div>
 
-function login() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert(data.message);
-        if (data.message === 'Login successful') {
-           
-            const username = data.username;
-            const loggedInTime = new Date().toLocaleString(); 
-
-            localStorage.setItem('username', username);
-            localStorage.setItem('loginTime', loggedInTime); 
-
-            showFingerprintCard();
+    <script>
+        function isValidEmail(email) {
+            return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
         }
-    })
-    .catch(error => alert('Error: ' + error));
-}
+
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
 
-function showFingerprintCard() {
-    document.getElementById('fingerprint-container').style.display = 'flex';
-}
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
 
-function authenticateFingerprint() {
-    const username = localStorage.getItem('username');
-    const loggedInTime = localStorage.getItem('loginTime');  
+            if (user) {
+               
+                localStorage.setItem('username', user.username);
+                localStorage.setItem('loginTime', new Date().toLocaleString());
+                localStorage.setItem('location', localStorage.getItem('location') || 'Location not available');
+                showFingerprintCard();
+            } else {
+                showErrorMessage('Invalid email or password. Please try again.');
+            }
+        }
 
-    document.getElementById('username').textContent = username;
-    document.getElementById('login-time').textContent = loggedInTime;  
+        function showFingerprintCard() {
+            document.getElementById('fingerprint-container').style.display = 'block';
+        }
 
-    document.querySelector('.user-info-card').style.display = 'block'; 
-}
+        function authenticateFingerprint() {
+            const username = localStorage.getItem('username');
+            const loggedInTime = localStorage.getItem('loginTime');
+            const location = localStorage.getItem('location');
 
+            if (username && loggedInTime && location) {
+                document.getElementById('username').textContent = username;
+                document.getElementById('login-time').textContent = loggedInTime;
+                document.getElementById('location').textContent = location;
+                document.querySelector('.user-info-card').style.display = 'block';
+            } else {
+                alert('No user is logged in');
+            }
+        }
 
-function saveUserInfo() {
-    const username = document.getElementById('username').textContent;
-    const loggedInTime = document.getElementById('login-time').textContent;
+        function saveUserInfo() {
+            const userInfo = {
+                username: document.getElementById('username').textContent,
+                loggedInTime: document.getElementById('login-time').textContent,
+                location: document.getElementById('location').textContent
+            };
+            localStorage.setItem('user_info', JSON.stringify(userInfo));
+            window.location.href = './index.html';
+        }
 
-    
-    localStorage.setItem('user_info', JSON.stringify({ username, loggedInTime }));
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const locationName = data.address.city || data.address.town || data.address.road || data.address.country || "Unknown location";
+                            document.getElementById('location').textContent = locationName;
+                            localStorage.setItem('location', locationName);
+                        })
+                        .catch(() => alert("Error fetching location name."));
+                }, () => alert("Unable to retrieve location. Please enable location services."));
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
 
-    alert('User Info saved!');
-    
-    window.location.href = 'Dashboard.html';
-}        
+        function showErrorMessage(message) {
+            document.getElementById('error-message').textContent = message;
+            document.getElementById('error-modal').style.display = 'block';
+        }
+
+        function closeErrorModal() {
+            document.getElementById('error-modal').style.display = 'none';
+        }
+
+        window.onload = getLocation;
     </script>
+
 </body>
 </html>
