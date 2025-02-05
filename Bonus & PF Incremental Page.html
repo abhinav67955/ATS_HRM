@@ -21,34 +21,63 @@
             padding: 20px;
             background-color: #ffffff;
         }
+         
+    .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 80px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
 
         main {
             display: flex;
             width: 100%;
-            max-width: 1200px;
-            gap: 30px;
+                    gap: 30px;
             flex-wrap: wrap;
         }
 
         h1 {
             width: 100%;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             color: #2c3e50;
+            text-decoration: underline;
         }
 
         .form-container {
-            background-image: url('https://assets.codepen.io/4927073/hero10.jpg');
+          
             background-size: cover;
             background-position: center;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.3);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             color: white;
-            text-shadow: 4px 0 10px #639efd;
+           
         }
 
         form {
@@ -56,6 +85,7 @@
             flex-direction: column;
             gap: 15px;
             width: 100%;
+            
         }
 
         form input, form select, form textarea, form button {
@@ -63,9 +93,12 @@
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 15px;
+            font-size: 18px;
             background-color: #f9f9f9;
             color: #333;
+        }
+        form select{
+            height: 50px;
         }
 
         form button {
@@ -93,8 +126,8 @@
         }
 
         textarea {
-            resize: vertical;
-            min-height: 80px;
+            resize: none;
+            height: 120px;
         }
 
         select {
@@ -143,6 +176,10 @@
             font-size: 14px;
             color: #7f8c8d;
         }
+        label{
+            color: black;
+            font-size: 20px;
+        }
 
         .body {
             margin-bottom: 15px;
@@ -174,18 +211,25 @@
         .create-entry h2 {
             margin-bottom: 20px;
             font-size: 22px;
-            color: #fff;
+            color: #000000;
+        }
+        .reason-amount{
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
 
 <main>
+    
+    <div class="banner">
     <h1>Incremental Bonus and Payroll</h1>
+</div>
+    
 
     <div class="form-container">
         <section class="create-entry">
-            <h2>Create Payroll Entry</h2>
+            <h1>Create Payroll Entry</h1>
             <form id="payroll-form">
                 <label for="entry-type">Entry Type:</label>
                 <select id="entry-type" name="entry-type">
@@ -195,14 +239,19 @@
                 </select>
 
                 <label for="employee-name">Employee Name:</label>
-                <input type="text" id="employee-name" name="employee-name" required minlength="3"   pattern="[A-Za-z .]+" 
-                title="Only alphabetic characters are allowed">
-
+                <input type="text" id="employee-name" name="employee-name" required minlength="3" maxlength="100" placeholder="Enter Employee Name"  pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                
+                    <label for="emp-id-input">Employee ID</label>
+                    <input type="text" id="emp-id-input" placeholder="Enter Employee ID" required 
+                        pattern="[A-Z]{3}0[0-9]{3}" minlength="7" maxlength="7">
+    
+            
                 <label for="entry-amount">Amount (₹):</label>
-                <input type="number" id="entry-amount" name="entry-amount" required minlength="3">
+                <input type="number" id="entry-amount" name="entry-amount" required minlength="3" placeholder="Enter Amount" maxlength="1000">
 
                 <label for="reason">Reason for Entry:</label>
-                <textarea id="reason" name="reason" rows="5" required minlength="10"></textarea>
+                <textarea id="reason" name="reason" rows="5" required minlength="10" placeholder="Reason For Increment or Bonus" maxlength="100"></textarea>
 
                 <button type="submit">Submit Entry</button>
             </form>
@@ -210,7 +259,7 @@
     </div>
 
     <div class="history">
-        <h2>Payroll History</h2>
+        <h1>Payroll History</h1>
         <div id="payroll-history">
             <div class="card">
                 <div class="header">
@@ -218,8 +267,8 @@
                     <span class="date">2024-11-10</span>
                 </div>
                 <div class="body">
-                    <p>Reason: Performance-based increment for the year.</p>
-                    <p>Amount: ₹5000</p>
+                    <p  class="reason-amount">Reason: <strong> Performance-based increment for the year</strong></p>
+                    <p  class="reason-amount">Amount:<strong> ₹5000</strong></p>
                 </div>
                 <div class="actions">
                     <button style="background-color: #27ae60;">Approved</button>
@@ -233,8 +282,8 @@
                     <span class="date">2024-11-08</span>
                 </div>
                 <div class="body">
-                    <p>Reason: End-of-year bonus based on performance.</p>
-                    <p>Amount: ₹2000</p>
+                    <p  class="reason-amount">Reason: <strong>End-of-year bonus based on performance.</strong></p>
+                    <p  class="reason-amount">Amount: <strong>₹2000</strong></p>
                 </div>
                 <div class="actions">
                     <button style="background-color: #27ae60;">Approved</button>
@@ -248,8 +297,8 @@
                     <span class="date">2024-11-07</span>
                 </div>
                 <div class="body">
-                    <p>Reason: Adjustment for overtime hours worked in October.</p>
-                    <p>Amount: ₹1500</p>
+                    <p  class="reason-amount">Reason:<strong>Adjustment for overtime hours worked in October.</strong></p>
+                    <p  class="reason-amount">Amount:<strong>₹1500</strong></p>
                 </div>
                 <div class="actions">
                     <button style="background-color: #27ae60;">Approved</button>
@@ -276,8 +325,8 @@
                 <span class="date">${currentDate}</span>
             </div>
             <div class="body">
-                <p>Reason: ${reason}</p>
-                <p>Amount: ₹${entryAmount}</p>
+                <p class="reason-amount">Reason: <strong> ${reason}</strong></p>
+                <p class="reason-amount">Amount: <strong> ₹${entryAmount}</strong></p>
             </div>
             <div class="actions">
                 <button style="background-color: #27ae60;">Approved</button>
