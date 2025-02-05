@@ -16,6 +16,28 @@
             flex-direction: column;
             height: 100vh;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
         .main-container {
             display: flex;
             height: 80%;
@@ -40,8 +62,8 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 25px;
-            width: 350px;
-            height: 300px;
+            width: auto;
+            height: auto;
             margin-bottom: 20px;
         }
         .employee-name, .employee-id, .project-name, .allocated-task, .submission-time, .deadline {
@@ -86,23 +108,58 @@
             padding: 7px;
             margin-bottom: 20px;
         }
-        .form-container button {
-            background-color: #b6fac6;
-            color: rgb(0, 0, 0);
-            border: none;
-            padding: 15px;
-            border-radius: 20px;
+        button {
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 95%;
+            height: 2.6em;
+            line-height: 2.5em;
+            margin: 20px;
+            position: relative;
             cursor: pointer;
-            font-size: 1.2em;
-            width: 100%;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 17px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--color);
+            background-color: var(--bg-color);
         }
-        .form-container button:hover {
-            border-top: 2px solid blueviolet;
-            border-left: 2px solid blueviolet;
-            border-bottom: 2px solid rgb(238, 103, 238);
-            border-right: 2px solid rgb(238, 103, 238);
-            box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px;
+        button:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background: var(--color);
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 0.7s;
         }
+        button:hover {
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+        button:active {
+            color: var(--color);
+            background-color: #ffffff;
+        }
+
         .history-section {
             height: 30%;
             width: 100%;
@@ -131,7 +188,10 @@
     </style>
 </head>
 <body>
-
+    <div class="banner">
+        <h1>Allocated Tasks<h1>
+            <p>Track and submit your allocated tasks</p>
+    </div>
     <div class="main-container">
 
         <div class="tasks-section" id="taskContainer">
@@ -143,15 +203,19 @@
             <div class="form-container">
                 <form id="completedTaskForm" onsubmit="saveCompletedTask(event)">
                     <label for="task-name">Task Name</label>
-                    <input type="text" id="task-name" name="task-name" required minlength="5" placeholder="Enter Task name ">
+                    <input type="text" id="task-name" name="task-name" required minlength="5" placeholder="Enter Task name" maxlength="100">
                 
                     <label for="employee-name">Employee Name</label>
-                    <input type="text" id="employeeName"   
+                    <input 
+                    id="employeeName" 
+                    type="text" 
                     placeholder="Enter your Name" 
                     required 
                     minlength="3" 
-                    pattern="[A-Za-z .]+" 
-                    title="Only alphabetic characters are allowed">
+                    maxlength="100"
+                    pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                    title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    
                 
                     <label for="employee-id">Employee ID</label>
                     <input type="text" id="employee-id" name="employee-id" required minlength="7" maxlength="7" 
@@ -255,9 +319,6 @@ function loadHistory() {
 window.onload = function() {
     loadHistory();  
 };
-
-
-       
         window.onload = function() {
             loadTasks();
             loadHistory();
