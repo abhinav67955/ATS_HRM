@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +17,34 @@
             font-family: 'Arial', sans-serif;
           
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
            
         }
-        
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
         
         .form-container {
             width: 1200px;
@@ -98,7 +121,7 @@
             background-color: #f9f9f9;
             transition: border-color 0.3s ease;
         }
-
+       
         .input-group input:focus, .input-group textarea:focus {
             border-color: #000000;
             outline: none;
@@ -110,6 +133,10 @@
           border-radius: 10px;
             border: 1px solid #ddd;
             font-size: 1rem;
+            resize: none;
+            padding: 10px;
+            margin-top: 10px;
+            height: 100px;
             background-color: #f9f9f9;
             transition: border-color 0.3s ease;
         }
@@ -175,6 +202,10 @@
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Work From Home Request Form<h1>
+            <p>Request for Work From Home mode</p>
+    </div>
     <div class="form-container">
         <h2>Request Work from Home</h2>
         <form id="wfhForm">
@@ -185,8 +216,9 @@
                            placeholder="Enter your Name" 
                            required 
                            minlength="3" 
-                           pattern="[A-Za-z .]+" 
-                           title="Only alphabetic characters are allowed">
+                           maxlength="100"
+                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
                 </div>
             
                 <div>
@@ -196,7 +228,7 @@
                            required 
                            minlength="7" 
                            maxlength="7" 
-                           pattern="[A-Z]{3}[0-9]{4}" 
+                           pattern="[A-Z]{3}0[0-9]{3}" 
                            title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
                 </div>
             </div>
@@ -205,15 +237,19 @@
                 <div>
                     <label for="employeeEmail">Employee Email:</label>
                     <input type="email" id="employeeEmail" name="employeeEmail" 
-                           placeholder="Enter your Email" 
-                           required>
+                    placeholder="Enter your Email ID" 
+                    required  
+                    min="8"
+                    maxlength="50"
+                    title="Please enter a valid email address that ends with .com">
                 </div>
             
                 <div>
                     <label for="workingProject">Working Project:</label>
                     <input type="text" id="workingProject" name="workingProject" 
                            placeholder="Enter Project Name" 
-                           required minlength="3">
+                           required minlength="3"
+                           maxlength="100">
                 </div>
             </div>
             
@@ -224,15 +260,16 @@
                            placeholder="Enter Manager's Name" 
                            required 
                            minlength="3" 
-                           pattern="[A-Za-z .]+" 
-                           title="Only alphabetic characters are allowed">
+                           maxlength="100"
+                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
                 </div>
             
                 <div>
                     <label for="wfhLocation">WFH Location:</label>
                     <input type="text" id="wfhLocation" name="wfhLocation" 
                            placeholder="Enter your WFH Location" 
-                           required minlength="3">
+                           required minlength="3" maxlength="50">
                 </div>
             </div>
             
@@ -249,7 +286,7 @@
             </div>
             
             <label for="reason">Reason for Work from Home:</label>
-            <textarea id="reason" name="reason" placeholder="Enter your reason for WFH" required minlength="10"></textarea><br>
+            <textarea id="reason" name="reason" placeholder="Enter your reason for WFH" required minlength="10" maxlength="200"></textarea><br>
             
             <button type="submit">Submit Request</button>
             
@@ -257,46 +294,65 @@
     </div>
 
     <script>
-      
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('wfhForm');
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('wfhForm');
 
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-                const employeeName = document.getElementById('employeeName').value;
-                const employeeID = document.getElementById('employeeID').value;
-                const employeeEmail = document.getElementById('employeeEmail').value;
-                const workingProject = document.getElementById('workingProject').value;
-                const reportingManager = document.getElementById('reportingManager').value;
-                const wfhLocation = document.getElementById('wfhLocation').value;
-                const fromDate = document.getElementById('fromDate').value;
-                const toDate = document.getElementById('toDate').value;
-                const reason = document.getElementById('reason').value;
+        const employeeName = document.getElementById('employeeName').value;
+        const employeeID = document.getElementById('employeeID').value;
+        const employeeEmail = document.getElementById('employeeEmail').value;
+        const workingProject = document.getElementById('workingProject').value;
+        const reportingManager = document.getElementById('reportingManager').value;
+        const wfhLocation = document.getElementById('wfhLocation').value;
+        const fromDate = document.getElementById('fromDate').value;
+        const toDate = document.getElementById('toDate').value;
+        const reason = document.getElementById('reason').value;
+        const currentDate = new Date().toISOString().split('T')[0];
 
-                const request = {
-                    name: employeeName,
-                    id: employeeID,
-                    email: employeeEmail,
-                    project: workingProject,
-                    manager: reportingManager,
-                    location: wfhLocation,
-                    from: fromDate,
-                    to: toDate,
-                    reason: reason
-                };
+   
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(employeeEmail)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+   
 
-                let submissions = JSON.parse(localStorage.getItem('wfhRequests')) || [];
+        if (fromDate < currentDate) {
+            alert('Please select a valid From Date.');
+            return false;
+        }
 
-                submissions.push(request);
+        if (toDate <= fromDate) {
+            alert('Please select a valid To Date.');
+            return false;
+        }
 
-                localStorage.setItem('wfhRequests', JSON.stringify(submissions));
+        const request = {
+            name: employeeName,
+            id: employeeID,
+            email: employeeEmail,
+            project: workingProject,
+            manager: reportingManager,
+            location: wfhLocation,
+            from: fromDate,
+            to: toDate,
+            reason: reason
+        };
 
-                form.reset();
+        let submissions = JSON.parse(localStorage.getItem('wfhRequests')) || [];
 
-                alert('Request submitted successfully!');
-            });
-        });
+        submissions.push(request);
+
+        localStorage.setItem('wfhRequests', JSON.stringify(submissions));
+
+        form.reset();
+
+        alert('Request submitted successfully!');
+    });
+});
+
     </script>
 </body>
 </html>
