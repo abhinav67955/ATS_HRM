@@ -11,22 +11,25 @@
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
+            
         }
 
         body {
             color: #333;
             margin-top: 30px;
             padding: 10px;
+            align-items: center;
         }
+        
 
         .banner {
             background-color: #3b145b;
             color: white;
             text-align: center;
             padding: 30px;
-            width: 900px;
+            width: 90%;
             border-radius: 30px;
-            margin-left: 40px;
+            margin: 0 auto;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -36,28 +39,28 @@
         }
 
         .card-container {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            width: 1000px;
-            flex-wrap: wrap;
-            padding: 30px;
-        }
+    display: grid;
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
+}
 
-        .card {
-            background-color: white;
-            width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
-        }
+.card {
+    background-color: white;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
 
         .card:hover {
             transform: scale(1.05);
-            width: 30%;
+            background: linear-gradient(rgba(224, 224, 255, 0.792), rgb(255, 247, 247));
         }
 
         .card h3 {
@@ -98,8 +101,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 500px;
-            margin-left: 240px;
-            margin-bottom: 30px;
+            margin: 30px auto;
             border-top: 6px solid rgb(3, 48, 92);
         }
 
@@ -118,12 +120,18 @@
             border-radius: 5px;
             font-size: 16px;
         }
-
+        .claim-form textarea{
+            height: 120px;
+            resize: none;
+        }
         .claim-form button {
             padding: 10px 20px;
             background-color: #4facfe;
             color: white;
             border: none;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
@@ -263,42 +271,42 @@
         <div class="card" data-claim-type="Medical Claims">
             <i class="fas fa-hospital"></i>
             <h3>Medical Claims</h3>
-            <p>5 claims available</p>
+            <p> claims available</p>
             <a href="javascript:void(0);" class="arrow-btn" id="arrow-medical">→</a>
         </div>
 
         <div class="card" data-claim-type="Travel Claims">
             <i class="fas fa-plane"></i>
             <h3>Travel Claims</h3>
-            <p>3 claims available</p>
+            <p> claims available</p>
             <a href="javascript:void(0);" class="arrow-btn" id="arrow-travel">→</a>
         </div>
 
         <div class="card" data-claim-type="Expense Claims">
             <i class="fas fa-credit-card"></i>
             <h3>Expense Claims</h3>
-            <p>7 claims available</p>
+            <p> claims available</p>
             <a href="javascript:void(0);" class="arrow-btn" id="arrow-expense">→</a>
         </div>
 
         <div class="card" data-claim-type="Insurance Claims">
             <i class="fas fa-shield-alt"></i>
             <h3>Insurance Claims</h3>
-            <p>2 claims available</p>
+            <p> claims available</p>
             <a href="javascript:void(0);" class="arrow-btn" id="arrow-insurance">→</a>
         </div>
 
         <div class="card" data-claim-type="Leave Claims">
             <i class="fas fa-calendar-alt"></i>
             <h3>Leave Claims</h3>
-            <p>4 claims available</p>
+            <p> claims available</p>
             <a href="javascript:void(0);" class="arrow-btn" id="arrow-leave">→</a>
         </div>
 
         <div class="card" data-claim-type="Educational Claims">
             <i class="fas fa-graduation-cap"></i>
             <h3>Educational Claims</h3>
-            <p>1 claim available</p>
+            <p> claim available</p>
             <a href="javascript:void(0);" class="arrow-btn" id="arrow-education">→</a>
         </div>
     </div>
@@ -307,15 +315,17 @@
         <h2>Submit Your Claim</h2>
         <form id="claimForm">
             <label for="emp-name">Employee Name</label>
-            <input type="text" id="employeeName"   
-                           placeholder="Enter your Name" 
-                           required 
-                           minlength="3" 
-                           pattern="[A-Za-z .]+" 
-                           title="Only alphabetic characters are allowed"> 
+            
+        <input type="text" id="emp-name" placeholder="Enter your Name" required minlength="3" maxlength="50" 
+        pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+        title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+
 
             <label for="emp-email">Employee Email</label>
-            <input type="email" id="emp-email" placeholder="Enter your email" required>
+            <input type="email" id="emp-email" placeholder="Enter your email"required  
+            min="8"
+            maxlength="50"
+            title="Please enter a valid email">
 
             <label for="claim-type">Claim Type</label>
             <select id="claim-type" required>
@@ -329,10 +339,10 @@
             </select>
 
             <label for="claim-description">Claim Description</label>
-            <textarea id="claim-description" placeholder="Enter the details of your claim" required minlength="3"></textarea>
+            <textarea id="claim-description" placeholder="Enter the details of your claim" required minlength="3" maxlength="100"></textarea>
 
             <label for="claim-amount">Claim Amount</label>
-            <input type="number" id="claim-amount" placeholder="Enter the claim amount" required minlength="3" pattern="[0-9]">
+            <input type="number" id="claim-amount" placeholder="Enter the claim amount" required min="1" max="100000">
 
             <label for="claim-date">Date</label>
             <input type="date" id="claim-date" required>
@@ -348,45 +358,100 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                const claimType = card.getAttribute('data-claim-type');
-                document.getElementById('claim-type').value = claimType;
-                document.getElementById("claim-form").style.display = "block";
-            });
+    document.addEventListener("DOMContentLoaded", function () {
+   
+    let claimCounts = JSON.parse(localStorage.getItem("claimCounts")) || {
+        "Medical Claims": 10,
+        "Travel Claims": 10,
+        "Expense Claims": 10,
+        "Insurance Claims": 10,
+        "Leave Claims": 10,
+        "Educational Claims": 10
+    };
+
+    
+    function updateClaimCounts() {
+        document.querySelectorAll(".card").forEach(card => {
+            const claimType = card.getAttribute("data-claim-type");
+            const countElement = card.querySelector("p");
+            if (claimCounts[claimType] !== undefined) {
+                countElement.textContent = `${claimCounts[claimType]} claims available`;
+            }
         });
+    }
 
-        document.getElementById("claimForm").addEventListener("submit", function (event) {
-            event.preventDefault();
+    updateClaimCounts();
 
-            const empName = document.getElementById("emp-name").value;
-            const empEmail = document.getElementById("emp-email").value;
-            const claimType = document.getElementById("claim-type").value;
-            const claimDescription = document.getElementById("claim-description").value;
-            const claimAmount = document.getElementById("claim-amount").value;
-            const claimDate = document.getElementById("claim-date").value;
-
-            const claims = JSON.parse(localStorage.getItem("claims")) || [];
-            claims.push({
-                empName,
-                empEmail,
-                claimType,
-                claimDescription,
-                claimAmount,
-                claimDate
-            });
-            localStorage.setItem("claims", JSON.stringify(claims));
-
-            const claimRequestedMsg = document.querySelector('.claim-requested');
-            claimRequestedMsg.style.display = 'block';
-
-            setTimeout(() => {
-                claimRequestedMsg.style.display = 'none';
-            }, 3000);
-
-            document.getElementById("claimForm").reset();
-            document.getElementById("claim-form").style.display = "none";
+ 
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            const claimType = card.getAttribute('data-claim-type');
+            document.getElementById('claim-type').value = claimType;
+            document.getElementById("claim-form").style.display = "block";
         });
+    });
+
+
+    document.getElementById("claimForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const empName = document.getElementById("emp-name").value;
+        const empEmail = document.getElementById("emp-email").value;
+        const claimType = document.getElementById("claim-type").value;
+        const claimDescription = document.getElementById("claim-description").value;
+        const claimAmount = document.getElementById("claim-amount").value;
+        const claimDate = document.getElementById("claim-date").value;
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        if (claimDate > currentDate) {
+            alert('Please select a valid Date');
+            return false;
+        }
+
+    
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(empEmail)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+      
+        if (claimCounts[claimType] <= 0) {
+            alert(`No more claims available for ${claimType}`);
+            return;
+        }
+
+
+        const claims = JSON.parse(localStorage.getItem("claims")) || [];
+        claims.push({
+            empName,
+            empEmail,
+            claimType,
+            claimDescription,
+            claimAmount,
+            claimDate
+        });
+        localStorage.setItem("claims", JSON.stringify(claims));
+
+
+        claimCounts[claimType]--;
+        localStorage.setItem("claimCounts", JSON.stringify(claimCounts));
+        updateClaimCounts();
+
+     
+        const claimRequestedMsg = document.querySelector('.claim-requested');
+        claimRequestedMsg.style.display = 'block';
+
+        setTimeout(() => {
+            claimRequestedMsg.style.display = 'none';
+        }, 3000);
+
+        
+        document.getElementById("claimForm").reset();
+        document.getElementById("claim-form").style.display = "none";
+    });
+});
+
     </script>
 </body>
 
