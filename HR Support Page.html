@@ -17,13 +17,35 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      height: 100vh;
+      flex-direction: column;
       padding: 20px;
     }
+    .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
 
     .management-container {
-      width: 80%;
-      max-width: 900px;
+      width: 60%;
+      margin-left: 20%;
       min-height: 80vh;
       padding: 30px;
       padding-top: 40px;
@@ -51,6 +73,11 @@
       border: 1px solid #ddd;
       margin-bottom: 15px;
       border-radius: 5px;
+    }
+
+    .ticket-item:hover {
+      background: linear-gradient(rgba(255, 255, 255, 0.685), rgba(123, 123, 247, 0.616));
+      transform: scale(1.05);
     }
 
     .ticket-item p {
@@ -100,10 +127,44 @@
       margin-top: 10px;
       display: block;
     }
+
+
+    .confirmation-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #ffffff;
+      border: 2px solid #27ae60;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .confirmation-modal p {
+      font-size: 18px;
+    }
+
+    .confirmation-modal button {
+      padding: 10px 20px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .confirmation-modal button:hover {
+      background-color: #2ecc71;
+    }
   </style>
 </head>
 <body>
-
+  <div class="banner">
+    <h1>HR Support System</h1>
+    <p>Track and manage tickets raised by employees</p>
+</div>
   <div class="management-container">
     <h1>HR Support Ticket Management</h1>
     <div class="ticket-list" id="ticket-list">
@@ -113,13 +174,13 @@
         <p><strong>Issue:</strong> Request for clarification on leave benefits</p>
         <label class="status-label">Status:</label>
         <p><span class="status pending">Pending</span></p>
-        <select onchange="this.previousElementSibling.innerText = this.value; 
+        <select onchange="this.previousElementSibling.innerText = this.value;
                         this.previousElementSibling.className = 'status ' + this.value.toLowerCase().replace(' ', '-')">
           <option>Pending</option>
           <option>In Progress</option>
           <option>Complete</option>
         </select>
-        <button class="action-button">Submit</button>
+        <button class="action-button" onclick="submitTicket(0)">Submit</button>
       </div>
 
       <div class="ticket-item">
@@ -128,15 +189,20 @@
         <p><strong>Issue:</strong> Query about payroll for the last month</p>
         <label class="status-label">Status:</label>
         <p><span class="status pending">Pending</span></p>
-        <select onchange="this.previousElementSibling.innerText = this.value; 
+        <select onchange="this.previousElementSibling.innerText = this.value;
                         this.previousElementSibling.className = 'status ' + this.value.toLowerCase().replace(' ', '-')">
           <option>Pending</option>
           <option>In Progress</option>
           <option>Complete</option>
         </select>
-        <button class="action-button">Submit</button>
+        <button class="action-button" onclick="submitTicket(1)">Submit</button>
       </div>
     </div>
+  </div>
+
+  <div class="confirmation-modal" id="confirmation-modal">
+    <p>This ticket has been cleared!</p>
+    <button onclick="closeModal()">OK</button>
   </div>
 
   <script>
@@ -144,7 +210,7 @@
       const ticketList = document.getElementById('ticket-list');
       const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
 
-      tickets.forEach(ticket => {
+      tickets.forEach((ticket, index) => {
         const ticketItem = document.createElement('div');
         ticketItem.classList.add('ticket-item');
         ticketItem.innerHTML = `
@@ -159,11 +225,28 @@
             <option>In Progress</option>
             <option>Complete</option>
           </select>
-          <button class="action-button">Submit</button>
+          <button class="action-button" onclick="submitTicket(${index})">Submit</button>
         `;
         ticketList.appendChild(ticketItem);
       });
     };
+
+    function submitTicket(ticketIndex) {
+      const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+      const ticket = tickets[ticketIndex];
+
+      tickets.splice(ticketIndex, 1);
+
+      localStorage.setItem('tickets', JSON.stringify(tickets));
+
+      document.getElementById('confirmation-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('confirmation-modal').style.display = 'none';
+
+      window.location.reload();
+    }
   </script>
 
 </body>
