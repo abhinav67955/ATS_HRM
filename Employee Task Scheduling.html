@@ -16,10 +16,35 @@
       font-family: 'Poppins', sans-serif;
       background-color: #ffffff;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-    }
+  
+    } 
+    
+    .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
 
     .card-wrapper {
       position: relative;
@@ -28,6 +53,7 @@
 
     .container {
       position: relative;
+      margin-top: 100px;
       width: 100%;
       margin: 20px;
       top: 20px;
@@ -37,7 +63,7 @@
       border-radius: 10px;
       overflow: hidden;
       transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-      margin-top: 30px;
+      margin-top: 100px;
     }
 
     .card-wrapper::before,
@@ -183,7 +209,10 @@
   </style>
 </head>
 <body>
-
+  <div class="banner">
+    <h1>Workflow Scheduling</h1>
+    <p>Schedule your task workflow</p>
+</div>
   <div class="card-wrapper">
     <div class="container">
       <h1>Task Shift Scheduling</h1>
@@ -191,7 +220,7 @@
       <div class="form-container">
         <div class="input-group">
           <label for="task-name">Task Name</label>
-          <input type="text" id="task-name" placeholder="Enter task name" required  minlength="3">
+          <input type="text" id="task-name" placeholder="Enter task name" required  minlength="3" maxlength="50">
         </div>
 
         <div class="input-group">
@@ -250,3 +279,4 @@
 
 </body>
 </html>
+
