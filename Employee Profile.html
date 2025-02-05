@@ -19,7 +19,29 @@
             background: white;
             font-size: 16px;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            height: auto;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
         .main-content {
             padding: 20px;
             display: flex;
@@ -29,7 +51,7 @@
 
         .employee {
             margin: 40px 0;
-            width: 900px;
+            width: 100%;
             height: auto;
             border-radius: 20px;
             padding: 30px;
@@ -40,17 +62,18 @@
             flex-direction: row;
             align-items: flex-start;
             justify-content: space-between;
-            text-align: left;
+           
             z-index: 1;
         }
 
         .emp {
             margin: 40px 0;
-            width: 900px;
+            width: 100%;
             height: auto;
             border-radius: 20px;
             padding: 30px;
-            background: linear-gradient(5deg, #1888ff5b 50%, #c038ff48 50%);            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(5deg, #007bff5b 50%, #ae00ff48 50%);          
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -66,13 +89,14 @@
             width: 90px;
             height: 90px;
             border-radius: 50%;
+            margin-top: 40px;
             margin-right: 20px;
             z-index: 2;
         }
 
         .employee-details {
-            width: 50%;
-            font-size: 17px;
+            width: 40%;
+            font-size:20px;
             color: #000000;
             z-index: 2;
         }
@@ -88,6 +112,12 @@
             color: #333;
         }
 
+        #username{
+            font-size: 32px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 10px;
+            color: #000000;
+        }
         .bg {
             position: absolute;
             top: 5px;
@@ -140,9 +170,11 @@
         }
 
         .skill-set {
-            width: 25%;
+            width: 30%;
             font-size: 17px;
             color: #000000;
+            margin-top: 20px;
+            font-family: monospace;
             padding-left: 20px;
             z-index: 2;
         }
@@ -158,20 +190,23 @@
         }
 
         .skill-set ul li {
-            font-size: 14px;
+            font-size: 18px;
             margin: 5px 0;
         }
 
         .extra-details {
-            width: 25%;
+            width: 80%;
             font-size: 17px;
+            margin-top: 20px;
             color: #000000;
+            font-family: monospace;
             padding-left: 20px;
             z-index: 2;
         }
 
         .extra-details h6 {
             font-size: 18px;
+            margin-top: 20px;
             margin-bottom: 10px;
         }
 
@@ -181,7 +216,7 @@
         }
 
         .extra-details ul li {
-            font-size: 14px;
+            font-size: 18px;
             margin: 5px 0;
         }
 
@@ -235,16 +270,45 @@
             opacity: 1;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1200px) {
             .employee {
                 width: 80%;
-                height: auto;
                 padding: 20px;
-                flex-direction: column;
-                text-align: center;
             }
 
-            .employee-details, .skill-set {
+            .emp {
+                width: 100%;
+            }
+
+            .employee-details, .skill-set, .extra-details {
+                width: 30%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .employee {
+                width: 80%;
+                padding: 20px;
+            }
+
+            .emp {
+                width: 100%;
+            }
+
+            .employee-details, .skill-set, .extra-details {
+                width: 30%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .employee {
+                width: 90%;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .employee-details, .skill-set, .extra-details {
                 width: 100%;
                 padding-left: 0;
                 margin-top: 15px;
@@ -258,6 +322,24 @@
             .card {
                 width: 80%;
                 margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .employee {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .Cards {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .card {
+                width: 100%;
+                margin-bottom: 15px;
             }
         }
 
@@ -282,17 +364,22 @@
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Employee Profile<h1>
+            <p>Track and manage your profile</p>
+    </div>
     <div class="main-content">
         <div class="employee">
             <div class="emp">
-                <img src="https://img.freepik.com/premium-photo/profile-picture-happy-young-caucasian-man-spectacles-show-confidence-leadership-headshot-portrait-smiling-millennial-male-glasses-posing-indoors-home-employment-success-concept_774935-1446.jpg" alt="Employee Photo">
-                <div class="employee-details">
-                    <h5>Employee Name</h5>
+                <img id="profile-picture" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%;">
+                    <div class="employee-details">
+                    <h5 id="username">Employee Name</h5>
                     <p><i class="fa-solid fa-id-badge"></i>Employee ID: 001</p>
                     <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
                     <p><i class="fa-solid fa-person"></i>Gender: Male</p>
                     <p><i class="fa-solid fa-cake-candles"></i>DOB: 01-01-2002</p>
                     <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+                    
                 </div>
                 <div class="skill-set">
                     <h5>Skill Set</h5>
@@ -381,5 +468,23 @@
             </a>
         </div>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const username = localStorage.getItem('username')
+    const profilePicture = localStorage.getItem('profilePicture');
+    if (profilePicture) {
+    document.getElementById('profile-picture').src = profilePicture; 
+} else {
+    document.getElementById('profile-picture').src = 'https://t3.ftcdn.net/jpg/04/60/91/88/360_F_460918802_XVCymFr7MoziFpnInbTDvrlblYhvAOi2.jpg';
+}
+
+    if (username) {
+        document.getElementById('username').textContent = username; 
+    }
+});
+
+
+    </script>
 </body>
 </html>
+
