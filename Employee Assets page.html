@@ -16,18 +16,37 @@
             padding: 20px;
         }
 
-        h1 {
-            text-align: center;
-            font-size: 48px;
-            color: #333;
-            margin-bottom: 40px;
-            font-family:sans-serif;
-        }
+        .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 120px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
 
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            justify-content: center;
             padding: 0 30px;
         }
 
@@ -130,7 +149,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-top: 40px;
-            width: 1200px;
+            width: 100%;
         }
 
         .request-form h2 {
@@ -147,9 +166,16 @@
             color: #333;
         }
 
-        .request-form input,
-        .request-form select{
+        .request-form input{
             width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .request-form select{
+            width: 99.7%;
             padding: 12px;
             margin: 8px 0;
             border: 1px solid #ddd;
@@ -158,6 +184,8 @@
         }
         .request-form textarea {
             width: 98%;
+            height: 200px;
+            resize: none;
             padding: 12px;
             margin: 8px 0;
             border: 1px solid #ddd;
@@ -197,79 +225,84 @@
 </head>
 
 <body>
-    <h1>My Assets</h1>
+    <div class="banner">
+        <h1>Your Appraisals</h1>
+        <p>View & Manage your Assets and Request For New Assets</p>
+    </div>
     <div class="container">
         <div class="Assets-List allocated-laptop">
-            <h3><i class="fas fa-laptop icon"></i>Allocated Laptop</h3>
-            <p><i class="fas fa-laptop icon"></i>Brand: Lenovo</p>
-            <p><i class="fas fa-cogs icon"></i>Model: ThinkPad</p>
-            <p><i class="fas fa-code-branch icon"></i>Version: 10.0.22631</p>
-            <p><i class="fas fa-calendar-alt icon"></i>Allocated Date: 06-09-2024</p>
-            <button class="view-details" onclick="showdetails('Allocated Laptop: Lenovo ThinkPad')"><i class="fas fa-info-circle icon"></i>View Details</button>
+            <h3><i class="fas fa-laptop icon"></i>&nbsp; &nbsp; Allocated Laptop</h3>
+            <p><i class="fas fa-laptop icon"></i>&nbsp; Brand: Lenovo</p>
+            <p><i class="fas fa-cogs icon"></i>&nbsp; Model: ThinkPad</p>
+            <p><i class="fas fa-code-branch icon"></i>&nbsp; Version: 10.0.22631</p>
+            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Allocated Date: 06-09-2024</p>
+            <button class="view-details" onclick="showdetails('Allocated Laptop: Lenovo ThinkPad')"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
 
         <div class="Assets-List office-supplies">
-            <h3><i class="fas fa-boxes icon"></i>Office Supplies</h3>
-            <p><i class="fas fa-book icon"></i>Note Book</p>
-            <p><i class="fas fa-pen icon"></i>Pen</p>
-            <p><i class="fas fa-mouse icon"></i>Mouse, Laptop Bag</p>
-            <p><i class="fas fa-calendar-alt icon"></i>Allocated Date: 06-09-2024</p>
-            <button class="view-details" onclick="showdetails('Office Supplies: Note Book, Pen, Mouse, Laptop Bag')"><i class="fas fa-info-circle icon"></i>View Details</button>
+            <h3><i class="fas fa-boxes icon"></i> &nbsp; &nbsp;Office Supplies</h3>
+            <p><i class="fas fa-book icon"></i> &nbsp;Note Book</p>
+            <p><i class="fas fa-pen icon"></i> &nbsp;Pen</p>
+            <p><i class="fas fa-mouse icon"></i>&nbsp; Mouse, Laptop Bag</p>
+            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Allocated Date: 06-09-2024</p>
+            <button class="view-details" onclick="showdetails('Office Supplies: Note Book, Pen, Mouse, Laptop Bag')"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
 
         <div class="Assets-List current-project">
-            <h3><i class="fas fa-project-diagram icon"></i>Current Project</h3>
-            <p><i class="fas fa-clipboard-list icon"></i>Project: New HRMS Website</p>
-            <p><i class="fas fa-calendar-alt icon"></i>Started: 07-09-2024</p>
-            <p><i class="fas fa-calendar-check icon"></i>Due Date: 31-12-2024</p>
-            <button class="view-details" onclick="showdetails('Current Project: HRMS Portal')"><i class="fas fa-info-circle icon"></i>View Details</button>
+            <h3><i class="fas fa-project-diagram icon"></i>&nbsp; &nbsp;Current Project</h3>
+            <p><i class="fas fa-clipboard-list icon"></i>&nbsp; Project: New HRMS Website</p>
+            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Started: 07-09-2024</p>
+            <p><i class="fas fa-calendar-check icon"></i>&nbsp; Due Date: 31-12-2024</p>
+            <button class="view-details" onclick="showdetails('Current Project: HRMS Portal')"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
 
         <div class="Assets-List current-assignment">
-            <h3><i class="fas fa-tasks icon"></i>Current Assignment</h3>
-            <p><i class="fas fa-clipboard-check icon"></i>Project: UI Designs</p>
-            <p><i class="fas fa-calendar-alt icon"></i>Started: 10-10-2024</p>
-            <p><i class="fas fa-calendar-check icon"></i>Due Date: 15-10-2024</p>
-            <button class="view-details" onclick="showdetails('Current Assignment: UI Designs')"><i class="fas fa-info-circle icon"></i>View Details</button>
+            <h3><i class="fas fa-tasks icon"></i>&nbsp; &nbsp; Current Assignment</h3>
+            <p><i class="fas fa-clipboard-check icon"></i>&nbsp; Project: UI Designs</p>
+            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Started: 10-10-2024</p>
+            <p><i class="fas fa-calendar-check icon"></i>&nbsp; Due Date: 15-10-2024</p>
+            <button class="view-details" onclick="showdetails('Current Assignment: UI Designs')"><i class="fas fa-info-circle icon"></i>&nbsp; View Details</button>
         </div>
 
         <div class="Assets-List bonus">
-            <h3><i class="fas fa-dollar-sign icon"></i>Bonus</h3>
-            <p><i class="fas fa-money-bill icon"></i>Amount: $$$</p>
-            <p><i class="fas fa-calendar-alt icon"></i>Credited Date: 01-10-2024</p>
-            <button class="view-details" onclick="showdetails('Bonus: 100$ Credited!!')"><i class="fas fa-info-circle icon"></i>View Details</button>
+            <h3><i class="fas fa-dollar-sign icon"></i>&nbsp; Bonus</h3>
+            <p><i class="fas fa-money-bill icon"></i>&nbsp; Amount: ₹5000</p>
+            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Credited Date: 01-10-2024</p>
+            <button class="view-details" onclick="showdetails('Bonus: 100$ Credited!!')"><i class="fas fa-info-circle icon"></i>&nbsp; View Details</button>
         </div>
 
         <div class="Assets-List training-program">
-            <h3><i class="fas fa-graduation-cap icon"></i>Training Program</h3>
-            <p><i class="fas fa-book-open icon"></i>Course: Full Stack Web Development</p>
-            <p><i class="fas fa-laptop-code icon"></i>Current Topic: __</p>
-            <p><i class="fas fa-tv icon"></i>Mode: Online</p>
-            <p><i class="fas fa-chalkboard-teacher icon"></i>Platform: Udemy</p>
-            <button class="view-details" onclick="showdetails('Training: Udemy, Web Development')"><i class="fas fa-info-circle icon"></i>View Details</button>
-        </div>
+            <h3><i class="fas fa-graduation-cap icon"></i>&nbsp; &nbsp; Training Program</h3>
+            <p><i class="fas fa-book-open icon"></i>&nbsp; Course: Full Stack Web Development</p>
+            <p><i class="fas fa-laptop-code icon"></i>&nbsp; Current Topic: __</p>
+            <p><i class="fas fa-tv icon"></i>&nbsp; Mode: Online</p>
+            <p><i class="fas fa-chalkboard-teacher icon"></i>&nbsp; Platform: Udemy</p>
+            <button class="view-details" onclick="showdetails('Training: Udemy, Web Development')"><i class="fas fa-info-circle icon"></i>&nbsp; View Details</button>
+        </div> 
     </div>
 
     <div class="show-form-btn">
         <button class="show-form-btn" onclick="document.getElementById('request-form').style.display='block'">Request New Asset</button>
     </div>
-
     <div id="request-form" class="request-form" style="display:none;">
         <h2>Request New Asset</h2>
         <form id="asset-request-form">
-            <label for="emp-name">Employee Name</label>
+            <label for="employeeName">Employee Name</label>
             <input type="text" id="employeeName"   
                            required 
                            minlength="3" 
-                           pattern="[A-Za-z .]+" 
-                           title="Only alphabetic characters are allowed">
-
+                           maxlength="100"
+                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+    
             <label for="emp-email">Email ID</label>
-            <input type="email" id="emp-email"  name="emp-email" required>
-
+            <input type="email" id="emp-email" name="emp-email" required min="8"
+            maxlength="50"
+            title="Please enter a valid email address that ends with .com">
+    
             <label for="request-date">Date of Request</label>
             <input type="date" id="request-date" name="request-date" required>
-
+    
             <label for="asset-type">Asset Type</label>
             <select id="asset-type" name="asset-type" required>
                 <option value="">Select Asset Type</option>
@@ -280,32 +313,42 @@
                 <option value="Bonus">Bonus</option>
                 <option value="Other">Other</option>
             </select>
-
+    
             <label for="asset-name">Asset Name</label>
-            <input type="text" id="asset-name" name="asset-name" required minlength="2">
-
+            <input type="text" id="asset-name" name="asset-name" required minlength="2" maxlength="40">
+    
             <label for="asset-details">Additional Details</label>
-            <textarea id="asset-details" name="asset-details" rows="4" required minlength="3"></textarea>
-
+            <textarea id="asset-details" name="asset-details" rows="4" required minlength="3" maxlength="100"></textarea>
+    
             <button class="submit-request" type="submit">Submit Request</button>
         </form>
     </div>
-
+    
     <script>
-      
         document.getElementById('asset-request-form').addEventListener('submit', function (e) {
             e.preventDefault();
-
-            const empName = document.getElementById('emp-name').value;
+    
+            const empName = document.getElementById('employeeName').value;
             const empEmail = document.getElementById('emp-email').value;
             const requestDate = document.getElementById('request-date').value;
             const assetType = document.getElementById('asset-type').value;
             const assetName = document.getElementById('asset-name').value;
             const assetDetails = document.getElementById('asset-details').value;
-
-           
+    
+            const currentDate = new Date().toISOString().split('T')[0];
+    
+            if (new Date(requestDate) < new Date(currentDate)) {
+                alert('Please select a valid Date');
+                return false;
+            }
+    
+            if (!empEmail.endsWith('.com')) {
+                alert("Please enter a valid email address ending with .com");
+                return false;
+            }
+    
             let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
-
+    
             const newRequest = {
                 employeeName: empName,
                 email: empEmail,
@@ -315,32 +358,30 @@
                 details: assetDetails,
                 date: new Date().toLocaleDateString()
             };
-
-         
+    
             requests.push(newRequest);
-
+    
             localStorage.setItem('assetRequests', JSON.stringify(requests));
-
+    
             alert('Asset Request Submitted');
             document.getElementById('request-form').style.display = 'none';
-
+            document.getElementById('asset-request-form').reset(); 
             displayRequests();
         });
-
-        
+    
         function displayRequests() {
             const savedRequests = JSON.parse(localStorage.getItem('assetRequests')) || [];
             if (savedRequests.length > 0) {
                 console.log("Saved Requests:", savedRequests);
-             
+               
             }
         }
-
-
+    
         window.onload = function() {
             displayRequests();
         };
     </script>
+    
 </body>
 
 </html>
