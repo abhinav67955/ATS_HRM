@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +21,29 @@
             gap: 40px;
             margin: 0 auto;
             max-width: 1200px;
+        }
+         .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            height: auto;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
         }
 
         .payslipcontainer {
@@ -178,6 +202,7 @@
         .payslip-details {
             margin-bottom: 10px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
         }
 
@@ -197,19 +222,62 @@
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-                gap: 20px;
-            }
+    .main-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+    }
 
-            .Attendance-container, .payslip-container {
-                width: 100%;
-                max-width: 100%;
-            }
-        }
+    .payslipcontainer {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .input-group input {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .payslip-container {
+        width: 100%;
+        max-width: 100%;
+        gap: 10px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .main-content {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .payslipcontainer {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .input-group input {
+        font-size: 12px;
+    }
+}
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Payslip Generator<h1>
+            <p>Track you payslip details here</p>
+    </div>
     <div class="main-content">
         <div class="payslipcontainer">
             <h2>Payslip Generator</h2>
@@ -222,8 +290,22 @@
                         placeholder="Enter your Name" 
                         required 
                         minlength="3" 
-                        pattern="[A-Za-z .]+" 
-                        title="Only alphabetic characters are allowed">
+                        maxlength="50"
+                        pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                        title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                </div>
+
+                <div class="input-group">
+                    <label for="employeeID">Employee Id (Required)</label>
+                    <input 
+                        id="employeeId" 
+                        type="text" 
+                        placeholder="Enter your EmployeeID" 
+                        required 
+                        minlength="7" 
+                        maxlength="7"
+                        pattern="^[A-Z]{3}0[0-9]{3}$" 
+                        title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits">
                 </div>
                 
                 <div class="input-group">
@@ -232,8 +314,10 @@
                         id="email" 
                         type="email" 
                         placeholder="Enter your Email ID" 
-                        required 
-                        title="Please enter a valid email address">
+                        required  
+                        minlength="8"
+                        maxlength="50"
+                        title="Please enter a valid email address that ends with .com">
                 </div>
                 
                 <div class="input-group">
@@ -244,6 +328,7 @@
                         placeholder="Enter your password (min 1 letter, 1 number, 1 symbol)" 
                         required 
                         minlength="5" 
+                        maxlength="50"
                         pattern="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$" 
                         title="Password must be at least 5 characters long and include at least one letter, one number, and one symbol (e.g., @, #, $, %)">
                 </div>
@@ -282,7 +367,7 @@
                 </div>
                 <div class="payslip-details">
                     <label for="employeeId">Employee ID:</label>
-                    <p>12345</p>
+                    <p id="employeeIdDisplay">Employee ID:</p>
                 </div>
                 <div class="payslip-details">
                     <label for="department">Department:</label>
@@ -358,45 +443,91 @@
 
     <script>
         function generatePayslip() {
-            const employeeName = document.getElementById('employeeName').value;
-            const startMonth = document.getElementById('startMonth').value;
-            const endMonth = document.getElementById('endMonth').value;
+    const employeeName = document.getElementById('employeeName').value;
+    const startMonth = document.getElementById('startMonth').value;
+    const endMonth = document.getElementById('endMonth').value;
+    const email = document.getElementById('email').value;
+    const employeeId = document.getElementById('employeeId').value;
+
+
     
-            
-            const currentDate = new Date();
-            const currentYear = currentDate.getFullYear();
-            const currentMonth = currentDate.getMonth() + 1; 
-    
-            const startMonthDate = new Date(startMonth);
-            const startMonthYear = startMonthDate.getFullYear();
-            const startMonthMonth = startMonthDate.getMonth();
-    
-            const endMonthDate = endMonth ? new Date(endMonth) : null;
-            const endMonthYear = endMonthDate ? endMonthDate.getFullYear() : null;
-            const endMonthMonth = endMonthDate ? endMonthDate.getMonth() : null;
-    
-           
-            if (!employeeName || !startMonth || startMonthYear >= currentYear || (startMonthYear === currentYear && startMonthMonth >= currentMonth)) {
-                alert("Invalid selection. Start month cannot be the current or any future month.");
-                return false;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
             }
+   
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+
     
-            if (endMonth && (endMonthYear >= currentYear || (endMonthYear === currentYear && endMonthMonth >= currentMonth))) {
-                alert("Invalid selection. End month cannot be the current or any future month.");
-                return false;
-            }
-    
-            document.getElementById('employeeNameDisplay').textContent = employeeName;
-    
-            const startMonthName = startMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' });
-            const endMonthName = endMonth ? endMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' }) : startMonthName;
-            document.getElementById('payPeriod').textContent = `${startMonthName} - ${endMonthName}`;
-    
-            document.getElementById('payslipContainer').style.display = 'flex';
-    
+    const startMonthDate = new Date(`${startMonth}-01`); 
+    if (isNaN(startMonthDate)) {
+        alert("Invalid start month format.");
+        return false;
+    }
+
+    const startYear = startMonthDate.getFullYear();
+    const startMonthNum = startMonthDate.getMonth();
+
+    let endMonthDate = null;
+    let endYear = null;
+    let endMonthNum = null;
+    if (endMonth) {
+        endMonthDate = new Date(`${endMonth}-01`); 
+        if (isNaN(endMonthDate)) {
+            alert("Invalid end month format.");
             return false;
         }
-    </script>
+        endYear = endMonthDate.getFullYear();
+        endMonthNum = endMonthDate.getMonth();
+    }
+
     
+    if (startYear > currentYear || (startYear === currentYear && startMonthNum > currentMonth)) {
+        alert("Start month cannot be this month or in the future.");
+        return false;
+    }
+
+    if (endMonth && (endYear > currentYear || (endYear === currentYear && endMonthNum > currentMonth))) {
+        alert("End month cannot be this month or in the future.");
+        return false;
+    }
+
+   
+    if (endMonth && (endYear < startYear || (endYear === startYear && endMonthNum <= startMonthNum))) {
+        alert("End month must be greater than the start month.");
+        return false;
+    }
+
+  
+    if (startYear <= 2021) {
+        alert("Invalid start month. It must be after 2021.");
+        return false;
+    }
+
+    if (endMonth && endYear <= 2021) {
+        alert("Invalid end month. It must be after 2021.");
+        return false;
+    }
+
+
+    document.getElementById('employeeNameDisplay').textContent = employeeName;
+    document.getElementById('employeeIdDisplay').textContent = employeeId;
+
+    const startMonthName = startMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+    const endMonthName = endMonth ? endMonthDate.toLocaleString('default', { month: 'long', year: 'numeric' }) : startMonthName;
+
+
+    document.getElementById('payPeriod').textContent = `${startMonthName} - ${endMonthName}`;
+
+  
+    document.getElementById('payslipContainer').style.display = 'flex';
+
+    return false;
+}
+
+    </script>
 </body>
 </html>
