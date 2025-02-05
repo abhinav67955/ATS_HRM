@@ -17,12 +17,33 @@
             font-family: monospace;
             color: #333;
         }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
 
         .main-content {
             display: flex;
             flex-direction: column; 
-            width: 1300px;
-            height: auto;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -32,30 +53,35 @@
         .job-applications {
             display: flex;
             flex-direction: row;
-            gap: 20px;
+            gap: 40px;
             flex-wrap: wrap;
         }
 
         .application-card {
             display: flex;
             flex-direction: column;
-            width: 330px;
+            width: auto;
+            height: auto;
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            align-items: flex-start;
         }
 
         .application-card p {
             font-size: 18px;
             margin: 5px 0;
+            line-height: 1.5;
         }
 
         .application-card .status {
             font-weight: bold;
             margin-top: 10px;
         }
-
+        .status.in-process {
+        color: blue;
+    }
         .application-card .status.pending {
             color: orange;
         }
@@ -69,19 +95,61 @@
         }
 
         button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 100%; 
+            height: 2.6em;
+            line-height: 2.5em;
+            margin-top: 15px;
+            position: relative;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 18px; 
-            background-color: #238dff;
-            color: #fff;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 17px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--color);
+            background-color: var(--bg-color);
+        }
+
+        button:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background: var(--color);
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 0.7s;
         }
 
         button:hover {
-            background-color: #1a6cb3; 
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+
+        button:active {
+            color: var(--color);
+            background-color: #ffffff;
         }
 
         .employee-list {
@@ -100,83 +168,125 @@
         .employee-list li:hover {
             background-color: #d1e7dd; 
         }
+        .application-card p {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    margin: 5px 0;
+}
+
+.label {
+    width: 200px; 
+    text-align: left;
+    font-weight: bold;
+    color: #3b145b;
+}
+
+.colon {
+    width: 20px;
+    text-align: center;
+}
+
+.value {
+    flex: 1; 
+    text-align: left;
+}
+
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Job Applications<h1>
+            <p>Track job applications here</p>
+    </div>
     <div class="main-content">
         <h1>Job Applications</h1>
         
         <div class="job-applications">
             <div class="application-card">
-                <p><strong>Applicant Name:</strong> Applicant 1</p>
-                <p><strong>Position Applied:</strong> Software Developer</p>
-                <p><strong>Application Date:</strong> 01-10-2024</p>
-                <p><strong>Skills:</strong> JavaScript, Node.js, React</p>
-                <p><strong>Experience:</strong> 3 years</p>
-                <p class="status pending">Status: Pending</p>
-                <button>View Details</button>
+                    <p><span class="label">Applicant Name</span> <span class="colon">:</span> <span class="value">Applicant 1</span></p>
+                    <p><span class="label">Position Applied</span> <span class="colon">:</span> <span class="value"> UI/UX Designer</span></p>
+                    <p><span class="label">Application Date</span> <span class="colon">:</span> <span class="value">05-10-2024</span></p>
+                    <p><span class="label">Skills</span> <span class="colon">:</span> <span class="value"> Figma, Sketch, Adobe XD</span></p>
+                    <p><span class="label">Experience</span> <span class="colon">:</span> <span class="value"> 2 years</span></p>
+                    <p><span class="label">Status</span> <span class="colon">:</span> <span class="value status approved">  Approved</span></p>
+                
+                <button onclick="downloadDetails(this)">Download Details</button>
             </div>
 
             <div class="application-card">
-                <p><strong>Applicant Name:</strong> Applicant 2</p>
-                <p><strong>Position Applied:</strong> UI/UX Designer</p>
-                <p><strong>Application Date:</strong> 05-10-2024</p>
-                <p><strong>Skills:</strong> Figma, Sketch, Adobe XD</p>
-                <p><strong>Experience:</strong> 2 years</p>
-                <p class="status approved">Status: Approved</p>
-                <button>View Details</button>
+                <p><span class="label">Applicant</span> <span class="colon">:</span> <span class="value">Applicant 2</span></p>
+                <p><span class="label">Position Applied</span> <span class="colon">:</span> <span class="value">Software Engineer</span></p>
+                <p><span class="label">Application Date</span> <span class="colon">:</span> <span class="value">12-01-2024</span></p>
+                <p><span class="label">Skills</span> <span class="colon">:</span> <span class="value">Java, Spring Boot, MySQL</span></p>
+                <p><span class="label">Experience</span> <span class="colon">:</span> <span class="value">4 years</span></p>
+                <p><span class="label">Status</span> <span class="colon">:</span> <span class="value status approved">Approved</span></p>
+                <button onclick="downloadDetails(this)">Download Details</button>
+            </div>
+        
+            <div class="application-card">
+                <p><span class="label">Applicant</span> <span class="colon">:</span> <span class="value">Applicant 3</span></p>
+                <p><span class="label">Position Applied</span> <span class="colon">:</span> <span class="value">Data Analyst</span></p>
+                <p><span class="label">Application Date</span> <span class="colon">:</span> <span class="value">20-01-2024</span></p>
+                <p><span class="label">Skills</span> <span class="colon">:</span> <span class="value">Python, SQL, Tableau</span></p>
+                <p><span class="label">Experience</span> <span class="colon">:</span> <span class="value">3 years</span></p>
+                <p><span class="label">Status</span> <span class="colon">:</span> <span class="value status rejected">Rejected</span></p>
+                <button onclick="downloadDetails(this)">Download Details</button>
+            </div>
+        
+            <div class="application-card">
+                <p><span class="label">Applicant</span> <span class="colon">:</span> <span class="value">Applicant 4</span></p>
+                <p><span class="label">Position Applied</span> <span class="colon">:</span> <span class="value">Cybersecurity Analyst</span></p>
+                <p><span class="label">Application Date</span> <span class="colon">:</span> <span class="value">25-01-2024</span></p>
+                <p><span class="label">Skills</span> <span class="colon">:</span> <span class="value">Network Security, Ethical Hacking, SIEM</span></p>
+                <p><span class="label">Experience</span> <span class="colon">:</span> <span class="value">5 years</span></p>
+                <p><span class="label">Status</span> <span class="colon">:</span> <span class="value status in-process">In Process</span></p>
+                <button onclick="downloadDetails(this)">Download Details</button>
+            </div>
+        
+            <div class="application-card">
+                <p><span class="label">Applicant</span> <span class="colon">:</span> <span class="value">Applicant 5</span></p>
+                <p><span class="label">Position Applied</span> <span class="colon">:</span> <span class="value">HR Manager</span></p>
+                <p><span class="label">Application Date</span> <span class="colon">:</span> <span class="value">30-01-2024</span></p>
+                <p><span class="label">Skills</span> <span class="colon">:</span> <span class="value">Recruitment, Payroll, Employee Relations</span></p>
+                <p><span class="label">Experience</span> <span class="colon">:</span> <span class="value">7 years</span></p>
+                <p><span class="label">Status</span> <span class="colon">:</span> <span class="value status approved">Approved</span></p>
+                <button onclick="downloadDetails(this)">Download Details</button>
+            </div>
+        
+            <div class="application-card">
+                <p><span class="label">Applicant</span> <span class="colon">:</span> <span class="value">Applicant 6</span></p>
+                <p><span class="label">Position Applied</span> <span class="colon">:</span> <span class="value">Cloud Engineer</span></p>
+                <p><span class="label">Application Date</span> <span class="colon">:</span> <span class="value">05-02-2024</span></p>
+                <p><span class="label">Skills</span> <span class="colon">:</span> <span class="value">AWS, Kubernetes, Terraform</span></p>
+                <p><span class="label">Experience</span> <span class="colon">:</span> <span class="value">6 years</span></p>
+                <p><span class="label">Status</span> <span class="colon">:</span> <span class="value status rejected">Rejected</span></p>
+                <button onclick="downloadDetails(this)">Download Details</button>
             </div>
 
-            <div class="application-card">
-                <p><strong>Applicant Name:</strong> Applicant 3</p>
-                <p><strong>Position Applied:</strong> Project Manager</p>
-                <p><strong>Application Date:</strong> 08-10-2024</p>
-                <p><strong>Skills:</strong> Agile, Scrum, Leadership</p>
-                <p><strong>Experience:</strong> 5 years</p>
-                <p class="status rejected">Status: Rejected</p>
-                <button>View Details</button>
-            </div>
-
-            <div class="application-card">
-                <p><strong>Applicant Name:</strong> Applicant 4</p>
-                <p><strong>Position Applied:</strong> Frontend Developer</p>
-                <p><strong>Application Date:</strong> 10-10-2024</p>
-                <p><strong>Skills:</strong> HTML, CSS, JavaScript, React</p>
-                <p><strong>Experience:</strong> 4 years</p>
-                <p class="status pending">Status: Pending</p>
-                <button>View Details</button>
-            </div>
-
-            <div class="application-card">
-                <p><strong>Applicant Name:</strong> Applicant 5</p>
-                <p><strong>Position Applied:</strong> Backend Developer</p>
-                <p><strong>Application Date:</strong> 12-10-2024</p>
-                <p><strong>Skills:</strong> Node.js, Express, MongoDB</p>
-                <p><strong>Experience:</strong> 6 years</p>
-                <p class="status approved">Status: Approved</p>
-                <button>View Details</button>
-            </div>
-
-            <div class="application-card">
-                <p><strong>Applicant Name:</strong> Applicant 6</p>
-                <p><strong>Position Applied:</strong> Marketing Manager</p>
-                <p><strong>Application Date:</strong> 14-10-2024</p>
-                <p><strong>Skills:</strong> SEO, Google Analytics, Social Media Marketing</p>
-                <p><strong>Experience:</strong> 7 years</p>
-                <p class="status rejected">Status: Rejected</p>
-                <button>View Details</button>
-            </div>
-
-            <div class="application-card">
-                <p><strong>Applicant Name:</strong> Applicant 7</p>
-                <p><strong>Position Applied:</strong> Data Scientist</p>
-                <p><strong>Application Date:</strong> 16-10-2024</p>
-                <p><strong>Skills:</strong> Python, R, Machine Learning</p>
-                <p><strong>Experience:</strong> 3 years</p>
-                <p class="status pending">Status: Pending</p>
-                <button>View Details</button>
-            </div>
+            
         </div>
     </div>
+    <script>
+        function downloadDetails(button) {
+            let card = button.parentElement;
+            let details = "";
+            let fileName = "";
+    
+            card.querySelectorAll("p").forEach(p => {
+                details += p.innerText + "\n";
+            });
+    
+            let applicantName = card.querySelector("p strong").nextSibling.nodeValue.trim();
+            fileName = applicantName.replace(/\s+/g, "_") + "_Application.txt";
+    
+            let blob = new Blob([details], { type: "text/plain" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }
+    </script>
+    
 </body>
 </html>
