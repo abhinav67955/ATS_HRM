@@ -11,6 +11,27 @@
             margin: 0;
             padding: 0;
         }
+        .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+
         .container {
             background-color: #d8e6ff;
             border-radius: 8px;
@@ -68,6 +89,7 @@
             transition: color 0.5s, background 0.5s;
             z-index: 1;
             font-size: 17px;
+           margin-left: 40px;
             border-radius: 6px;
             font-weight: 500;
             color: var(--color);
@@ -218,27 +240,33 @@
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>Bonus & Provident Fund Generator</h1>
+        <p>Track and download your Provident Fund Slip & Bonus Slip</p> 
 
+    </div>
 <div class="container">
     <div class="form">
         <h2>Enter Details</h2>
         <form id="bonus-form">
             <label for="employee-name">Employee Name:</label>
-            <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required  name="employee-name" required  minlength="3" 
-            pattern="[A-Za-z .]+" 
-            title="Only alphabetic characters are allowed">
+            <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required  name="employee-name" required  minlength="3" maxlength="100"
+            pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+            title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
 
             <label for="password">Password:</label>
             <input type="password"  id="Password" name="Password" placeholder="Enter Your Password" required   required 
             minlength="5" 
+            maxlength="50"
             pattern="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$" 
             title="Password must be at least 5 characters long and include at least one letter, one number, and one symbol (e.g., @, #, $, %)">
             
             <label for="month">Month:</label>
-            <input type="month" name="month" id="month">
+            <input type="month" name="month" id="month" required>
 
             <button type="submit">Generate Bonus and PF Slip</button>
         </form>
+        <small class="error-message"></small>
     </div>
 
     <div class="pf-container" id="pf-container">
@@ -259,6 +287,8 @@
         <div class="signature">
             <div><strong>Astrolite Tech Solutions</strong></div>
         </div>
+        <button id="download-pf-btn">Download PF Slip</button>
+
     </div>
 
     <div class="bonus-container" id="bonus-container">
@@ -279,39 +309,101 @@
         <div class="signature">
             <div><strong>Astrolite Tech Solutions</strong></div>
         </div>
+        <button id="download-bonus-btn">Download Bonus Slip</button>
+
     </div>
 </div>
 
 <script>
     document.getElementById('bonus-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var employeeName = document.getElementById('employee-name').value;
-        var month = document.getElementById('month').value;
-        var pfAmount = 1800.00;
-        var bonusAmount = (["2024-01", "2024-03", "2024-06", "2024-11"].includes(month)) ? 3000.00 : 0;
+    event.preventDefault();
+    
 
-        const currentDate = new Date();
-        const currentMonth = currentDate.getMonth() + 1;  
-        const currentYear = currentDate.getFullYear();
+    var employeeName = document.getElementById('employee-name').value;
+    var month = document.getElementById('month').value;
+    var pfAmount = 1800.00;
+    var bonusAmount = (["2024-01", "2024-03", "2024-06", "2024-11"].includes(month)) ? 3000.00 : 0;
 
-        const selectedMonth = new Date(month + "-01");  
-        const selectedYear = selectedMonth.getFullYear();
-        const selectedMonthIndex = selectedMonth.getMonth() + 1; 
+    
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth(); 
+    const currentYear = currentDate.getFullYear();
 
-        if (selectedYear === currentYear && selectedMonthIndex >= currentMonth) {
-            alert("Invalid selection. Start month cannot be the current or any future month.");
-            return false;
-        }
+    
+    const selectedMonth = new Date(month + "-01");  
+    const selectedYear = selectedMonth.getFullYear();
+    const selectedMonthIndex = selectedMonth.getMonth(); 
 
-        document.getElementById('employee-name-span').innerText = employeeName;
-        document.getElementById('employee-name-span-bonus').innerText = employeeName;
-        document.getElementById('month-span').innerText = "Bonus for the month of " + month;
-        document.getElementById('bonus-amount').innerText = bonusAmount > 0 ? bonusAmount.toFixed(2) : "No bonus credited in " + month;
+    
+    if (selectedYear > currentYear || (selectedYear === currentYear && selectedMonthIndex >= currentMonth)) {
+        alert("Invalid selection. The selected month must be in the past.");
+        return false; 
+    }
 
-        document.getElementById('pf-container').style.display = 'block';
-        document.getElementById('bonus-container').style.display = 'block';
-        document.querySelector('.form').style.display = 'none';
-    });
+
+    document.getElementById('employee-name-span').innerText = employeeName;
+    document.getElementById('employee-name-span-bonus').innerText = employeeName;
+    document.getElementById('month-span').innerText = "Bonus for the month of " + month;
+    document.getElementById('bonus-amount').innerText = bonusAmount > 0 ? bonusAmount.toFixed(2) : "No bonus credited in " + month;
+
+  
+    document.getElementById('pf-container').style.display = 'block';
+    document.getElementById('bonus-container').style.display = 'block';
+    document.querySelector('.form').style.display = 'none';
+});
+
+document.getElementById('download-pf-btn').addEventListener('click', function () {
+    var employeeName = document.getElementById('employee-name-span').innerText;
+    var pfAmount = 1800.00;  
+    var month = document.getElementById('month').value;
+    var year = new Date(month).getFullYear();  
+
+    var pfContent = `
+Provident Fund (PF) Slip
+========================
+EMP Code: 39124
+EMP Name: ${employeeName}
+Month: ${month}
+PF No.: 101523065714
+Designation: Developer
+Provident Fund Amount: 1,800.00
+----------------------------------------
+Astrolite Tech Solutions
+`;
+
+    var blob = new Blob([pfContent], { type: 'text/plain' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Provident_Fund_Slip.txt';
+    link.click();
+});
+
+document.getElementById('download-bonus-btn').addEventListener('click', function () {
+    var employeeName = document.getElementById('employee-name-span-bonus').innerText;
+    var bonusAmount = document.getElementById('bonus-amount').innerText;
+    var month = document.getElementById('month').value;
+    var year = new Date(month).getFullYear();  
+
+    var bonusContent = `
+Bonus Slip
+===========
+EMP Code: 39124
+EMP Name: ${employeeName}
+Month: ${month}
+Job Role: Developer
+Bonus Amount: ${bonusAmount}
+----------------------------------------
+Astrolite Tech Solutions
+`;
+
+    
+    var blob = new Blob([bonusContent], { type: 'text/plain' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Bonus_Slip.txt';
+    link.click();
+});
+
 </script>
 
 </body>
