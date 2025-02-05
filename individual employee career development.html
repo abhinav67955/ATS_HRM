@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Development Layout</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .top {
+            height: 100px;
+            padding: 20px;
+            width: 70%;
+            border-radius: 20px;
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            margin-left: 100px;
+            border: 1px solid #000000;
+            padding-left: 90px;
+            margin-top: 40px;
+        }
+        .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .top h1 {
+            font-size: 2.4rem;
+            margin: 0;
+            font-weight: bold;
+            color: rgb(108, 9, 108);
+        }
+
+        .top h1 span {
+            padding-top: 5px;
+            margin-top: 10px;
+            color: blueviolet;
+            display: inline-block;
+        }
+
+        .top p {
+            font-size: 1.7rem;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #62750e;
+        }
+
+    
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .left-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+       
+
+        
+
+        .right-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-left: 50px;
+        }
+
+        .box, .Previous-Achievements, .Current-Progress, .Future-Plans, .Certifications {
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .box:hover, .Previous-Achievements:hover, .Current-Progress:hover, .Future-Plans:hover, .Certifications:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .graph-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .graph {
+            width: 100%;
+            height: 40px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .career-progress {
+            width: 60%;
+            background-color: #4caf50;
+        }
+
+        .absent-days {
+            width: 10%;
+            background-color: #ff9800;
+        }
+
+        .performance {
+            width: 80%;
+            background-color: #2196f3;
+        }
+
+        .Previous-Achievements,
+        .Current-Progress,
+        .Future-Plans,
+        .Certifications {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .Previous-Achievements {
+            background-color: #a60f55;
+        }
+
+        .Current-Progress {
+            background-color: #088557;
+        }
+
+        .Future-Plans {
+            background-color: #ff9800;
+        }
+
+        .Certifications {
+            background-color: #730564;
+        }
+
+        ul {
+            font-size: 1.6rem;
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .line {
+            border: 2px solid black;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .heading {
+            font-size: 1.6rem;
+            background-color: darkgoldenrod;
+            color: white;
+            border-radius: 6px;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .heading2 {
+            font-size: 1.6rem;
+            background-color: rgb(141, 11, 184);
+            color: white;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .heading3 {
+            font-size: 1.6rem;
+            background-color: rgb(11, 152, 184);
+            color: white;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Employee Career Development Page</h1>
+        <p>Review employee career development plans and goals</p>
+    </div>
+    <div class="top">
+        <h1><span>Career</span> Development</h1>
+        <p>Employee01 - Experience : 5 years</p>
+    </div>
+
+    <div class="main-content">
+        <div class="left-content">
+            <div class="Current-Progress">Current Progress</div>
+            <ul>
+                <li><strong>Current Role:</strong> Junior Software Developer</li>
+                <li><strong>Ongoing Projects:</strong> Developing features for the company’s web application.</li>
+                <li><strong>Performance:</strong> Meeting project deadlines and contributing to team discussions.</li>
+            </ul>
+
+            <div class="line"></div>
+
+            <div class="Previous-Achievements">Previous Achievements</div>
+            <ul>
+                <li><strong>Intern of the Year (2022)</strong> - Recognized for outstanding contributions during internship.</li>
+                <li><strong>Best Team Player</strong> - Awarded for collaboration and support to team members.</li>
+            </ul>
+
+            <div class="line"></div>
+
+            <div class="Future-Plans">Future Plans</div>
+            <ul>
+                <li><strong>Goal 1:</strong> Complete a full-stack development course by Q2 2024.</li>
+                <li><strong>Goal 2:</strong> Contribute to open-source projects to enhance coding skills.</li>
+                <li><strong>Goal 3:</strong> Attend a tech conference in 2025 to network with industry professionals.</li>
+            </ul>
+        </div>
+
+        <div class="right-content">
+            <div class="box">
+                <div class="heading">Career Progress</div>
+                <div class="graph-container">
+                    <div class="graph">
+                        <div class="progress-bar career-progress"></div>
+                    </div>
+                    <ul>
+                        <li>Career Progress: 60%</li>
+                        <li>Absent Days: 10%</li>
+                        <li>Performance: 80%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="heading2">Technical Skills</div>
+                <ul>
+                    <li>Proficient in JavaScript, HTML, and CSS.</li>
+                    <li>Familiar with React and Node.js.</li>
+                    <li>Basic knowledge of Python and SQL.</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <div class="heading3">Key Contributions</div>
+                <ul>
+                    <li>Implemented a new feature that improved user experience.</li>
+                    <li>Assisted in debugging and optimizing existing code.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
