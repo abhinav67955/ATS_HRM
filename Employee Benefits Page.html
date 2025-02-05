@@ -22,16 +22,30 @@
             flex-direction: column;
             align-items: center;
         }
+        .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        h1 {
-            font-size: 2.5rem;
-            color: #021c39;
-            text-align: center;
-            font-family: "Jacques Francois", serif;
-            margin-bottom: 50px;
-        }
-
-        .benefit-container {
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+     .benefit-container {
             max-width: 1200px;
             display: flex;
             flex-wrap: wrap;
@@ -136,8 +150,6 @@
         .vacations {
             background: linear-gradient(to bottom, #f3e5f5, #ffffff);
         }
-
-        /* Responsive Design */
         @media (max-width: 1024px) {
             .benefit-container {
                 gap: 20px;
@@ -236,12 +248,15 @@
 </head>
 
 <body>
+    <div class="banner">
+        <h1>Employee Benefits</h1>
+        <p>Track and manage benefits provided by the company.</p>
 
-    <h1>Employee Benefit</h1>
+    </div>
 
     <div class="benefit-container">
         <div class="benefit-card yoga">
-            <img src="self-improvement.png" alt="Yoga Icon">
+            <img src="self-improvement.png" alt="Yoga Icon">            
             <h3>Yoga and Meditation</h3>
             <div class="content-wrapper">
                 <p>Join our weekly yoga and meditation sessions to de-stress and improve mental clarity.</p>
@@ -251,8 +266,8 @@
         </div>
 
         <div class="benefit-card mental-health">
-            <img src="concentrate.png" alt="Mental Health Icon">
-            <h3>Mental Health Support</h3>
+            <img src="concentrate.png" alt="Mental Health Icon">          
+              <h3>Mental Health Support</h3>
             <div class="content-wrapper">
                 <p>Access confidential counseling and resources to support your mental well-being.</p>
                 <div class="program-time">Available Anytime</div>
@@ -320,3 +335,4 @@
 </body>
 
 </html>
+
