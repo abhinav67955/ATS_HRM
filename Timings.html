@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,6 +56,7 @@
         <p><strong>Username:</strong> <span id="username-info"></span></p>
         <p><strong>Login Time:</strong> <span id="login-time-info"></span></p>
         <p class="logout"><strong>Logout Time:</strong> <span id="logout-time-info"></span></p>
+        <p><strong>Location:</strong> <span id="locationName"></span></p>
         <button class="logout-btn" onclick="logout()">Save TimeSheet</button>
     </div>
 
@@ -64,16 +66,18 @@
 
         const username = localStorage.getItem('username');
         const loggedinn = localStorage.getItem('loginTime');
+        const locationName = localStorage.getItem('location')
 
        
         if (!loggedinn || !username) {
             console.error('Login time or username is not available!');
             alert('No active session found. Please log in first.');
-            window.location.href = './login.html';  
+            window.location.href = './login page.html';  
         }
 
         document.getElementById('username-info').textContent = username || 'Not available';
         document.getElementById('login-time-info').textContent = loggedinn || 'Not available';
+        document.getElementById('locationName').textContent = locationName || 'Not available';
 
         const storedLogoutTime = localStorage.getItem('logoutTime');
         const logoutTime = storedLogoutTime || 'Not available'; 
@@ -94,8 +98,9 @@
 
             localStorage.setItem('logoutTime', `${logoutDate} ${logoutTime}`);
 
-            window.location.href = 'Login.html'; 
+            window.location.href = './login page.html'; 
         }
     </script>
 </body>
 </html>
+
