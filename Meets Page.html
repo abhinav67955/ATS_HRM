@@ -23,6 +23,28 @@
       margin: 0;
       padding: 0;
     }
+    .banner {
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
 
     .container {
       display: flex;
@@ -35,7 +57,7 @@
     }
 
     .meeting-form-container {
-      background-color: #000000;
+      background-color: #ffffff;
       padding: 20px;
       border-radius: 1% 10% 1% 2%;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -48,7 +70,7 @@
     }
 
     .header h1 {
-      color: #ffffff;
+      color: #000000;
       font-size: 32px;
       margin: 0;
     }
@@ -56,6 +78,7 @@
     .meeting-form {
       display: flex;
       width: 100%;
+      min-width: 500px;
       flex-direction: column;
     }
 
@@ -66,6 +89,10 @@
       margin: 10px 0;
       border: 2px solid #ccc;
       border-radius: 5px;
+    }
+    textarea{
+      height: 120px;
+      resize: none;
     }
 
     .meeting-form input:focus, .meeting-form textarea:focus {
@@ -121,6 +148,7 @@
       pointer-events: auto;
       transform: scale(1);
       opacity: 1;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
       transition: all 150ms ease-in-out;
       display: flex;
       flex-direction: column;
@@ -137,7 +165,6 @@
       font-size: 0.85rem;
       margin-bottom: 1.5rem;
     }
-
     .description {
       font-size: 0.9rem;
     }
@@ -215,8 +242,8 @@
     }
 
     .circle {
-      width: 40px;
-      height: 40px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: #fff;
       animation: glow 1.6s ease-in-out infinite;
@@ -283,17 +310,26 @@
   </style>
 </head>
 <body>
-
+  <div class="banner">
+    <h1>Meetings Page</h1>
+    <p>schedule new meetings</p>
+</div>
   <div class="container">
     <div class="meeting-form-container">
       <div class="header">
         <h1>Create a Meeting</h1>
       </div>
       <form class="meeting-form" id="meeting-form">
-        <input type="text" id="meeting-title" placeholder="Meeting Title" required minlength="3">
-        <input type="date" id="meeting-date" required minlength="3">
-        <input type="text" id="meeting-link" placeholder="Meeting Link" required minlength="5">
-        <textarea id="meeting-agenda" placeholder="Agenda" rows="4" required minlength="10"></textarea>
+        <label for="meeting-title">Meeting Title</label>
+        <input type="text" id="meeting-title" placeholder="Meeting Title" required minlength="3" maxlength="50">
+        <label for="meeting-date">Meeting Date</label>
+        <input type="date" id="meeting-date" required >
+        <label for="meeting-time">Meeting time</label>
+        <input type="time" id="meeting-time" required >
+        <label for="meeting-time">Meeting Link</label>
+        <input type="text" id="meeting-link" placeholder="Meeting Link" required minlength="5" maxlength="200">
+        <label for="meeting-description">Meeting Description</label>
+        <textarea id="meeting-agenda" placeholder="Agenda" rows="4" required minlength="10" maxlength="100"></textarea>
         <button type="submit">Create Meeting</button>
       </form>
       <div class="glowing-container">
@@ -312,7 +348,7 @@
         <div class="card meeting-card">
           <h4 class="card-title">Employee Performance Review</h4>
           <p class="date">Date: 2024-11-10</p>
-          <p class="description">Location: Conference Room 2</p>
+          
           <div class="meeting-agenda">
             <strong>Agenda:</strong>
             <ul>
@@ -329,7 +365,6 @@
         <div class="card meeting-card">
           <h4 class="card-title">New Hire Orientation</h4>
           <p class="date">Date: 2024-11-12</p>
-          <p class="description">Location: HR Office, Main Building</p>
           <div class="meeting-agenda">
             <strong>Agenda:</strong>
             <ul>
@@ -346,7 +381,6 @@
         <div class="card meeting-card">
           <h4 class="card-title">Compliance Training</h4>
           <p class="date">Date: 2024-11-15</p>
-          <p class="description">Location: Online Webinar</p>
           <div class="meeting-agenda">
             <strong>Agenda:</strong>
             <ul>
@@ -364,38 +398,51 @@
   </div>
 
   <script>
-    document.getElementById('meeting-form').addEventListener('submit', function(event) {
-      event.preventDefault();
+  document.getElementById('meeting-form').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-      const title = document.getElementById('meeting-title').value;
-      const date = document.getElementById('meeting-date').value;
-      const link = document.getElementById('meeting-link').value;
-      const agenda = document.getElementById('meeting-agenda').value;
+  const title = document.getElementById('meeting-title').value;
+  const date = document.getElementById('meeting-date').value;
+  const time = document.getElementById('meeting-time').value;
+  const link = document.getElementById('meeting-link').value;
+  const agenda = document.getElementById('meeting-agenda').value;
 
-      const newCard = document.createElement('div');
-      newCard.classList.add('card', 'meeting-card');
+  
+  const today = new Date().toISOString().split('T')[0]; 
+  
 
-      newCard.innerHTML = `
-        <h4 class="card-title">${title}</h4>
-        <p class="date">Date: ${date}</p>
-        <p class="description">Location: ${link}</p>
-        <div class="meeting-agenda">
-          <strong>Agenda:</strong>
-          <ul>
-            <li>${agenda}</li>
-          </ul>
-        </div>
-        <div class="meeting-actions">
-          <button class="edit-btn">Edit</button>
-          <button class="update-btn">Update</button>
-          <button class="cancel-btn">Cancel</button>
-        </div>
-      `;
+  if (date < today) {
+    alert("The meeting date must be today or in the future.");
+    return; 
+  }
 
-      document.getElementById('cards-container').appendChild(newCard);
+  const newCard = document.createElement('div');
+  newCard.classList.add('card', 'meeting-card');
 
-      document.getElementById('meeting-form').reset();
-    });
+  newCard.innerHTML = `
+    <h4 class="card-title">${title}</h4>
+    <p class="date">Date: ${date}</p>
+        <p class="time">time: ${time}</p>
+    <p class="description">Location: ${link}</p>
+    <div class="meeting-agenda">
+      <strong>Agenda:</strong>
+      <ul>
+        <li>${agenda}</li>
+      </ul>
+    </div>
+    <div class="meeting-actions">
+      <button class="edit-btn">Edit</button>
+      <button class="update-btn">Update</button>
+      <button class="cancel-btn">Cancel</button>
+    </div>
+  `;
+
+  document.getElementById('cards-container').appendChild(newCard);
+
+  
+  document.getElementById('meeting-form').reset();
+});
+
   </script>
 
 </body>
