@@ -1,4 +1,4 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,12 +19,30 @@
             min-height: 100vh;
             padding: 20px;
         }
+        .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        h1 {
-            margin-bottom: 20px;
-            color: #2c3e50;
-            font-size: 2em;
-        }
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
 
         .container {
             display: flex;
@@ -171,7 +189,10 @@
     </style>
 </head>
 <body>
-<h1>Employee Notifications</h1>
+    <div class="banner">
+        <h1>Employee Notifications<h1>
+            <p>View your up-to-date notificaions and keep informed</p>
+    </div>
 <div class="container" id="notifications-container">
   
     <div class="box">
@@ -230,3 +251,4 @@
 
 </body>
 </html>
+
