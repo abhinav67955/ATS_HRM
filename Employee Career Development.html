@@ -22,6 +22,34 @@
       color: #343a40;
     }
 
+    
+    .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 120px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+   
     .container {
       margin: 0 auto;
       padding: 40px;
@@ -250,6 +278,19 @@
     .available-course-card button:hover {
       background-color: #ddd648;
     }
+
+    .course-progress {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px;
+      height: 400px;
+      text-align: center;
+    }
+  
+
     @media (max-width: 768px) {
       .available-course-card {
         width: 48%;
@@ -265,7 +306,10 @@
 </head>
 
 <body>
-
+  <div class="banner">
+    <h1>Your career progression</h1>
+    <p>View & manage your  career progression , track your course and get certified</p>
+</div>
   <div class="container">    
     <div class="profile-card">
         <img src="https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-755-1-1024x683.jpg" alt="Employee Profile">
@@ -380,6 +424,45 @@
       </div>
     </div>
   </div>
+  <div class="course-progress">
+ 
+    <h2>Course Progress Overview</h2>
+    <canvas id="courseProgressChart"></canvas>
+  
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <script>
+   
+    const completedCourses = 3; 
+    const totalCourses = 4; 
+    const remainingCourses = totalCourses - completedCourses;
+
+   
+    const ctx = document.getElementById('courseProgressChart').getContext('2d');
+    const courseProgressChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Completed Courses', 'Ongoing Courses'],
+    datasets: [{
+      data: [3, 4],
+      backgroundColor: ['#399918', '#3674B5'],
+      borderColor: ['#ffffff', '#ffffff'],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'bottom',
+      },
+      tooltip: {
+        enabled: true
+      }
+    }
+  }
+});
+  </script>
 </body>
 </html>
