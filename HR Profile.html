@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,28 @@
             background-color: #ffffff;
             color: #333;
         }
+        .banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 120px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+    font-size: 36px;
+    color: white;
+    font-weight: 600;
+}
+
 
         .profile-container {
             max-width: 80%;
@@ -182,10 +205,13 @@
     </style>
 </head>
 <body>
+    <div class="banner">
+        <h1>HR Profile Page</h1>
+    </div>
 
     <div class="profile-container">
         <div class="profile-header">
-            <img src="https://img.freepik.com/premium-vector/man-professional-business-casual-young-avatar-icon-illustration_1277826-622.jpg" alt="Profile picture of Arvind Kumar, HR Manager">
+            <img id="profile-picture" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%;">
             <div>
                 <h2>HR NAME</h2>
                 <p id="role"><strong>HR Manager - Astrolite Tech Solutions</strong></p>
@@ -234,6 +260,22 @@
             </div>
         </div>
     </div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const username = localStorage.getItem('username')
+      const profilePicture = localStorage.getItem('profilePicture');
+      if (profilePicture) {
+      document.getElementById('profile-picture').src = profilePicture; 
+  } else {
+      document.getElementById('profile-picture').src = 'https://t3.ftcdn.net/jpg/08/20/75/34/360_F_820753420_Nqjb8USaj0J7K82Uo6yZLhCv4roZFBj7.jpg';
+  }
+  
+      if (username) {
+          document.getElementById('username').textContent = username; 
+      }
+  });
+  
+  
+      </script>
 </body>
 </html>
