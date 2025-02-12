@@ -198,12 +198,42 @@ function togg() {
 
   if (circleContainer.classList.contains('visible')) {
      
-      iframeContainer.style.width = 'calc(100% - 250px)'; 
+      iframeContainer.style.width = 'calc(100% - 215px)'; 
   } else {
       
       iframeContainer.style.width = '100%';  
   }
 }
+
+
+
+function togg() {
+  var circleContainer = document.querySelector('.circle-container');
+  var iframeContainer = document.querySelector(".iframe-container");
+  var body = document.body;
+
+  // Toggle visibility of the circle container
+  circleContainer.classList.toggle('visible');
+
+  // Check if the screen width is below 400px
+  if (window.innerWidth <= 400) {
+    // For mobile (400px width or smaller)
+    if (circleContainer.classList.contains('visible')) {
+      iframeContainer.style.width = '100%';  // Adjust iframe width for mobile when circle container is visible
+    } else {
+      iframeContainer.style.width = '100%';  // Reset width for mobile when circle container is hidden
+    }
+  } else {
+    // For normal view (greater than 400px width)
+    if (circleContainer.classList.contains('visible')) {
+      iframeContainer.style.width = 'calc(100% - 60px)';  // Adjust iframe width in normal view
+    } else {
+      iframeContainer.style.width = '100%';  // Reset width in normal view
+    }
+  }
+}
+
+
 
 function toggleDarkMode() {
   const body = document.body;
@@ -220,6 +250,5 @@ window.onload = () => {
     document.body.classList.add('dark-mode');
   }
 };
-
 
 
