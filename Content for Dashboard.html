@@ -400,7 +400,7 @@ canvas {
 
       @media (max-width: 1200px) {
   .projectcontainer {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
 
@@ -450,24 +450,162 @@ canvas {
 }
 
 /* For Very Small Mobile Screens */
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .welcome-text {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .left-box, .right-box {
-    width: 60px;
-    height: 60px;
+    width: 20px;
+    height: 20px;
+  }
+  .container{
+    display: flex;
+    flex-direction: row;
   }
 
   .left-container, .right-container {
-    width: 100%;
+    width: 60%;
     margin: 0;
   }
 
   .left-card {
     width: 100%;
   }
+
+  .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 100px;
+  margin-top: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.left-box, .right-box {
+  position: relative;
+  width: 20px; /* Reduced 10% */
+  height: 20px; /* Reduced 10% */
+  display: flex;
+  align-items: center;
+  transition: transform 3s ease-in-out;
+}
+
+.item {
+  width: 20px; /* Reduced 10% */
+  height: 20px; /* Reduced 10% */
+  position: absolute;
+}
+.weekday,
+.day,
+.empty-day {
+  text-align: center;
+  padding: 3px; /* Reduced 10% */
+  border: 0.9px solid #ddd; /* Reduced 10% */
+  border-radius: 1px; /* Reduced 10% */
+}
+
+.weekday {
+  font-weight: bold;
+  background-color: #eb04f87d;
+  color: white;
+  margin-bottom: 3px; /* Reduced 10% */
+}
+
+
+  @keyframes item-1_move {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, 20px); /* Reduced 10% */
+  }
+  50% {
+    transform: translate(20px, 20px); /* Reduced 10% */
+  }
+  75% {
+    transform: translate(20px, 0); /* Reduced 10% */
+  }
+}
+
+@keyframes item-2_move {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-20px, 0); /* Reduced 10% */
+  }
+  50% {
+    transform: translate(-20px, 20px); /* Reduced 10% */
+  }
+  75% {
+    transform: translate(0, 20px); /* Reduced 10% */
+  }
+}
+
+@keyframes item-3_move {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, -20px); /* Reduced 10% */
+  }
+  50% {
+    transform: translate(-20px, -20px); /* Reduced 10% */
+  }
+  75% {
+    transform: translate(-20px, 0); /* Reduced 10% */
+  }
+}
+
+@keyframes item-4_move {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, 0); /* Reduced 10% */
+  }
+  50% {
+    transform: translate(20px, -20px); /* Reduced 10% */
+  }
+  75% {
+    transform: translate(0, -20px); /* Reduced 10% */
+  }
+}
+
+.container.active .left-box {
+  transform: translateX(-35px); /* Reduced 10% */
+}
+
+.container.active .right-box {
+  transform: translateX(35px); /* Reduced 10% */
+}
+
+.left-calendar {
+  width: 300px; /* Reduced 10% */
+  background: linear-gradient(
+    rgb(221, 221, 255),
+    rgba(255, 255, 255, 0),
+    rgb(221, 221, 255)
+  );
+  padding: 18px; /* Reduced 10% */
+  margin-left: 27px; /* Reduced 10% */
+  box-shadow: 0 3.6px 7.2px rgba(0, 0, 0, 0.1); /* Reduced 10% */
+  border-radius: 7.2px; /* Reduced 10% */
+}
+.projectcontainer {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  flex-wrap: wrap;
+  gap: 45px; /* Reduced 10% */
+  padding: 10px; /* Reduced 10% */
+  margin: 25px; /* Reduced 10% */
+  border-radius: 45px; /* Reduced 10% */
+}
 }
 
 /* Handling Zoom (scaling elements properly) */
@@ -683,3 +821,4 @@ canvas {
     </script>
   </body>
 </html>
+
