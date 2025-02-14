@@ -6,28 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Benefit Cards</title>
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Marko+One&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #ffffff;
-            color: #333;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .banner {
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.banner {
     background-color: #3b145b;
     color: white;
     text-align: center;
-    padding: 10px;
-    height: auto;
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 40px;
@@ -38,212 +39,150 @@
 
 .banner h1 {
     font-size: 36px;
-    color: white;
     font-weight: 600;
 }
+
 .banner p {
+    font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
-     .benefit-container {
-            max-width: 1200px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
 
-        .benefit-card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            width: 200px;
-            height: 200px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: linear-gradient(to bottom, #f0f4f7, #ffffff);
-            align-items: center;
-        }
+.benefit-container {
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
 
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
+.benefit-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 200px;
+    height: 200px;
+    margin-bottom: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #f0f4f7, #ffffff);
+    align-items: center;
+}
 
-        .benefit-card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
-            object-fit: contain;
-        }
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
 
-        .benefit-card h3 {
-            color: #1e4a5f;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-        }
+.benefit-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
 
-        .benefit-card p {
-            font-size: 1rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
+.benefit-card h3 {
+    color: #1e4a5f;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
 
-        .content-wrapper {
-            margin-top: 90px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            width: 200px;
-            height: 250px;
-            display: flex;
-            margin-bottom: 40px;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to top left, #f1f8ff68, #fce0fb70);
-        }
+.benefit-card p {
+    font-size: 1rem;
+    color: #555;
+}
 
-        .program-time {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 15px;
-        }
+.content-wrapper {
+    margin-top: 90px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 220px;
+    height: 250px;
+    display: flex;
+    margin-bottom: 40px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to top left, #f1f8ff68, #fce0fb70);
+}
 
-        .register-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #4b639b;
-            color: white;
-            font-size: 1rem;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
+.program-time {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 15px;
+    min-height: 20px;
+}
 
-        .register-button:hover {
-            background-color: #45a049;
-        }
+.register-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #4b639b;
+    color: white;
+    font-size: 1rem;
+    margin-top: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
 
-        .yoga {
-            background: linear-gradient(to bottom, #e3f2fd, #ffffff);
-        }
+.register-button:hover {
+    background-color: #45a049;
+}
 
-        .mental-health {
-            background: linear-gradient(to bottom, #ffebee, #ffffff);
-        }
+.yoga {
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+}
 
-        .awareness {
-            background: linear-gradient(to bottom, #e8f5e9, #ffffff);
-        }
+.mental-health {
+    background: linear-gradient(to bottom, #ffebee, #ffffff);
+}
 
-        .loans {
-            background: linear-gradient(to bottom, #fff3e0, #ffffff);
-        }
+.awareness {
+    background: linear-gradient(to bottom, #e8f5e9, #ffffff);
+}
 
-        .vacations {
-            background: linear-gradient(to bottom, #f3e5f5, #ffffff);
-        }
-        @media (max-width: 1024px) {
-            .benefit-container {
-                gap: 20px;
-            }
+.loans {
+    background: linear-gradient(to bottom, #fff3e0, #ffffff);
+}
 
-            .benefit-card {
-                width: 180px;
-                height: 180px;
-                padding: 15px;
-            }
+.vacations {
+    background: linear-gradient(to bottom, #f3e5f5, #ffffff);
+}
 
-            .content-wrapper {
-                width: 180px;
-                height: 230px;
-            }
+.content{
+    height: 120px;
+    width: 100%;
+}
 
-            h1 {
-                font-size: 2rem;
-                margin-bottom: 40px;
-            }
-        }
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
 
-        @media (max-width: 768px) {
-            body {
-                padding: 20px;
-            }
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
+    }
 
-            h1 {
-                font-size: 1.8rem;
-                margin-bottom: 30px;
-            }
+    .banner h1 {
+        font-size: 20px;
+    }
 
-            .benefit-container {
-                gap: 15px;
-                justify-content: flex-start;
-            }
+    .banner p {
+        font-size: 12px;
+    }
 
-            .benefit-card {
-                width: 150px;
-                height: 150px;
-                padding: 10px;
-            }
 
-            .content-wrapper {
-                width: 150px;
-                height: 210px;
-            }
+}
 
-            .register-button {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.6rem;
-                margin-bottom: 20px;
-            }
-
-            .benefit-container {
-                gap: 10px;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .benefit-card {
-                width: 140px;
-                height: 140px;
-                padding: 8px;
-            }
-
-            .content-wrapper {
-                width: 140px;
-                height: 200px;
-            }
-
-            .register-button {
-                padding: 8px 18px;
-                font-size: 0.85rem;
-            }
-
-            .program-time {
-                font-size: 0.8rem;
-            }
-
-            .benefit-card h3 {
-                font-size: 1.2rem;
-            }
-        }
     </style>
 </head>
 
@@ -259,7 +198,9 @@
             <img src="self-improvement.png" alt="Yoga Icon">            
             <h3>Yoga and Meditation</h3>
             <div class="content-wrapper">
+                <div class="content">
                 <p>Join our weekly yoga and meditation sessions to de-stress and improve mental clarity.</p>
+                </div>
                 <div class="program-time">Every Monday, 10:00 AM</div>
                 <a href="#" class="register-button" onclick="enroll('Yoga and Meditation', 'Every Monday, 10:00 AM')">Join Now</a>
             </div>
@@ -269,7 +210,9 @@
             <img src="concentrate.png" alt="Mental Health Icon">          
               <h3>Mental Health Support</h3>
             <div class="content-wrapper">
-                <p>Access confidential counseling and resources to support your mental well-being.</p>
+                <div class="content">
+                <p>Mental awareness for employees focuses on stress management, emotional well-being, and mental clarity improvement.</p>
+            </div>
                 <div class="program-time">Available Anytime</div>
                 <a href="#" class="register-button" onclick="arrangeMeeting('Mental Health Support', 'Available Anytime')">Get Support</a>
             </div>
@@ -279,7 +222,9 @@
             <img src="public-service.png" alt="Awareness Icon">
             <h3>Awareness Programs</h3>
             <div class="content-wrapper">
-                <p>Participate in awareness campaigns focusing on health, diversity, and personal growth.</p>
+                <div class="content">
+                <p>Mental awareness for employees focuses on awareness and mental clarity improvement..</p>
+                </div>
                 <div class="program-time">Last Friday of the Month</div>
                 <a href="#" class="register-button" onclick="enroll('Awareness Programs', 'Last Friday of the Month')">Join Now</a>
             </div>
@@ -289,13 +234,15 @@
             <img src="money-bag.png" alt="Loans Icon">
             <h3>Employee Loans</h3>
             <div class="content-wrapper">
-                <p>Apply for personal loans with low interest to manage financial emergencies.</p>
+                <div class="content">
+                <p>An employee loan is a financial advance provided by an employer to an employee.</p>
+                </div>
                 <div class="program-time">Available Year-Round</div>
-                <a href="#" class="register-button" onclick="requestLoan('Employee Loans', 'Available Year-Round')">Request Loan</a>
+                <a href="#" class="register-button" onclick="requestLoan('Employee Loans', 'Available Year-Round')">Request</a>
             </div>
         </div>
 
-        <div class="benefit-card vacations">
+        <!-- <div class="benefit-card vacations">
             <img src="Vacation.png" alt="Company Vacations Icon">
             <h3>Company Vacations</h3>
             <div class="content-wrapper">
@@ -303,7 +250,7 @@
                 <div class="program-time">Every Year, December</div>
                 <a href="#" class="register-button" onclick="enroll('Company Vacations', 'Every Year, December')">Join Now</a>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <script>
@@ -335,4 +282,5 @@
 </body>
 
 </html>
+
 
