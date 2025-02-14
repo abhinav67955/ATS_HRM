@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +35,7 @@
             font-weight: 600;
         }
         .banner p {
+            font-weight: 100;
             font-size: 18px;
             margin-top: 10px;
         }
@@ -46,7 +48,7 @@
             border-bottom-right-radius:30px ;
         }
         .tasks-section {
-            width: 55%;
+            width: 58%;
             padding: 20px;
             display: flex;
             flex-direction: row;
@@ -58,27 +60,47 @@
            
         }
         .taskscard {
-           background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            width: auto;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .employee-name, .employee-id, .project-name, .allocated-task, .submission-time, .deadline {
-            font-size: 18px;
-            color: #444;
-            margin-bottom: 8px;
-        }
-        .task-status {
-            font-weight: bold;
-        }
-    
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: left; 
+    line-height: 1.8; 
+}
+
+.taskscard div {
+    font-size: 16px;
+    color: #444;
+    display: grid;
+    grid-template-columns: 180px 15px auto; /* Ensures proper spacing */
+    align-items: center;
+}
+
+.taskscard strong {
+    color: #3b145b;
+    text-align: left;
+}
+
+.taskscard .separator {
+    text-align: left;
+    font-weight: bold;
+    padding-right: 5px; /* Adds spacing after the colon */
+}
+
+.taskscard span {
+    padding-left: 10px; /* Ensures gap between colon and value */
+}
+
         .form-section {
             width: 45%;
-            padding: 20px;
-            margin: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
@@ -105,15 +127,25 @@
             width: 100%;
         }
         .form-container input[type="file"] {
-            padding: 7px;
+            background-color: white;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            width: 100%;
             margin-bottom: 20px;
+        }
+        .btn-container{
+            display: flex;
+            justify-content: center;
         }
         button {
             --color: #560bad;
             --bg-color: #fff;
             font-family: inherit;
             display: inline-block;
-            width: 95%;
+            width: 50%;
             height: 2.6em;
             line-height: 2.5em;
             margin: 20px;
@@ -185,6 +217,151 @@
             font-size: 14px;
             color: #888;
         }
+        .tasks-section h1 {
+    font-size: 24px;
+    color: #000000; /* Ensure text color is visible */
+    margin: 10px 0;
+}
+/* Responsive Design */
+
+/* Tablet View */
+@media screen and (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .tasks-section,
+    .form-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .taskscard {
+        max-width: 100%;
+    }
+
+    .form-container {
+        width: 95%;
+    }
+
+    .history-section {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    button {
+        width: 70%;
+    }
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+    .banner {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    .main-container {
+        padding: 10px;
+    }
+
+    .tasks-section,
+    .form-section {
+        padding: 5px;
+    }
+
+    .taskscard div {
+        grid-template-columns: 1fr;
+    }
+
+    .taskscard {
+        padding: 15px;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .history-section {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 14px;
+    }
+}
+
+/* Small Mobile View */
+@media screen and (max-width: 450px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    .main-container {
+        padding: 5px;
+    }
+
+    .tasks-section,
+    .form-section {
+        padding: 5px;
+    }
+
+    .taskscard div {
+        grid-template-columns: 2fr;
+    }
+    .taskscard div {
+        display: flex;
+        max-height: 20px;
+        overflow: auto;
+        font-size: 8px;
+    }
+
+    .taskscard {
+        padding: 10px;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .history-section {
+        padding: 8px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 12px;
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -195,13 +372,13 @@
     <div class="main-container">
 
         <div class="tasks-section" id="taskContainer">
-
         </div>
         
         <div class="form-section" id="taskForm">
-            <h2 style="text-align: center;">Upload Completed Task</h2>
+            <h2 style="display: flex; justify-content: center;">Upload Completed Task</h2>
             <div class="form-container">
                 <form id="completedTaskForm" onsubmit="saveCompletedTask(event)">
+
                     <label for="task-name">Task Name</label>
                     <input type="text" id="task-name" name="task-name" required minlength="5" placeholder="Enter Task name" maxlength="100">
                 
@@ -219,8 +396,8 @@
                 
                     <label for="employee-id">Employee ID</label>
                     <input type="text" id="employee-id" name="employee-id" required minlength="7" maxlength="7" 
-                           placeholder="Enter Your ID" pattern="[A-Z]{3}[0-9]{4}" 
-                           title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
+                           placeholder="Enter Your ID" pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
+                           title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
                 
                     <label for="upload-doc">Upload Document</label>
                     <input type="file" id="upload-doc" name="upload-doc" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
@@ -232,42 +409,40 @@
                         <option value="inprocess">In Process</option>
                     </select>
                 
-
-                    <button type="submit">Submit Completed Task</button>
+                    <div class="btn-container">
+                        <button type="submit">Submit Completed Task</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="history-section" id="taskHistory">
-        <h2>Task History</h2>
-        
-    </div>
+  
 
     <script>
        
         let taskHistory = [];
 
         function loadTasks() {
-            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-            const container = document.getElementById('taskContainer');
-            container.innerHTML = '';
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const container = document.getElementById('taskContainer');
+    container.innerHTML = '';
 
-            tasks.forEach(task => {
-                const taskCard = document.createElement('div');
-                taskCard.classList.add('taskscard');
-                taskCard.innerHTML = `
-                    <div class="employee-name"><strong>Employee Name:</strong> ${task.employeeName}</div>
-                    <div class="employee-id"><strong>Employee ID:</strong> ${task.employeeId}</div>
-                    <div class="project-name"><strong>Project Name:</strong> HRMS Portal</div>
-                    <div class="allocated-task"><strong>Allocated Task:</strong> ${task.taskName}</div>
-                    <div class="submission-time"><strong>Allocated Time:</strong> ${task.allocatedTime}</div>
-                    <div class="deadline"><strong>Deadline:</strong> ${task.deadline}</div>
+    tasks.forEach(task => {
+        const taskCard = document.createElement('div');
+        taskCard.classList.add('taskscard');
+        taskCard.innerHTML = `
+            <div><strong>Employee Name</strong> <span class="separator">:</span> <span>${task.employeeName}</span></div>
+            <div><strong>Employee ID</strong> <span class="separator">:</span> <span>${task.employeeId}</span></div>
+            <div><strong>Project Name</strong> <span class="separator">:</span> <span>HRMS Portal</span></div>
+            <div><strong>Allocated Task</strong> <span class="separator">:</span> <span>${task.taskName}</span></div>
+            <div><strong>Allocated Time</strong> <span class="separator">:</span> <span>${task.allocatedTime}</span></div>
+            <div><strong>Deadline</strong> <span class="separator">:</span> <span>${task.deadline}</span></div>
+        `;
+        container.appendChild(taskCard);
+    });
+}
 
-                `;
-                container.appendChild(taskCard);
-            });
-        }
 
         function saveCompletedTask(event) {
     event.preventDefault();
@@ -319,6 +494,9 @@ function loadHistory() {
 window.onload = function() {
     loadHistory();  
 };
+
+
+       
         window.onload = function() {
             loadTasks();
             loadHistory();
