@@ -1,3 +1,6 @@
+
+
+
 let currentMenuVisible = null;
 
 function toggleMenu(color) {
@@ -214,6 +217,59 @@ function togg() {
   }
 }
 
+// function togg() {
+//   var circleContainer = document.querySelector('.circle-container');
+//   var iframeContainer = document.querySelector(".iframe-container");
+//   var body = document.body;
+
+ 
+//   circleContainer.classList.toggle('visible');
+
+//   if (circleContainer.classList.contains('visible')) {
+     
+//       iframeContainer.style.width = 'calc(100% - 215px)'; 
+//   } else {
+      
+//       iframeContainer.style.width = '100%';  
+//   }
+// }
+
+
+
+
+
+
+// function togg() {
+//   var circleContainer = document.querySelector('.circle-container');
+//   var menuContainer = document.querySelector('.menu');  // Assuming the menu has the class "menu"
+//   var iframeContainer = document.querySelector(".iframe-container");
+//   var body = document.body;
+
+//   // Toggle visibility of the circle container and menu container
+//   circleContainer.classList.toggle('visible');
+//   menuContainer.classList.toggle('visible');
+
+//   // Check if the screen width is below 400px
+//   if (window.innerWidth <= 400) {
+//     // For mobile (400px width or smaller)
+//     if (circleContainer.classList.contains('visible')) {
+//       iframeContainer.style.width = '100%';  // Adjust iframe width when circle is open
+//     } else if (menuContainer.classList.contains('visible')) {
+//       iframeContainer.style.width = 'calc(100%-100px)';  // Adjust iframe width when menu is open
+//     } else {
+//       iframeContainer.style.width = '100%';  // Reset width when neither are open
+//     }
+//   } else {
+//     // For normal view (greater than 400px width)
+//     if (circleContainer.classList.contains('visible')) {
+//       iframeContainer.style.width = 'calc(100% - 60px)';  // Adjust iframe width when circle is open
+//     } else if (menuContainer.classList.contains('visible')) {
+//       iframeContainer.style.width = 'calc(100% - 100px)';  // Adjust iframe width when menu is open
+//     } else {
+//       iframeContainer.style.width = '100%';  // Reset width when neither are open
+//     }
+//   }
+// }
 
 function toggleDarkMode() {
   const body = document.body;
@@ -230,5 +286,4 @@ window.onload = () => {
     document.body.classList.add('dark-mode');
   }
 };
-
 
