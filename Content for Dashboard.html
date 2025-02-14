@@ -450,10 +450,11 @@ canvas {
 }
 
 /* For Very Small Mobile Screens */
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   body {
   font-family: Arial, sans-serif;
   margin: 0;
+  left: 0;
   padding: 0;
 }
   .welcome-text {
@@ -483,8 +484,8 @@ canvas {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 60%;
-  margin-left: 100px;
+  width: 100%;
+  margin-left: 20px;
   margin-top: 20px;
   text-align: center;
   overflow: hidden;
@@ -495,7 +496,7 @@ canvas {
   width: 20px; /* Reduced 10% */
   height: 20px; /* Reduced 10% */
   display: flex;
-  align-items: center;
+  
   transition: transform 3s ease-in-out;
 }
 
@@ -604,12 +605,17 @@ canvas {
 .projectcontainer {
   display: flex;
   flex-direction: row;
-  width: 300px;
+  width: 280px;
   flex-wrap: wrap;
   gap: 45px; /* Reduced 10% */
   padding: 10px; /* Reduced 10% */
   margin: 25px; /* Reduced 10% */
   border-radius: 45px; /* Reduced 10% */
+}
+.right-pie-chart {
+  width: 250px; 
+  
+  margin-left: 100px;
 }
 }
 
