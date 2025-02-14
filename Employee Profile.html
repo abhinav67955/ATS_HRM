@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,360 +9,518 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arima:wght@100..700&family=Lobster&family=Satisfy&family=Silkscreen:wght@400;700&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            color: #333;
-            background: white;
-            font-size: 16px;
-        }
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            height: auto;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+body {
+    color: #333;
+    background: white;
+    font-size: 16px;
+}
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-        .main-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.banner {
+    background-color: #3b145b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+   
+    width: 98%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        .employee {
-            margin: 40px 0;
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: space-between;
-           
-            z-index: 1;
-        }
+.banner h1 {
+    font-size: 36px;
+    font-weight: 600;
+}
 
-        .emp {
-            margin: 40px 0;
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            padding: 30px;
-            background: linear-gradient(5deg, #007bff5b 50%, #ae00ff48 50%);          
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: space-between;
-            text-align: left;
-            backdrop-filter: blur(10px);
-            z-index: 1;
-        }
+.banner p {
+    font-weight: 100;
+    font-size: 18px;
+    margin-top: 10px;
+}
 
-        .employee img {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            margin-top: 40px;
-            margin-right: 20px;
-            z-index: 2;
-        }
+.main-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#profile-picture{
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%;
+}
 
-        .employee-details {
-            width: 40%;
-            font-size:20px;
-            color: #000000;
-            z-index: 2;
-        }
+.employee {
 
-        .employee-details i {
-            padding-right: 10px;
-            color: #000000;
-        }
+    width: 70%;
+    height: auto;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    z-index: 1;
+}
+.emp-details{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    gap: 30px;
+    margin-right: auto;
+}
 
-        .employee h5 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #333;
-        }
+.emp {
+    width: 700px;
+    height: auto;
+    max-height: 500px;
+    border-radius: 20px;
+    padding: 10px;
+    background: linear-gradient(5deg, #007bff5b 50%, #ae00ff48 50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
 
-        #username{
-            font-size: 32px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin-bottom: 10px;
-            color: #000000;
-        }
-        .bg {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            width: 390px;
-            height: 270px;
-            z-index: 0;
-            border-radius: 10px;
-        }
+.employee img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-top: 40px;
+    margin-right: 20px;
+    z-index: 2;
+}
 
-        .blob {
-            position: absolute;
-            z-index: 0;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ffaeae, #fcc893, #b5ffee, #a7ecff, #db66ff);
-            opacity: 1;
-            filter: blur(12px);
-            animation: blob-move 15s infinite ease;
-            top: 5%;
-            left: 5%;
-        }
+.employee-details {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+}
 
-        @keyframes blob-move {
-            0% {
-                top: 0;
-                left: 0;
-            }
-            20% {
-                top: 50%;
-                left: 50%;
-            }
-            40% {
-                top: 90%;
-                left: 0;
-            }
-            60% {
-                top: 90%;
-                left: 90%;
-            }
-            80% {
-                top: 50%;
-                left: 90%;
-            }
-            100% {
-                top: 10%;
-                left: 50%;
-            }
-        }
 
-        .skill-set {
-            width: 30%;
-            font-size: 17px;
-            color: #000000;
-            margin-top: 20px;
-            font-family: monospace;
-            padding-left: 20px;
-            z-index: 2;
-        }
+.detail-row {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
 
-        .skill-set h6 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+.detail-row i {
+    width: 30px; 
+    text-align: center;
+    color: #3b145b; 
+}
 
-        .skill-set ul {
-            list-style: none;
-            padding: 0;
-        }
+.detail-label {
+    width: 150px;
+    font-weight: bold;
+    text-align: left;
+}
 
-        .skill-set ul li {
-            font-size: 18px;
-            margin: 5px 0;
-        }
+.separator {
+    width: 10px;
+    text-align: center;
+    font-weight: bold;
+}
 
-        .extra-details {
-            width: 80%;
-            font-size: 17px;
-            margin-top: 20px;
-            color: #000000;
-            font-family: monospace;
-            padding-left: 20px;
-            z-index: 2;
-        }
+.detail-value {
+    flex: 1;
+    text-align: left;
+    font-weight: 400;
+}
 
-        .extra-details h6 {
-            font-size: 18px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
+.detail-label {
+    text-align: left;
+}
 
-        .extra-details ul {
-            list-style: none;
-            padding: 0;
-        }
 
-        .extra-details ul li {
-            font-size: 18px;
-            margin: 5px 0;
-        }
 
-        .Cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-            margin-top: 40px;
-            width: 100%;
-            max-width: 1200px;
-        }
+.employee h5 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
 
-        .card {
-            background: linear-gradient(-345deg, #ffc97944 80%, #ff389532 20%);
-            border-radius: 10px;
-            color: #003479;
-            padding: 20px;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: calc(25% - 20px);
-            height: 120px;
-            cursor: pointer;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+#username {
+    font-size: 32px;
+    margin-left: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    color: #000000;
+}
 
-        .card:hover {
-         
-            color: rgb(2, 2, 2);
-        }
+.bg {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 390px;
+    height: 270px;
+    z-index: 0;
+    border-radius: 10px;
+}
 
-        .card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+.blob {
+    position: absolute;
+    z-index: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ffaeae, #fcc893, #b5ffee, #a7ecff, #db66ff);
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-move 15s infinite ease;
+    top: 5%;
+    left: 5%;
+}
 
-        .card p {
-            font-size: 14px;
-        }
+@keyframes blob-move {
+    0% {
+        top: 0;
+        left: 0;
+    }
+    20% {
+        top: 50%;
+        left: 50%;
+    }
+    40% {
+        top: 90%;
+        left: 0;
+    }
+    60% {
+        top: 90%;
+        left: 90%;
+    }
+    80% {
+        top: 50%;
+        left: 90%;
+    }
+    100% {
+        top: 10%;
+        left: 50%;
+    }
+}
+.skill-extra{
+    display: flex;
+    gap: 30px;
+}
 
-        .arrow {
-            opacity: 0;
-            font-size: 20px;
-            transition: opacity 0.3s ease;
-        }
+.skill-set {
+    background: linear-gradient(5deg, #007bff5b 50%, #ae00ff48 50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #000000;
+    width: 300px;
+    padding: 30px;
+    overflow: auto;
+max-height:300px ;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
 
-        .card:hover .arrow {
-            opacity: 1;
-        }
+.skill-set h5 {
+    display: flex;
+    justify-content: center;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
 
-        @media (max-width: 1200px) {
-            .employee {
-                width: 80%;
-                padding: 20px;
-            }
+.skill-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between columns */
+    max-width: 300px; /* Adjust width as needed */
+    margin: auto;
+}
 
-            .emp {
-                width: 100%;
-            }
+.skill-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.skill-list li span{
+    margin-left: 10px;
+}
 
-            .employee-details, .skill-set, .extra-details {
-                width: 30%;
-            }
-        }
+.skill-list li {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    gap: 10px; /* Space between icon and text */
+    padding: 5px 0;
+}
 
-        @media (max-width: 1024px) {
-            .employee {
-                width: 80%;
-                padding: 20px;
-            }
+.skill-list i {
+    color: #000000; /* Icon color */
+    font-size: 18px;
+}
 
-            .emp {
-                width: 100%;
-            }
+.extra-details {
+    background: linear-gradient(5deg, #007bff5b 50%, #ae00ff48 50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+display: flex;
+padding: 30px;
+border-radius: 10px;
+flex-direction: column;
+overflow: auto;
+max-height:300px ;
+    color: #000000;
+   width: 370px;
+   
+    z-index: 2;
+}
 
-            .employee-details, .skill-set, .extra-details {
-                width: 30%;
-            }
-        }
+.extra-details h5 {
+    display: flex;
+    justify-content: center;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+.details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-        @media (max-width: 900px) {
-            .employee {
-                width: 90%;
-                flex-direction: column;
-                text-align: center;
-                padding: 20px;
-            }
+.details-list li {
+    display: grid;
+    grid-template-columns: 30px 150px 10px auto; /* Adjust column sizes */
+    align-items: center;
+    font-size: 16px;
+   
+    font-family: Arial, sans-serif;
+}
 
-            .employee-details, .skill-set, .extra-details {
-                width: 100%;
-                padding-left: 0;
-                margin-top: 15px;
-            }
+.details-list i {
+    text-align: center;
+    color: #000000; /* Icon color */
+}
 
-            .Cards {
-                flex-direction: column;
-                align-items: center;
-            }
+.details-list .label {
+    text-align: left;
+    flex-shrink: 0; /* Prevents shrinking */
+}
 
-            .card {
-                width: 80%;
-                margin-bottom: 20px;
-            }
-        }
+.details-list .separator {
+    text-align: center;
+    font-weight: bold;
+}
 
-        @media (max-width: 768px) {
-            .employee {
-                width: 90%;
-                padding: 15px;
-            }
+.details-list .value {
+    text-align: left;
+    font-weight: normal;
+}
 
-            .Cards {
-                flex-direction: column;
-                gap: 10px;
-                width: 100%;
-            }
 
-            .card {
-                width: 100%;
-                margin-bottom: 15px;
-            }
-        }
 
-        @media (max-width: 600px) {
-            .employee {
-                width: 100%;
-                height: auto;
-                padding: 15px;
-            }
 
-            .Cards {
-                flex-direction: column;
-                gap: 10px;
-                width: 100%;
-            }
+.Cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+}
 
-            .card {
-                width: 100%;
-                margin-bottom: 15px;
-            }
-        }
+.card {
+    background: linear-gradient(-345deg, #ffc97944 80%, #ff389532 20%);
+    border-radius: 10px;
+    color: #003479;
+    padding: 20px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(25% - 20px);
+    height: 120px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card:hover {
+    color: rgb(2, 2, 2);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.arrow {
+    opacity: 0;
+    font-size: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .arrow {
+    opacity: 1;
+}
+
+.msg{
+    display: flex;
+    flex-direction: column;
+   margin-left: auto;
+   margin-right: auto;
+}
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .employee {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .emp {
+        width: 100%;
+    }
+
+    .employee-details, .skill-set, .extra-details {
+        width: 30%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .employee {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .emp {
+        width: 100%;
+    }
+
+    .employee-details, .skill-set, .extra-details {
+        width: 30%;
+    }
+}
+
+@media (max-width: 900px) {
+    .employee {
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .employee-details, .skill-set, .extra-details {
+        width: 100%;
+        padding-left: 0;
+        margin-top: 15px;
+    }
+
+    .Cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .employee {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .Cards {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 600px) { 
+    .employee { 
+        width: 350px; 
+        display: flex; 
+        flex-direction: column; 
+        height: auto; 
+        padding: 15px; 
+    } 
+    .emp-details { 
+        width: 100%; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px; 
+    } 
+    .emp{
+        display: flex;
+        flex-direction: column;
+    }
+    #profile-picture{
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    .skill-extra { 
+        display: flex; 
+        flex-direction: column; 
+        width: 100%; 
+        align-items: center; 
+        gap: 20px; 
+    } 
+    .skill-set, .extra-details { 
+        width: 100%; 
+        max-width: 350px; 
+    } 
+    .Cards { 
+        flex-direction: column; 
+        gap: 10px; 
+        width: 100%; 
+    } 
+    .card { 
+        width: 100%; 
+        margin-bottom: 15px; 
+    } 
+}
+
     </style>
 </head>
 <body>
@@ -370,34 +530,91 @@
     </div>
     <div class="main-content">
         <div class="employee">
+            <div class="emp-details">
             <div class="emp">
-                <img id="profile-picture" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%;">
+                <img id="profile-picture" alt="Profile Picture">
                     <div class="employee-details">
                     <h5 id="username">Employee Name</h5>
-                    <p><i class="fa-solid fa-id-badge"></i>Employee ID: 001</p>
-                    <p><i class="fa-solid fa-briefcase"></i>Role: Front-end Developer</p>
-                    <p><i class="fa-solid fa-person"></i>Gender: Male</p>
-                    <p><i class="fa-solid fa-cake-candles"></i>DOB: 01-01-2002</p>
-                    <p><i class="fa-solid fa-location-dot"></i>Location: Hyderabad</p>
+                    <div class="detail-row">
+                        <i class="fa-solid fa-id-badge"></i>
+                        <span class="detail-label">Employee ID</span>
+                        <span class="separator">:</span>
+                        <span class="detail-value">ABC001</span>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span class="detail-label">Role</span>
+                        <span class="separator">:</span>
+                        <span class="detail-value">Front-end Developer</span>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fa-solid fa-person"></i>
+                        <span class="detail-label">Gender</span>
+                        <span class="separator">:</span>
+                        <span class="detail-value">Male</span>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fa-solid fa-cake-candles"></i>
+                        <span class="detail-label">DOB</span>
+                        <span class="separator">:</span>
+                        <span class="detail-value">01-01-2002</span>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="detail-label">Location</span>
+                        <span class="separator">:</span>
+                        <span class="detail-value">Hyderabad</span>
+                    </div>
                     
                 </div>
+            </div>
+            <div class="skill-extra">
                 <div class="skill-set">
                     <h5>Skill Set</h5>
-                    <ul>
-                        <li><i class="fa-brands fa-html5"></i> HTML</li>
-                        <li><i class="fa-brands fa-css3-alt"></i> CSS</li>
-                        <li><i class="fa-brands fa-js"></i> JavaScript</li>
-                        <li><i class="fa-brands fa-react"></i> React</li>
-                    </ul>
+                    <div class="skill-container">
+                        <ul class="skill-list">
+                            <li><i class="fa-brands fa-html5"></i> <span>HTML</span></li>
+                            <li><i class="fa-brands fa-css3-alt"></i> <span>CSS</span></li>
+                            <li><i class="fa-brands fa-js"></i> <span>JavaScript</span></li>
+                            <li><i class="fa-brands fa-react"></i> <span>React</span></li>
+                        </ul>
+                        <ul class="skill-list">
+                            <li><i class="fa-brands fa-node"></i><span>Node.js</span></li>
+                            <li><i class="fa-brands fa-python"></i> <span>&nbsp;  Python</span></li>
+                            <li><i class="fa-brands fa-java"></i> <span>&nbsp; Java</span></li>
+                            <li><i class="fa-solid fa-database"></i> <span>&nbsp; SQL</span></li>
+                        </ul>
+                    </div>
+                    
+
                 </div>
                 <div class="extra-details">
                     <h5>Extra Details</h5>
-                    <ul>
-                        <li><i class="fa-solid fa-briefcase"></i> Experience: 1 year</li>
-                        <li><i class="fa-solid fa-project-diagram"></i> Project:HRMS</li>
-                        <li><i class="fa-solid fa-language"></i> Languages: English,Telugu</li>
+                    <ul class="details-list">
+                        <li>
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span class="label">Experience</span>
+                            <span class="separator">:</span>
+                            <span class="value">1 year</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-project-diagram"></i>
+                            <span class="label">Project</span>
+                            <span class="separator">:</span>
+                            <span class="value">HRMS</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-language"></i>
+                            <span class="label">Languages</span>
+                            <span class="separator">:</span>
+                            <span class="value">English, Telugu</span>
+                        </li>
                     </ul>
+                    
+                    
+                    
                 </div>
+            </div>
             </div>
             <div class="bg"></div>
             <div class="blob"></div>
@@ -405,7 +622,7 @@
 
         <div class="Cards">
             <a href="../HR Modules/employee notifocations.html" class="card">
-                <div>
+                <div class="msg">
                     <h3>Notice</h3>
                     <p>Go To Notification Page</p>
                    
@@ -413,14 +630,14 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
             <a href="./Employee Leaves.html" class="card">
-                <div>
+                <div class="msg">
                     <h3>Apply for leave</h3>
                     <p>Go To Leave Request Page</p>
                 </div>
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
             <a href=".//Employee Payroll.html" class="card">
-                <div>
+                <div class="msg">
                     <h3>Salary Slip</h3>
                     <p>Payslip</p>
                     <p>Bonus</p>
@@ -429,7 +646,7 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
             <a href="./Employee Attendance.html" class="card">
-                <div>
+                <div class="msg">
                     <h3>Attendance</h3>
                     <p>Login</p>
                     <p>Track Attendance</p>
@@ -437,14 +654,14 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
             <a href="../HR Modules/bonus PF.html" class="card">
-                <div>
+                <div class="msg">
                     <h3>Bonus</h3>
                     <p>Track Bonus & PF</p>
                 </div>
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
             <a href="./Employee To do task.html" class="card">
-                <div>
+                <div class="msg">
                     <h3>To-Do Task</h3>
                     <p>Check new tasks</p>
                     <p>Submit</p>
@@ -452,15 +669,15 @@
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
             <a href="./Employee WfH.html" class="card">
-                <div>
+                <div class="msg">
                     <h3>WFH Request</h3>
                     <p>WFH Request</p>
                     <p>Track Application</p>
                 </div>
                 <i class="fa-solid fa-arrow-right arrow"></i>
             </a>
-            <a href="./Employee Calender.html" class="card">
-                <div>
+            <a href="yearly calendar.html" class="card">
+                <div class="msg">
                     <h3>Calendar</h3>
                     <p>Check Calendar</p>
                 </div>
@@ -487,4 +704,3 @@
     </script>
 </body>
 </html>
-
