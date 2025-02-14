@@ -41,8 +41,8 @@
     color: white;
     font-weight: 600;
 }
-
 .banner p {
+  font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
@@ -182,7 +182,161 @@
 
     .delete-btn:hover {
       background-color: #c0392b;
+    }/* Tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    .helpdesk-container {
+        width: 80%;
+        margin-left: 10%;
+        padding: 20px;
     }
+
+    .banner {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .banner h1 {
+        font-size: 32px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .helpdesk-description {
+        font-size: 16px;
+    }
+
+    .ticket-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ticket-item .status {
+        margin-top: 10px;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+    .helpdesk-container {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 15px;
+    }
+
+    .banner {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .helpdesk-description {
+        font-size: 14px;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .ticket-item {
+        padding: 10px;
+        font-size: 14px;
+        flex-direction: column;
+    }
+
+    .ticket-item .status {
+        font-size: 14px;
+    }
+
+    .delete-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 480px) {
+    .helpdesk-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .helpdesk-description {
+        font-size: 12px;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .ticket-item {
+        font-size: 12px;
+        padding: 8px;
+        flex-direction: column;
+    }
+
+    .ticket-item .status {
+        font-size: 12px;
+    }
+
+    .delete-btn {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+}
+
   </style>
 </head>
 <body>
