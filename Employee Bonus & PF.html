@@ -31,14 +31,21 @@
     color: white;
     font-weight: 600;
 }
-
+.banner p {
+  font-weight: 100;
+    font-size: 18px;
+    margin-top: 10px;
+}
         .container {
             background-color: #d8e6ff;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 1000px;
-            margin: 50px auto;
+            width: 90%;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
         }
         .form {
             margin-bottom: 30px;
@@ -56,12 +63,13 @@
         }
         .form label {
             display: block;
-            font-size: 14px;
+            font-size: 19px;
             margin: 10px 0 5px;
         }
         .form input {
             padding: 10px;
             width: 90%;
+            font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ddd;
             margin-bottom: 10px;
@@ -130,6 +138,9 @@
             display: none;
             margin-top: 30px;
             padding: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             background-color: #fff;
@@ -159,6 +170,7 @@
         .signature {
             margin-top: 40px;
             text-align: right;
+            font-size: 28px;
         }
         .border {
             border: 1px solid #dee2e6;
@@ -178,64 +190,135 @@
             flex: 1;
             padding: 0 10px;
         }
-        @media (max-width: 768px) {
+       /* Tablets and smaller screens */
+@media screen and (max-width: 1024px) {
     .container {
+        width: 95%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form {
+        width: 80%;
+        height: auto;
+    }
+
+    button {
+        width: 250px;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+    .banner {
         width: 100%;
         padding: 15px;
     }
 
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .container {
+        width: 100%;
+        flex-direction: column;
+        padding: 15px;
+    }
+
     .form {
-        width: 100%;
-        height: auto;
-        margin: 20px 0;
+        width: 90%;
+        padding: 15px;
     }
 
-    .form input,
-    .form select,
+    .form h2 {
+        font-size: 20px;
+    }
+
+    .form label {
+        font-size: 16px;
+    }
+
+    .form input, .form select {
+        width: 100%;
+        font-size: 14px;
+    }
+
     button {
-        width: 100%;
+        width: 220px;
+        font-size: 15px;
     }
 
-    .bonus-container,
-    .pf-container {
-        width: 100%;
+    .bonus-container, .pf-container {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    body {
         padding: 10px;
     }
 
-    .employee-details,
-    .details-section {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 0;
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
     }
 
-    .flex-row {
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+    .container {
+        padding: 10px;
+    }
+
+    .form {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .form h2 {
+        font-size: 18px;
+    }
+
+    .form label {
+        font-size: 14px;
+    }
+
+    .form input, .form select {
+        font-size: 12px;
+        width: 95%;
+    }
+
+    button {
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .bonus-container, .pf-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .employee-details, .details-section {
         flex-direction: column;
-        align-items: flex-start;
     }
 
     .signature {
-        text-align: left;
-        margin-top: 20px;
+        font-size: 20px;
+        text-align: center;
     }
 }
 
-@media (max-width: 480px) {
-    .form input,
-    .form select,
-    button {
-        font-size: 14px;
-    }
-
-    .container-header h3 {
-        font-size: 1.5em;
-    }
-
-    .employee-details div,
-    .details-section div {
-        font-size: 14px;
-    }
-}
 
     </style>
 </head>
@@ -247,14 +330,13 @@
     </div>
 <div class="container">
     <div class="form">
-        <h2>Enter Details</h2>
         <form id="bonus-form">
-            <label for="employee-name">Employee Name:</label>
+            <label for="employee-name">Employee Name</label>
             <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required  name="employee-name" required  minlength="3" maxlength="100"
             pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
             title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
 
-            <label for="password">Password:</label>
+            <label for="password">Password</label>
             <input type="password"  id="Password" name="Password" placeholder="Enter Your Password" required   required 
             minlength="5" 
             maxlength="50"
@@ -408,3 +490,4 @@ Astrolite Tech Solutions
 
 </body>
 </html>
+
