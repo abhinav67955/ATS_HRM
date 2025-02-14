@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +17,7 @@
 
         body {
             display: flex;
-            height: 100vh;
             flex-direction: column;
-            padding: 20px;
             justify-content: flex-start;
             align-items: flex-start;
         }
@@ -27,11 +26,10 @@
     color: white;
     text-align: center;
     padding: 10px;
-    height: auto;
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 40px;
-    width: 98%;
+    width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -42,11 +40,12 @@
     font-weight: 600;
 }
 .banner p {
+    font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
         .leave-container {
-            width: 1200px;
+            width: 1000px;
             height: auto;
             padding: 30px;
             margin: auto;
@@ -219,72 +218,134 @@
             .btn:hover:before {
             --progress: 0;
             }
-            @media (max-width: 1024px) {
-            .leave-container {
-                width: 90%;
-                margin-left: 50px;
-                padding: 25px;
-            }
-
-            .leave-form {
-                grid-template-columns: 1fr 1fr;
-                padding: 0 20px;
-            }
-        }
-
-
-        @media (max-width: 1024px) {
+            @media screen and (max-width: 1024px) {
     .leave-container {
         width: 90%;
-        margin-left: 50px; 
-        padding: 25px;
-    }
-
-    .leave-form {
-        grid-template-columns: 1fr 1fr;
-        padding: 0 20px; 
-    }
-}
-
-@media (max-width: 768px) {
-    .leave-container {
-        width: 100%;
-        margin-left: 20px;
+        height: auto;
         padding: 20px;
-        height: auto; 
+    }
+
+    .leave-container h2 {
+        font-size: 28px;
     }
 
     .leave-form {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
         padding: 0 20px;
     }
 
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .submit-container {
+        grid-column: span 1;
+    }
+
     .btn {
-        padding: 0.6rem 2rem; 
+        padding: 0.6rem 2rem;
+        font-size: 16px;
     }
 }
-@media (max-width: 480px) {
+
+/* Tablet View */
+@media screen and (max-width: 768px) {
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
     .leave-container {
-        width: 100%;
-        margin-left: 0; 
-        padding: 15px; 
+        width: 95%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .leave-container h2 {
+        font-size: 26px;
     }
 
     .leave-form {
-        grid-template-columns: 1fr; 
-        padding: 0 15px; 
-    }
-
-    .btn {
-        padding: 0.5rem 1.5rem;
-    }
-
-    .form-group {
-        font-size: 14px; 
+        grid-template-columns: 1fr;
+        padding: 0 15px;
     }
 
     .form-group label {
-        font-size: 16px; 
+        font-size: 16px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .btn {
+        padding: 0.6rem 1.8rem;
+        font-size: 14px;
+    }
+}
+
+/* Mobile View */
+/* Mobile View Fix */
+@media screen and (max-width: 450px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    .leave-container {
+        width: 100%;
+        padding: 10px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .leave-container h2 {
+        font-size: 22px;
+    }
+
+    .leave-form {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+  
+ 
+    .btn {
+        width: 100%; /* Makes sure it doesn't overflow */
+        max-width: 300px; /* Optional: limit width */
+        padding: 0.8rem 1rem;
+        font-size: 14px;
     }
 }
 
@@ -297,7 +358,6 @@
 </div>
 
     <div class="leave-container">
-        <h2>Employee Leave Form</h2>
         <form class="leave-form" id="leave-form">
             <div class="form-group">
                 <label for="name">Employee Name:</label>
@@ -308,9 +368,8 @@
     
             <div class="form-group">
                 <label for="emp-id">Employee ID:</label>
-                <input type="text" id="emp-id" name="emp-id" placeholder="Enter your Employee ID" required minlength="7" maxlength="7" pattern="^[A-Z]{3}0[0-9]{3}$" 
-                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits">
-            </div>
+                <input type="text" id="emp-id" name="emp-id" placeholder="Enter your Employee ID" required minlength="7" maxlength="7"  pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
+                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
     
             <div class="form-group">
                 <label for="email">Employee Email:</label>
@@ -321,7 +380,7 @@
                 required  
                 minlength="8"
                 maxlength="50"
-                title="Please enter a valid email address that ends with .com">
+                title="Please enter a valid email address">
             </div>
     
             <div class="form-group">
@@ -487,7 +546,10 @@ function validateHours() {
         }
     }
 }
-    </script> 
+
+    </script>
+    
+    
+    
 </body>
 </html>
-
