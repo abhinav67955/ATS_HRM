@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,18 +41,20 @@
             font-weight: 600;
         }
         .banner p {
+            font-weight: 100;
             font-size: 18px;
             margin-top: 10px;
         }
         
         .form-container {
-            width: 1200px;
+            width: 100%;
             height: auto;
             background-color: #fff;
             padding: 30px;
             display: flex;
             flex-direction: column;
             gap: 20px; 
+             margin-bottom: 20px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
@@ -180,25 +181,120 @@
         }
 
       
-        @media screen and (max-width: 880px) {
-            .form-container {
-                width: 90%;
-                height: auto;
-                padding: 20px;
-            }
+        @media screen and (max-width: 1280px) {
+    .form-container {
+        width: calc(100% - 20px); /* Adjust width considering sidebar */
+    }
+}
 
-            h2 {
-                font-size: 2rem;
-            }
+@media screen and (max-width: 1024px) {
+    .form-container {
+        width: calc(100% - 0px); /* Sidebar adjustment */
+        margin-left: 20px; 
+        padding: 20px;
+    }
+}
 
-            .input-group > div {
-                width: 100%; 
-            }
+@media screen and (max-width: 880px) {
+    .form-container {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-            .input-group input, .input-group textarea {
-                width: 100%;
-            }
-        }
+    h2 {
+        font-size: 2rem;
+    }
+
+    .input-group > div {
+        width: 100%; 
+    }
+
+    .input-group input, .input-group textarea {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form-container {
+        width: calc(100% - 300px);
+        margin-left: 50px;
+        padding: 20px;
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 0.6rem 2rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .form-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .input-group {
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 0.5rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+    .form-container {
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .form-group {
+        font-size: 14px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -228,8 +324,8 @@
                            required 
                            minlength="7" 
                            maxlength="7" 
-                           pattern="[A-Z]{3}0[0-9]{3}" 
-                           title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
+                           pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
+                        title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
                 </div>
             </div>
             
@@ -241,7 +337,7 @@
                     required  
                     min="8"
                     maxlength="50"
-                    title="Please enter a valid email address that ends with .com">
+                    title="Please enter a valid email address">
                 </div>
             
                 <div>
@@ -356,3 +452,4 @@
     </script>
 </body>
 </html>
+
