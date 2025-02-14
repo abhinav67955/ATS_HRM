@@ -22,23 +22,27 @@
         }
 
         .banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: 90px;
-    padding-top: 20px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 98%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+            background-color: #3b145b;
+            color: white;
+            text-align: center;
+            height: auto;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-.banner h1 {
-    font-size: 36px;
-    color: white;
-    font-weight: 600;
+        .banner h1 {
+            font-size: 36px;
+            color: white;
+            font-weight: 600;
+        }
+        .banner p {
+  font-weight: 100;
+    font-size: 18px;
+    margin-top: 10px;
 }
         .control-button {
             padding: 10px;
@@ -59,7 +63,7 @@
         #calendar {
             display: flex;
             flex-direction: column;
-            width: 50%;
+            width: 80%;
             margin: 0 auto;
             background: radial-gradient(circle,  
         rgba(255, 241, 215, 0.8) 10%,
@@ -159,11 +163,136 @@
             z-index: 100;
             pointer-events: none;
         }
+        /* Responsive Design */
+
+/* Tablet View */
+@media screen and (max-width: 1024px) {
+    #calendar-controls {
+        width: 70%;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .banner {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    #calendar {
+        width: 90%;
+    }
+
+    .weekday, .day, .empty-day {
+        padding: 15px;
+        font-size: 1em;
+    }
+
+    .control-button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+    #calendar-controls {
+        width: 90%;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    #calendar {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .month {
+        padding: 10px;
+    }
+
+    .weekdays, .days-grid {
+        gap: 3px;
+    }
+
+    .weekday, .day {
+        font-size: 0.9em;
+        padding: 12px;
+    }
+
+    .control-button {
+        width: 80%;
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    #calendar-controls {
+        width: 30%;
+        flex-direction: row;
+    }
+
+    .control-button {
+        width: 50%;
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    #calendar {
+        width: 100%;
+    }
+
+    .weekday, .day {
+        font-size: 0.8em;
+        padding: 8px;
+    }
+}
+
     </style>
 </head>
 <body>
     <div class="banner">
-        <h1>Yearly Calendar<h1>
+        <h1>Calendar<h1>
     </div>
     <div id="calendar-controls">
         <i class="fa-solid fa-chevron-left control-button" onclick="changeMonth(-1)"></i>
@@ -251,3 +380,4 @@
     </script>
 </body>
 </html>
+
