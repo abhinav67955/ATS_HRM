@@ -41,9 +41,10 @@
             font-weight: 600;
         }
         .banner p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
+  font-weight: 100;
+    font-size: 18px;
+    margin-top: 10px;
+}
 
 
     .card-wrapper {
@@ -192,20 +193,135 @@
       margin-top: 20px;
     }
 
-    @media (max-width: 768px) {
-      .form-container {
-        flex-direction: column;
-      }
-
-      .input-group {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-      
-      button {
-        width: 100%;
-      }
+   /* Tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
     }
+
+    .form-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-group {
+        max-width: 100%;
+    }
+
+    button {
+        width: 90%;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+    .banner {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .form-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .input-group {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    input, select {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .schedule-list {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 480px) {
+  body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .form-container {
+        padding: 10px;
+    }
+
+    .input-group {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    input, select {
+        font-size: 12px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .schedule-list {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .schedule-item {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
   </style>
 </head>
 <body>
