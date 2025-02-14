@@ -193,46 +193,26 @@ function togg() {
   var iframeContainer = document.querySelector(".iframe-container");
   var body = document.body;
 
- 
-  circleContainer.classList.toggle('visible');
-
-  if (circleContainer.classList.contains('visible')) {
-     
-      iframeContainer.style.width = 'calc(100% - 215px)'; 
-  } else {
-      
-      iframeContainer.style.width = '100%';  
-  }
-}
-
-
-
-function togg() {
-  var circleContainer = document.querySelector('.circle-container');
-  var iframeContainer = document.querySelector(".iframe-container");
-  var body = document.body;
-
   // Toggle visibility of the circle container
   circleContainer.classList.toggle('visible');
 
   // Check if the screen width is below 400px
-  if (window.innerWidth <= 400) {
+  if (window.innerWidth <= 500) {
     // For mobile (400px width or smaller)
     if (circleContainer.classList.contains('visible')) {
-      iframeContainer.style.width = '100%';  // Adjust iframe width for mobile when circle container is visible
+      iframeContainer.style.width = 'calc(100% - 60px)';  // Adjust iframe width for mobile when circle container is visible
     } else {
       iframeContainer.style.width = '100%';  // Reset width for mobile when circle container is hidden
     }
   } else {
     // For normal view (greater than 400px width)
     if (circleContainer.classList.contains('visible')) {
-      iframeContainer.style.width = 'calc(100% - 60px)';  // Adjust iframe width in normal view
+      iframeContainer.style.width = 'calc(100% - 210px)';  // Adjust iframe width in normal view
     } else {
       iframeContainer.style.width = '100%';  // Reset width in normal view
     }
   }
 }
-
 
 
 function toggleDarkMode() {
