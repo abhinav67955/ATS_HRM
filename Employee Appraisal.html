@@ -14,7 +14,6 @@
 
 body {
     color: #333;
-    padding: 20px;
     font-size: 16px;
 }
 
@@ -26,7 +25,7 @@ body {
     border-radius: 15px;
     margin-bottom: 40px;
     width: 100%;
-    max-width: 1200px;
+   
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -38,6 +37,7 @@ body {
 }
 
 .banner p {
+    font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
@@ -128,16 +128,28 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 95%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
     .banner h1 {
-        font-size: 28px;
+        font-size: 20px;
     }
 
     .banner p {
-        font-size: 16px;
+        font-size: 12px;
     }
-
     .appraisal-card h3 {
         font-size: 18px;
+    }
+    .appraisal-card{
+        width: 350px;
     }
 
     .rating {
@@ -195,4 +207,3 @@ body {
 
 </body>
 </html>
-
