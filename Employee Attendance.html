@@ -38,12 +38,13 @@
 }
 
 .banner h1 {
-    font-size: 36px;
+    font-size: 38px;
     color: white;
     font-weight: 600;
 }
 .banner p {
-    font-size: 18px;
+    font-weight: 100;
+    font-size: 14px;
     margin-top: 10px;
 }
 
@@ -53,7 +54,7 @@
             align-items: flex-start;
             gap: 30px;
             padding: 40px;
-            width: 80%;
+            width: 100%;
             border-radius: 15px;
             margin-top: 10px;
         }
@@ -62,7 +63,7 @@
         .attendance-container {
             display: flex;
             flex-direction: column;
-            width: 50%;
+            width: 100%;
         }
 
          h2 {
@@ -326,17 +327,32 @@
         width: 100%;
     }
 
-    .pie-chart-container {
-        width: 350px;
-        height: 350px;
-    }
+  
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 10px;
+    }
     .main-container {
         width: 100%;
         flex-direction: column;
         padding: 10px;
+        margin-top: 0;
     }
 
     .attendance-container {
@@ -347,6 +363,7 @@
     .attendance-container h2 {
         font-size: 20px;
         text-align: center;
+        display: none;
     }
 
     .employee-info {
@@ -380,25 +397,19 @@
         width: 100%;
     }
 
-    .pie-chart-container {
-        width: 250px;
-        height: 250px;
-    }
+   
 }
 
     </style>
 </head>
 <body>
     <div class="banner">
-        <h1>Employee Attendance<h1>
-    <p>View and track your attendance and manage punch-in and punch-out.</p>
+        <h1>Employee Attendance</h1>
+        <p>View and track your attendance and manage punch-in and punch-out.</p>
     </div>
 
-    
     <div class="main-container">
-        
         <div class="attendance-container">
-            
             <div class="employee-details">
                 <img class="attendance-image" src="https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-755-1-1024x683.jpg" alt="Employee Avatar">
                 <div>
@@ -413,36 +424,35 @@
 
             <form id="attendanceForm">
                 <label for="employeeId">Employee ID:</label>
-                <input type="text" id="employeeId" name="employeeId" required   pattern="[A-Z]{3}0[0-9]{3}" minlength="7" maxlength="7">
+                <input type="text" id="employeeId" name="employeeId" required minlength="7" maxlength="7"
+                pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
+                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
                 <label for="password">Password:</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" required minlength="5" maxlength="50">
                 </div>
                 
                 <div class="punch-container">
-                    <label for="punchToggle" class="switch">
-                        <input type="checkbox" id="punchToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span id="punchTypeLabel">Punch In</span>
+                    
+                    
+                    <input type="radio" id="punchIn" name="punchType" value="Punch In">
+                    <label for="punchIn">Punch In</label>
+
+                    <input type="radio" id="punchOut" name="punchType" value="Punch Out">
+                    <label for="punchOut">Punch Out</label>
                 </div>
-                
-                
 
                 <button type="submit">Submit</button>
             </form>
-        </div>
-        
 
-        <div class="pie-chart-container">
-            <h2>Attendance percentage</h2>
-            <canvas id="attendanceChart"></canvas>
+          
+            <div id="punchRecords" style="margin-top: 20px;  height:500px;
+            overflow: auto;"></div>
         </div>
-
     </div>
 
-
     <script>
+        // Populate employee details from local storage or default values
         const username = localStorage.getItem('Username') || "Ajay Kumar"; 
         const loginTime = localStorage.getItem('loginTime') || "Not Available";  
         const loginDate = new Date().toLocaleDateString();  
@@ -450,39 +460,58 @@
         document.getElementById("employeeName").textContent = username;
         document.getElementById("loginTime").textContent = loginTime;
         document.getElementById("loginDate").textContent = loginDate;
-    
-        const punchContainer = document.createElement('div');
-        punchContainer.id = "punchRecords";
-        punchContainer.style.marginTop = "20px";
-        document.querySelector('.attendance-container').appendChild(punchContainer);
 
-        document.getElementById("attendanceForm").addEventListener("submit", function (event) {
+        // Function to determine and set the next punch type
+        function setNextPunchType() {
+            let punches = JSON.parse(localStorage.getItem("punchData")) || [];
+            let lastPunchType = punches.length > 0 ? punches[punches.length - 1].punchType : "Punch Out"; // Default to Punch Out if no previous punch
+
+            // Toggle the radio buttons based on the last punch type
+            if (lastPunchType === "Punch In") {
+                document.getElementById("punchOut").checked = true;
+                document.getElementById("punchIn").checked = false;
+            } else {
+                document.getElementById("punchIn").checked = true;
+                document.getElementById("punchOut").checked = false;
+            }
+        }
+
+        // Call the function on page load to set the initial state of the radio buttons
+        setNextPunchType();
+
+        // Handle form submission
+        document.getElementById("attendanceForm").addEventListener("submit", function(event) {
             event.preventDefault();
 
             const employeeId = document.getElementById("employeeId").value;
             const password = document.getElementById("password").value;
 
-            const punchType = document.getElementById("punchToggle").checked ? "Punch Out" : "Punch In";
+            // Get the next punch type based on the radio button selected
+            const punchType = document.querySelector('input[name="punchType"]:checked').value;
+            const punchTime = new Date().toLocaleTimeString();
 
             if (!employeeId || !password) {
                 alert("Please enter Employee ID and Password!");
                 return;
             }
 
-            const punchTime = new Date().toLocaleTimeString();
-
+            // Store the punch data in localStorage
             let punches = JSON.parse(localStorage.getItem("punchData")) || [];
             punches.push({ employeeId, punchType, punchTime });
             localStorage.setItem("punchData", JSON.stringify(punches));
 
             displayPunchRecords();
+
+            // After submitting, set the next punch type
+            setNextPunchType();
         });
 
+        // Function to display punch records
         function displayPunchRecords() {
             const punchRecords = document.getElementById("punchRecords");
             punchRecords.innerHTML = "<h3>Punch History</h3>";
-            let punches = JSON.parse(localStorage.getItem("punchData")) || [];
 
+            let punches = JSON.parse(localStorage.getItem("punchData")) || [];
             punches.forEach(punch => {
                 let punchCard = document.createElement("div");
                 punchCard.style.padding = "10px";
@@ -494,69 +523,10 @@
             });
         }
 
-      
-        document.getElementById("punchToggle").addEventListener("change", function() {
-            const label = document.getElementById("punchTypeLabel");
-            label.textContent = this.checked ? "Punch Out" : "Punch In";
-        });
+        // Display punch records on initial load
+        displayPunchRecords();
 
-        const ctx = document.getElementById('attendanceChart').getContext('2d');
-
-        const attendanceChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Present', 'Leave'],
-                datasets: [{
-                    data: [95, 5],
-                    backgroundColor: ['#09b209', '#e64f4a'],
-                    borderColor: ['#08a808', '#c2302c'],
-                    borderWidth: 2,
-                }]
-            },
-            options: {
-                responsive: true,
-                cutout: '70%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            font: {
-                                size: 16,
-                                weight: 'bold',
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
-                            }
-                        }
-                    }
-                }
-            },
-            plugins: [{
-                id: 'centerText',
-                beforeDraw: function(chart) {
-                    let width = chart.width,
-                        height = chart.height,
-                        ctx = chart.ctx;
-
-                    ctx.restore();
-                    let fontSize = (height / 12).toFixed(2);
-                    ctx.font = fontSize + "px Arial";
-                    ctx.textBaseline = "middle";
-
-                    let text = "95%",
-                        textX = Math.round((width - ctx.measureText(text).width) / 2),
-                        textY = height / 2;
-
-                    ctx.fillStyle = "#333"; // Text color
-                    ctx.fillText(text, textX, textY);
-                    ctx.save();
-                }
-            }]
-        });        
+        
     </script>
 </body>
 </html>
