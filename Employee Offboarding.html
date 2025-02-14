@@ -34,6 +34,7 @@
     font-weight: 600;
 }
 .banner p {
+  font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
@@ -49,7 +50,7 @@
     }
 
     h2 {
-      font-size: 18px;
+      font-size: 24px;
       color: #333;
       margin-bottom: 15px;
       display: flex;
@@ -58,14 +59,14 @@
 
     h2 i {
       margin-right: 10px;
-      color: #3d0492;
+      color: #30066e;
     }
 
     label {
-      font-size: 14px;
+      font-size: 20px;
       margin-bottom: 8px;
       display: block;
-      color: #555;
+      color: #212121;
     }
 
     input, select, textarea {
@@ -74,7 +75,7 @@
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      font-size: 14px;
+      font-size: 19px;
     }
 
     textarea {
@@ -84,49 +85,185 @@
     select{
       width: 99.5%;
     }
+    .section{
+      margin-bottom: 20px;
+      background: linear-gradient(rgba(232, 232, 255, 0.763),rgba(255, 223, 255, 0.772));
+      padding: 20px;
+    }
+    .submit-section{
+      display: flex;
+      justify-content: center;
+    }
+    button {
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 320px;
+            height: 2.6em;
+            line-height: 2.5em;
+            margin: 20px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 17px;
+           margin-left: 40px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--color);
+            background-color: var(--bg-color);
+        }
+        button:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background: var(--color);
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 0.7s;
+        }
+        button:hover {
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+        button:active {
+            color: var(--color);
+            background-color: #ffffff;
+        }
 
+  /* For tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    body {
+        padding: 20px;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    input, select, textarea {
+        font-size: 17px;
+    }
 
     button {
-      background-color: #4d6aff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      width: auto;
-      margin-top: 20px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+        width: 260px;
+        font-size: 16px;
+    }
+}
+
+/* For mobile devices */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
     }
 
-    button i {
-      margin-right: 10px;
+    .banner {
+        width: 100%;
+        padding: 15px;
     }
 
-    button:hover {
-      border-top: 2px solid blueviolet;
-      border-left: 2px solid blueviolet;
-      border-bottom: 2px solid rgb(238, 103, 238);
-      border-right: 2px solid rgb(238, 103, 238);
-      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px;
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+    input, select, textarea {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    select {
+        width: 100%;
     }
 
     .section {
-      margin-bottom: 20px;
-    }
-
-    @media screen and (max-width: 600px) {
-      .form-container {
         padding: 15px;
-      }
-
-      button {
-        font-size: 14px;
-      }
     }
+
+    button {
+        width: 80%;
+        font-size: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 98%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    input, select, textarea {
+        font-size: 15px;
+        padding: 7px;
+    }
+
+    .section {
+        padding: 10px;
+    }
+
+    button {
+        width: 90%;
+        font-size: 14px;
+        padding: 6px;
+    }
+}
+
   </style>
 </head>
 <body>
@@ -149,14 +286,14 @@
                 <input type="email" id="email" name="email" required placeholder="Enter your email address" 
                 min="8"
                 maxlength="50"
-                title="Please enter a valid email address that ends with .com">
+                title="Please enter a valid email address">
     
     <label for="employee-id">Employee ID</label>
     <input type="text" id="employee-id" name="employee-id" required
     minlength="7" 
     maxlength="7" 
-    pattern="[A-Z]{3}0[0-9]{3}" 
-    title="Employee ID must be in the format: 3 uppercase letters followed by 4 numbers">
+    pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
+    title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
     
     <label for="employee-department">Department</label>
     <input type="text" id="employee-department" name="employee-department" required minlength="3" maxlength="40">
