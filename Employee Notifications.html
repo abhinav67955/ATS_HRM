@@ -16,8 +16,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
         }
         .banner {
     background-color: #3b145b;
@@ -39,6 +37,7 @@
     font-weight: 600;
 }
 .banner p {
+    font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
@@ -186,6 +185,145 @@
                 transform: translate(-10px);
             }
         }
+        /* Responsive Design */
+
+/* Tablet View (1024px and below) */
+@media screen and (max-width: 1024px) {
+    .banner {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .banner h1 {
+        font-size: 28px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: 900px;
+    }
+
+    .container .box {
+        width: 400px;
+        height: 320px;
+        margin: 30px 15px;
+        padding-top: 30px;
+    }
+
+    .container .box .content {
+        padding: 20px 30px;
+    }
+
+    .container .box .content h2 {
+        font-size: 1.4em;
+    }
+
+    .container .box .content p {
+        font-size: 0.9em;
+    }
+
+    .container .box .content a {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+}
+
+/* Mobile View (768px and below) */
+@media screen and (max-width: 768px) {
+    .banner {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container .box {
+        width: 90%;
+        height: auto;
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+    .container .box .content {
+        padding: 15px 20px;
+    }
+
+    .container .box .content h2 {
+        font-size: 1.3em;
+    }
+
+    .container .box .content p {
+        font-size: 0.9em;
+    }
+
+    .container .box .content a {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+}
+
+/* Small Mobile View (450px and below) */
+@media screen and (max-width: 450px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+    .container {
+        width: 100%;
+    }
+
+    .container .box {
+        width: 95%;
+        height: auto;
+        margin: 15px 5px;
+        padding: 15px;
+    }
+
+    .container .box .content {
+        padding: 10px 15px;
+    }
+
+    .container .box .content h2 {
+        font-size: 1.2em;
+    }
+
+    .container .box .content p {
+        font-size: 0.85em;
+    }
+
+    .container .box .content a {
+        font-size: 0.85em;
+        padding: 6px 10px;
+    }
+}
+
     </style>
 </head>
 <body>
