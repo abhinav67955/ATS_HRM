@@ -45,6 +45,7 @@
 }
 
 .banner p {
+  font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
@@ -63,7 +64,7 @@
       margin-bottom: 40px;
       display: flex;
       align-items: center;
-      background: linear-gradient(135deg, #1888ff 50%, #38d4ff 50%);
+      background: linear-gradient(135deg, #87c1ff 50%, #8ce6ff 50%);
       color: white;
     }
     .extra-info{
@@ -81,6 +82,7 @@
 
     .profile-card .profile-details {
       flex-grow: 1;
+      color: #000000;
     }
 
     .profile-card h2 {
@@ -118,7 +120,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       margin-bottom: 30px;
       transition: transform 0.3s ease-in-out;
-      width: 280px;
+      width: 250px;
       background: linear-gradient(135deg, #d6a5f5 10%, #ffffff9e 60%, rgba(202, 140, 249, 0.795) );
     }
 
@@ -150,7 +152,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       margin-bottom: 30px;
       transition: transform 0.3s ease-in-out;
-      width: 280px;
+      width: 250px;
       background: linear-gradient(135deg, #a5f5e2 10%, #ffffff9e 60%, rgba(185, 252, 239, 0.795) );
     }
 
@@ -184,40 +186,37 @@
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 1.1em;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 15px;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
+  padding: 10px 20px;
+  font-size: 1.1em;
+  color: rgb(255, 255, 255);
+  background-color: rgb(23, 23, 158);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Ensures text within button is centered */
+}
 
-    .course-card button {
-      background-color: #2862df;
-    }
+/* Ensures all course cards and available course cards align in rows */
+.ongoing, .completed, .available-courses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between; /* Evenly distributes space between items */
+}
 
-    .course-card button:hover {
-      background-color: #214e88;
-    }
+.course-card, .course-cards, .available-course-card {
+  width: 240px; /* Set a consistent width for cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Aligns content within the card */
+}
 
-    .available-course-card button {
-      background-color: #edea59;
-    }
-
-    .available-course-card button:hover {
-      background-color: #e0d253;
-    }
-
-    .completed .course-cards button {
-      background-color: #149908;
-    }
-
-    .completed .course-cards button:hover {
-      background-color: #07982e;
-    }
+.ongoing .course-card, .completed .course-cards, .available-courses .available-course-card {
+  margin-bottom: 20px; /* Keeps the cards separated */
+}
 
     .available-courses {
       display: flex;
@@ -230,7 +229,7 @@
       background-color: #ffffff;
       border-radius: 10px;
       padding: 20px;
-      width: 24%;
+      width: 250px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
@@ -290,18 +289,137 @@
       text-align: center;
     }
   
+    @media screen and (max-width: 1024px) {
+  .banner {
+    height: 100px;
+  }
 
-    @media (max-width: 768px) {
-      .available-course-card {
-        width: 48%;
-      }
+  .banner h1 {
+    font-size: 30px;
+  }
+
+  .banner p {
+    font-size: 16px;
+  }
+
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-card img {
+    margin-bottom: 15px;
+  }
+
+  .profile-card h2 {
+    font-size: 1.5em;
+  }
+
+  .course-progress {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .banner {
+    height: 90px;
+    padding: 5px;
+  }
+
+  .banner h1 {
+    font-size: 24px;
+  }
+
+  .banner p {
+    font-size: 14px;
+  }
+
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .profile-card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-card h2 {
+    font-size: 1.4em;
+  }
+
+  .profile-card p {
+    font-size: 1em;
+  }
+
+  .ongoing, .completed, .available-courses {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .course-card, .course-cards, .available-course-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .course-progress {
+    width: 250px;
+    height: 250px;
+  }
+
+  button {
+    font-size: 1em;
+    padding: 8px 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+        padding: 10px;
     }
 
-    @media (max-width: 480px) {
-      .available-course-card {
-        width: 100%;
-      }
+    .banner {
+        width: 95%;
+        padding: 10px;
+        border-radius: 10px;
     }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+
+  .profile-card {
+    padding: 10px;
+  }
+
+  .profile-card h2 {
+    font-size: 1.2em;
+  }
+  .extra-info{
+    margin-left: 22px;
+  }
+
+  .course-card, .course-cards, .available-course-card {
+    max-width: 250px;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 7px 12px;
+  }
+}
   </style>
 </head>
 
@@ -315,13 +433,13 @@
         <img src="https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-755-1-1024x683.jpg" alt="Employee Profile">
         <div class="profile-details">
           <h2>Employee Name</h2>
-          <p>Software Engineer</p>
+          <p>EmployeeID: ATS0121</p>
           <p>Joined: January 2023</p>
-          <p class="credit-points"><span>🪙</span> Current Credit Points: 86</p>
+          <p class="credit-points"><span>🪙</span>Current Points:86</p>
         </div>
       
         <div class="extra-info">
-          <p><strong>Skills:</strong> JavaScript, React, Node.js</p>
+          <p><strong>Skills:</strong> <br> JavaScript, <br> React, <br> Node.js</p>
           <p><strong>Role:</strong> Software Developer</p>
           <p><strong>Certifications:</strong>04</p>
         </div>
@@ -383,7 +501,7 @@
 
       <div class="course-cards">
         <h3>SQL for Data Science</h3>
-        <p>Learn SQL to query databases and perform data analysis and for backend development./p>
+        <p>Learn SQL to query databases and perform data analysis and for backend development.</p>
         <div class="status completed">Completed</div>
         <button>View Certificate</button>
       </div>
@@ -466,3 +584,4 @@
   </script>
 </body>
 </html>
+
