@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,15 +51,20 @@
             padding: 0 30px;
         }
 
+       
         .Assets-List {
-            padding: 20px;
-            background: linear-gradient(rgb(255, 255, 255), rgba(220, 242, 220, 0.527));
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.2s;
-        }
+    padding: 20px;
+    background: linear-gradient(white);
+    border: 1px solid #ddd;
+    min-height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    justify-content: space-between; /* Pushes the button to the bottom */
+}
 
         .Assets-List:hover {
             transform: translateY(-5px);
@@ -66,7 +72,7 @@
 
         .Assets-List h3 {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            color: #9e0086;
+            color: #0d009e;
             font-size: 24px;
             margin-bottom: 10px;
         }
@@ -76,22 +82,17 @@
             color: #555;
         }
 
-        .Assets-List button {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        button.view-details {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
-        }
+button.view-details { 
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    margin-top: auto; /* Pushes the button to the bottom */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+}
 
         button.view-details:hover {
             background: linear-gradient(135deg, #2575fc, #6a11cb);
@@ -221,6 +222,225 @@
             background-color: #138496;
             color: white;
         }
+        .asset-details p {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 5px 0;
+}
+
+.asset-details p i {
+    width: 25px;
+    color: #00719e;
+}
+
+.asset-details p span:nth-child(2) { 
+    flex: 2;
+    text-align: left;
+    font-weight: bold;
+}
+
+.asset-details p span:nth-child(3) { 
+    flex: 0.5;
+    text-align: center;
+}
+
+.asset-details p span:nth-child(4) { 
+    flex: 2;
+    text-align: left;
+}
+/* Responsive Design */
+
+/* Tablet View (1024px and below) */
+@media screen and (max-width: 1024px) {
+    .banner {
+        width: 95%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 0 15px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .Assets-List {
+        padding: 15px;
+    }
+
+    .Assets-List h3 {
+        font-size: 22px;
+    }
+
+    .request-form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .request-form h2 {
+        font-size: 24px;
+    }
+
+    .request-form input,
+    .request-form select,
+    .request-form textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .request-form button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .asset-details p {
+        font-size: 14px;
+    }
+}
+
+/* Mobile View (768px and below) */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 26px;
+    }
+
+    .banner p {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 10px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .Assets-List {
+        padding: 12px;
+    }
+
+    .Assets-List h3 {
+        font-size: 20px;
+    }
+
+    .Assets-List p {
+        font-size: 13px;
+    }
+
+    .request-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .request-form h2 {
+        font-size: 22px;
+    }
+
+    .request-form input,
+    .request-form select,
+    .request-form textarea {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .request-form button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .asset-details p {
+        font-size: 13px;
+    }
+}
+
+/* Small Mobile View (450px and below) */
+@media screen and (max-width: 450px) {
+      body {
+        padding: 10px;
+    }
+
+    .banner {
+        width: 95%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+
+    .container {
+        width: 98%;
+        padding: 0;
+    }
+
+    .Assets-List {
+        width: 98%;
+        padding: 10px;
+    }
+
+    .Assets-List h3 {
+        font-size: 18px;
+    }
+
+    .Assets-List p {
+        font-size: 12px;
+    }
+
+    .request-form {
+        width: 97%;
+        padding: 8px;
+    }
+
+    .request-form h2 {
+        font-size: 20px;
+    }
+
+    .request-form input,
+    .request-form select,
+    .request-form textarea {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .request-form button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .show-form-btn button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .asset-details p {
+        font-size: 12px;
+    }
+}
+
+
     </style>
 </head>
 
@@ -231,54 +451,67 @@
     </div>
     <div class="container">
         <div class="Assets-List allocated-laptop">
-            <h3><i class="fas fa-laptop icon"></i>&nbsp; &nbsp; Allocated Laptop</h3>
-            <p><i class="fas fa-laptop icon"></i>&nbsp; Brand: Lenovo</p>
-            <p><i class="fas fa-cogs icon"></i>&nbsp; Model: ThinkPad</p>
-            <p><i class="fas fa-code-branch icon"></i>&nbsp; Version: 10.0.22631</p>
-            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Allocated Date: 06-09-2024</p>
+            <h3><i class="fas fa-laptop icon"></i> &nbsp; Allocated Laptop</h3>
+            <div class="asset-details">
+                <p><i class="fas fa-laptop icon"></i> <span>Brand</span> <span>:</span> <span>Lenovo</span></p>
+                <p><i class="fas fa-cogs icon"></i> <span>Model</span> <span>:</span> <span>ThinkPad</span></p>
+                <p><i class="fas fa-code-branch icon"></i> <span>Version</span> <span>:</span> <span>10.0.22631</span></p>
+                <p><i class="fas fa-calendar-alt icon"></i> <span>Allocated Date</span> <span>:</span> <span>06-09-2024</span></p>
+            </div>
             <button class="view-details" onclick="showdetails('Allocated Laptop: Lenovo ThinkPad')"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
 
         <div class="Assets-List office-supplies">
-            <h3><i class="fas fa-boxes icon"></i> &nbsp; &nbsp;Office Supplies</h3>
-            <p><i class="fas fa-book icon"></i> &nbsp;Note Book</p>
-            <p><i class="fas fa-pen icon"></i> &nbsp;Pen</p>
-            <p><i class="fas fa-mouse icon"></i>&nbsp; Mouse, Laptop Bag</p>
-            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Allocated Date: 06-09-2024</p>
-            <button class="view-details" onclick="showdetails('Office Supplies: Note Book, Pen, Mouse, Laptop Bag')"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
+            <h3><i class="fas fa-boxes icon"></i> &nbsp; Office Supplies</h3>
+            <div class="asset-details">
+                <p><i class="fas fa-book icon"></i> <span>Item</span> <span>:</span> <span>Note Book</span></p>
+                <p><i class="fas fa-pen icon"></i> <span>Item</span> <span>:</span> <span>Pen</span></p>
+                <p><i class="fas fa-mouse icon"></i> <span>Item</span> <span>:</span> <span>Mouse, Laptop Bag</span></p>
+                <p><i class="fas fa-calendar-alt icon"></i> <span>Allocated Date</span> <span>:</span> <span>06-09-2024</span></p>
+            </div>
+            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
-
+        
         <div class="Assets-List current-project">
-            <h3><i class="fas fa-project-diagram icon"></i>&nbsp; &nbsp;Current Project</h3>
-            <p><i class="fas fa-clipboard-list icon"></i>&nbsp; Project: New HRMS Website</p>
-            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Started: 07-09-2024</p>
-            <p><i class="fas fa-calendar-check icon"></i>&nbsp; Due Date: 31-12-2024</p>
-            <button class="view-details" onclick="showdetails('Current Project: HRMS Portal')"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
+            <h3><i class="fas fa-project-diagram icon"></i> &nbsp; Current Project</h3>
+            <div class="asset-details">
+                <p><i class="fas fa-clipboard-list icon"></i> <span>Project</span> <span>:</span> <span>New HRMS Website</span></p>
+                <p><i class="fas fa-calendar-alt icon"></i> <span>Started</span> <span>:</span> <span>07-09-2024</span></p>
+                <p><i class="fas fa-calendar-check icon"></i> <span>Due Date</span> <span>:</span> <span>31-12-2024</span></p>
+            </div>
+            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
-
+        
         <div class="Assets-List current-assignment">
-            <h3><i class="fas fa-tasks icon"></i>&nbsp; &nbsp; Current Assignment</h3>
-            <p><i class="fas fa-clipboard-check icon"></i>&nbsp; Project: UI Designs</p>
-            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Started: 10-10-2024</p>
-            <p><i class="fas fa-calendar-check icon"></i>&nbsp; Due Date: 15-10-2024</p>
-            <button class="view-details" onclick="showdetails('Current Assignment: UI Designs')"><i class="fas fa-info-circle icon"></i>&nbsp; View Details</button>
+            <h3><i class="fas fa-tasks icon"></i> &nbsp; Current Assignment</h3>
+            <div class="asset-details">
+                <p><i class="fas fa-clipboard-check icon"></i> <span>Project</span> <span>:</span> <span>UI Designs</span></p>
+                <p><i class="fas fa-calendar-alt icon"></i> <span>Started</span> <span>:</span> <span>10-10-2024</span></p>
+                <p><i class="fas fa-calendar-check icon"></i> <span>Due Date</span> <span>:</span> <span>15-10-2024</span></p>
+            </div>
+            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
-
+        
         <div class="Assets-List bonus">
-            <h3><i class="fas fa-dollar-sign icon"></i>&nbsp; Bonus</h3>
-            <p><i class="fas fa-money-bill icon"></i>&nbsp; Amount: ₹5000</p>
-            <p><i class="fas fa-calendar-alt icon"></i>&nbsp; Credited Date: 01-10-2024</p>
-            <button class="view-details" onclick="showdetails('Bonus: 100$ Credited!!')"><i class="fas fa-info-circle icon"></i>&nbsp; View Details</button>
+            <h3><i class="fas fa-dollar-sign icon"></i> &nbsp; Bonus</h3>
+            <div class="asset-details">
+                <p><i class="fas fa-money-bill icon"></i> <span>Amount</span> <span>:</span> <span>₹5000</span></p>
+                <p><i class="fas fa-calendar-alt icon"></i> <span>Credited Date</span> <span>:</span> <span>01-10-2024</span></p>
+            </div>
+            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
         </div>
-
+        
         <div class="Assets-List training-program">
-            <h3><i class="fas fa-graduation-cap icon"></i>&nbsp; &nbsp; Training Program</h3>
-            <p><i class="fas fa-book-open icon"></i>&nbsp; Course: Full Stack Web Development</p>
-            <p><i class="fas fa-laptop-code icon"></i>&nbsp; Current Topic: __</p>
-            <p><i class="fas fa-tv icon"></i>&nbsp; Mode: Online</p>
-            <p><i class="fas fa-chalkboard-teacher icon"></i>&nbsp; Platform: Udemy</p>
-            <button class="view-details" onclick="showdetails('Training: Udemy, Web Development')"><i class="fas fa-info-circle icon"></i>&nbsp; View Details</button>
-        </div> 
+            <h3><i class="fas fa-graduation-cap icon"></i> &nbsp; Training Program</h3>
+            <div class="asset-details">
+                <p><i class="fas fa-book-open icon"></i> <span>Course</span> <span>:</span> <span>Full Stack Web Development</span></p>
+                <p><i class="fas fa-laptop-code icon"></i> <span>Current Topic</span> <span>:</span> <span>__</span></p>
+                <p><i class="fas fa-tv icon"></i> <span>Mode</span> <span>:</span> <span>Online</span></p>
+                <p><i class="fas fa-chalkboard-teacher icon"></i> <span>Platform</span> <span>:</span> <span>Udemy</span></p>
+            </div>
+            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
+        </div>
+        
     </div>
 
     <div class="show-form-btn">
@@ -298,7 +531,7 @@
             <label for="emp-email">Email ID</label>
             <input type="email" id="emp-email" name="emp-email" required min="8"
             maxlength="50"
-            title="Please enter a valid email address that ends with .com">
+            title="Please enter a valid email address">
     
             <label for="request-date">Date of Request</label>
             <input type="date" id="request-date" name="request-date" required>
@@ -341,11 +574,11 @@
                 alert('Please select a valid Date');
                 return false;
             }
-    
-            if (!empEmail.endsWith('.com')) {
-                alert("Please enter a valid email address ending with .com");
-                return false;
-            }
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(empEmail)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
     
             let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
     
@@ -369,17 +602,16 @@
             displayRequests();
         });
     
-        function displayRequests() {
-            const savedRequests = JSON.parse(localStorage.getItem('assetRequests')) || [];
-            if (savedRequests.length > 0) {
-                console.log("Saved Requests:", savedRequests);
-               
-            }
-        }
+        
+        
+       
+
+    function showdetails(message) {
+        alert(message);
+    }
+
+
     
-        window.onload = function() {
-            displayRequests();
-        };
     </script>
     
 </body>
