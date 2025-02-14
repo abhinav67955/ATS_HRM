@@ -34,6 +34,7 @@
     font-weight: 600;
 }
 .banner p {
+    font-weight: 100;
     font-size: 18px;
     margin-top: 10px;
 }
@@ -140,10 +141,10 @@
         }
         
         button.action-button {
-            color: purple;
+            color: rgb(9, 55, 205);
             text-transform: uppercase;
             text-decoration: none;
-            border: 2px solid purple;
+            border: 2px solid rgb(55, 0, 128);
             padding: 10px 20px;
             font-size: 17px;
             cursor: pointer;
@@ -169,27 +170,39 @@
             top: 0;
             left: 0;
             transform: skewX(45deg);
-            background-color: purple;
+            background-color: rgb(49, 0, 128);
             z-index: -1;
             transition: all 0.5s ease;
         }
 
         button.action-button:hover {
             color: #fff;  
-            background-color: purple;  
+            background-color: rgb(53, 0, 128);  
         }
 
         button.action-button:hover::before {
             width: 100%; 
         }
-        @media screen and (max-width: 768px) {
+    /* For tablets and smaller screens */
+@media screen and (max-width: 1024px) {
     form {
-        margin-left: 20px;
-        margin-right: 20px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 15px;
     }
 
     .form-section {
-        width: calc(100% - 20px);
+        width: 100%; /* Make form sections full width */
+    }
+
+    .banner {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 1.3em;
     }
 
     button.action-button {
@@ -197,47 +210,74 @@
     }
 }
 
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-    }
-
+/* For mobile devices */
+@media screen and (max-width: 768px) {
     form {
-        margin-left: 10px;
-        margin-right: 10px;
+        width: 95%;
         padding: 10px;
-    }
-
-    .form-sections {
-        flex-direction: column;
     }
 
     .form-section {
         width: 100%;
+        padding: 15px;
+    }
+
+    .banner {
+        font-size: 12px;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    input, select, textarea {
+        font-size: 1em;
+        padding: 10px;
     }
 
     button.action-button {
         width: 80%;
         font-size: 16px;
+        padding: 8px;
     }
 }
 
-@media screen and (max-width: 375px) {
-    h1 {
-        font-size: 1.2em;
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
     }
 
+    .banner {
+        width: 95%;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .banner h1 {
+        font-size: 20px;
+    }
+
+    .banner p {
+        font-size: 12px;
+    }
+    
     form {
-        margin-left: 5px;
-        margin-right: 5px;
+        width: 100%;
+        padding: 8px;
+    }
+
+    h2 {
+        font-size: 1.1em;
     }
 
     button.action-button {
         width: 90%;
-        font-size: 15px;
+        font-size: 14px;
+        padding: 6px;
     }
 }
+
 
     </style>
 </head>
@@ -268,7 +308,7 @@
                 <input type="email" id="email" name="email" required placeholder="Enter your email address" 
                 min="8"
                 maxlength="50"
-                title="Please enter a valid email address that ends with .com">
+                title="Please enter a valid email address">
 
                 <label class="required" for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="Enter your phone number (10 digits)" minlength="10" maxlength="10">
