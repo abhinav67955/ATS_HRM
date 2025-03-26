@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,34 +24,87 @@
     }
 
     
-    .banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: 120px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 98%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: auto;
-    margin-right: auto;
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    }
 
-.banner h1 {
-    font-size: 36px;
-    color: white;
-    font-weight: 600;
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
 }
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
 
-.banner p {
-  font-weight: 100;
-    font-size: 18px;
-    margin-top: 10px;
-}
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-   
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
     .container {
       margin: 0 auto;
       padding: 40px;
@@ -388,6 +442,7 @@
     .banner {
         width: 95%;
         padding: 10px;
+        height: auto;
         border-radius: 10px;
     }
 
@@ -407,12 +462,22 @@
   .profile-card h2 {
     font-size: 1.2em;
   }
+  #current-coins{
+    margin-right:100px ;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+  }
   .extra-info{
-    margin-left: 22px;
+    display: flex;
+   width: 100%;
+   margin-left:120px;
+   gap: 5px;
+    flex-wrap: wrap;
+    
   }
 
   .course-card, .course-cards, .available-course-card {
-    max-width: 250px;
+    max-width: 300px;
   }
 
   button {
@@ -424,10 +489,17 @@
 </head>
 
 <body>
-  <div class="banner">
-    <h1>Your career progression</h1>
-    <p>View & manage your  career progression , track your course and get certified</p>
-</div>
+
+<header>
+  <div class="banner-background">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <h1>Your career progression</h1>
+  <p>View & manage your  career progression , track your course and get certified</p>
+</header>
+
   <div class="container">    
     <div class="profile-card">
         <img src="https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-755-1-1024x683.jpg" alt="Employee Profile">
@@ -435,17 +507,17 @@
           <h2>Employee Name</h2>
           <p>EmployeeID: ATS0121</p>
           <p>Joined: January 2023</p>
-          <p class="credit-points"><span>🪙</span>Current Points:86</p>
+          <p class="credit-points" id="current-coins"><span>🪙</span>Current Points:86</p>
         </div>
       
         <div class="extra-info">
-          <p><strong>Skills:</strong> <br> JavaScript, <br> React, <br> Node.js</p>
+          <p><strong>Skills:</strong> JavaScript, React,  Node.js</p>
           <p><strong>Role:</strong> Software Developer</p>
           <p><strong>Certifications:</strong>04</p>
         </div>
       </div>
 
-    <h2>Ongoing Courses</h2>
+    <h2 style="margin-bottom: 20px;">Ongoing Courses</h2>
     <div class="ongoing">
       <div class="course-card">
         <h3>JavaScript</h3>
@@ -476,7 +548,7 @@
       </div>
     </div>
 
-    <h2>Completed Courses</h2>
+    <h2 style="margin-bottom: 20px;">Completed Courses</h2>
     <div class="completed">
       <div class="course-cards">
         <h3>Introduction to Python</h3>
@@ -584,4 +656,3 @@
   </script>
 </body>
 </html>
-
