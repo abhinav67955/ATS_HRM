@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,30 +24,88 @@
             justify-content: center;
             align-items: center;
         }
-        .banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: auto;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 98%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+       
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    }
 
-.banner h1 {
-    font-size: 38px;
-    color: white;
-    font-weight: 600;
-}
-.banner p {
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
     font-weight: 100;
-    font-size: 14px;
-    margin-top: 10px;
+      font-size: 18px;
+      margin-top: 10px;
 }
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
 
         
         .main-container {
@@ -54,7 +113,7 @@
             align-items: flex-start;
             gap: 30px;
             padding: 40px;
-            width: 100%;
+            width: 60%;
             border-radius: 15px;
             margin-top: 10px;
         }
@@ -121,7 +180,10 @@
             text-align: left;
             background: linear-gradient(rgba(195, 245, 255, 0.243), rgba(203, 97, 97, 0.252), rgba(181, 65, 185, 0.2));
             padding: 40px;
+            padding-left: 80px;
             border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
             width: 100%;
         }
 
@@ -168,9 +230,15 @@
      
         .punch-container {
             display: flex;
-            justify-content: flex-start;
-            gap: 20px;
+            justify-content: center;
+            align-self: center;
+            gap: 80px;
             margin-top: 10px;
+        }
+        .punch-in-text, .punch-out-text{
+            display: flex;
+            font-size: 18px;
+            gap: 5px;
         }
 
         .switch {
@@ -232,7 +300,11 @@
             background-color: #09b209;
             color: white;
             border: none;
-            width: 89%;
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
@@ -399,15 +471,18 @@
 
    
 }
-
-    </style>
+</style>
 </head>
 <body>
-    <div class="banner">
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
         <h1>Employee Attendance</h1>
         <p>View and track your attendance and manage punch-in and punch-out.</p>
-    </div>
-
+      </header>
     <div class="main-container">
         <div class="attendance-container">
             <div class="employee-details">
@@ -424,39 +499,37 @@
 
             <form id="attendanceForm">
                 <label for="employeeId">Employee ID:</label>
-                <input type="text" id="employeeId" name="employeeId" required minlength="7" maxlength="7"
-                pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
-                title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
+                <input type="text" id="employeeId" name="employeeId" placeholder="Enter Your Employee ID" minlength="7" maxlength="7"
+                    pattern="^[A-Z]{3}(?!0000)[0-9]{4}$"
+                    title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
                 <label for="password">Password:</label>
                 <div class="password-container">
-                    <input type="password" id="password" name="password" required minlength="5" maxlength="50">
+                    <input type="password" id="password" placeholder="Enter Your Password" name="password" required minlength="5" maxlength="50">
                 </div>
-                
-                <div class="punch-container">
-                    
-                    
-                    <input type="radio" id="punchIn" name="punchType" value="Punch In">
-                    <label for="punchIn">Punch In</label>
 
-                    <input type="radio" id="punchOut" name="punchType" value="Punch Out">
-                    <label for="punchOut">Punch Out</label>
+                <div class="punch-container">
+                    <div class="punch-in-text">
+                        <input type="radio" id="punchIn" name="punchType" value="Punch In">
+                        <label for="punchIn">Punch In</label>
+                    </div>
+                    <div class="punch-out-text">
+                        <input type="radio" id="punchOut" name="punchType" value="Punch Out">
+                        <label for="punchOut">Punch Out</label>
+                    </div>
                 </div>
 
                 <button type="submit">Submit</button>
             </form>
 
-          
-            <div id="punchRecords" style="margin-top: 20px;  height:500px;
-            overflow: auto;"></div>
+            <div id="punchRecords" style="margin-top: 20px; height:500px; overflow: auto;"></div>
         </div>
     </div>
 
     <script>
-        // Populate employee details from local storage or default values
-        const username = localStorage.getItem('Username') || "Ajay Kumar"; 
-        const loginTime = localStorage.getItem('loginTime') || "Not Available";  
-        const loginDate = new Date().toLocaleDateString();  
-    
+        const username = localStorage.getItem('Username') || "Ajay Kumar";
+        const loginTime = localStorage.getItem('loginTime') || "Not Available";
+        const loginDate = new Date().toLocaleDateString();
+
         document.getElementById("employeeName").textContent = username;
         document.getElementById("loginTime").textContent = loginTime;
         document.getElementById("loginDate").textContent = loginDate;
@@ -480,7 +553,7 @@
         setNextPunchType();
 
         // Handle form submission
-        document.getElementById("attendanceForm").addEventListener("submit", function(event) {
+        document.getElementById("attendanceForm").addEventListener("submit", function (event) {
             event.preventDefault();
 
             const employeeId = document.getElementById("employeeId").value;
@@ -488,7 +561,7 @@
 
             // Get the next punch type based on the radio button selected
             const punchType = document.querySelector('input[name="punchType"]:checked').value;
-            const punchTime = new Date().toLocaleTimeString();
+            const punchTime = new Date().toISOString(); // Store timestamp in ISO format
 
             if (!employeeId || !password) {
                 alert("Please enter Employee ID and Password!");
@@ -518,15 +591,87 @@
                 punchCard.style.margin = "5px 0";
                 punchCard.style.background = punch.punchType === "Punch In" ? "#d4edda" : "#f8d7da";
                 punchCard.style.borderLeft = punch.punchType === "Punch In" ? "5px solid #28a745" : "5px solid #dc3545";
-                punchCard.innerHTML = `<strong>${punch.punchType}</strong> at ${punch.punchTime} (ID: ${punch.employeeId})`;
+
+                // Convert ISO timestamp to a readable format
+                const punchTime = new Date(punch.punchTime).toLocaleTimeString();
+                punchCard.innerHTML = `<strong>${punch.punchType}</strong> at ${punchTime} (ID: ${punch.employeeId})`;
                 punchRecords.appendChild(punchCard);
             });
         }
+// Function to check if 14 hours have passed since the last punch out
+function is14HoursPassed(lastPunchTime) {
+    const now = new Date();
+    const lastPunch = new Date(lastPunchTime);
+    const diffInHours = Math.abs(now - lastPunch) / (1000 * 60 * 60); // Difference in hours
+    return diffInHours >= 14;
+}
 
-        // Display punch records on initial load
+// Function to set the next punch type and disable/enable radio buttons
+function setNextPunchType() {
+    let punches = JSON.parse(localStorage.getItem("punchData")) || [];
+    let lastPunch = punches.length > 0 ? punches[punches.length - 1] : null;
+
+    const punchInRadio = document.getElementById("punchIn");
+    const punchOutRadio = document.getElementById("punchOut");
+
+    if (lastPunch) {
+        if (lastPunch.punchType === "Punch In") {
+            // If last punch was "Punch In", disable "Punch In" and enable "Punch Out"
+            punchInRadio.disabled = true;
+            punchOutRadio.disabled = false;
+            punchOutRadio.checked = true;
+        } else if (lastPunch.punchType === "Punch Out") {
+            // If last punch was "Punch Out", check if 14 hours have passed
+            if (is14HoursPassed(lastPunch.punchTime)) {
+                punchInRadio.disabled = false;
+                punchOutRadio.disabled = true;
+                punchInRadio.checked = true;
+            } else {
+                // If 14 hours haven't passed, disable both options
+                punchInRadio.disabled = true;
+                punchOutRadio.disabled = true;
+                alert("You can only punch in after 14 hours from your last punch out.");
+            }
+        }
+    } else {
+        // If no punches, default to "Punch In"
+        punchInRadio.disabled = false;
+        punchOutRadio.disabled = true;
+        punchInRadio.checked = true;
+    }
+}
+
+// Call the function on page load to set the initial state of the radio buttons
+setNextPunchType();
+
+// Handle form submission
+document.getElementById("attendanceForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const employeeId = document.getElementById("employeeId").value;
+    const password = document.getElementById("password").value;
+
+    // Get the next punch type based on the radio button selected
+    const punchType = document.querySelector('input[name="punchType"]:checked').value;
+    const punchTime = new Date().toISOString(); // Store timestamp in ISO format
+
+    if (!employeeId || !password) {
+        alert("Please enter Employee ID and Password!");
+        return;
+    }
+
+    // Store the punch data in localStorage
+    let punches = JSON.parse(localStorage.getItem("punchData")) || [];
+    punches.push({ employeeId, punchType, punchTime });
+    localStorage.setItem("punchData", JSON.stringify(punches));
+
+    displayPunchRecords();
+
+    // After submitting, set the next punch type
+    setNextPunchType();
+});
+        // Initial render
         displayPunchRecords();
-
-        
     </script>
 </body>
 </html>
