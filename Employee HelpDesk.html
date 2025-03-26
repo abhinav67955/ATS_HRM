@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,32 +22,88 @@
       padding: 20px;
     }
      
-    .banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: 120px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 98%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: auto;
-    margin-right: auto;
+   
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    }
 
-.banner h1 {
-    font-size: 36px;
-    color: white;
-    font-weight: 600;
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
 }
-.banner p {
-  font-weight: 100;
-    font-size: 18px;
-    margin-top: 10px;
-}
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
 
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
     .helpdesk-container {
       width: 60%;
       margin-left: 20%;
@@ -102,27 +159,68 @@
     textarea {
       height: 150px;
       resize: none;
+      font-family: 'Poppins', sans-serif;
     }
 
     button {
-      padding: 12px;
-      background-color: #7129b9;
-      color: white;
-      border: none;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 100%;
+            height: 2.6em;
+            line-height: 2.5em;
+            margin: 20px;
+            
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 17px;
+            border-radius: 10px;
+            font-weight: 500;
+            color: var(--color);
 
-    button:hover {
-      border-top: 2px solid blueviolet;
-      border-left: 2px solid blueviolet;
-      border-bottom: 2px solid rgb(238, 103, 238);
-      border-right: 2px solid rgb(238, 103, 238);
-      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px;
+            display: block;
+            margin: auto;
+            background-color: var(--bg-color);
+        }
+        button:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background: var(--color);
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 0.7s;
+        }
+        button:hover {
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+        button:active {
+            color: var(--color);
+            background-color:white;
+          }
+          .error-message {
+      font-size: 12px;
+      color: red;
+      display: none;
     }
 
     .ticket-list {
@@ -182,7 +280,37 @@
 
     .delete-btn:hover {
       background-color: #c0392b;
-    }/* Tablets and smaller screens */
+    }
+    .no-tickets {
+      text-align: center;
+    }
+
+    .no-tickets img {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+
+    /* Popup message */
+    .popup {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      padding: 10px 15px;
+      background: linear-gradient(to right, #4CAF50, #2E8B57);
+      color: white;
+      border-radius: 5px;
+      display: none;
+      animation: fadeInOut 5s linear;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateX(-10px); }
+      10% { opacity: 1; transform: translateX(0); }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(-10px); }
+    }
+
+
 @media screen and (max-width: 1024px) {
     .helpdesk-container {
         width: 80%;
@@ -340,27 +468,34 @@
   </style>
 </head>
 <body>
-  <div class="banner">
-    <h1>Employee Support & Helpdesk<h1>
-      <p>Track and raise your tickets </p>
-</div>
-  <div class="helpdesk-container">
-    <h1>Employee Helpdesk & Support</h1>
-    <p class="helpdesk-description">Please submit your queries or issues, and our HR team will assist you shortly.</p>
+  
+<header>
+  <div class="banner-background">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <h1>Employee Support & Helpdesk<h1>
+    <p>Track and raise your tickets </p>
+</header>
 
+<body onload="renderTickets()">
+
+  <div class="helpdesk-container">
     <form class="ticket-form" id="ticket-form" onsubmit="submitTicket(event)">
       <div class="input-group">
         <label for="employee-name">Your Name</label>
         <input 
           type="text" 
           id="employee-name" 
-          name="employee-name" 
           placeholder="Enter Employee Name" 
           required 
           minlength="3" 
           maxlength="50"
           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-          title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+          oninput="validateName()"
+        >
+        <span id="name-error" class="error-message">Invalid name format!</span>
       </div>
     
       <div class="input-group">
@@ -368,47 +503,119 @@
         <input 
           type="email" 
           id="email" 
-          minlength="5"
-          maxlength="50"
-          name="email" 
           placeholder="Enter your email address" 
           required
+          oninput="validateEmail()"
         >
+        <span id="email-error" class="error-message">Invalid email address!</span>
       </div>
     
       <div class="input-group">
         <label for="issue">Describe Your Issue</label>
         <textarea 
           id="issue" 
-          name="issue" 
           placeholder="Please provide a brief description of your issue" 
           required 
           minlength="5"
           maxlength="100"
+          oninput="validateIssue()"
         ></textarea>
+        <span id="issue-error" class="error-message">Issue must be at least 5 characters!</span>
       </div>
     
       <button type="submit">Submit Ticket</button>
     </form>
     
     <div class="ticket-list" id="ticket-list">
-      <div class="no-tickets">No support tickets submitted yet</div>
+      <div class="no-tickets">
+        <img src="https://cdn-icons-png.flaticon.com/128/1909/1909447.png" alt="No tickets">
+        <p>No support tickets submitted yet</p>
+      </div>
     </div>
   </div>
 
+
+  <div id="popup" class="popup">Ticket submitted successfully!</div>
+
   <script>
-    window.onload = function() {
-      renderTickets();
-    };
-  
+    function validateName() {
+      const name = document.getElementById('employee-name');
+      const error = document.getElementById('name-error');
+      const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+
+      if (!pattern.test(name.value) || name.value.length < 3) {
+        error.style.display = "block";
+        name.style.border = "1px solid red";
+      } else {
+        error.style.display = "none";
+        name.style.border = "1px solid green";
+      }
+    }
+
+    function validateEmail() {
+      const email = document.getElementById('email');
+      const error = document.getElementById('email-error');
+      const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (!pattern.test(email.value)) {
+        error.style.display = "block";
+        email.style.border = "1px solid red";
+      } else {
+        error.style.display = "none";
+        email.style.border = "1px solid green";
+      }
+    }
+    function validateIssue() {
+    const issueInput = document.getElementById('issue');
+    const errorMessage = document.getElementById('issue-error');
+    const pattern = /^[A-Za-z][A-Za-z0-9\s,.]*$/; // Allowed pattern
+    const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/; // Invalid consecutive characters
+
+    // Reset error message and styling
+    errorMessage.textContent = '';
+    errorMessage.style.display = 'none';
+    issueInput.style.border = '1px solid #ccc'; // Reset border color
+
+    // Check length
+    if (issueInput.value.length < 5 || issueInput.value.length > 200) {
+        errorMessage.textContent = "Issue description must be between 5 and 200 characters.";
+        errorMessage.style.display = 'block';
+        issueInput.style.border = '1px solid red';
+        return false;
+    }
+
+    // Check if the input matches the allowed pattern
+    if (!pattern.test(issueInput.value)) {
+        errorMessage.textContent = "Issue description must start with a letter and can only contain letters, numbers, spaces, commas, and periods.";
+        errorMessage.style.display = 'block';
+        issueInput.style.border = '1px solid red';
+        return false;
+    }
+
+    // Check for invalid consecutive characters
+    if (invalidConsecutive.test(issueInput.value)) {
+        errorMessage.textContent = "Issue description contains invalid consecutive characters (e.g., ',,' or '..').";
+        errorMessage.style.display = 'block';
+        issueInput.style.border = '1px solid red';
+        return false;
+    }
+
+    // If all validations pass
+    issueInput.style.border = '1px solid green';
+    return true;
+}
+
     function renderTickets() {
       const ticketList = document.getElementById('ticket-list');
       const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
-  
+
       if (tickets.length === 0) {
-        ticketList.innerHTML = '<div class="no-tickets">No tickets submitted yet</div>';
+        ticketList.innerHTML = `<div class="no-tickets">
+          <img src="https://cdn-icons-png.flaticon.com/128/1909/1909447.png" alt="No tickets">
+          <p>No support tickets submitted yet</p>
+        </div>`;
       } else {
-        ticketList.innerHTML = '';  
+        ticketList.innerHTML = '';
         tickets.forEach((ticket, index) => {
           const ticketItem = document.createElement('div');
           ticketItem.classList.add('ticket-item');
@@ -425,55 +632,32 @@
         });
       }
     }
-  
-    function submitTicket(event) {
-      event.preventDefault();  
-  
-      const name = document.getElementById('employee-name').value;
-      const email = document.getElementById('email').value;
-      const issue = document.getElementById('issue').value;
-  
-     
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailPattern.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-      const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
-  
-      const newTicket = {
-        name,
-        email,
-        issue,
-        status: 'Pending'
-      };
-  
-      tickets.push(newTicket);
-  
-      localStorage.setItem('tickets', JSON.stringify(tickets));
-  
-      
-      document.getElementById('employee-name').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('issue').value = '';
-  
 
-      renderTickets();
-    }
-  
-    function deleteTicket(index) {
+    function submitTicket(event) {
+      event.preventDefault();
+      if (document.querySelector(".error-message[style='display: block;']")) return;
+
+      const name = document.getElementById('employee-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const issue = document.getElementById('issue').value.trim();
+
       const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
-  
-     
-      tickets.splice(index, 1);
-  
-      
+      tickets.push({ name, email, issue, status: 'Pending' });
+
       localStorage.setItem('tickets', JSON.stringify(tickets));
-  
+
+      document.getElementById('ticket-form').reset();
       renderTickets();
+      showPopup("Ticket submitted successfully!");
+    }
+
+    function showPopup(message) {
+      const popup = document.getElementById('popup');
+      popup.innerText = message;
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 5000);
     }
   </script>
 
 </body>
 </html>
-
