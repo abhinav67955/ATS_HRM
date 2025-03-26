@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,33 +21,88 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-  
-    } 
-    
-    .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+    }
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-  font-weight: 100;
-    font-size: 18px;
-    margin-top: 10px;
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
 }
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
 
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
 
     .card-wrapper {
       position: relative;
@@ -55,16 +112,17 @@
     .container {
       position: relative;
       margin-top: 100px;
-      width: 100%;
+      width: 800px;
       margin: 20px;
       top: 20px;
       padding: 20px;
-      background-color: rgb(255, 255, 255);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      height: 500px;
+      background: linear-gradient(rgba(232, 232, 255, 0.763), rgba(255, 223, 255, 0.772));
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       border-radius: 10px;
       overflow: hidden;
       transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-      margin-top: 100px;
+      margin-top: 20px;
     }
 
     .card-wrapper::before,
@@ -138,7 +196,9 @@
       max-width: 45%;
     }
 
-    input[type="text"], input[type="time"], select {
+    input[type="text"],
+    input[type="time"],
+    select {
       width: 100%;
       padding: 10px;
       font-size: 14px;
@@ -148,24 +208,63 @@
     }
 
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #7129b9;
-      color: white;
-      border: none;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 5px;
+      --color: #560bad;
+      --bg-color: #fff;
+      font-family: inherit;
+      display: inline-block;
+      width: 420px;
+      height: 2.6em;
+      line-height: 2.5em;
+      margin: 20px;
+      position: relative;
       cursor: pointer;
+      overflow: hidden;
+      border: 2px solid var(--color);
+      transition: color 0.5s, background 0.5s;
+      z-index: 1;
+      font-size: 17px;
+      border-radius: 16px;
+      font-weight: 500;
+      color: var(--color);
+      display: block;
+      margin: auto;
+      background-color: var(--bg-color);
+    }
+
+    button:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      background: var(--color);
+      height: 150px;
+      width: 200px;
+      border-radius: 50%;
+      transition: all 0.7s;
     }
 
     button:hover {
-      border-top: 2px solid blueviolet;
-      border-left: 2px solid blueviolet;
-      border-bottom: 2px solid rgb(238, 103, 238);
-      border-right: 2px solid rgb(238, 103, 238);
-      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px;
+      color: var(--bg-color);
+      background-color: var(--color);
+    }
+
+    button:before {
+      top: 100%;
+      left: 100%;
+    }
+
+    button:hover:before {
+      top: -30px;
+      left: -30px;
+    }
+
+    button:active:before {
+      background: #ffffff;
+      transition: background 0s;
+    }
+
+    button:active {
+      color: var(--color);
+      background-color: white;
     }
 
     .schedule-list {
@@ -193,155 +292,211 @@
       margin-top: 20px;
     }
 
-   /* Tablets and smaller screens */
-@media screen and (max-width: 1024px) {
-    .container {
+    .no-schedule img {
+      width: 100px;
+      height: 100px;
+    }
+
+    /* Tablets and smaller screens */
+    @media screen and (max-width: 1024px) {
+      .container {
         width: 90%;
         margin: 20px auto;
         padding: 15px;
-    }
+      }
 
-    .form-container {
+      .form-container {
         flex-direction: column;
         align-items: center;
-    }
+      }
 
-    .input-group {
+      .input-group {
         max-width: 100%;
-    }
+      }
 
-    button {
+      button {
         width: 90%;
+      }
     }
-}
 
-/* Mobile devices */
-@media screen and (max-width: 768px) {
-    .banner {
+    /* Mobile devices */
+    @media screen and (max-width: 768px) {
+      .banner {
         width: 100%;
         padding: 10px;
-    }
+      }
 
-    .banner h1 {
+      .banner h1 {
         font-size: 30px;
-    }
+      }
 
-    .banner p {
+      .banner p {
         font-size: 16px;
-    }
+      }
 
-    .container {
+      .container {
         width: 95%;
         padding: 15px;
-    }
+      }
 
-    h1 {
+      h1 {
         font-size: 28px;
-    }
+      }
 
-    .form-container {
+      .form-container {
         flex-direction: column;
         width: 100%;
-    }
+      }
 
-    .input-group {
+      .input-group {
         width: 100%;
         max-width: 100%;
-    }
+      }
 
-    input, select {
+      input,
+      select {
         font-size: 14px;
-    }
+      }
 
-    button {
+      button {
         width: 100%;
         font-size: 15px;
-    }
+      }
 
-    .schedule-list {
+      .schedule-list {
         width: 100%;
         padding: 10px;
+      }
     }
-}
 
-/* Small mobile screens */
-@media screen and (max-width: 480px) {
-  body {
+    /* Small mobile screens */
+    @media screen and (max-width: 480px) {
+      body {
         padding: 10px;
-    }
+      }
 
-    .banner {
+      .banner {
         width: 98%;
         padding: 10px;
         border-radius: 10px;
-    }
+      }
 
-    .banner h1 {
+      .banner h1 {
         font-size: 20px;
-    }
+      }
 
-    .banner p {
+      .banner p {
         font-size: 12px;
-    }
+      }
 
-    .container {
+      .container {
         width: 100%;
         padding: 10px;
-    }
+      }
 
-    h1 {
+      h1 {
         font-size: 22px;
-    }
+      }
 
-    .form-container {
+      .form-container {
         padding: 10px;
-    }
+      }
 
-    .input-group {
+      .input-group {
         width: 100%;
         max-width: 100%;
-    }
+      }
 
-    input, select {
+      input,
+      select {
         font-size: 12px;
-    }
+      }
 
-    button {
+      button {
         width: 100%;
         font-size: 14px;
-    }
+      }
 
-    .schedule-list {
+      .schedule-list {
         width: 100%;
         padding: 5px;
-    }
+      }
 
-    .schedule-item {
+      .schedule-item {
         font-size: 14px;
         padding: 8px;
+      }
     }
-}
 
+    .popup {
+      position: fixed;
+      top: 100px;
+      left: 10px;
+      padding: 10px 15px;
+      background: linear-gradient(to right, #77e67b, rgb(79, 153, 79), #22aa5d);
+      color: white;
+      border-radius: 5px;
+      display: none;
+      animation: fadeInOut 5s linear;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      10% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="banner">
+ 
+
+  <header>
+    <div class="banner-background">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
     <h1>Workflow Scheduling</h1>
     <p>Schedule your task workflow</p>
-</div>
+  </header>
+    
+
+
   <div class="card-wrapper">
     <div class="container">
-      <h1>Task Shift Scheduling</h1>
-
       <div class="form-container">
         <div class="input-group">
           <label for="task-name">Task Name</label>
-          <input type="text" id="task-name" placeholder="Enter task name" required  minlength="3" maxlength="50">
+          <input type="text" id="task-name" placeholder="Enter task name" required minlength="3" maxlength="50" oninput="validateTaskName()">
+          <span id="task-name-error" class="error-message" style="display: none; color: red; font-size: 14px;">Invalid task name!</span>
         </div>
 
         <div class="input-group">
           <label for="shift-time">Shift Time</label>
           <input type="time" id="shift-time" required>
+        </div>
+
+        <div class="input-group">
+          <label for="task-duration">Duration</label>
+          <select id="task-duration">
+            <option value="1">1 Hour</option>
+            <option value="2">2 Hours</option>
+            <option value="3">3 Hours</option>
+            <option value="4">4 Hours</option>
+            <option value="5">5 Hours</option>
+          </select>
         </div>
 
         <div class="input-group">
@@ -361,38 +516,121 @@
       <button onclick="addSchedule()">Add Task</button>
 
       <div class="schedule-list" id="schedule-list">
-        <div class="no-schedule">No shifts scheduled yet</div>
+        <div class="no-schedule">
+          <img src="https://cdn-icons-png.flaticon.com/128/1909/1909447.png" alt="No Data">
+          <p>No shifts scheduled yet</p>
+        </div>
       </div>
+      <div id="popup" class="popup">Task added successfully!</div>
     </div>
   </div>
 
   <script>
+    // Load schedules from localStorage on page load
+    document.addEventListener("DOMContentLoaded", function () {
+      loadSchedules();
+    });
+
+    // Validate task name
+    function validateTaskName() {
+      const taskInput = document.getElementById('task-name');
+      const taskError = document.getElementById('task-name-error');
+      const pattern = /^[A-Za-z0-9]+(?: [A-Za-z0-9]+)*$/; // No leading, trailing, or consecutive spaces
+
+      if (!pattern.test(taskInput.value)) {
+        taskError.style.display = "inline";
+        taskInput.style.border = "1px solid red";
+      } else {
+        taskError.style.display = "none";
+        taskInput.style.border = "1px solid green";
+      }
+    }
+
+    // Add schedule
     function addSchedule() {
-      const taskName = document.getElementById('task-name').value;
+      const taskName = document.getElementById('task-name').value.trim();
       const shiftTime = document.getElementById('shift-time').value;
       const shiftDay = document.getElementById('shift-day').value;
+      const taskDuration = document.getElementById('task-duration').value;
 
       if (!taskName || !shiftTime || !shiftDay) {
         return alert("Please fill in all fields!");
       }
 
+      const schedule = {
+        taskName,
+        shiftTime,
+        shiftDay,
+        taskDuration,
+      };
+
+      // Save to localStorage
+      let schedules = JSON.parse(localStorage.getItem('schedules')) || [];
+      schedules.push(schedule);
+      localStorage.setItem('schedules', JSON.stringify(schedules));
+
+      // Display the schedule
+      displaySchedule(schedule);
+
+      showPopup("Task added successfully!");
+
+      // Reset form fields
+      document.getElementById('task-name').value = '';
+      document.getElementById('shift-time').value = '';
+      document.getElementById('shift-day').value = 'Monday';
+      document.getElementById('task-duration').value = '1';
+    }
+
+    // Load schedules from localStorage
+    function loadSchedules() {
+      const schedules = JSON.parse(localStorage.getItem('schedules')) || [];
       const scheduleList = document.getElementById('schedule-list');
       const noScheduleRow = scheduleList.querySelector('.no-schedule');
+
+      if (schedules.length === 0) {
+        if (!noScheduleRow) {
+          scheduleList.innerHTML = `
+            <div class="no-schedule">
+              <img src="https://cdn-icons-png.flaticon.com/128/1909/1909447.png" alt="No Data">
+              <p>No schedules found.</p>
+            </div>
+          `;
+        }
+      } else {
+        if (noScheduleRow) {
+          noScheduleRow.remove();
+        }
+        schedules.forEach((schedule) => displaySchedule(schedule));
+      }
+    }
+
+    // Display a schedule
+    function displaySchedule(schedule) {
+      const scheduleList = document.getElementById('schedule-list');
+      const noScheduleRow = scheduleList.querySelector('.no-schedule');
+
       if (noScheduleRow) {
         noScheduleRow.remove();
       }
 
       const newItem = document.createElement('div');
       newItem.classList.add('schedule-item');
-      newItem.innerHTML = `<strong>${taskName}</strong><br>${shiftTime} - ${shiftDay}`;
+      newItem.innerHTML = `
+        <strong>${schedule.taskName}</strong><br>
+        ${schedule.shiftTime} - ${schedule.shiftDay} (Duration: ${schedule.taskDuration} Hours)
+      `;
       scheduleList.appendChild(newItem);
+    }
 
-      document.getElementById('task-name').value = '';
-      document.getElementById('shift-time').value = '';
-      document.getElementById('shift-day').value = 'Monday';
+    // Show popup message
+    function showPopup(message) {
+      const popup = document.getElementById('popup');
+      popup.innerText = message;
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 5000); // Hide after 5 seconds
     }
   </script>
-
 </body>
 </html>
-
