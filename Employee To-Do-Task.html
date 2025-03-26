@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Task Allocation</title>
+    <title>Work Allocation</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,495 +11,752 @@
         }
         body {
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-weight: 100;
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        .main-container {
-            display: flex;
-            height: 80%;
-            background: linear-gradient(rgba(238, 238, 255, 0.781), rgba(255, 231, 231, 0.785));
-            width: 100%;
-            border-bottom-right-radius:30px ;
-        }
-        .tasks-section {
-            width: 58%;
             padding: 20px;
+            color: #000000;
+        }
+        
+        header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      margin-bottom: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
+}
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .panel {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            height: 100%;
+        }
+        
+        .panel-header {
             display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            padding-left: 20px;
-            border-radius: 30px;
-            gap: 20px;
-            overflow-y: auto;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .panel-title {
+            display: flex;
+            margin: 0;
+            font-size: 1.5rem;
+          
+            font-weight: 600;
+            color: #3a0098;
+        }
+       
+        
+        .work-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 600px;
+            overflow: auto;
+            gap: 1rem;
+        }
+        
+        .work-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #6b19f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .work-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #000000;
+        }
+        
+        .work-project {
+            font-size: 0.9rem;
+            color: #6e48aa;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .work-data {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #000000;
+        }
+        
+        .work-data div {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .work-data i {
+            font-size: 1rem;
+            font-style: normal;
+            color: #000d9b;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        .status-pending {
+            background: #fff4e5;
+            color: #ff9500;
+        }
+        
+        .status-inprocess {
+            background: #e5f6ff;
+            color: #0077ff;
+        }
+        
+        .status-completed {
+            background: #e5ffe7;
+            color: #00aa33;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
            
         }
-        .taskscard {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 500px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    text-align: left; 
-    line-height: 1.8; 
-}
-
-.taskscard div {
-    font-size: 16px;
-    color: #444;
-    display: grid;
-    grid-template-columns: 180px 15px auto; /* Ensures proper spacing */
-    align-items: center;
-}
-
-.taskscard strong {
-    color: #3b145b;
-    text-align: left;
-}
-
-.taskscard .separator {
-    text-align: left;
-    font-weight: bold;
-    padding-right: 5px; /* Adds spacing after the colon */
-}
-
-.taskscard span {
-    padding-left: 10px; /* Ensures gap between colon and value */
-}
-
-        .form-section {
-            width: 45%;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-        .form-container {
-            background-color:rgb(227, 241, 255);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            width: 100%;
-        }
-        .form-container label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: rgb(0, 0, 0);
-        }
-        .form-container input, .form-container select, .form-container textarea {
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-            width: 100%;
-        }
-        .form-container input[type="file"] {
-            background-color: white;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .btn-container{
-            display: flex;
-            justify-content: center;
-        }
-        button {
-            --color: #560bad;
-            --bg-color: #fff;
-            font-family: inherit;
-            display: inline-block;
-            width: 50%;
-            height: 2.6em;
-            line-height: 2.5em;
-            margin: 20px;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            border: 2px solid var(--color);
-            transition: color 0.5s, background 0.5s;
-            z-index: 1;
-            font-size: 17px;
-            border-radius: 6px;
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 500;
-            color: var(--color);
-            background-color: var(--bg-color);
+            color: #000000;
         }
-        button:before {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            background: var(--color);
-            height: 150px;
-            width: 200px;
-            border-radius: 50%;
-            transition: all 0.7s;
-        }
-        button:hover {
-            color: var(--bg-color);
-            background-color: var(--color);
-        }
-        button:before {
-            top: 100%;
-            left: 100%;
-        }
-        button:hover:before {
-            top: -30px;
-            left: -30px;
-        }
-        button:active:before {
-            background: #ffffff;
-            transition: background 0s;
-        }
-        button:active {
-            color: var(--color);
-            background-color: #ffffff;
-        }
-
-        .history-section {
-            height: 30%;
+        
+        .form-control {
             width: 100%;
-            margin-bottom: 20px;
-            padding: 20px;
-            background:linear-gradient(rgba(232, 252, 255, 0.605),rgba(227, 255, 227, 0.5));
-            overflow-y: auto;
-            margin-top:5px;
-            border-radius: 30px;
-        }
-        .history-card {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            transition: border 0.3s;
         }
-        .history-card .task-info {
-            font-size: 16px;
-            margin-bottom: 5px;
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #150389;
+            
         }
-        .history-card .task-time {
-            font-size: 14px;
-            color: #888;
+        
+        .form-select {
+            appearance: none;
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
         }
-        .tasks-section h1 {
-    font-size: 24px;
-    color: #000000; /* Ensure text color is visible */
-    margin: 10px 0;
-}
-/* Responsive Design */
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #2724d8 0%, #509ebb 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .history-container {
+            height: 260px;
+            overflow: auto;
+            margin-top: 2rem;
+        }
+        
+        .history-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .history-info h4 {
+            margin: 0 0 0.3rem 0;
+            font-size: 1.1rem;
+            color: #444;
+        }
+        
+        .history-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .history-date {
+            font-size: 0.85rem;
+            color: #999;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+            color: #777;
+        }
+        
+        .empty-state img {
+            width: 120px;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
 
-/* Tablet View */
-@media screen and (max-width: 1024px) {
-    .main-container {
-        flex-direction: column;
-        height: auto;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .tasks-section,
-    .form-section {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .taskscard {
-        max-width: 100%;
-    }
-
-    .form-container {
-        width: 95%;
-    }
-
-    .history-section {
-        width: 100%;
-        height: auto;
-        padding: 15px;
-    }
-
-    button {
-        width: 70%;
-    }
-}
-
-/* Mobile View */
-@media screen and (max-width: 768px) {
-    .banner {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .banner h1 {
-        font-size: 28px;
-    }
-
-    .banner p {
-        font-size: 14px;
-    }
-
-    .main-container {
-        padding: 10px;
-    }
-
-    .tasks-section,
-    .form-section {
-        padding: 5px;
-    }
-
-    .taskscard div {
-        grid-template-columns: 1fr;
-    }
-
-    .taskscard {
-        padding: 15px;
-    }
-
-    .form-container {
-        width: 100%;
-    }
-
-    .history-section {
-        padding: 10px;
-    }
-
-    button {
-        width: 100%;
-        font-size: 14px;
-    }
-}
-
-/* Small Mobile View */
-@media screen and (max-width: 450px) {
-    body {
-        padding: 10px;
-    }
-
-    .banner {
-        width: 100%;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .banner h1 {
-        font-size: 20px;
-    }
-
-    .banner p {
-        font-size: 12px;
-    }
-
-    .main-container {
-        padding: 5px;
-    }
-
-    .tasks-section,
-    .form-section {
-        padding: 5px;
-    }
-
-    .taskscard div {
-        grid-template-columns: 2fr;
-    }
-    .taskscard div {
-        display: flex;
-        max-height: 20px;
-        overflow: auto;
-        font-size: 8px;
-    }
-
-    .taskscard {
-        padding: 10px;
-    }
-
-    .form-container {
-        padding: 15px;
-    }
-
-    .history-section {
-        padding: 8px;
-    }
-
-    button {
-        width: 100%;
-        font-size: 12px;
-    }
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            .panel {
+                padding: 1rem;
+            }
+            
+            .panel-title {
+                font-size: 1.3rem;
+            }
+            
+            .work-card {
+                padding: 1rem;
+            }
+            
+            .work-title {
+                font-size: 1.1rem;
+            }
+            
+            .work-data {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        .dark-mode {
+    background-color: #121212;
+    color: #ffffff ;
 }
 
+.dark-mode header {
+    background: linear-gradient(135deg, #3a0098 0%, #150389 100%);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode header h1 {
+    color: white;
+}
+
+.dark-mode header p {
+    color: #dddddd;
+}
+
+.dark-mode .panel {
+    background: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .panel-title {
+    color: #6400fa;
+}
+
+.dark-mode .work-card {
+    background: #252525;
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #4100a2;
+}
+
+.dark-mode .work-title {
+    color: #ffffff;
+}
+
+.dark-mode .work-project {
+    color: #ffffff;
+}
+
+.dark-mode .work-data i {
+    color: #ffffff;
+}
+.dark-mode .work-data{
+    color: white;
+}
+
+.dark-mode .form-control {
+    background: #252525;
+    color: #ffffff;
+    border: 1px solid #555;
+}
+.dark-mode label{
+    color: white;
+}
+.dark-mode .form-control:focus {
+    border-color: #a970ff;
+}
+
+.dark-mode .btn {
+    background: linear-gradient(135deg, #5724d8 0%, #509ebb 100%);
+    color: white;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .history-item {
+    background: #252525;
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .history-info h4 {
+    color: #ffffff;
+}
+
+.dark-mode .history-info p {
+    color: #ffffff;
+}
+
+.dark-mode .history-date {
+    color: #ffffff;
+}
+
+.dark-mode .empty-state {
+    color: #ffffff;
+}
+
+.dark-mode .error-message {
+    color: #ff8080;
+}
 
     </style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Allocated Tasks<h1>
-            <p>Track and submit your allocated tasks</p>
-    </div>
-    <div class="main-container">
-
-        <div class="tasks-section" id="taskContainer">
+ 
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+        <h1>Work Allocation</h1>
+        <p>Track,manage and update your assigned work</p>
+      </header>
+    <div class="dashboard">
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Allocated Work</h2>
+            </div>
+            
+            <div class="work-items" id="workItemsContainer">
+              
+            </div>
         </div>
         
-        <div class="form-section" id="taskForm">
-            <h2 style="display: flex; justify-content: center;">Upload Completed Task</h2>
-            <div class="form-container">
-                <form id="completedTaskForm" onsubmit="saveCompletedTask(event)">
-
-                    <label for="task-name">Task Name</label>
-                    <input type="text" id="task-name" name="task-name" required minlength="5" placeholder="Enter Task name" maxlength="100">
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Submit Your Work</h2>
+            </div>
+            
+            <form id="workUpdateForm" onsubmit="saveCompletedTask(event)">
+                <div class="form-group">
+                    <label for="task-name" class="form-label">Work Item Name</label>
+                    <input type="text" id="task-name" class="form-control" name="task-name" required minlength="5" placeholder="Enter Work Item name" maxlength="100">
+                    <div class="error-message" id="task-name-error">Work Item name must be at least 5 characters long.</div>
+                </div>
                 
-                    <label for="employee-name">Employee Name</label>
-                    <input 
-                    id="employeeName" 
-                    type="text" 
-                    placeholder="Enter your Name" 
-                    required 
-                    minlength="3" 
-                    maxlength="100"
-                    pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                    title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-                    
+                <div class="form-group">
+                    <label for="employee-name" class="form-label">Employee Name</label>
+                    <input type="text" id="employee-name" class="form-control" placeholder="Enter your Name" required 
+                           minlength="3" maxlength="100"
+                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    <div class="error-message" id="employee-name-error">Invalid employee name format.</div>
+                </div>
                 
-                    <label for="employee-id">Employee ID</label>
-                    <input type="text" id="employee-id" name="employee-id" required minlength="7" maxlength="7" 
+                <div class="form-group">
+                    <label for="employee-id" class="form-label">Employee ID</label>
+                    <input type="text" id="employee-id" class="form-control" name="employee-id" required minlength="7" maxlength="7" 
                            placeholder="Enter Your ID" pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
                            title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
+                    <div class="error-message" id="employee-id-error">Employee ID must be in the format ABC1234.</div>
+                </div>
                 
-                    <label for="upload-doc">Upload Document</label>
-                    <input type="file" id="upload-doc" name="upload-doc" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
+                <div class="form-group">
+                    <label for="upload-doc" class="form-label">Upload Document</label>
+                    <input type="file" id="upload-doc" class="form-control" name="upload-doc" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
                            title="Acceptable file formats: PDF, DOC, DOCX, JPG, JPEG, PNG, TXT">
+                    <div class="error-message" id="upload-doc-error">Please upload a valid file (PDF, DOC, DOCX, JPG, JPEG, PNG, TXT).</div>
+                </div>
                 
-                    <label for="task-status">Task Status</label>
-                    <select id="task-status" name="task-status" required>
+                <div class="form-group">
+                    <label for="task-status" class="form-label">Work Status</label>
+                    <select id="task-status" class="form-control form-select" name="task-status" required>
                         <option value="completed">Completed</option>
                         <option value="inprocess">In Process</option>
                     </select>
+                    <div class="error-message" id="task-status-error">Please select a work status.</div>
+                </div>
                 
-                    <div class="btn-container">
-                        <button type="submit">Submit Completed Task</button>
-                    </div>
-                </form>
-            </div>
+                <button type="submit" class="btn btn-block">Submit Work Update</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="panel history-container">
+        <div class="panel-header">
+            <h2 class="panel-title" id="title">Work History</h2>
+        </div>
+        
+        <div id="workHistoryContainer">
+          
         </div>
     </div>
 
-  
-
     <script>
-       
-        let taskHistory = [];
-
-        function loadTasks() {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const container = document.getElementById('taskContainer');
-    container.innerHTML = '';
-
-    tasks.forEach(task => {
-        const taskCard = document.createElement('div');
-        taskCard.classList.add('taskscard');
-        taskCard.innerHTML = `
-            <div><strong>Employee Name</strong> <span class="separator">:</span> <span>${task.employeeName}</span></div>
-            <div><strong>Employee ID</strong> <span class="separator">:</span> <span>${task.employeeId}</span></div>
-            <div><strong>Project Name</strong> <span class="separator">:</span> <span>HRMS Portal</span></div>
-            <div><strong>Allocated Task</strong> <span class="separator">:</span> <span>${task.taskName}</span></div>
-            <div><strong>Allocated Time</strong> <span class="separator">:</span> <span>${task.allocatedTime}</span></div>
-            <div><strong>Deadline</strong> <span class="separator">:</span> <span>${task.deadline}</span></div>
-        `;
-        container.appendChild(taskCard);
-    });
-}
-
-
-        function saveCompletedTask(event) {
-    event.preventDefault();
-
-    const taskData = {
-        taskName: document.getElementById('task-name').value,
-        employeeName: document.getElementById('employee-name').value,
-        employeeId: document.getElementById('employee-id').value,
-        uploadDoc: document.getElementById('upload-doc').files, 
-        taskStatus: document.getElementById('task-status').value,
-        allocatedTime: new Date().toLocaleString(),
-    };
-
- 
-    const taskHistory = JSON.parse(localStorage.getItem('taskHistory')) || [];
-
-    taskHistory.push(taskData);
-
-    
-    localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
-
-    document.getElementById('completedTaskForm').reset();
-
-    
-    loadHistory();
-}
-
-
-function loadHistory() {
-    const taskHistory = JSON.parse(localStorage.getItem('taskHistory')) || [];
-    const historyContainer = document.getElementById('taskHistory');
-    historyContainer.innerHTML = '<h2>Task History</h2>'; 
-
-    
-    taskHistory.forEach(task => {
-        const historyCard = document.createElement('div');
-        historyCard.classList.add('history-card');
-        historyCard.innerHTML = `
-            <div class="task-info">
-                <strong>Task:</strong> ${task.taskName} | <strong>Status:</strong> ${task.taskStatus}
-            </div>
-            <div class="task-time"><strong>Submitted on:</strong> ${task.allocatedTime}</div>
-          
-        `;
-        historyContainer.appendChild(historyCard);
-    });
-}
-
-window.onload = function() {
-    loadHistory();  
-};
-
-
-       
-        window.onload = function() {
-            loadTasks();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load work items from localStorage
+            loadWorkItems();
             loadHistory();
-        };
+            
+            // Setup form validation
+            setupValidation();
+        });
+        
+        function loadWorkItems() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const container = document.getElementById('workItemsContainer');
+            
+            if (tasks.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No work items">
+                        <h3>No work items assigned</h3>
+                        <p>You currently don't have any assigned work items</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            tasks.forEach(task => {
+                const workCard = document.createElement('div');
+                workCard.className = 'work-card';
+                
+                // let statusBadge = '';
+                // if (task.status === 'pending') {
+                //     statusBadge = '<span class="status-badge status-pending">Pending</span>';
+                // } else if (task.status === 'inprocess') {
+                //     statusBadge = '<span class="status-badge status-inprocess">In Process</span>';
+                // } else {
+                //     statusBadge = '<span class="status-badge status-completed">Completed</span>';
+                // }
+                
+                workCard.innerHTML = `
+                    <div class="work-project">HRMS Portal</div>
+                    <h3 class="work-title">${task.taskName}</h3>
+                   
+                    <div class="work-data">
+                        <div><i>📅</i> Assigned: ${task.allocatedTime}</div>
+                        <div><i>⏰</i> Deadline: ${task.deadline}</div>
+                    </div>
+                `;
+                
+                container.appendChild(workCard);
+            });
+        }
+        
+        function loadHistory() {
+            const taskHistory = JSON.parse(localStorage.getItem('taskHistory')) || [];
+            const historyContainer = document.getElementById('workHistoryContainer');
+            
+            if (taskHistory.length === 0) {
+                historyContainer.innerHTML = `
+                    <div class="empty-state">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No history">
+                        <h3>No work history yet</h3>
+                        <p>Your submitted work updates will appear here</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            historyContainer.innerHTML = '';
+            
+            taskHistory.forEach(task => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                
+                let statusClass = '';
+                if (task.taskStatus === 'pending') {
+                    statusClass = 'status-pending';
+                } else if (task.taskStatus === 'inprocess') {
+                    statusClass = 'status-inprocess';
+                } else {
+                    statusClass = 'status-completed';
+                }
+                
+                historyItem.innerHTML = `
+                    <div class="history-info">
+                        <h4>${task.taskName}</h4>
+                        <p>HRMS Portal • ${task.employeeName} (${task.employeeId})</p>
+                        <span class="status-badge ${statusClass}">${task.taskStatus}</span>
+                    </div>
+                    <div class="history-date">${task.allocatedTime}</div>
+                `;
+                
+                historyContainer.appendChild(historyItem);
+            });
+        }
+        
+        function saveCompletedTask(event) {
+            event.preventDefault();
+            
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+            
+            const taskData = {
+                taskName: document.getElementById('task-name').value,
+                employeeName: document.getElementById('employee-name').value,
+                employeeId: document.getElementById('employee-id').value,
+                uploadDoc: document.getElementById('upload-doc').files[0]?.name || 'No file',
+                taskStatus: document.getElementById('task-status').value,
+                allocatedTime: new Date().toLocaleString()
+            };
+            
+            // Save to history
+            const taskHistory = JSON.parse(localStorage.getItem('taskHistory')) || [];
+            taskHistory.push(taskData);
+            localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
+            
+            // Reset form
+            document.getElementById('workUpdateForm').reset();
+            
+            // Reload history
+            loadHistory();
+            
+          
+            alert('Work update submitted successfully!');
+        }
+        
+        function setupValidation() {
+            const taskNameInput = document.getElementById('task-name');
+            const employeeNameInput = document.getElementById('employee-name');
+            const employeeIdInput = document.getElementById('employee-id');
+            const uploadDocInput = document.getElementById('upload-doc');
+            const taskStatusInput = document.getElementById('task-status');
+            
+            const taskNameError = document.getElementById('task-name-error');
+            const employeeNameError = document.getElementById('employee-name-error');
+            const employeeIdError = document.getElementById('employee-id-error');
+            const uploadDocError = document.getElementById('upload-doc-error');
+            const taskStatusError = document.getElementById('task-status-error');
+            
+            taskNameInput.addEventListener('input', function() {
+                taskNameError.style.display = this.value.length >= 5 ? 'none' : 'block';
+            });
+            
+            employeeNameInput.addEventListener('input', function() {
+                const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+                employeeNameError.style.display = pattern.test(this.value.trim()) ? 'none' : 'block';
+            });
+            
+            employeeIdInput.addEventListener('input', function() {
+                const pattern = /^[A-Z]{3}(?!0000)[0-9]{4}$/;
+                employeeIdError.style.display = pattern.test(this.value.trim()) ? 'none' : 'block';
+            });
+            
+            uploadDocInput.addEventListener('change', function() {
+                uploadDocError.style.display = this.files.length > 0 ? 'none' : 'block';
+            });
+            
+            taskStatusInput.addEventListener('change', function() {
+                taskStatusError.style.display = this.value ? 'none' : 'block';
+            });
+        }
+        
+        function validateForm() {
+            let isValid = true;
+            
+            // Task Name validation
+            const taskName = document.getElementById('task-name').value;
+            if (taskName.length < 5) {
+                document.getElementById('task-name-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Employee Name validation
+            const employeeName = document.getElementById('employee-name').value;
+            const namePattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+            if (!namePattern.test(employeeName.trim())) {
+                document.getElementById('employee-name-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Employee ID validation
+            const employeeId = document.getElementById('employee-id').value;
+            const idPattern = /^[A-Z]{3}(?!0000)[0-9]{4}$/;
+            if (!idPattern.test(employeeId.trim())) {
+                document.getElementById('employee-id-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // File upload validation
+            const uploadDoc = document.getElementById('upload-doc').files;
+            if (uploadDoc.length === 0) {
+                document.getElementById('upload-doc-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Task Status validation
+            const taskStatus = document.getElementById('task-status').value;
+            if (!taskStatus) {
+                document.getElementById('task-status-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        // Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
     </script>
 </body>
 </html>
