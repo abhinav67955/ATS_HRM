@@ -19,44 +19,111 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
+            padding: 20px;
+            color: white;
+           
         }
-        .banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-.banner h1 {
-    font-size: 36px;
-    color: white;
-    font-weight: 600;
-}
-.banner p {
+       
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
     font-weight: 100;
-    font-size: 18px;
-    margin-top: 10px;
+      font-size: 18px;
+      margin-top: 10px;
 }
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
+        .page-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
         .leave-container {
-            width: 1000px;
+            width: 700px;
             height: auto;
-            padding: 30px;
-            margin: auto;
-            height: 1000px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 20px; 
+            gap: 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-             position: relative;
-            background: linear-gradient(135deg, #79b0bc83, #aa89e489); 
-            animation: gradientMotion 10s ease infinite;
+            background: linear-gradient(rgba(232, 232, 255, 0.763),rgba(255, 223, 255, 0.772));
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .leave-container h2 {
@@ -67,21 +134,19 @@
             font-family: "Anta", serif;
         }
 
-        .form-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr; 
-        gap: 20px;
-        max-width: 800px; 
-        margin: auto; 
-    }
-
-
+        .leave-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding-top: 40px;
+            justify-items: stretch;
+        }
 
         .form-group {
             display: flex;
             flex-direction: column;
             font-size: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 2px;
         }
 
         .form-group label {
@@ -97,9 +162,8 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
-            height: 50px;
-            background-color: #f9f9f9;
             margin-bottom: 10px;
+            height: 50px;
         }
 
         .form-group select,
@@ -112,488 +176,984 @@
             resize: none;
         }
 
+        textarea {
+            width: 100%;
+            padding: 10px;
+            
+            box-sizing: border-box;
+            resize: none;
+            font-size: 16px;
+        }
+    .counter {
+            position: absolute;
+            bottom: 5px;
+            top: 80px;
+            right: 10px;
+            font-size: 14px;
+            color: gray;
+            
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
 
         .submit-container {
             grid-column: span 2;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 30px;
         }
-        .form-row {
-        display: flex;
-        gap: 20px;
-    }
-    .form-group {
-        flex: 1;
-    }
-    .form-group.full-width {
-        flex-basis: 100%;
-    }
 
-        .btn,
-            .btn *,
-            .btn :after,
-            .btn :before,
-            .btn:after,
-            .btn:before {
-            border: 0 solid;
-            box-sizing: border-box;
-            }
-
-            .btn {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-appearance: button;
-            background-color: #000000;
-            background-image: none;
-            color: #fff;
-            cursor: pointer;
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-                Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-                Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-            font-size: 100%;
-            font-weight: 900;
-            line-height: 1.5;
-            margin: 0;
+        button {
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 320px;
+            height: 2.6em;
+            line-height: 2.5em;
+            margin: 20px;
             
-            -webkit-mask: -webkit-radial-gradient(#000, #fff);
-            padding: 0;
-            text-transform: uppercase;
-            }
-
-            .btn:disabled {
-            cursor: default;
-            }
-
-            .btn:-moz-focusring {
-            outline: auto;
-            }
-
-            .btn svg {
-            display: block;
-            }
-
-            .btn [hidden] {
-            display: none;
-            }
-
-            .btn {
-            border-radius: 99rem;
-            border-width: 2px;
-            overflow: hidden;
-            padding: 0.8rem 3rem;
             position: relative;
-            }
-
-            .btn span {
-            mix-blend-mode: difference;
-            }
-
-            .btn:after,
-            .btn:before {
-            background: linear-gradient(
-                90deg,
-                #fff 25%,
-                transparent 0,
-                transparent 50%,
-                #fff 0,
-                #fff 75%,
-                transparent 0
-            );
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 17px;
+            border-radius: 16px;
+            font-weight: 500;
+            color: var(--color);
+            background-color: var(--bg-color);
+        }
+        button:before {
             content: "";
-            inset: 0;
             position: absolute;
-            transform: translateY(var(--progress, 100%));
-            transition: transform 0.2s ease;
-            }
-
-            .btn:after {
-            --progress: -100%;
-            background: linear-gradient(
-                90deg,
-                transparent 0,
-                transparent 25%,
-                #fff 0,
-                #fff 50%,
-                transparent 0,
-                transparent 75%,
-                #fff 0
-            );
             z-index: -1;
-            }
+            background: var(--color);
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 0.7s;
+        }
+        button:hover {
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+        button:active {
+            color: var(--color);
+            background-color:white;
+          }
 
-            .btn:hover:after,
-            .btn:hover:before {
-            --progress: 0;
-            }
-            @media screen and (max-width: 1024px) {
-    .leave-container {
-        width: 90%;
-        height: auto;
-        padding: 20px;
-    }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+            margin-top: 5px;
+        }
 
-    .leave-container h2 {
-        font-size: 28px;
-    }
+        .calendar-cards {
+            width: 500px;
+            flex-wrap: wrap;
+        }
 
-    .leave-form {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
-    }
+        .calendar {
+            width: 100%;
+            height: 370px;
+            background: linear-gradient(135deg, #8a2be2, #87ceeb, #ffffff);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
 
-    .form-group.full-width {
-        grid-column: span 1;
-    }
+        .calendar .header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
 
-    .submit-container {
-        grid-column: span 1;
-    }
+        .calendar .header span {
+            flex: 1;
+            text-align: center;
+        }
 
-    .btn {
-        padding: 0.6rem 2rem;
-        font-size: 16px;
-    }
+        .calendar .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar .day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            color: #333;
+            position: relative;
+        }
+
+        .calendar .day.leave {
+            background-color: #66cc66;
+            color: #fff;
+        }
+
+        .calendar .day.holiday {
+            background-color: #ffcc00;
+            color: #000;
+        }
+
+        .calendar .day.today {
+            background-color: #0077ff;
+            color: #fff;
+        }
+
+        .calendar .day:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .leaves-cards {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 350px;
+            overflow: auto;
+            margin-top: 30px;
+            justify-content: center;
+            gap: 15px;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+
+        .leave-card {
+            width: 420px;
+            background: linear-gradient(rgba(0, 0, 255, 0.187), white);
+            border-radius: 12px;
+            padding: 20px;
+            color: #000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .leave-card h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .leave-card .status {
+            display: flex;
+            gap: 10px;
+        }
+
+        .leave-card .status button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .leave-card .status button.approved {
+            background-color: #66cc66;
+            color: #fff;
+        }
+
+        .leave-card .status button.rejected {
+            background-color: #ff6666;
+            color: #fff;
+        }
+
+        .leave-card .status button.pending {
+            background-color: #ffcc00;
+            color: #000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.6;
+            width: 80%;
+            gap: 20px;
+            height: 80%;
+            overflow: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        #modal-details{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #ff6666;
+        }
+
+        .close:hover {
+            font-size: 40px;
+        }
+      
+        .popup-card {
+            position: fixed;
+            top: 20px;
+            left: -400px; 
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            z-index: 1000;
+            transition: left 0.5s ease-in-out;
+        }
+
+        .popup-card.show {
+            left: 20px; 
+        }
+
+        .popup-card.hide {
+            left: -400px; 
+        }
+.dark-mode{
+    background-color: black;
+    color: white;
+}
+.dark-mode .leave-container {
+    background: linear-gradient(rgba(232, 232, 232, 0.9), rgba(201, 201, 201, 0.9));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
 }
 
-/* Tablet View */
-@media screen and (max-width: 768px) {
-    .banner h1 {
-        font-size: 28px;
-    }
-
-    .banner p {
-        font-size: 16px;
-    }
-
-    .leave-container {
-        width: 95%;
-        height: auto;
-        padding: 15px;
-    }
-
-    .leave-container h2 {
-        font-size: 26px;
-    }
-
-    .leave-form {
-        grid-template-columns: 1fr;
-        padding: 0 15px;
-    }
-
-    .form-group label {
-        font-size: 16px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .btn {
-        padding: 0.6rem 1.8rem;
-        font-size: 14px;
-    }
+.dark-mode .leave-container h2 {
+    color: #bb86fc;
 }
 
-/* Mobile View */
-/* Mobile View Fix */
-@media screen and (max-width: 450px) {
-    body {
-        padding: 10px;
-    }
+.dark-mode .form-group label {
+    color: #ffffff;
+}
 
-    .banner {
-        width: 100%;
-        padding: 10px;
-        border-radius: 10px;
-        text-align: center;
-    }
+.dark-mode .form-group input,
+.dark-mode .form-group select,
+.dark-mode .form-group textarea {
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+}
 
-    .banner h1 {
-        font-size: 20px;
-    }
+.dark-mode button {
+    --color: #bb86fc;
+    --bg-color: #333;
+    color: #ffffff;
+    border: 2px solid #bb86fc;
+}
 
-    .banner p {
-        font-size: 12px;
-    }
+.dark-mode button:hover {
+    color: #333;
+    background-color: #bb86fc;
+}
 
-    .leave-container {
-        width: 100%;
-        padding: 10px;
-        height: auto;
-        border-radius: 10px;
-    }
+.dark-mode .calendar {
+    background: linear-gradient(135deg, #3a1b6a, #2a4f70, #252525);
+}
 
-    .leave-container h2 {
-        font-size: 22px;
-        text-align: center;
-    }
+.dark-mode .calendar .header {
+    color: #ffffff;
+    border-bottom-color: #444;
+}
 
-    /* Make sure each input is on its own row */
-    .leave-form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding: 0 10px;
-    }
+.dark-mode .calendar .day {
+    color: #ffffff;
+}
 
-    /* Ensure proper spacing for form fields */
-    .form-group {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
+.dark-mode .leave-card {
+    background: linear-gradient(rgba(40, 40, 80, 0.5), #252525);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+}
 
-    .form-group label {
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
+.dark-mode .modal-content {
+    background-color: #252525;
+    color: #ffffff;
+    border: 1px solid #444;
+}
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        font-size: 14px;
-        padding: 10px;
-        width: 100%;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        background-color: #f9f9f9;
-    }
-
-    .form-group textarea {
-        height: 100px;
-        resize: none;
-    }
-
-    /* Full width for "Reason" input */
-    .form-group.full-width {
-        width: 100%;
-    }
-
-    /* Center submit button */
-    .submit-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 300px;
-        padding: 12px;
-        font-size: 14px;
-        border-radius: 8px;
-        text-align: center;
-    }
+.dark-mode .popup-card {
+    background: linear-gradient(135deg, #3a5f80, #004d66);
+    color: #ffffff;
 }
 
     </style>
 </head>
-<body> <div class="banner">
-    <h1>Employee Leave Form</h1>
-    <p>Apply for leave here</p>
-</div>
+<body>
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+        <h1>Employee Leave Form</h1>
+        <p>Apply for leave here</p>
+      </header>
+    <div class="page-container">
+        <div class="leave-container">
+            <form class="leave-form" id="leave-form">
+                <div class="form-group">
+                    <label for="name">Employee Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" maxlength="50"
+                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    <p id="error-message-name" class="error-message"></p>
+                </div>
 
-<div class="leave-container">
-    <form class="leave-form" id="leave-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="name">Employee Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" maxlength="50"
-                    pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                    title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-            </div>
-            <div class="form-group">
-                <label for="emp-id">Employee ID:</label>
-                <input type="text" id="emp-id" name="emp-id" placeholder="Enter your Employee ID" required minlength="7" maxlength="7"
-                    pattern="^[A-Z]{3}(?!0000)[0-9]{4}$"
-                    title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
-            </div>
+                <div class="form-group">
+                    <label for="emp-id">Employee ID:</label>
+                    <input type="text" id="emp-id" name="emp-id" placeholder="Enter your Employee ID" required minlength="7" maxlength="7" pattern="^[A-Z]{3}0[0-9]{3}$"
+                           title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits">
+                    <p id="error-message-emp-id" class="error-message"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Employee Email:</label>
+                    <input id="email" type="email" placeholder="Enter your Email ID" required minlength="8" maxlength="50" title="Please enter a valid email address that ends with .com">
+                    <p id="error-message-email" class="error-message"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="leave-type">Leave Type:</label>
+                    <select id="leave-type" name="leave-type" required>
+                        <option value="sick">Sick Leave</option>
+                        <option value="casual">Casual Leave</option>
+                        <option value="earned">Earned Leave</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="from-date">From Date:</label>
+                    <input type="date" id="from-date" name="from-date" required>
+                    <p id="error-message-from-date" class="error-message"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="to-date">To Date:</label>
+                    <input type="date" id="to-date" name="to-date" required>
+                    <p id="error-message-to-date" class="error-message"></p>
+                </div>
+
+                <div id="hour-selection" class="form-group" style="display: none;">
+                    <label for="from-hour">From Hour:</label>
+                    <input type="time" id="from-hour" name="from-hour">
+                    <p id="error-message-from-hour" class="error-message"></p>
+                </div>
+
+                <div id="hour-selection" class="form-group" style="display: none;">
+                    <label for="to-hour">To Hour:</label>
+                    <input type="time" id="to-hour" name="to-hour">
+                    <p id="error-message-to-hour" class="error-message"></p>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="reason">Reason for Leave:</label>
+                    <textarea id="reason" name="reason" placeholder="Enter your reason" required rows="5" minlength="5" maxlength="100"></textarea>
+                    <p id="error-message-reason" class="error-message"></p>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="btn"><span>Submit Leave</span></button>
+                </div>
+            </form>
         </div>
 
-        <div class="form-row">
-            <div class="form-group">
-                <label for="email">Employee Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your Email ID" required minlength="8" maxlength="50"
-                    title="Please enter a valid email address">
+        <div class="calendar-cards">
+            <div class="calendar">
+                <div class="header">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                </div>
+                <div class="days" id="days"></div>
             </div>
-            <div class="form-group">
-                <label for="leave-type">Leave Type:</label>
-                <select id="leave-type" name="leave-type" required>
-                    <option value="sick">Sick Leave</option>
-                    <option value="casual">Casual Leave</option>
-                    <option value="earned">Earned Leave</option>
-                </select>
-            </div>
+            <div class="leaves-cards" id="leave-cards"></div>
         </div>
 
-        <div class="form-row">
-            <div class="form-group">
-                <label for="from-date">From Date:</label>
-                <input type="date" id="from-date" name="from-date" required>
-            </div>
-            <div class="form-group">
-                <label for="to-date">To Date:</label>
-                <input type="date" id="to-date" name="to-date" required>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Leave Details</h2>
+                <div id="modal-details"></div>
             </div>
         </div>
+    </div>
 
-        <div id="hour-selection" class="form-row" style="display: none;">
-            <div class="form-group">
-                <label for="from-hour">From Hour:</label>
-                <input type="time" id="from-hour" name="from-hour">
-            </div>
-            <div class="form-group">
-                <label for="to-hour">To Hour:</label>
-                <input type="time" id="to-hour" name="to-hour">
-            </div>
-        </div>
+    <!-- Popup Card -->
+    <div id="popup-card" class="popup-card">
+        Leave application submitted successfully!
+    </div>
 
-        <div class="form-group full-width">
-            <label for="reason">Reason for Leave:</label>
-            <textarea id="reason" name="reason" placeholder="Enter your reason" required rows="5" minlength="5" maxlength="200"></textarea>
-        </div>
-
-        <div class="submit-container">
-            <button type="submit" class="btn"><span>Submit Leave</span></button>
-        </div>
-    </form>
-</div>
-    
     <script>
-       document.getElementById('leave-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set "From Date" to today's date
+            const fromDateInput = document.getElementById('from-date');
+            const today = new Date().toISOString().split('T')[0];
+           
 
-    const name = document.getElementById('name').value;
-    const empId = document.getElementById('emp-id').value;
-    const email = document.getElementById('email').value;
-    const leaveType = document.getElementById('leave-type').value;
-    const fromDate = document.getElementById('from-date').value;
-    const toDate = document.getElementById('to-date').value;
-    const reason = document.getElementById('reason').value;
-    const fromHour = document.getElementById('from-hour').value;
-    const toHour = document.getElementById('to-hour').value;
+            // Load leaves and calendar
+            loadLeaves();
+            loadCalendar();
 
-    const currentDate = new Date().toISOString().split('T')[0];
+            // Add event listeners for real-time validation
+            document.getElementById('name').addEventListener('input', validateName);
+            document.getElementById('emp-id').addEventListener('input', validateEmpId);
+            document.getElementById('email').addEventListener('input', validateEmail);
+            document.getElementById('reason').addEventListener('input', validateReason);
+            document.getElementById('from-date').addEventListener('change', validateFromDate);
+            document.getElementById('to-date').addEventListener('change', validateToDate);
+            document.getElementById('from-hour').addEventListener('change', validateFromHour);
+            document.getElementById('to-hour').addEventListener('change', validateToHour);
 
-    if (fromDate < currentDate) {
-        alert('Please select a valid From Date');
+            // Toggle hour selection visibility based on date selection
+            const toDateInput = document.getElementById('to-date');
+            const hourSelection = document.querySelectorAll('#hour-selection');
+
+            function toggleHourSelection() {
+                if (fromDateInput.value === toDateInput.value) {
+                    hourSelection.forEach(el => el.style.display = 'block');
+                } else {
+                    hourSelection.forEach(el => el.style.display = 'none');
+                }
+            }
+
+            fromDateInput.addEventListener('change', toggleHourSelection);
+            toDateInput.addEventListener('change', toggleHourSelection);
+
+            // Form submission
+            document.getElementById('leave-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (!validateForm()) return;
+
+                const fromDate = document.getElementById('from-date').value;
+                const toDate = document.getElementById('to-date').value;
+
+                // Check if leave is already approved for the selected date
+                const leaves = JSON.parse(localStorage.getItem('leaves')) || [];
+                const isLeaveApproved = leaves.some(leave => {
+                    const leaveFromDate = new Date(leave.fromDate).toISOString().split('T')[0];
+                    const leaveToDate = new Date(leave.toDate).toISOString().split('T')[0];
+                    const selectedFromDate = new Date(fromDate).toISOString().split('T')[0];
+                    const selectedToDate = new Date(toDate).toISOString().split('T')[0];
+
+                    return (
+                        leave.status === 'Approved' &&
+                        ((selectedFromDate >= leaveFromDate && selectedFromDate <= leaveToDate) ||
+                         (selectedToDate >= leaveFromDate && selectedToDate <= leaveToDate))
+                    );
+                });
+
+                if (isLeaveApproved) {
+                    alert('Leave is already approved for this date.');
+                    return;
+                }
+
+                const leaveDetails = {
+                    name: document.getElementById('name').value,
+                    empId: document.getElementById('emp-id').value,
+                    email: document.getElementById('email').value,
+                    leaveType: document.getElementById('leave-type').value,
+                    fromDate: fromDate,
+                    toDate: toDate,
+                    fromHour: document.getElementById('from-hour').value,
+                    toHour: document.getElementById('to-hour').value,
+                    reason: document.getElementById('reason').value,
+                    status: "Pending"
+                };
+
+                saveLeave(leaveDetails);
+                showPopup(); // Show the popup card
+                document.getElementById('leave-form').reset(); // Clear the form
+                loadLeaves();
+                loadCalendar();
+            });
+
+            // Storage event listener
+            window.addEventListener("storage", function (event) {
+                if (event.key === "leaves") {
+                    loadLeaves();
+                }
+            });
+
+            // Close modal
+            document.querySelector('.close').addEventListener('click', function () {
+                document.getElementById('modal').style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function (event) {
+                const modal = document.getElementById('modal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Real-time validation functions
+        function validateName() {
+            const nameInput = document.getElementById('name');
+            const errorMessage = document.getElementById('error-message-name');
+            const regex = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+
+            if (!regex.test(nameInput.value)) {
+                errorMessage.textContent = "Invalid name. No leading/trailing spaces, no consecutive spaces, max 8 spaces, max 3 periods.";
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateEmpId() {
+            const empIdInput = document.getElementById('emp-id');
+            const errorMessage = document.getElementById('error-message-emp-id');
+            const regex = /^[A-Z]{3}0[0-9]{3}$/;
+
+            if (!regex.test(empIdInput.value)) {
+                errorMessage.textContent = "Invalid Employee ID. Format: 3 uppercase letters + 4 digits (e.g., ABC0123).";
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateEmail() {
+    const emailInput = document.getElementById('email');
+    const errorMessage = document.getElementById('error-message-email');
+    const regex =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  
+
+    if (!regex.test(emailInput.value)) {
+        errorMessage.textContent = "Invalid email. Domain must end with at least two alphabets (e.g., .in, .org, .edu).";
+        errorMessage.style.display = 'block';
+        return false;
+    } else {
+        errorMessage.style.display = 'none';
+        return true;
+    }
+}
+
+
+function validateReason() {
+    const reasonInput = document.getElementById('reason');
+    const errorMessage = document.getElementById('error-message-reason');
+    const pattern = /^[A-Za-z][A-Za-z0-9\s,.]*$/; // Allowed pattern
+    const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/; // Invalid consecutive characters
+
+    // Reset error message
+    errorMessage.textContent = '';
+    errorMessage.style.display = 'none';
+
+    // Check length
+    if (reasonInput.value.length < 5 || reasonInput.value.length > 200) {
+        errorMessage.textContent = "Reason must be between 5 and 200 characters.";
+        errorMessage.style.display = 'block';
         return false;
     }
 
-    if (toDate < fromDate) {
-        alert('Please Select a valid To Date.');
+
+    if (!pattern.test(reasonInput.value)) {
+        errorMessage.textContent = "Reason must start with a letter and can only contain letters, numbers, spaces, commas, and periods.";
+        errorMessage.style.display = 'block';
         return false;
     }
 
-    if (fromDate === toDate && fromHour && toHour) {
-        if (fromHour > toHour) {
-            alert('The "To Hour" cannot be earlier than the "From Hour".');
-            return false;
-        }
-
-        
-        const [fromHourVal, fromMinuteVal] = fromHour.split(':').map(Number);
-        const [toHourVal, toMinuteVal] = toHour.split(':').map(Number);
-
-        const fromTotalMinutes = fromHourVal * 60 + fromMinuteVal;
-        const toTotalMinutes = toHourVal * 60 + toMinuteVal;
-
-        const timeDifference = toTotalMinutes - fromTotalMinutes; 
-
-        if (timeDifference < 30) {
-            alert('The time difference should be at least 30 minutes.');
-            return false;
-        }
+    
+    if (invalidConsecutive.test(reasonInput.value)) {
+        errorMessage.textContent = "Reason contains invalid consecutive characters (e.g., ',,' or '..').";
+        errorMessage.style.display = 'block';
+        return false;
     }
 
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(email)) {
-        alert('Please enter a valid email address.');
+  
+    return true;
+}
+        function validateFromDate() {
+            const fromDateInput = document.getElementById('from-date');
+            const errorMessage = document.getElementById('error-message-from-date');
+            const today = new Date();
+            const sixMonthsLater = new Date();
+            sixMonthsLater.setMonth(today.getMonth() + 6);
+
+            const selectedDate = new Date(fromDateInput.value);
+
+            if (selectedDate < today || selectedDate > sixMonthsLater) {
+                errorMessage.textContent = "From Date must be today or within the next 6 months.";
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateToDate() {
+            const fromDateInput = document.getElementById('from-date');
+            const toDateInput = document.getElementById('to-date');
+            const errorMessage = document.getElementById('error-message-to-date');
+
+            const fromDate = new Date(fromDateInput.value);
+            const toDate = new Date(toDateInput.value);
+
+            if (toDate < fromDate) {
+                errorMessage.textContent = "To Date cannot be less than From Date.";
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateFromHour() {
+            const fromHourInput = document.getElementById('from-hour');
+            const toHourInput = document.getElementById('to-hour');
+            const errorMessage = document.getElementById('error-message-from-hour');
+
+            const fromHour = fromHourInput.value;
+            const toHour = toHourInput.value;
+
+            if (fromHour && toHour && fromHour >= toHour) {
+                errorMessage.textContent = "From Hour must be less than To Hour.";
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateToHour() {
+            const fromHourInput = document.getElementById('from-hour');
+            const toHourInput = document.getElementById('to-hour');
+            const errorMessage = document.getElementById('error-message-to-hour');
+
+            const fromHour = fromHourInput.value;
+            const toHour = toHourInput.value;
+
+            if (fromHour && toHour && toHour <= fromHour) {
+                errorMessage.textContent = "To Hour must be at least 30 minutes after From Hour.";
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        // Validate the entire form before submission
+        function validateForm() {
+            const isNameValid = validateName();
+            const isEmpIdValid = validateEmpId();
+            const isEmailValid = validateEmail();
+            const isReasonValid = validateReason();
+            const isFromDateValid = validateFromDate();
+            const isToDateValid = validateToDate();
+            const isFromHourValid = validateFromHour();
+            const isToHourValid = validateToHour();
+
+            return isNameValid && isEmpIdValid && isEmailValid && isReasonValid && isFromDateValid && isToDateValid && isFromHourValid && isToHourValid;
+        }
+
+        // Save leave to localStorage
+        function saveLeave(leave) {
+            const leaves = JSON.parse(localStorage.getItem('leaves')) || [];
+            leave.status = leave.status || "Pending";
+            leaves.push(leave);
+            localStorage.setItem('leaves', JSON.stringify(leaves));
+            console.log("Leave saved:", leave);
+        }
+
+        function loadLeaves() {
+    const leaves = JSON.parse(localStorage.getItem('leaves')) || [];
+    const leaveCardsContainer = document.getElementById('leave-cards');
+    leaveCardsContainer.innerHTML = '';
+
+    if (leaves.length === 0) {
+        leaveCardsContainer.innerHTML = `
+            <div class="no-data">
+                <img src="https://cdn-icons-png.flaticon.com/128/1909/1909447.png" alt="No Data" class="no-data-img">
+                <p>No leave requests found.</p>
+            </div>
+        `;
         return;
     }
 
-    const leaveDetails = {
-        name,
-        empId,
-        email,
-        leaveType,
-        fromDate,
-        toDate,
-        fromHour,
-        toHour,
-        reason
-    };
+    const recentLeaves = leaves.slice(-2);
+    recentLeaves.forEach((leave, index) => {
+        const card = document.createElement('div');
+        card.className = 'leave-card';
 
-    let leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+        const statusClass = leave.status.toLowerCase();
 
-    leaveApplications.push(leaveDetails);
+        card.innerHTML = `
+            <h3>Leave Type: ${leave.leaveType}</h3>
+            <p>Period: ${leave.fromDate} to ${leave.toDate}</p>
+            <p>Status: <span class="status-text ${statusClass}">${leave.status}</span></p>
+            <button class="details-button" onclick="showDetails(${index})">View Details</button>
+        `;
 
-    localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
+        leaveCardsContainer.appendChild(card);
+    });
 
-    alert('Leave application submitted successfully!');
-
-    document.getElementById('leave-form').reset();
-    document.getElementById('hour-selection').style.display = 'none'; 
-});
-
-document.getElementById('from-date').addEventListener('change', function() {
-    toggleHourSelection();
-});
-
-document.getElementById('to-date').addEventListener('change', function() {
-    toggleHourSelection();
-});
-
-document.getElementById('from-hour').addEventListener('change', function() {
-    validateHours();
-});
-
-document.getElementById('to-hour').addEventListener('change', function() {
-    validateHours();
-});
-
-function toggleHourSelection() {
-    const fromDate = document.getElementById('from-date').value;
-    const toDate = document.getElementById('to-date').value;
-
-    if (fromDate === toDate) {
-        document.getElementById('hour-selection').style.display = 'block';
-    } else {
-        document.getElementById('hour-selection').style.display = 'none';
+    if (leaves.length > 2) {
+        const viewAllButton = document.createElement('button');
+        viewAllButton.textContent = 'View All';
+        viewAllButton.className = 'view-all-button';
+        viewAllButton.onclick = showAllLeaves;
+        leaveCardsContainer.appendChild(viewAllButton);
     }
 }
 
-function validateHours() {
-    const fromHour = document.getElementById('from-hour').value;
-    const toHour = document.getElementById('to-hour').value;
 
-    if (fromHour && toHour && fromHour > toHour) {
-        alert('The "To Hour" cannot be earlier than the "From Hour".');
-    }
+        function showAllLeaves() {
+            const leaves = JSON.parse(localStorage.getItem('leaves')) || [];
+            const modalDetails = document.getElementById('modal-details');
+            modalDetails.innerHTML = '';
 
-    if (fromHour && toHour) {
-        const [fromHourVal, fromMinuteVal] = fromHour.split(':').map(Number);
-        const [toHourVal, toMinuteVal] = toHour.split(':').map(Number);
+            leaves.forEach((leave, index) => {
+                const card = document.createElement('div');
+                card.className = 'leave-card';
 
-        const fromTotalMinutes = fromHourVal * 60 + fromMinuteVal;
-        const toTotalMinutes = toHourVal * 60 + toMinuteVal;
+                const statusClass = leave.status.toLowerCase();
 
-        const timeDifference = toTotalMinutes - fromTotalMinutes; 
+                card.innerHTML = `
+                    <h3>Leave Type: ${leave.leaveType}</h3>
+                    <p>Period: ${leave.fromDate} to ${leave.toDate}</p>
+                    <p>Status: <span class="status-text ${statusClass}">${leave.status}</span></p>
+                    <button class="details-button" onclick="showDetails(${index})">View Details</button>
+                `;
 
-        if (timeDifference < 30) {
-            alert('The time difference should be at least 30 minutes.');
+                modalDetails.appendChild(card);
+            });
+
+            document.getElementById('modal').style.display = 'flex';
         }
-    }
-}
 
+        // Show details of a specific leave
+        function showDetails(index) {
+            const leaves = JSON.parse(localStorage.getItem('leaves')) || [];
+            const leave = leaves[index];
+            const modalDetails = document.getElementById('modal-details');
+            modalDetails.innerHTML = '';
+
+            const card = document.createElement('div');
+            card.className = 'leave-card';
+
+            const statusClass = leave.status.toLowerCase();
+
+            card.innerHTML = `
+                <h3>Leave Type: ${leave.leaveType}</h3>
+                <p>Period: ${leave.fromDate} to ${leave.toDate}</p>
+                <p>Status: <span class="status-text ${statusClass}">${leave.status}</span></p>
+                <p>Reason: ${leave.reason}</p>
+            `;
+
+            modalDetails.appendChild(card);
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // Update leave status
+        function updateStatus(index, status) {
+            const leaves = JSON.parse(localStorage.getItem('leaves')) || [];
+            leaves[index].status = status;
+            localStorage.setItem('leaves', JSON.stringify(leaves));
+            console.log("Status updated:", leaves[index]);
+            loadLeaves();
+            loadCalendar();
+        }
+
+        // Load calendar with holidays and approved leaves
+        function loadCalendar() {
+            const daysContainer = document.getElementById('days');
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth() + 1;
+            const firstDayOfMonth = new Date(currentYear, currentMonth - 1, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+            daysContainer.innerHTML = '';
+
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'day';
+                daysContainer.appendChild(emptyDay);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day';
+                dayElement.textContent = day;
+
+                const monthHolidays = holidays[currentMonth];
+                if (monthHolidays && monthHolidays[day]) {
+                    dayElement.classList.add('holiday');
+                    dayElement.setAttribute('data-tooltip', monthHolidays[day]);
+                }
+
+                const leaves = JSON.parse(localStorage.getItem('leaves')) || [];
+                const leave = leaves.find(l => {
+                    const leaveDate = new Date(l.fromDate);
+                    return leaveDate.getFullYear() === currentYear &&
+                           leaveDate.getMonth() + 1 === currentMonth &&
+                           leaveDate.getDate() === day &&
+                           l.status === 'Approved';
+                });
+
+                if (leave) {
+                    dayElement.classList.add('leave');
+                    dayElement.setAttribute('data-tooltip', `Leave Type: ${leave.leaveType}`);
+                }
+
+                if (day === today.getDate() && currentMonth === today.getMonth() + 1 && currentYear === today.getFullYear()) {
+                    dayElement.classList.add('today');
+                    dayElement.setAttribute('data-tooltip', 'Today');
+                }
+
+                daysContainer.appendChild(dayElement);
+            }
+        }
+
+        // Holidays data
+        const holidays = {
+            1: { 1: "New Year's Day", 15: "Makar Sankranti", 26: "Republic Day" },
+            2: { 26: "Maha Shivaratri" },
+            3: { 14: "Holi" },
+            4: { 6: "Ram Navami", 18: "Good Friday" },
+            8: { 15: "Independence Day", 16: "Krishna Janmashtami", 27: "Ganesh Chaturthi" },
+            10: { 2: "Gandhi Jayanti", 2: "Dussehra", 21: "Diwali" },
+            12: { 25: "Christmas" }
+        };
+
+        // Show Popup Card
+        function showPopup() {
+            const popup = document.getElementById('popup-card');
+            popup.classList.add('show');
+
+            setTimeout(() => {
+                popup.classList.remove('show');
+                popup.classList.add('hide');
+
+                setTimeout(() => {
+                    popup.classList.remove('hide');
+                }, 500); // Wait for slide-out animation to complete
+            }, 5000); // Show for 5 seconds
+        }
+
+        
+window.addEventListener('message', function (event) {
+ 
+ if (event.data && typeof event.data.darkMode === 'boolean') {
+   const isDarkMode = event.data.darkMode;
+
+   
+   if (isDarkMode) {
+     document.body.classList.add('dark-mode');
+   } else {
+     document.body.classList.remove('dark-mode');
+   }
+ }
+});
+
+// Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
+
+window.addEventListener('message', function (event) {
+ 
+ if (event.data && typeof event.data.darkMode === 'boolean') {
+   const isDarkMode = event.data.darkMode;
+
+   
+   if (isDarkMode) {
+     document.body.classList.add('dark-mode');
+   } else {
+     document.body.classList.remove('dark-mode');
+   }
+ }
+});
+
+// Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
     </script>
-    
-    
-    
 </body>
 </html>
