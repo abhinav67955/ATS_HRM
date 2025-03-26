@@ -3,361 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appraisal Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Employee Review</title>
     <style>
-        * {
+        body {
+            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
-            color: #495057;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        header {
-            position: relative;
-            text-align: center;
-            height: 180px;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #f8f9fa;
-            border-radius: 16px;
-            overflow: hidden;
             display: flex;
-            width: 100%;
-            align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        header p {
-            font-weight: 300;
-            font-size: 1.1rem;
-            margin-top: 15px;
-            max-width: 700px;
-            opacity: 0.9;
-            z-index: 2;
-        }
-
-        @keyframes moveCircles {
-            0% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-50%) translateX(-50%); }
-            100% { transform: translateY(0) translateX(0); }
-        }
-
-        .banner-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .circle {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: moveCircles 10s infinite linear;
-        }
-
-        .circle:nth-child(1) {
-            top: 10%;
-            left: 20%;
-            animation-duration: 8s;
-        }
-
-        .circle:nth-child(2) {
-            top: 50%;
-            left: 70%;
-            animation-duration: 12s;
-        }
-
-        .circle:nth-child(3) {
-            top: 80%;
-            left: 40%;
-            animation-duration: 15s;
-        }
-
-        .appraisal-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-
-        .appraisal-card {
-          background: linear-gradient(rgba(242, 242, 255, 0.833),white);
-            border-radius: 16px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .appraisal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .card-header {
-            display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: #f5f5f5;
         }
 
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.5rem;
+        .banner {
+            background-color: #3b145b;
             color: white;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            text-align: center;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            width: 98%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .card-title {
-            font-size: 1.4rem;
+        .banner h1 {
+            font-size: 36px;
             font-weight: 600;
-            color: #212529;
+        }
+
+        .banner p {
+            font-weight: 100;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+            margin-top: 20px;
+            gap: 30px;
+        }
+
+        .left-side {
+            width: 50%;
+            background: linear-gradient(rgba(224, 224, 255, 0.45), rgba(253, 240, 227, 0.61), rgba(247, 222, 255, 0.568));
+            padding: 20px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-side h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
             margin-bottom: 5px;
         }
 
-        .card-subtitle {
-            font-size: 0.9rem;
-            color: #495057;
-            opacity: 0.7;
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
-        .rating-container {
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        button {
+            font-family: inherit;
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid #560bad;
+            transition: 0.5s;
+            font-size: 17px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #560bad;
+            background-color: #fff;
+        }
+
+        button:hover {
+            color: #fff;
+            background-color: #560bad;
+        }
+
+        .right-side {
+            width: 50%;
             display: flex;
-            align-items: center;
-            margin: 15px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            height: 750px;
+            overflow-y: auto;
+            justify-content: flex-start;
         }
 
-        .rating {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-right: 10px;
-            color: #FFC107;
+        .appraisal-card {
+            background-color: #f0e0ff57;
+            color: rgb(0, 0, 0);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgb(0, 0, 0, 0.1);
+            width: 80%;
+            max-height: 200px;
+            display: block;
+            flex-wrap: wrap;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .stars {
-            color: #FFC107;
-            font-size: 1rem;
+        .appraisal-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .feedback {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #495057;
-            margin-bottom: 15px;
-        }
+        /* Mobile Responsive */
+        @media screen and (max-width: 575px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .feedback-item {
-            margin-bottom: 12px;
-            display: flex;
-        }
-
-        .feedback-label {
-            font-weight: 600;
-            min-width: 100px;
-            color: #6a11cb;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            font-size: 0.85rem;
-            color: #495057;
-        }
-
-        .status {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        .status.completed {
-            background-color: rgba(76, 175, 80, 0.1);
-            color: #4CAF50;
-        }
-
-        .status.pending {
-            background-color: rgba(255, 193, 7, 0.1);
-            color: #FFC107;
-        }
-
-        .status.overdue {
-            background-color: rgba(244, 67, 54, 0.1);
-            color: #F44336;
-        }
-
-        .no-data {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin: 40px auto;
-            grid-column: 1 / -1;
-        }
-
-        .no-data-img {
-            width: 250px;
-            height: auto;
-            opacity: 0.7;
-            margin-bottom: 20px;
-        }
-
-        .no-data h3 {
-            font-size: 1.5rem;
-            color: #495057;
-            margin-bottom: 10px;
-        }
-
-        .no-data p {
-            font-size: 1rem;
-            color: #495057;
-            opacity: 0.7;
-            max-width: 500px;
-        }
-
-        @media (max-width: 768px) {
-            header {
+            .left-side, .right-side {
+                width: 100%;
                 height: auto;
-                padding: 30px 20px;
-            }
-
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            header p {
-                font-size: 1rem;
-            }
-
-            .appraisal-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
                 padding: 15px;
             }
 
-            .appraisal-card {
-                padding: 20px;
-            }
-
-            .card-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .card-title {
-                font-size: 1.2rem;
+            button {
+                width: 100%;
             }
         }
+        .error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; 
+}
+
     </style>
 </head>
 <body>
-    <header>
-        <div class="banner-background">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
-        <h1>Performance Appraisals</h1>
-        <p>Review your performance evaluations, feedback from managers, and track your professional growth journey</p>
-    </header>
 
-    <div class="appraisal-container" id="appraisal-container">
-   
-       
+    <div class="banner">
+        <h1>Employee Appraisal Form</h1>
+        <p>Submit your appraisal feedback below.</p>
     </div>
 
-
-
-    <script>
+    <div class="container">
+        <div class="left-side">
        
-       function displayAppraisals() {
-    const container = document.getElementById('appraisal-container');
-    container.innerHTML = ''; 
+            <form id="appraisalForm">
+                <div class="form-group">
+                    <label for="empName">Employee Name:</label>
+                    <input type="text" id="empName" placeholder="Enter Employee Name" required>
+                    <span id="empName-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="empId">Employee ID:</label>
+                    <input type="text" id="empId" placeholder="Enter Employee ID" required>
+                    <span id="empId-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="taskName">Task Name:</label>
+                    <input type="text" id="taskName" placeholder="Enter Task Name" required>
+                    <span id="taskName-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="feedback">Feedback:</label>
+                    <textarea id="feedback" placeholder="Enter reason" required></textarea>
+                    <span id="feedback-error" class="error-message"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select id="rating" required>
+                        <option value="">Select Rating</option>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+                    <span id="rating-error" class="error-message"></span>
+                </div>
+            
+                <button type="submit">Submit</button>
+            </form>
+            
+        
+            
+        </div>
+        <div class="right-side" id="cardsContainer">  <div id="cardsContainer"></div></div>
+      
 
-    const appraisals = JSON.parse(localStorage.getItem('appraisals')) || [];
+    </div>
 
-    if (appraisals.length === 0) {
-        container.innerHTML = `
-              <div class="no-data">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No appraisals" class="no-data-img">
-                        <h3>No Appraisals Found</h3>
-                        <p>You don't have any performance appraisals yet. Check back later or contact your manager.</p>
-                    </div>
-        `;
-        return;
+  <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    loadAppraisals();
+
+ 
+    document.getElementById("empName").addEventListener("input", validateEmpName);
+    document.getElementById("empId").addEventListener("input", validateEmpId);
+    document.getElementById("taskName").addEventListener("input", validateTaskName);
+    document.getElementById("feedback").addEventListener("input", validateFeedback);
+    document.getElementById("rating").addEventListener("change", validateRating);
+
+    document.getElementById("appraisalForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let empName = document.getElementById("empName").value.trim();
+        let empId = document.getElementById("empId").value.trim();
+        let taskName = document.getElementById("taskName").value.trim();
+        let feedback = document.getElementById("feedback").value.trim();
+        let rating = document.getElementById("rating").value;
+
+       
+        if (!validateEmpName(empName) || !validateEmpId(empId) || !validateTaskName(taskName) || !validateFeedback(feedback) || !validateRating(rating)) {
+            return; 
+        }
+
+        let appraisal = {
+            empName,
+            empId,
+            taskName,
+            feedback,
+            rating
+        };
+
+        saveAppraisal(appraisal);
+        displayAppraisals();
+        document.getElementById("appraisalForm").reset();
+    });
+
+    
+    function validateEmpName() {
+        let empName = document.getElementById("empName").value.trim();
+        let error = document.getElementById("empName-error");
+        let pattern = /^(?!.*\.\.)(?!.* \.)(?!.*\. )(?!^\.)[A-Za-z.]+(?:\s[A-Za-z.]+)*$/;
+        let dotCount = (empName.match(/\./g) || []).length;
+
+        if (!pattern.test(empName) || dotCount > 2) {
+            error.innerText = "Invalid Employee Name format.";
+            error.style.display = "inline";
+            return false;
+        } else {
+            error.style.display = "none";
+            return true;
+        }
     }
 
-    appraisals.forEach(appraisal => {
-        const card = document.createElement('div');
-        card.classList.add('appraisal-card');
-        card.innerHTML = `
-            <h3>Task: ${appraisal.task}</h3>
-            <div class="rating">Rating: ${appraisal.rating}</div>
-            <div class="feedback">
-                <p><strong>Review:</strong> ${appraisal.review}</p>
-                <p><strong>Feedback:</strong> ${appraisal.remarks}</p>
-                <p class="date">Project: ${appraisal.project}</p>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
+    function validateEmpId() {
+        let empId = document.getElementById("empId").value.trim();
+        let error = document.getElementById("empId-error");
+        let pattern = /^[A-Z]{3}0\d{3}$/;
 
-        window.onload = function() {
-     
+        if (!pattern.test(empId)) {
+            error.innerText = "Employee ID should be in format: ABC0123.";
+            error.style.display = "inline";
+            return false;
+        } else {
+            error.style.display = "none";
+            return true;
+        }
+    }
 
-            displayAppraisals();
-        };
+    function validateTaskName() {
+        let taskName = document.getElementById("taskName").value.trim();
+        let error = document.getElementById("taskName-error");
+        let pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
+
+        if (!pattern.test(taskName)) {
+            error.innerText = "Task Name should only contain alphabets and single spaces.";
+            error.style.display = "inline";
+            return false;
+        } else {
+            error.style.display = "none";
+            return true;
+        }
+    }
+
+    function validateFeedback() {
+        let feedback = document.getElementById("feedback").value.trim();
+        let error = document.getElementById("feedback-error");
+        let pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
+
+        if (!pattern.test(feedback)) {
+            error.innerText = "Feedback should only contain alphabets and single spaces.";
+            error.style.display = "inline";
+            return false;
+        } else {
+            error.style.display = "none";
+            return true;
+        }
+    }
+
+    function validateRating() {
+        let rating = document.getElementById("rating").value;
+        let error = document.getElementById("rating-error");
+
+        if (!rating) {
+            error.innerText = "Please select a rating.";
+            error.style.display = "inline";
+            return false;
+        } else {
+            error.style.display = "none";
+            return true;
+        }
+    }
+
+    
+    function saveAppraisal(appraisal) {
+        let appraisals = JSON.parse(localStorage.getItem("appraisals")) || [];
+        appraisals.push(appraisal);
+        localStorage.setItem("appraisals", JSON.stringify(appraisals));
+    }
+
+    
+    function loadAppraisals() {
+        displayAppraisals();
+    }
+
+    function displayAppraisals() {
+        let container = document.getElementById("cardsContainer");
+        container.innerHTML = "";
+
+        let appraisals = JSON.parse(localStorage.getItem("appraisals")) || [];
+
+        appraisals.forEach((appraisal) => {
+            let card = document.createElement("div");
+            card.classList.add("appraisal-card");
+            card.innerHTML = `
+                <strong>Employee Name:</strong> ${appraisal.empName} <br>
+                <strong>Employee ID:</strong> ${appraisal.empId} <br>
+                <strong>Task Name:</strong> ${appraisal.taskName} <br>
+                <strong>Feedback:</strong> ${appraisal.feedback} <br>
+                <strong>Rating:</strong> <span class="stars">${"⭐".repeat(appraisal.rating)}</span>
+            `;
+            container.appendChild(card);
+        });
+    }
+});
+
     </script>
 
 </body>
 </html>
 
+
+   
