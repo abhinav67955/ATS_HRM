@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,31 +13,88 @@
             margin: 0;
             padding: 0;
         }
-        .banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: auto;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 98%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: auto;
-    margin-right: auto;
+     
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    }
 
-.banner h1 {
-    font-size: 36px;
-    color: white;
-    font-weight: 600;
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
 }
-.banner p {
-  font-weight: 100;
-    font-size: 18px;
-    margin-top: 10px;
-}
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
         .container {
             background-color: #d8e6ff;
             border-radius: 8px;
@@ -43,6 +102,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 90%;
             display: flex;
+            flex-direction: column;
             margin-left: auto;
             margin-right: auto;
             margin-top: 10px;
@@ -190,74 +250,22 @@
             flex: 1;
             padding: 0 10px;
         }
-       /* Tablets and smaller screens */
-@media screen and (max-width: 1024px) {
-    .container {
-        width: 95%;
-        flex-direction: column;
-        align-items: center;
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+        .password-container {
+         position: relative;
+        display: flex;
+        align-items: center; 
     }
-
-    .form {
-        width: 80%;
-        height: auto;
-    }
-
-    button {
-        width: 250px;
-    }
-}
-
-/* Mobile devices */
-@media screen and (max-width: 768px) {
-    .banner {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .banner h1 {
-        font-size: 30px;
-    }
-
-    .banner p {
-        font-size: 16px;
-    }
-
-    .container {
-        width: 100%;
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .form {
-        width: 90%;
-        padding: 15px;
-    }
-
-    .form h2 {
-        font-size: 20px;
-    }
-
-    .form label {
-        font-size: 16px;
-    }
-
-    .form input, .form select {
-        width: 100%;
-        font-size: 14px;
-    }
-
-    button {
-        width: 220px;
-        font-size: 15px;
-    }
-
-    .bonus-container, .pf-container {
-        width: 90%;
-        padding: 15px;
-    }
-}
-
+        .toggle-password { 
+        position: absolute;
+        right: 30px;
+        top: 10px;
+        cursor: pointer;
+     }
 
 @media screen and (max-width: 480px) {
     body {
@@ -323,124 +331,164 @@
     </style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Bonus & Provident Fund Generator</h1>
+    
+<header>
+    <div class="banner-background">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <h1>Bonus & Provident Fund Generator</h1>
         <p>Track and download your Provident Fund Slip & Bonus Slip</p> 
 
-    </div>
-<div class="container">
-    <div class="form">
-        <form id="bonus-form">
-            <label for="employee-name">Employee Name</label>
-            <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required  name="employee-name" required  minlength="3" maxlength="100"
-            pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-            title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-
-            <label for="password">Password</label>
-            <input type="password"  id="Password" name="Password" placeholder="Enter Your Password" required   required 
-            minlength="5" 
-            maxlength="50"
-            pattern="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$" 
-            title="Password must be at least 5 characters long and include at least one letter, one number, and one symbol (e.g., @, #, $, %)">
-            
-            <label for="month">Month:</label>
-            <input type="month" name="month" id="month" required>
-
-            <button type="submit">Generate Bonus and PF Slip</button>
-        </form>
-        <small class="error-message"></small>
-    </div>
-
-    <div class="pf-container" id="pf-container">
-        <div class="container-header">
-            <h3>Provident Fund (PF) Slip</h3>
-        </div>
-        <div class="employee-details">
-            <div><strong>EMP Code:</strong> 39124</div>
-            <div><strong>EMP Name:</strong> <span id="employee-name-span">Employee name</span></div>
-        </div>
-        <div class="details-section">
-            <div><strong>PF No.:</strong> 101523065714</div>
-            <div><strong>Designation:</strong> Developer</div>
-        </div>
-        <div class="details-section">
-            <div><strong>Provident Fund Amount:</strong> 1,800.00</div>
-        </div>
-        <div class="signature">
-            <div><strong>Astrolite Tech Solutions</strong></div>
-        </div>
-        <button id="download-pf-btn">Download PF Slip</button>
-
-    </div>
-
-    <div class="bonus-container" id="bonus-container">
-        <div class="container-header">
-            <h3>Bonus Slip</h3>
-            <span id="month-span">Bonus for the month of October 2024</span>
-        </div>
-        <div class="employee-details">
-            <div><strong>EMP Code:</strong> 39124</div>
-            <div><strong>EMP Name:</strong> <span id="employee-name-span-bonus">Employee name</span></div>
-        </div>
-        <div class="details-section">
-            <div><strong>Job Role:</strong> Developer</div>
-        </div>
-        <div class="details-section">
-            <div><strong>Bonus Amount:</strong> <span id="bonus-amount">0.00</span></div>
-        </div>
-        <div class="signature">
-            <div><strong>Astrolite Tech Solutions</strong></div>
-        </div>
-        <button id="download-bonus-btn">Download Bonus Slip</button>
-
-    </div>
-</div>
-
-<script>
-    document.getElementById('bonus-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-
-    var employeeName = document.getElementById('employee-name').value;
-    var month = document.getElementById('month').value;
-    var pfAmount = 1800.00;
-    var bonusAmount = (["2024-01", "2024-03", "2024-06", "2024-11"].includes(month)) ? 3000.00 : 0;
-
-    
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth(); 
-    const currentYear = currentDate.getFullYear();
-
-    
-    const selectedMonth = new Date(month + "-01");  
-    const selectedYear = selectedMonth.getFullYear();
-    const selectedMonthIndex = selectedMonth.getMonth(); 
-
-    
-    if (selectedYear > currentYear || (selectedYear === currentYear && selectedMonthIndex >= currentMonth)) {
-        alert("Invalid selection. The selected month must be in the past.");
-        return false; 
-    }
-
-
-    document.getElementById('employee-name-span').innerText = employeeName;
-    document.getElementById('employee-name-span-bonus').innerText = employeeName;
-    document.getElementById('month-span').innerText = "Bonus for the month of " + month;
-    document.getElementById('bonus-amount').innerText = bonusAmount > 0 ? bonusAmount.toFixed(2) : "No bonus credited in " + month;
-
+  </header>
   
-    document.getElementById('pf-container').style.display = 'block';
-    document.getElementById('bonus-container').style.display = 'block';
-    document.querySelector('.form').style.display = 'none';
-});
+    
+    <div class="container">
+        <div class="form">
+            <form id="bonus-form">
+                <label for="employee-name">Employee Name</label>
+                <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required
+                    minlength="3" maxlength="100"
+                    pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                    title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                <small id="employee-name-error" class="error-message">Invalid name format.</small>
 
-document.getElementById('download-pf-btn').addEventListener('click', function () {
-    var employeeName = document.getElementById('employee-name-span').innerText;
-    var pfAmount = 1800.00;  
-    var month = document.getElementById('month').value;
-    var year = new Date(month).getFullYear();  
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Enter Your Password" required
+                        minlength="5" maxlength="50"
+                        pattern="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$"
+                        title="Password must be at least 5 characters long and include at least one letter, one number, and one symbol (e.g., @, #, $, %)">
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+                </div>
+                <small id="password-error" class="error-message">Password must include at least one letter, one number, and one symbol.</small>
 
-    var pfContent = `
+                <label for="month">Month:</label>
+                <input type="month" name="month" id="month" required>
+
+                <button type="submit">Generate Bonus and PF Slip</button>
+            </form>
+        </div>
+
+        <div class="pf-container" id="pf-container">
+            <div class="container-header">
+                <h3>Provident Fund (PF) Slip</h3>
+            </div>
+            <div class="employee-details">
+                <div><strong>EMP Code:</strong> 39124</div>
+                <div><strong>EMP Name:</strong> <span id="employee-name-span">Employee name</span></div>
+            </div>
+            <div class="details-section">
+                <div><strong>PF No.:</strong> 101523065714</div>
+                <div><strong>Designation:</strong> Developer</div>
+            </div>
+            <div class="details-section">
+                <div><strong>Provident Fund Amount:</strong> 1,800.00</div>
+            </div>
+            <div class="signature">
+                <div><strong>Astrolite Tech Solutions</strong></div>
+            </div>
+            <button id="download-pf-btn">Download PF Slip</button>
+        </div>
+
+        <div class="bonus-container" id="bonus-container">
+            <div class="container-header">
+                <h3>Bonus Slip</h3>
+                <span id="month-span">Bonus for the month of October 2024</span>
+            </div>
+            <div class="employee-details">
+                <div><strong>EMP Code:</strong> 39124</div>
+                <div><strong>EMP Name:</strong> <span id="employee-name-span-bonus">Employee name</span></div>
+            </div>
+            <div class="details-section">
+                <div><strong>Job Role:</strong> Developer</div>
+            </div>
+            <div class="details-section">
+                <div><strong>Bonus Amount:</strong> <span id="bonus-amount">0.00</span></div>
+            </div>
+            <div class="signature">
+                <div><strong>Astrolite Tech Solutions</strong></div>
+            </div>
+            <button id="download-bonus-btn">Download Bonus Slip</button>
+        </div>
+    </div>
+
+    <script>
+        // Real-time validation for employee name
+        document.getElementById('employee-name').addEventListener('input', function () {
+            const input = this.value;
+            const error = document.getElementById('employee-name-error');
+            const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+
+            if (!pattern.test(input)) {
+                error.style.display = 'block';
+            } else {
+                error.style.display = 'none';
+            }
+        });
+
+        // Real-time validation for password
+        document.getElementById('password').addEventListener('input', function () {
+            const input = this.value;
+            const error = document.getElementById('password-error');
+            const pattern = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$/;
+
+            if (!pattern.test(input)) {
+                error.style.display = 'block';
+            } else {
+                error.style.display = 'none';
+            }
+        });
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('bonus-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const employeeName = document.getElementById('employee-name').value;
+            const month = document.getElementById('month').value;
+            const pfAmount = 1800.00;
+            const bonusAmount = (["2024-01", "2024-03", "2024-06", "2024-11"].includes(month)) ? 3000.00 : 0;
+
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth();
+            const currentYear = currentDate.getFullYear();
+
+            const selectedMonth = new Date(month + "-01");
+            const selectedYear = selectedMonth.getFullYear();
+            const selectedMonthIndex = selectedMonth.getMonth();
+
+            if (selectedYear > currentYear || (selectedYear === currentYear && selectedMonthIndex >= currentMonth)) {
+                alert("Invalid selection. The selected month must be in the past.");
+                return false;
+            }
+
+            document.getElementById('employee-name-span').innerText = employeeName;
+            document.getElementById('employee-name-span-bonus').innerText = employeeName;
+            document.getElementById('month-span').innerText = "Bonus for the month of " + month;
+            document.getElementById('bonus-amount').innerText = bonusAmount > 0 ? bonusAmount.toFixed(2) : "No bonus credited in " + month;
+
+            document.getElementById('pf-container').style.display = 'block';
+            document.getElementById('bonus-container').style.display = 'block';
+            document.querySelector('.form').style.display = 'none';
+        });
+
+        // Download PF Slip
+        document.getElementById('download-pf-btn').addEventListener('click', function () {
+            const employeeName = document.getElementById('employee-name-span').innerText;
+            const month = document.getElementById('month').value;
+
+            const pfContent = `
 Provident Fund (PF) Slip
 ========================
 EMP Code: 39124
@@ -453,20 +501,20 @@ Provident Fund Amount: 1,800.00
 Astrolite Tech Solutions
 `;
 
-    var blob = new Blob([pfContent], { type: 'text/plain' });
-    var link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'Provident_Fund_Slip.txt';
-    link.click();
-});
+            const blob = new Blob([pfContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Provident_Fund_Slip.txt';
+            link.click();
+        });
 
-document.getElementById('download-bonus-btn').addEventListener('click', function () {
-    var employeeName = document.getElementById('employee-name-span-bonus').innerText;
-    var bonusAmount = document.getElementById('bonus-amount').innerText;
-    var month = document.getElementById('month').value;
-    var year = new Date(month).getFullYear();  
+        // Download Bonus Slip
+        document.getElementById('download-bonus-btn').addEventListener('click', function () {
+            const employeeName = document.getElementById('employee-name-span-bonus').innerText;
+            const bonusAmount = document.getElementById('bonus-amount').innerText;
+            const month = document.getElementById('month').value;
 
-    var bonusContent = `
+            const bonusContent = `
 Bonus Slip
 ===========
 EMP Code: 39124
@@ -478,16 +526,12 @@ Bonus Amount: ${bonusAmount}
 Astrolite Tech Solutions
 `;
 
-    
-    var blob = new Blob([bonusContent], { type: 'text/plain' });
-    var link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'Bonus_Slip.txt';
-    link.click();
-});
-
-</script>
-
+            const blob = new Blob([bonusContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Bonus_Slip.txt';
+            link.click();
+        });
+    </script>
 </body>
 </html>
-
