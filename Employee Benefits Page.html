@@ -1,165 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Benefit Cards</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Marko+One&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
+    <title>Bonus and PF Slip Generator</title>
     <style>
-       * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-    color: #333;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 98%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+     
+    header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    }
 
-.banner h1 {
-    font-size: 36px;
-    font-weight: 600;
-}
-
-.banner p {
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
     font-weight: 100;
-    font-size: 18px;
-    margin-top: 10px;
+      font-size: 18px;
+      margin-top: 10px;
 }
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
 
-.benefit-container {
-    max-width: 1200px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-}
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-.benefit-card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    width: 200px;
-    height: 200px;
-    margin-bottom: 300px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: linear-gradient(to bottom, #f0f4f7, #ffffff);
-    align-items: center;
-}
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
 
-.benefit-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
 
-.benefit-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
-    object-fit: contain;
-}
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
 
-.benefit-card h3 {
-    color: #1e4a5f;
-    margin-bottom: 10px;
-    font-size: 1.4rem;
-}
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
+        .container {
+            background-color: #d8e6ff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+        .form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 400px; 
+            height: 350px; 
+            margin: 50px auto;
+        }
+        .form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form label {
+            display: block;
+            font-size: 19px;
+            margin: 10px 0 5px;
+        }
+        .form input {
+            padding: 10px;
+            width: 90%;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        } 
+        .form select{
+            padding: 10px;
+            width: 96%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        button {
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 320px;
+            height: 2.6em;
+            line-height: 2.5em;
+            margin: 20px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 17px;
+           margin-left: 40px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--color);
+            background-color: var(--bg-color);
+        }
+        button:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background: var(--color);
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 0.7s;
+        }
+        button:hover {
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+        button:active {
+            color: var(--color);
+            background-color: #ffffff;
+        }
 
-.benefit-card p {
-    font-size: 1rem;
-    color: #555;
-}
-
-.content-wrapper {
-    margin-top: 90px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    width: 220px;
-    height: 250px;
-    display: flex;
-    margin-bottom: 40px;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to top left, #f1f8ff68, #fce0fb70);
-}
-
-.program-time {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 15px;
-    min-height: 20px;
-}
-
-.register-button {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: #4b639b;
-    color: white;
-    font-size: 1rem;
-    margin-top: 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
-
-.register-button:hover {
-    background-color: #45a049;
-}
-
-.yoga {
-    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
-}
-
-.mental-health {
-    background: linear-gradient(to bottom, #ffebee, #ffffff);
-}
-
-.awareness {
-    background: linear-gradient(to bottom, #e8f5e9, #ffffff);
-}
-
-.loans {
-    background: linear-gradient(to bottom, #fff3e0, #ffffff);
-}
-
-.vacations {
-    background: linear-gradient(to bottom, #f3e5f5, #ffffff);
-}
-
-.content{
-    height: 120px;
-    width: 100%;
-}
+        .bonus-container, .pf-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        .container-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container-header h3 {
+            font-weight: bold;
+            font-size: 2em;
+        }
+        .employee-details {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .details-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+            font-size: 28px;
+        }
+        .border {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .col {
+            flex: 1;
+            padding: 0 10px;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+        .password-container {
+         position: relative;
+        display: flex;
+        align-items: center; 
+    }
+        .toggle-password { 
+        position: absolute;
+        right: 30px;
+        top: 10px;
+        cursor: pointer;
+     }
 
 @media screen and (max-width: 480px) {
     body {
@@ -179,108 +283,253 @@ body {
     .banner p {
         font-size: 12px;
     }
+    .container {
+        padding: 10px;
+    }
 
+    .form {
+        width: 95%;
+        padding: 10px;
+    }
 
+    .form h2 {
+        font-size: 18px;
+    }
+
+    .form label {
+        font-size: 14px;
+    }
+
+    .form input, .form select {
+        font-size: 12px;
+        width: 95%;
+    }
+
+    button {
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .bonus-container, .pf-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .employee-details, .details-section {
+        flex-direction: column;
+    }
+
+    .signature {
+        font-size: 20px;
+        text-align: center;
+    }
 }
+
 
     </style>
 </head>
-
 <body>
-    <div class="banner">
-        <h1>Employee Benefits</h1>
-        <p>Track and manage benefits provided by the company.</p>
-
+    
+<header>
+    <div class="banner-background">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
     </div>
+    <h1>Bonus & Provident Fund Generator</h1>
+        <p>Track and download your Provident Fund Slip & Bonus Slip</p> 
 
-    <div class="benefit-container">
-        <div class="benefit-card yoga">
-            <img src="self-improvement.png" alt="Yoga Icon">            
-            <h3>Yoga and Meditation</h3>
-            <div class="content-wrapper">
-                <div class="content">
-                <p>Join our weekly yoga and meditation sessions to de-stress and improve mental clarity.</p>
+  </header>
+  
+    
+    <div class="container">
+        <div class="form">
+            <form id="bonus-form">
+                <label for="employee-name">Employee Name</label>
+                <input type="text" id="employee-name" name="employee-name" placeholder="Enter Employee Name" required
+                    minlength="3" maxlength="100"
+                    pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                    title="Name cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                <small id="employee-name-error" class="error-message">Invalid name format.</small>
+
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Enter Your Password" required
+                        minlength="5" maxlength="50"
+                        pattern="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$"
+                        title="Password must be at least 5 characters long and include at least one letter, one number, and one symbol (e.g., @, #, $, %)">
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
                 </div>
-                <div class="program-time">Every Monday, 10:00 AM</div>
-                <a href="#" class="register-button" onclick="enroll('Yoga and Meditation', 'Every Monday, 10:00 AM')">Join Now</a>
-            </div>
+                <small id="password-error" class="error-message">Password must include at least one letter, one number, and one symbol.</small>
+
+                <label for="month">Month:</label>
+                <input type="month" name="month" id="month" required>
+
+                <button type="submit">Generate Bonus and PF Slip</button>
+            </form>
         </div>
 
-        <div class="benefit-card mental-health">
-            <img src="concentrate.png" alt="Mental Health Icon">          
-              <h3>Mental Health Support</h3>
-            <div class="content-wrapper">
-                <div class="content">
-                <p>Mental awareness for employees focuses on stress management, emotional well-being, and mental clarity improvement.</p>
+        <div class="pf-container" id="pf-container">
+            <div class="container-header">
+                <h3>Provident Fund (PF) Slip</h3>
             </div>
-                <div class="program-time">Available Anytime</div>
-                <a href="#" class="register-button" onclick="arrangeMeeting('Mental Health Support', 'Available Anytime')">Get Support</a>
+            <div class="employee-details">
+                <div><strong>EMP Code:</strong> 39124</div>
+                <div><strong>EMP Name:</strong> <span id="employee-name-span">Employee name</span></div>
             </div>
+            <div class="details-section">
+                <div><strong>PF No.:</strong> 101523065714</div>
+                <div><strong>Designation:</strong> Developer</div>
+            </div>
+            <div class="details-section">
+                <div><strong>Provident Fund Amount:</strong> 1,800.00</div>
+            </div>
+            <div class="signature">
+                <div><strong>Astrolite Tech Solutions</strong></div>
+            </div>
+            <button id="download-pf-btn">Download PF Slip</button>
         </div>
 
-        <div class="benefit-card awareness">
-            <img src="public-service.png" alt="Awareness Icon">
-            <h3>Awareness Programs</h3>
-            <div class="content-wrapper">
-                <div class="content">
-                <p>Mental awareness for employees focuses on awareness and mental clarity improvement..</p>
-                </div>
-                <div class="program-time">Last Friday of the Month</div>
-                <a href="#" class="register-button" onclick="enroll('Awareness Programs', 'Last Friday of the Month')">Join Now</a>
+        <div class="bonus-container" id="bonus-container">
+            <div class="container-header">
+                <h3>Bonus Slip</h3>
+                <span id="month-span">Bonus for the month of October 2024</span>
             </div>
+            <div class="employee-details">
+                <div><strong>EMP Code:</strong> 39124</div>
+                <div><strong>EMP Name:</strong> <span id="employee-name-span-bonus">Employee name</span></div>
+            </div>
+            <div class="details-section">
+                <div><strong>Job Role:</strong> Developer</div>
+            </div>
+            <div class="details-section">
+                <div><strong>Bonus Amount:</strong> <span id="bonus-amount">0.00</span></div>
+            </div>
+            <div class="signature">
+                <div><strong>Astrolite Tech Solutions</strong></div>
+            </div>
+            <button id="download-bonus-btn">Download Bonus Slip</button>
         </div>
-
-        <div class="benefit-card loans">
-            <img src="money-bag.png" alt="Loans Icon">
-            <h3>Employee Loans</h3>
-            <div class="content-wrapper">
-                <div class="content">
-                <p>An employee loan is a financial advance provided by an employer to an employee.</p>
-                </div>
-                <div class="program-time">Available Year-Round</div>
-                <a href="#" class="register-button" onclick="requestLoan('Employee Loans', 'Available Year-Round')">Request</a>
-            </div>
-        </div>
-
-        <!-- <div class="benefit-card vacations">
-            <img src="Vacation.png" alt="Company Vacations Icon">
-            <h3>Company Vacations</h3>
-            <div class="content-wrapper">
-                <p>Enjoy annual company vacations to relax and bond with your colleagues.</p>
-                <div class="program-time">Every Year, December</div>
-                <a href="#" class="register-button" onclick="enroll('Company Vacations', 'Every Year, December')">Join Now</a>
-            </div>
-        </div> -->
     </div>
 
     <script>
-        function enroll(program, time) {
-            alert(`You have been successfully enrolled in ${program}. Program time: ${time}`);
-            event.target.textContent = "Enrolled";
-            event.target.style.backgroundColor = "#45a049";
-            event.target.style.cursor = "not-allowed";
-            event.target.removeAttribute("onclick");
+        // Real-time validation for employee name
+        document.getElementById('employee-name').addEventListener('input', function () {
+            const input = this.value;
+            const error = document.getElementById('employee-name-error');
+            const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+
+            if (!pattern.test(input)) {
+                error.style.display = 'block';
+            } else {
+                error.style.display = 'none';
+            }
+        });
+
+        // Real-time validation for password
+        document.getElementById('password').addEventListener('input', function () {
+            const input = this.value;
+            const error = document.getElementById('password-error');
+            const pattern = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\W_]).{5,}$/;
+
+            if (!pattern.test(input)) {
+                error.style.display = 'block';
+            } else {
+                error.style.display = 'none';
+            }
+        });
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
         }
 
-        function arrangeMeeting(program, time) {
-            alert(`Your meeting for ${program} has been arranged. Meeting time: ${time}`);
-            event.target.textContent = "Meeting Arranged";
-            event.target.style.backgroundColor = "#45a049";
-            event.target.style.cursor = "not-allowed";
-            event.target.removeAttribute("onclick");
-        }
+        // Form submission handler
+        document.getElementById('bonus-form').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        function requestLoan(program, time) {
-            alert(`Your loan request for ${program} is being processed. Available Year-Round.`);
-            event.target.textContent = "Loan Requested";
-            event.target.style.backgroundColor = "#45a049";
-            event.target.style.cursor = "not-allowed";
-            event.target.removeAttribute("onclick");
-        }
+            const employeeName = document.getElementById('employee-name').value;
+            const month = document.getElementById('month').value;
+            const pfAmount = 1800.00;
+            const bonusAmount = (["2024-01", "2024-03", "2024-06", "2024-11"].includes(month)) ? 3000.00 : 0;
+
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth();
+            const currentYear = currentDate.getFullYear();
+
+            const selectedMonth = new Date(month + "-01");
+            const selectedYear = selectedMonth.getFullYear();
+            const selectedMonthIndex = selectedMonth.getMonth();
+
+            if (selectedYear > currentYear || (selectedYear === currentYear && selectedMonthIndex >= currentMonth)) {
+                alert("Invalid selection. The selected month must be in the past.");
+                return false;
+            }
+
+            document.getElementById('employee-name-span').innerText = employeeName;
+            document.getElementById('employee-name-span-bonus').innerText = employeeName;
+            document.getElementById('month-span').innerText = "Bonus for the month of " + month;
+            document.getElementById('bonus-amount').innerText = bonusAmount > 0 ? bonusAmount.toFixed(2) : "No bonus credited in " + month;
+
+            document.getElementById('pf-container').style.display = 'block';
+            document.getElementById('bonus-container').style.display = 'block';
+            document.querySelector('.form').style.display = 'none';
+        });
+
+        // Download PF Slip
+        document.getElementById('download-pf-btn').addEventListener('click', function () {
+            const employeeName = document.getElementById('employee-name-span').innerText;
+            const month = document.getElementById('month').value;
+
+            const pfContent = `
+Provident Fund (PF) Slip
+========================
+EMP Code: 39124
+EMP Name: ${employeeName}
+Month: ${month}
+PF No.: 101523065714
+Designation: Developer
+Provident Fund Amount: 1,800.00
+----------------------------------------
+Astrolite Tech Solutions
+`;
+
+            const blob = new Blob([pfContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Provident_Fund_Slip.txt';
+            link.click();
+        });
+
+        // Download Bonus Slip
+        document.getElementById('download-bonus-btn').addEventListener('click', function () {
+            const employeeName = document.getElementById('employee-name-span-bonus').innerText;
+            const bonusAmount = document.getElementById('bonus-amount').innerText;
+            const month = document.getElementById('month').value;
+
+            const bonusContent = `
+Bonus Slip
+===========
+EMP Code: 39124
+EMP Name: ${employeeName}
+Month: ${month}
+Job Role: Developer
+Bonus Amount: ${bonusAmount}
+----------------------------------------
+Astrolite Tech Solutions
+`;
+
+            const blob = new Blob([bonusContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Bonus_Slip.txt';
+            link.click();
+        });
     </script>
-
 </body>
-
 </html>
-
-
