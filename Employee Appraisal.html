@@ -4,200 +4,353 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appraisal Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-       * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-body {
-    color: #333;
-    font-size: 16px;
-}
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+            color: #495057;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-.banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 100%;
-   
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+        header {
+            position: relative;
+            text-align: center;
+            height: 180px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+        }
 
-.banner h1 {
-    font-size: 36px;
-    font-weight: 600;
-}
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-.banner p {
-    font-weight: 100;
-    font-size: 18px;
-    margin-top: 10px;
-}
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
 
-.appraisal-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    margin-top: 30px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
 
-.appraisal-card {
-    background-color: white;
-    width: 30%;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 20px;
-}
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-.appraisal-card:hover {
-    transform: scale(1.05);
-}
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
 
-.appraisal-card h3 {
-    font-size: 22px;
-    color: #4facfe;
-    margin-bottom: 10px;
-}
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
 
-.appraisal-card p {
-    font-size: 16px;
-    color: #777;
-    margin-bottom: 15px;
-}
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
 
-.rating {
-    font-size: 18px;
-    font-weight: bold;
-    color: #f39c12;
-    margin-bottom: 10px;
-}
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
 
-.feedback {
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
-}
+        .appraisal-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10px;
+        }
 
-.feedback p {
-    margin-bottom: 10px;
-}
+        .appraisal-card {
+          background: linear-gradient(rgba(242, 242, 255, 0.833),white);
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-.feedback .date {
-    font-size: 12px;
-    color: #888;
-}
+        .appraisal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
 
-@media (max-width: 1024px) {
-    .appraisal-card {
-        width: 45%;
-    }
-}
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-@media (max-width: 768px) {
-    .banner {
-        padding: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: white;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
 
-    .appraisal-container {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 5px;
+        }
 
-    .appraisal-card {
-        width: 100%;
-        max-width: 500px;
-        margin-bottom: 20px;
-    }
-}
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #495057;
+            opacity: 0.7;
+        }
 
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
+        .rating-container {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
 
-    .banner {
-        width: 95%;
-        padding: 10px;
-        border-radius: 10px;
-    }
+        .rating {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-right: 10px;
+            color: #FFC107;
+        }
 
-    .banner h1 {
-        font-size: 20px;
-    }
+        .stars {
+            color: #FFC107;
+            font-size: 1rem;
+        }
 
-    .banner p {
-        font-size: 12px;
-    }
-    .appraisal-card h3 {
-        font-size: 18px;
-    }
-    .appraisal-card{
-        width: 350px;
-    }
+        .feedback {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #495057;
+            margin-bottom: 15px;
+        }
 
-    .rating {
-        font-size: 16px;
-    }
+        .feedback-item {
+            margin-bottom: 12px;
+            display: flex;
+        }
 
-    .feedback {
-        font-size: 13px;
-    }
-}
+        .feedback-label {
+            font-weight: 600;
+            min-width: 100px;
+            color: #6a11cb;
+        }
 
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.85rem;
+            color: #495057;
+        }
+
+        .status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .status.completed {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+        }
+
+        .status.pending {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #FFC107;
+        }
+
+        .status.overdue {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+        }
+
+        .no-data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 40px auto;
+            grid-column: 1 / -1;
+        }
+
+        .no-data-img {
+            width: 250px;
+            height: auto;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        .no-data h3 {
+            font-size: 1.5rem;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .no-data p {
+            font-size: 1rem;
+            color: #495057;
+            opacity: 0.7;
+            max-width: 500px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: auto;
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .appraisal-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .appraisal-card {
+                padding: 20px;
+            }
+
+            .card-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <div class="banner">
-        <h1>Your Appraisals</h1>
-        <p>View your performance reviews from various tasks and feedbacks from HR, managers, and clients.</p>
-    </div>
+    <header>
+        <div class="banner-background">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <h1>Performance Appraisals</h1>
+        <p>Review your performance evaluations, feedback from managers, and track your professional growth journey</p>
+    </header>
 
     <div class="appraisal-container" id="appraisal-container">
-     
-
+   
+       
     </div>
+
+
 
     <script>
        
-        function displayAppraisals() {
-            const container = document.getElementById('appraisal-container');
-            container.innerHTML = ''; 
+       function displayAppraisals() {
+    const container = document.getElementById('appraisal-container');
+    container.innerHTML = ''; 
 
-            const appraisals = JSON.parse(localStorage.getItem('appraisals')) || [];
+    const appraisals = JSON.parse(localStorage.getItem('appraisals')) || [];
 
-            appraisals.forEach(appraisal => {
-                const card = document.createElement('div');
-                card.classList.add('appraisal-card');
-                card.innerHTML = `
-                    <h3>Task: ${appraisal.task}</h3>
-                    <div class="rating">Rating: ${appraisal.rating}</div>
-                    <div class="feedback">
-                        <p><strong>Review:</strong> ${appraisal.review}</p>
-                        <p><strong>Feedback:</strong> ${appraisal.remarks}</p>
-                        <p class="date">Project: ${appraisal.project}</p>
+    if (appraisals.length === 0) {
+        container.innerHTML = `
+              <div class="no-data">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No appraisals" class="no-data-img">
+                        <h3>No Appraisals Found</h3>
+                        <p>You don't have any performance appraisals yet. Check back later or contact your manager.</p>
                     </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+        `;
+        return;
+    }
+
+    appraisals.forEach(appraisal => {
+        const card = document.createElement('div');
+        card.classList.add('appraisal-card');
+        card.innerHTML = `
+            <h3>Task: ${appraisal.task}</h3>
+            <div class="rating">Rating: ${appraisal.rating}</div>
+            <div class="feedback">
+                <p><strong>Review:</strong> ${appraisal.review}</p>
+                <p><strong>Feedback:</strong> ${appraisal.remarks}</p>
+                <p class="date">Project: ${appraisal.project}</p>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
         window.onload = function() {
      
 
@@ -207,3 +360,4 @@ body {
 
 </body>
 </html>
+
