@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,27 +18,90 @@
 
         body {
             color: #333;
-            margin-top: 30px;
+            margin-top: 0px;
             padding: 10px;
             align-items: center;
         }
-        
+        header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            width: 90%;
-            border-radius: 30px;
-            margin: 0 auto;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
+}
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
 
-        .banner h1 {
-            font-size: 36px;
-            font-weight: 600;
-        }
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
 
         .card-container {
     display: grid;
@@ -97,22 +162,23 @@
 
         .claim-form {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            border-top: 6px solid rgb(3, 48, 92);
+            max-width: 90%;
+      margin: 20px auto;
+      padding: 20px;
+      background:linear-gradient(rgb(249, 255, 254),rgb(255, 229, 255)); 
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .claim-form:hover {
-            border-bottom: 6px solid rgb(3, 48, 92);
-            border-top: 1px solid white;
-        }
+       
 
+        label {
+      display: block;
+      margin-top: 4px;
+      font-weight: bold;
+      color: #333; /* Dark text for labels */
+      position: relative;
+    }
         .claim-form input,
         .claim-form select,
         .claim-form textarea {
@@ -157,30 +223,61 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+        #employee-claims {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+}
 
-        @media (max-width: 1200px) {
-            .banner {
-                width: 100%;
-                padding: 20px;
-                box-shadow: none;
-            }
+/* Individual Claim Card */
+.claim-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 300px;
+    font-family: Arial, sans-serif;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+ 
+}
 
-            .card-container {
-                width: 90%;
-                justify-content: center;
-                gap: 20px;
-            }
+/* Hover Effect */
+.claim-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+}
 
-            .card {
-                width: 220px;
-                margin-bottom: 20px;
-            }
+/* Claim Information Styling */
+.claim-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
 
-            .claim-form {
-                width: 100%;
-               
-            }
-        }
+.claim-card strong {
+    color: #333;
+}
+
+/* Status Colors */
+.claim-card span {
+    font-weight: bold;
+}
+
+/* Border Colors Based on Status */
+.claim-card span[style*="color:green"] {
+    color: #4CAF50 !important; /* Approved */
+}
+
+.claim-card span[style*="color:red"] {
+    color: #f44336 !important; /* Rejected */
+}
+
+.claim-card span[style*="color:orange"] {
+    color: #FFA500 !important; /* Pending */
+}
+
+/* Change Border Color Based on Status */
 
         @media (max-width: 992px) {
             body {
@@ -272,15 +369,225 @@
                 padding: 15px 25px;
             }
         }
+  /* Individual Claim Card */
+.claim-card {
+    background: linear-gradient(to right, #ffffff, #eaeaff); 
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 15px;
+    width: 300px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none; /* Remove any border */
+}
+
+/* Hover Effect */
+.claim-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(to right, #eaeaff,white);
+}
+
+.popup {
+      position: fixed;
+      top: 100px;
+      left: 10px;
+      padding: 10px 15px;
+      background: linear-gradient(to right, #77e67b, rgb(79, 153, 79), #22aa5d);
+      color: white;
+      border-radius: 5px;
+      display: none;
+      animation: fadeInOut 5s linear;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      10% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+    }
+    #claims-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: none; /* Hidden by default */
+}
+
+
+    .norequested-claims img{
+        margin-left: 50px;
+        width: 140px;
+        height: 140px;
+    }
+    /* Dark Mode Styles */
+.dark-mode {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.dark-mode header {
+    background-color: #3a0369;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode header h1 {
+    color: #bb86fc;
+}
+
+.dark-mode header p {
+    color: #ffffff;
+}
+
+.dark-mode .circle {
+    background: rgba(187, 134, 252, 0.1);
+}
+
+.dark-mode .card-container {
+    background-color: #121212;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .card:hover {
+    background: linear-gradient(rgba(40, 40, 60, 0.8), rgba(50, 30, 70, 0.8));
+}
+
+.dark-mode .card h3 {
+    color: #bb86fc;
+}
+
+.dark-mode .card p {
+    color: #ffffff;
+}
+
+.dark-mode .card i {
+    color: #bb86fc;
+}
+
+.dark-mode .arrow-btn {
+    color: #4caf50;
+}
+
+.dark-mode .arrow-btn:hover {
+    color: #3d8b40;
+}
+
+.dark-mode .claim-form {
+    background: linear-gradient(rgba(30, 30, 40, 0.9), rgba(40, 20, 40, 0.9));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode label {
+    color: #ffffff;
+}
+
+.dark-mode .claim-form input,
+.dark-mode .claim-form select,
+.dark-mode .claim-form textarea {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+.dark-mode .claim-form button {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+.dark-mode .claim-form button:hover {
+    background-color: #a970f0;
+}
+
+.dark-mode .claim-requested {
+    background-color: #4caf50;
+    color: #121212;
+}
+
+.dark-mode .claim-card {
+    background: linear-gradient(rgba(40, 40, 60, 0.8), rgba(50, 30, 70, 0.8));
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .claim-card:hover {
+    background: linear-gradient(rgba(50, 50, 80, 0.8), rgba(60, 40, 90, 0.8));
+}
+
+.dark-mode .claim-card strong {
+    color: #e0e0e0;
+}
+
+.dark-mode .claim-card p {
+    color: #b0b0b0;
+}
+
+.dark-mode .popup {
+    background: linear-gradient(to right, #388e3c, #2e7d32, #1b5e20);
+    color: #e0e0e0;
+}
+
+.dark-mode #claims-header {
+    color: #bb86fc;
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.dark-mode .theme-toggle {
+    background: #bb86fc;
+    color: #121212;
+}
+
+.dark-icon { display: none; }
+.light-icon { display: inline; }
+
+.dark-mode .dark-icon { display: inline; }
+.dark-mode .light-icon { display: none; }
     </style>
 </head>
 
 <body>
 
-    <div class="banner">
-        <h1>Welcome to the Claims Portal</h1>
-        <p>Click on any claim type to submit your claim.</p>
+    <header>
+    <div class="banner-background">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
     </div>
+    <h1>Welcome to the Claims Portal</h1>
+    <p>Click on any claim type to submit your claim.</p>
+  </header>
+    
 
     <div class="card-container">
         <div class="card" data-claim-type="Medical Claims">
@@ -327,7 +634,6 @@
     </div>
 
     <div id="claim-form" class="claim-form">
-        <h2 style="display: flex; justify-content: center; margin-bottom: 30px; text-decoration: underline;">Submit Your Claim</h2>
         <form id="claimForm">
             <label for="emp-name">Employee Name</label>
             
@@ -353,9 +659,9 @@
                 <option value="Educational Claims">Educational Claims</option>
             </select>
 
-            <label for="claim-description">Claim Description</label>
+            <label for="claim-description">Claim Description:</label>
             <textarea id="claim-description" placeholder="Enter the details of your claim" required minlength="3" maxlength="100"></textarea>
-
+            <p id="claim-description-error" style="color: red; display: none;">Invalid input.</p><br>
             <label for="claim-amount">Claim Amount</label>
             <input type="number" id="claim-amount" placeholder="Enter the claim amount" required min="1" max="100000">
 
@@ -366,15 +672,20 @@
         </form>
     </div>
 
-    <div class="claim-requested">
-        Claim Requested Successfully!
-    </div>
+    
+
+    <h2 id="claims-header">Requested Claims</h2>
+<div id="employee-claims"></div>
+
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-   
+       document.addEventListener("DOMContentLoaded", function () {
+    function isMobileView() {
+        return window.innerWidth <= 768; // Detects mobile view
+    }
+
     let claimCounts = JSON.parse(localStorage.getItem("claimCounts")) || {
         "Medical Claims": 10,
         "Travel Claims": 10,
@@ -384,7 +695,6 @@
         "Educational Claims": 10
     };
 
-    
     function updateClaimCounts() {
         document.querySelectorAll(".card").forEach(card => {
             const claimType = card.getAttribute("data-claim-type");
@@ -395,17 +705,75 @@
         });
     }
 
-    updateClaimCounts();
+    updateClaimCounts(); // Initialize claim counts
 
- 
     document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('click', () => {
-            const claimType = card.getAttribute('data-claim-type');
+        card.addEventListener('click', function () {
+            const claimType = this.getAttribute('data-claim-type');
             document.getElementById('claim-type').value = claimType;
-            document.getElementById("claim-form").style.display = "block";
+            const claimForm = document.getElementById("claim-form");
+
+            if (isMobileView()) {
+                this.after(claimForm);
+            } 
+
+            claimForm.style.display = "block"; // Show the form
         });
     });
 
+    // Unified input validation
+    document.getElementById("claimForm").addEventListener("input", function (event) {
+        const inputField = event.target;
+        let errorMessage = document.getElementById(`${inputField.id}-error`);
+
+        if (!errorMessage) {
+            errorMessage = document.createElement("p");
+            errorMessage.id = `${inputField.id}-error`;
+            errorMessage.style.color = "red";
+            inputField.after(errorMessage);
+        }
+
+        let isValid = true;
+        let errorText = "";
+
+        switch (inputField.id) {
+            case "emp-name":
+                const nameRegex = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+                isValid = nameRegex.test(inputField.value);
+                errorText = "Invalid name format.";
+                break;
+
+            case "emp-email":
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                isValid = emailPattern.test(inputField.value);
+                errorText = "Please enter a valid email.";
+                break;
+
+            case "claim-description":
+                const descRegex = /^[A-Za-z][A-Za-z0-9\s,.]*$/;
+                const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/;
+                isValid = descRegex.test(inputField.value.trim()) && !invalidConsecutive.test(inputField.value);
+                errorText = "Invalid description. Avoid consecutive spaces, commas, or periods.";
+                break;
+
+            case "claim-amount":
+                isValid = inputField.value >= 1 && inputField.value <= 100000;
+                errorText = "Amount should be between 1 and 100000.";
+                break;
+
+            case "claim-date":
+                const currentDate = new Date().toISOString().split('T')[0];
+                isValid = inputField.value <= currentDate;
+                errorText = "Please select a valid date.";
+                break;
+        }
+
+        if (!isValid) {
+            errorMessage.textContent = errorText;
+        } else {
+            errorMessage.remove();
+        }
+    });
 
     document.getElementById("claimForm").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -418,25 +786,24 @@
         const claimDate = document.getElementById("claim-date").value;
         const currentDate = new Date().toISOString().split('T')[0];
 
+        // Validate claim date
         if (claimDate > currentDate) {
             alert('Please select a valid Date');
             return false;
         }
 
-    
+        // Validate email
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(empEmail)) {
             alert('Please enter a valid email address.');
             return;
         }
 
-      
+        // Check claim count
         if (claimCounts[claimType] <= 0) {
             alert(`No more claims available for ${claimType}`);
             return;
         }
-
-
         const claims = JSON.parse(localStorage.getItem("claims")) || [];
         claims.push({
             empName,
@@ -444,31 +811,82 @@
             claimType,
             claimDescription,
             claimAmount,
-            claimDate
+            claimDate,
+            status: "pending"
         });
         localStorage.setItem("claims", JSON.stringify(claims));
 
-
+        // Update claim counts
         claimCounts[claimType]--;
         localStorage.setItem("claimCounts", JSON.stringify(claimCounts));
         updateClaimCounts();
 
-     
-        const claimRequestedMsg = document.querySelector('.claim-requested');
-        claimRequestedMsg.style.display = 'block';
+        const popup = document.createElement("div");
+        popup.classList.add("popup-message");
+        popup.textContent = "Claim Submitted Successfully!";
+        document.body.appendChild(popup);
 
         setTimeout(() => {
-            claimRequestedMsg.style.display = 'none';
-        }, 3000);
+            popup.remove();
+        }, 5000);
 
-        
+
+        // Reset form and hide it
         document.getElementById("claimForm").reset();
         document.getElementById("claim-form").style.display = "none";
+
+        displayEmployeeClaims();
     });
+
+    // Function to display employee claims
+    function displayEmployeeClaims() {
+        const claims = JSON.parse(localStorage.getItem("claims")) || [];
+        const claimsContainer = document.getElementById("employee-claims");
+        claimsContainer.innerHTML = ""; // Clear previous claims
+
+        if (claims.length === 0) {
+            claimsContainer.innerHTML = `<div class="norequested-claims">
+              <img src="https://cdn-icons-png.flaticon.com/128/1909/1909447.png" alt="No Data">
+              <p>No Requested Claims found.</p>
+            </div>`;
+            return;
+        }
+
+        claims.forEach(claim => {
+            const claimCard = document.createElement("div");
+            claimCard.classList.add("claim-card");
+
+            let statusColor = "orange"; 
+            if (claim.status === "approved") statusColor = "green";
+            if (claim.status === "rejected") statusColor = "red";
+
+            claimCard.innerHTML = `
+            <div class="claim-details">
+                <p><strong>Type:</strong> ${claim.claimType}</p>
+                <p><strong>Employee:</strong> ${claim.empName}</p>
+                <p><strong>Description:</strong> ${claim.claimDescription}</p>
+                <p><strong>Amount:</strong> ${claim.claimAmount}</p>
+                <p><strong>Date:</strong> ${claim.claimDate}</p>
+                <p><strong>Status:</strong> <span style="color:${statusColor}">${claim.status}</span></p>
+            </div>`;
+            claimsContainer.appendChild(claimCard);
+        });
+    }
+
+    window.onload = displayEmployeeClaims;
 });
 
-    </script>
+
+// Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
+        </script>
 </body>
 
 </html>
-
