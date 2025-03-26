@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Work from Home</title>
     <style>
-       
         * {
             margin: 0;
             padding: 0;
@@ -14,52 +14,110 @@
 
         body {
             font-family: 'Arial', sans-serif;
-          
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-           
-        }
-        .banner {
-            background-color: #3b145b;
-            color: white;
-            text-align: center;
-            height: auto;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            width: 98%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            
         }
 
-        .banner h1 {
-            font-size: 36px;
-            color: white;
-            font-weight: 600;
-        }
-        .banner p {
-            font-weight: 100;
-            font-size: 18px;
-            margin-top: 10px;
-        }
-        
+        header {
+      position: relative;
+      text-align: center;
+      height: 120px; 
+      background-color: #5f06a8;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      width: 98%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+header p{
+    font-weight: 100;
+      font-size: 18px;
+      margin-top: 10px;
+}
+  
+    @keyframes moveCircles {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .banner-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: moveCircles 10s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 20%;
+      animation-duration: 8s;
+    }
+
+    .circle:nth-child(2) {
+      top: 50%;
+      left: 70%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(3) {
+      top: 80%;
+      left: 40%;
+      animation-duration: 15s;
+    }
+
         .form-container {
-            width: 100%;
+            width: 90%;
             height: auto;
             background-color: #fff;
             padding: 30px;
             display: flex;
             flex-direction: column;
-            gap: 20px; 
-             margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 20px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             position: relative;
-            background: linear-gradient(135deg, #d3dfff83, #fae1ff89); 
+            background: linear-gradient(135deg, #d3dfff83, #fae1ff89);
             animation: gradientMotion 10s ease infinite;
         }
 
@@ -67,26 +125,16 @@
             text-align: center;
             font-size: 2.5rem;
             color: #333;
-            font-family:sans-serif;
+            font-family: sans-serif;
             animation: headingMotion 5s ease-in-out infinite;
             width: 100%;
             margin-bottom: 30px;
         }
 
-        
         @keyframes headingMotion {
-            0% {
-                transform: translateX(-50px);
-                color: #05840e;
-            }
-            50% {
-                transform: translateX(20px);
-                color: #050565;
-            }
-            100% {
-                transform: translateX(-50px);
-                color: #ff6347;
-            }
+            0% { transform: translateX(-50px); color: #05840e; }
+            50% { transform: translateX(20px); color: #050565; }
+            100% { transform: translateX(-50px); color: #ff6347; }
         }
 
         form {
@@ -100,7 +148,6 @@
             font-size: 1.1rem;
         }
 
-      
         .input-group {
             display: flex;
             flex-wrap: wrap;
@@ -122,16 +169,16 @@
             background-color: #f9f9f9;
             transition: border-color 0.3s ease;
         }
-       
+
         .input-group input:focus, .input-group textarea:focus {
             border-color: #000000;
             outline: none;
         }
 
         #reason {
-          width: 98%;
-          height: 60px;
-          border-radius: 10px;
+            width: 98%;
+            height: 60px;
+            border-radius: 10px;
             border: 1px solid #ddd;
             font-size: 1rem;
             resize: none;
@@ -143,35 +190,68 @@
         }
 
         button {
-            margin-top: 20px;
-      width: 80%;
-      padding: 12px;
-      background-color: #7129b9;
-      color: white;
-      border: none;
-      font-size: 16px;
-      font-weight: 600;
-      display: block; 
-    margin-left: auto; 
-    margin-right: auto; 
-      border-radius: 5px;
-      cursor: pointer;
-    }
+            --color: #560bad;
+            --bg-color: #fff;
+            font-family: inherit;
+            display: inline-block;
+            width: 60%;
+            height: 2.6em;
+            line-height: 2.5em;
+            margin: 20px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid var(--color);
+            transition: color 0.5s, background 0.5s;
+            z-index: 1;
+            font-size: 22px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--color);
+            background-color: var(--bg-color);
+        }
+        button:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            background: var(--color);
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 0.7s;
+        }
+        button:hover {
+            color: var(--bg-color);
+            background-color: var(--color);
+        }
+        button:before {
+            top: 100%;
+            left: 100%;
+        }
+        button:hover:before {
+            top: -30px;
+            left: -30px;
+        }
+        button:active:before {
+            background: #ffffff;
+            transition: background 0s;
+        }
+        button:active {
+            color: var(--color);
+            background-color:white;
+          }
 
-    button:hover {
-      border-top: 2px solid blueviolet;
-      border-left: 2px solid blueviolet;
-      border-bottom: 2px solid rgb(238, 103, 238);
-      border-right: 2px solid rgb(238, 103, 238);
-      box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-        rgba(240, 46, 170, 0.2) 15px 15px;
-    }
 
         a {
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #007BFF;
+            color: #ffffff;
             text-decoration: none;
             font-size: 1.1rem;
         }
@@ -180,276 +260,779 @@
             text-decoration: underline;
         }
 
+        .submissions-container {
+            width: 90%;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        cards-section{
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .submission-card {
+          border-radius: 10px;
+            padding: 15px;
+            width: 400px;
+            margin-bottom: 10px;
+           background: linear-gradient(rgb(213, 213, 255),rgb(206, 245, 255));
+        }
+
+        .submission-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .submission-card p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .submission-card .status {
+            font-weight: bold;
+            color: #3b145b;
+        }
+
+
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .input-group > div {
+                width: 100%;
+            }
+        }
+        .submissions-container {
+            width: 90%;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #b28181;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            width: calc(33.33% - 20px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .card .status {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .card .status.approved {
+            color: #28a745;
+        }
+
+        .card .status.rejected {
+            color: #dc3545;
+        }
+
+        .card .status.pending {
+            color: #ffc107;
+        }
+
+        .card button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #7129b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .card button:hover {
+            background-color: #5a1f8f;
+        }
+
       
-        @media screen and (max-width: 1280px) {
-    .form-container {
-        width: calc(100% - 20px); /* Adjust width considering sidebar */
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .modal-content p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .modal-content .close:hover {
+            color: #7129b9;
+        }
+
+        .popup {
+            position: fixed;
+            top: 20px;
+            left: -100%;
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            z-index: 1000;
+            transition: left 0.5s ease-in-out;
+        }
+
+        .popup.show {
+            left: 20px;
+        }
+        .no-data {
+    text-align: center;
+    margin-top: 20px;
+   margin-left: 450px;
+}
+
+.no-data-img {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin-left:auto;
+    opacity: 0.8;
+}
+
+.cards-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.submission-card {
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.33% - 20px); /* Adjust based on your preference */
+    margin-bottom: 20px;
+    background: linear-gradient(rgb(213, 213, 255), rgb(206, 245, 255));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .submission-card {
+        width: calc(50% - 20px);
     }
 }
 
-@media screen and (max-width: 1024px) {
-    .form-container {
-        width: calc(100% - 0px); /* Sidebar adjustment */
-        margin-left: 20px; 
-        padding: 20px;
-    }
-}
-
-@media screen and (max-width: 880px) {
-    .form-container {
-        width: 90%;
-        height: auto;
-        padding: 20px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    .input-group > div {
-        width: 100%; 
-    }
-
-    .input-group input, .input-group textarea {
+@media (max-width: 768px) {
+    .submission-card {
         width: 100%;
     }
 }
-
-@media screen and (max-width: 768px) {
-    .form-container {
-        width: calc(100% - 300px);
-        margin-left: 50px;
-        padding: 20px;
-    }
-
-    .input-group {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .btn {
-        padding: 0.6rem 2rem;
-    }
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
-@media screen and (max-width: 600px) {
-    .form-container {
-        width: 100%;
-        padding: 15px;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    .input-group {
-        gap: 10px;
-    }
-
-    .btn {
-        padding: 0.5rem 1.5rem;
-    }
+.dark-mode header {
+    background-color: #3a0369;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-
-    .banner {
-        width: 100%;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .banner h1 {
-        font-size: 20px;
-    }
-
-    .banner p {
-        font-size: 12px;
-    }
-    .form-container {
-        width: 100%;
-        margin-left: 0;
-        padding: 15px;
-    }
-
-    .input-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    h2 {
-        font-size: 1.4rem;
-    }
-
-    .form-group {
-        font-size: 14px;
-    }
-
-    .form-group label {
-        font-size: 16px;
-    }
+.dark-mode header h1 {
+    color: #bb86fc;
 }
 
+.dark-mode header p {
+    color: #b0b0b0;
+}
+
+.dark-mode .circle {
+    background: rgba(187, 134, 252, 0.1);
+}
+
+.dark-mode .form-container {
+    background: linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(50, 20, 50, 0.8));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode h2 {
+    color: #bb86fc;
+    animation: headingMotion 5s ease-in-out infinite;
+}
+
+@keyframes headingMotion {
+    0% { transform: translateX(-50px); color: #4caf50; }
+    50% { transform: translateX(20px); color: #5e72e4; }
+    100% { transform: translateX(-50px); color: #ff7043; }
+}
+
+.dark-mode label {
+    color: #b0b0b0;
+}
+
+.dark-mode .input-group input,
+.dark-mode .input-group textarea,
+.dark-mode #reason {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+.dark-mode .input-group input:focus,
+.dark-mode .input-group textarea:focus,
+.dark-mode #reason:focus {
+    border-color: #bb86fc;
+}
+
+.dark-mode button {
+    --color: #bb86fc;
+    --bg-color: #2d2d2d;
+    color: #e0e0e0;
+}
+
+.dark-mode button:hover {
+    color: #121212;
+    background-color: #bb86fc;
+}
+
+.dark-mode .submissions-container {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .submission-card {
+    background: linear-gradient(rgba(40, 40, 60, 0.8), rgba(50, 30, 70, 0.8));
+    color: #e0e0e0;
+}
+
+.dark-mode .submission-card h3 {
+    color: #e0e0e0;
+}
+
+.dark-mode .submission-card p {
+    color: #b0b0b0;
+}
+
+.dark-mode .submission-card .status {
+    color: #bb86fc;
+}
+
+.dark-mode .card {
+    background-color: #2d2d2d;
+    border: 1px solid #444;
+}
+
+.dark-mode .card h3 {
+    color: #e0e0e0;
+}
+
+.dark-mode .card p {
+    color: #b0b0b0;
+}
+
+.dark-mode .card .status.approved {
+    color: #4caf50;
+}
+
+.dark-mode .card .status.rejected {
+    color: #f44336;
+}
+
+.dark-mode .card .status.pending {
+    color: #ff9800;
+}
+
+.dark-mode .card button {
+    background-color: #7c4dff;
+}
+
+.dark-mode .card button:hover {
+    background-color: #651fff;
+}
+
+.dark-mode .modal-content {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+}
+
+.dark-mode .modal-content h3 {
+    color: #e0e0e0;
+}
+
+.dark-mode .modal-content p {
+    color: #b0b0b0;
+}
+
+.dark-mode .modal-content .close {
+    color: #e0e0e0;
+}
+
+.dark-mode .modal-content .close:hover {
+    color: #bb86fc;
+}
+
+.dark-mode .popup {
+    background-color: #4caf50;
+    color: #121212;
+}
+
+.dark-mode .no-data-img {
+    opacity: 0.6;
+    filter: brightness(0.8);
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.dark-mode .theme-toggle {
+    background: #bb86fc;
+    color: #121212;
+}
+
+.dark-icon { display: none; }
+.light-icon { display: inline; }
+
+.dark-mode .dark-icon { display: inline; }
+.dark-mode .light-icon { display: none; }
     </style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Work From Home Request Form<h1>
-            <p>Request for Work From Home mode</p>
-    </div>
+    <header>
+        <div class="banner-background">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+        <h1>Work From Home Request Form</h1>
+        <p>Request for Work From Home mode</p>
+      </header>
     <div class="form-container">
-        <h2>Request Work from Home</h2>
+       
         <form id="wfhForm">
             <div class="input-group">
                 <div>
                     <label for="employeeName">Employee Name:</label>
-                    <input type="text" id="employeeName"   
-                           placeholder="Enter your Name" 
-                           required 
-                           minlength="3" 
-                           maxlength="100"
-                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    <input type="text" id="employeeName" placeholder="Enter your Name" required minlength="3" maxlength="100"
+                        pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                        title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    <p class="error-message" id="employeeNameError">Invalid name. Please follow the rules.</p>
                 </div>
-            
                 <div>
                     <label for="employeeID">Employee ID:</label>
-                    <input type="text" id="employeeID" name="employeeID" 
-                           placeholder="Enter Your ID"
-                           required 
-                           minlength="7" 
-                           maxlength="7" 
-                           pattern="^[A-Z]{3}(?!0000)[0-9]{4}$" 
+                    <input type="text" id="employeeID" placeholder="Enter Your ID" required minlength="7"
+                        maxlength="7" pattern="^[A-Z]{3}(?!0000)[0-9]{4}$"
                         title="Employee ID should be in the format: 3 uppercase letters followed by 4 digits, starting from 0001 (cannot be 0000)">
+                    <p class="error-message" id="employeeIDError">Invalid ID. Please follow the format (e.g., ABC1234).</p>
                 </div>
             </div>
-            
             <div class="input-group">
                 <div>
                     <label for="employeeEmail">Employee Email:</label>
-                    <input type="email" id="employeeEmail" name="employeeEmail" 
-                    placeholder="Enter your Email ID" 
-                    required  
-                    min="8"
-                    maxlength="50"
-                    title="Please enter a valid email address">
+                    <input type="email" id="employeeEmail" placeholder="Enter your Email ID" required
+                        min="8" maxlength="50" title="Please enter a valid email address">
+                    <p class="error-message" id="employeeEmailError">Invalid email. Please enter a valid email address.</p>
                 </div>
-            
                 <div>
                     <label for="workingProject">Working Project:</label>
-                    <input type="text" id="workingProject" name="workingProject" 
-                           placeholder="Enter Project Name" 
-                           required minlength="3"
-                           maxlength="100">
+                    <input type="text" id="workingProject" placeholder="Enter Project Name"
+                        pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$" required minlength="3"
+                        maxlength="100">
+                    <p class="error-message" id="workingProjectError">Invalid project name. Please follow the rules.</p>
                 </div>
             </div>
-            
             <div class="input-group">
                 <div>
                     <label for="reportingManager">Reporting Manager:</label>
-                    <input type="text" id="reportingManager" name="reportingManager"      
-                           placeholder="Enter Manager's Name" 
-                           required 
-                           minlength="3" 
-                           maxlength="100"
-                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    <input type="text" id="reportingManager" placeholder="Enter Manager's Name"
+                        required minlength="3" maxlength="100"
+                        pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                        title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                    <p class="error-message" id="reportingManagerError">Invalid manager name. Please follow the rules.</p>
                 </div>
-            
                 <div>
                     <label for="wfhLocation">WFH Location:</label>
-                    <input type="text" id="wfhLocation" name="wfhLocation" 
-                           placeholder="Enter your WFH Location" 
-                           required minlength="3" maxlength="50">
+                    <input type="text" id="wfhLocation" placeholder="Enter your WFH Location"
+                        pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$" required minlength="3"
+                        maxlength="50">
+                    <p class="error-message" id="wfhLocationError">Invalid location. Please follow the rules.</p>
                 </div>
             </div>
-            
             <div class="input-group">
                 <div>
                     <label for="fromDate">From Date:</label>
-                    <input type="date" id="fromDate" name="fromDate" required>
+                    <input type="date" id="fromDate" required>
+                    <p class="error-message" id="fromDateError">Invalid date. Please select a valid date.</p>
                 </div>
-            
                 <div>
                     <label for="toDate">To Date:</label>
-                    <input type="date" id="toDate" name="toDate" required>
+                    <input type="date" id="toDate" required>
+                    <p class="error-message" id="toDateError">Invalid date. Please select a valid date.</p>
                 </div>
             </div>
-            
             <label for="reason">Reason for Work from Home:</label>
-            <textarea id="reason" name="reason" placeholder="Enter your reason for WFH" required minlength="10" maxlength="200"></textarea><br>
-            
+            <textarea id="reason" placeholder="Enter your reason for WFH" required minlength="10"
+                maxlength="200"></textarea>
+            <p class="error-message" id="reasonError">Invalid reason. Please follow the rules.</p><br>
             <button type="submit">Submit Request</button>
-            
         </form>
     </div>
-
+  
+    <div class="submissions-container" id="submissionsContainer">
+        <h1 style="text-align: center; margin-bottom: 20px;">Recent Submissions</h1>
+        <div class="cards-section" id="cardsSection">
+            <div id="submissionsList" class="cards-section"></div>
+        </div>
+        <button class="view-more-btn" id="viewMoreBtn" style="display: none; margin: 20px auto;">View More</button>
+    </div>
+    
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('wfhForm');
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('wfhForm');
+            const submissionsContainer = document.getElementById('submissionsList');
+            const viewMoreBtn = document.getElementById('viewMoreBtn');
+            let allSubmissions = JSON.parse(localStorage.getItem('wfhRequests')) || [];
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const employeeName = document.getElementById('employeeName').value;
-        const employeeID = document.getElementById('employeeID').value;
-        const employeeEmail = document.getElementById('employeeEmail').value;
-        const workingProject = document.getElementById('workingProject').value;
-        const reportingManager = document.getElementById('reportingManager').value;
-        const wfhLocation = document.getElementById('wfhLocation').value;
-        const fromDate = document.getElementById('fromDate').value;
-        const toDate = document.getElementById('toDate').value;
-        const reason = document.getElementById('reason').value;
-        const currentDate = new Date().toISOString().split('T')[0];
-
-   
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailPattern.test(employeeEmail)) {
-                alert('Please enter a valid email address.');
-                return;
+            // Function to validate all fields
+            function validateField(input, errorElement, pattern, errorMessage) {
+                const value = input.value.trim();
+                if (!pattern.test(value)) {
+                    errorElement.style.display = 'block';
+                    input.setCustomValidity(errorMessage);
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    input.setCustomValidity('');
+                    return true;
+                }
             }
-   
 
-        if (fromDate < currentDate) {
-            alert('Please select a valid From Date.');
-            return false;
-        }
+            document.getElementById('employeeName').addEventListener('input', function () {
+                const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+                validateField(this, document.getElementById('employeeNameError'), pattern, 'Invalid name. Please follow the rules.');
+            });
 
-        if (toDate <= fromDate) {
-            alert('Please select a valid To Date.');
-            return false;
-        }
+            document.getElementById('employeeID').addEventListener('input', function () {
+                const pattern = /^[A-Z]{3}(?!0000)[0-9]{4}$/;
+                validateField(this, document.getElementById('employeeIDError'), pattern, 'Invalid ID. Please follow the format (e.g., ABC1234).');
+            });
 
-        const request = {
-            name: employeeName,
-            id: employeeID,
-            email: employeeEmail,
-            project: workingProject,
-            manager: reportingManager,
-            location: wfhLocation,
-            from: fromDate,
-            to: toDate,
-            reason: reason
-        };
+            document.getElementById('employeeEmail').addEventListener('input', function () {
+                const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                validateField(this, document.getElementById('employeeEmailError'), pattern, 'Invalid email. Please enter a valid email address.');
+            });
 
-        let submissions = JSON.parse(localStorage.getItem('wfhRequests')) || [];
+            document.getElementById('workingProject').addEventListener('input', function () {
+                const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+                validateField(this, document.getElementById('workingProjectError'), pattern, 'Invalid project name. Please follow the rules.');
+            });
 
-        submissions.push(request);
+            document.getElementById('reportingManager').addEventListener('input', function () {
+                const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+                validateField(this, document.getElementById('reportingManagerError'), pattern, 'Invalid manager name. Please follow the rules.');
+            });
 
-        localStorage.setItem('wfhRequests', JSON.stringify(submissions));
+            document.getElementById('wfhLocation').addEventListener('input', function () {
+                const pattern = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+                validateField(this, document.getElementById('wfhLocationError'), pattern, 'Invalid location. Please follow the rules.');
+            });
 
-        form.reset();
+            document.getElementById('reason').addEventListener('input', function () {
+                const pattern = /^[A-Za-z][A-Za-z0-9\s,.]*$/;
+                const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/;
+                const value = this.value.trim();
+                if (!pattern.test(value) || invalidConsecutive.test(value)) {
+                    document.getElementById('reasonError').style.display = 'block';
+                    this.setCustomValidity('Invalid reason. Please follow the rules.');
+                } else {
+                    document.getElementById('reasonError').style.display = 'none';
+                    this.setCustomValidity('');
+                }
+            });
 
-        alert('Request submitted successfully!');
+            document.getElementById('fromDate').addEventListener('change', function () {
+                const currentDate = new Date().toISOString().split('T')[0];
+                if (this.value < currentDate) {
+                    document.getElementById('fromDateError').style.display = 'block';
+                    this.setCustomValidity('Invalid date. Please select a valid date.');
+                } else {
+                    document.getElementById('fromDateError').style.display = 'none';
+                    this.setCustomValidity('');
+                }
+            });
+
+            document.getElementById('toDate').addEventListener('change', function () {
+                const fromDate = document.getElementById('fromDate').value;
+                if (this.value <= fromDate) {
+                    document.getElementById('toDateError').style.display = 'block';
+                    this.setCustomValidity('Invalid date. Please select a valid date.');
+                } else {
+                    document.getElementById('toDateError').style.display = 'none';
+                    this.setCustomValidity('');
+                }
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const isEmployeeNameValid = validateField(
+                    document.getElementById('employeeName'),
+                    document.getElementById('employeeNameError'),
+                    /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/,
+                    'Invalid name. Please follow the rules.'
+                );
+
+                const isEmployeeIDValid = validateField(
+                    document.getElementById('employeeID'),
+                    document.getElementById('employeeIDError'),
+                    /^[A-Z]{3}(?!0000)[0-9]{4}$/,
+                    'Invalid ID. Please follow the format (e.g., ABC1234).'
+                );
+
+                const isEmployeeEmailValid = validateField(
+                    document.getElementById('employeeEmail'),
+                    document.getElementById('employeeEmailError'),
+                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    'Invalid email. Please enter a valid email address.'
+                );
+
+                const isWorkingProjectValid = validateField(
+                    document.getElementById('workingProject'),
+                    document.getElementById('workingProjectError'),
+                    /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/,
+                    'Invalid project name. Please follow the rules.'
+                );
+
+                const isReportingManagerValid = validateField(
+                    document.getElementById('reportingManager'),
+                    document.getElementById('reportingManagerError'),
+                    /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/,
+                    'Invalid manager name. Please follow the rules.'
+                );
+
+                const isWfhLocationValid = validateField(
+                    document.getElementById('wfhLocation'),
+                    document.getElementById('wfhLocationError'),
+                    /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/,
+                    'Invalid location. Please follow the rules.'
+                );
+
+                const isFromDateValid = document.getElementById('fromDate').checkValidity();
+                const isToDateValid = document.getElementById('toDate').checkValidity();
+                const isReasonValid = document.getElementById('reason').checkValidity();
+
+                if (!isEmployeeNameValid || !isEmployeeIDValid || !isEmployeeEmailValid || !isWorkingProjectValid ||
+                    !isReportingManagerValid || !isWfhLocationValid || !isFromDateValid || !isToDateValid || !isReasonValid) {
+                    alert('Please fix the errors before submitting.');
+                    return;
+                }
+
+                // Create request object
+                const request = {
+                    name: document.getElementById('employeeName').value,
+                    id: document.getElementById('employeeID').value,
+                    email: document.getElementById('employeeEmail').value,
+                    project: document.getElementById('workingProject').value,
+                    manager: document.getElementById('reportingManager').value,
+                    location: document.getElementById('wfhLocation').value,
+                    from: document.getElementById('fromDate').value,
+                    to: document.getElementById('toDate').value,
+                    reason: document.getElementById('reason').value,
+                    status: 'Pending' // Default status
+                };
+
+                // Save to localStorage
+                allSubmissions.push(request);
+                localStorage.setItem('wfhRequests', JSON.stringify(allSubmissions));
+
+                // Reset form and notify user
+                form.reset();
+                alert('Request submitted successfully!');
+                displaySubmissions();
+            });
+
+            function displaySubmissions() {
+    submissionsContainer.innerHTML = '';
+
+    if (allSubmissions.length === 0) {
+        submissionsContainer.innerHTML = `
+            <div class="no-data">
+                <img src="https://cdn-icons-png.flaticon.com/128/1909/1909447.png" alt="No Data" class="no-data-img">
+                <p>No submissions found.</p>
+            </div>
+        `;
+        viewMoreBtn.style.display = 'none'; // Hide the button if no data
+        return;
+    }
+
+    const recentSubmissions = allSubmissions.slice(-2);
+    recentSubmissions.forEach((submission, index) => {
+        const card = document.createElement('div');
+        card.className = 'submission-card';
+        card.innerHTML = `
+            <h3>${submission.name}</h3>
+            <p><strong>ID:</strong> ${submission.id}</p>
+            <p><strong>Project:</strong> ${submission.project}</p>
+            <p><strong>From:</strong> ${submission.from} <strong>To:</strong> ${submission.to}</p>
+            <p><strong>Reason:</strong> ${submission.reason}</p>
+            <p class="status"><strong>Status:</strong> ${submission.status || 'Pending'}</p>
+        `;
+        submissionsContainer.appendChild(card);
     });
+
+    // Show "View More" button if there are more than 2 submissions
+    viewMoreBtn.style.display = allSubmissions.length > 2 ? 'block' : 'none';
+}
+
+            // Handle "View More" button click
+            viewMoreBtn.addEventListener('click', function () {
+                submissionsContainer.innerHTML = '';
+                allSubmissions.forEach((submission, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'submission-card';
+                    card.innerHTML = `
+                        <h3>${submission.name}</h3>
+                        <p><strong>ID:</strong> ${submission.id}</p>
+                        <p><strong>Project:</strong> ${submission.project}</p>
+                        <p><strong>From:</strong> ${submission.from} <strong>To:</strong> ${submission.to}</p>
+                        <p><strong>Reason:</strong> ${submission.reason}</p>
+                        <p class="status"><strong>Status:</strong> ${submission.status || 'Pending'}</p>
+                    `;
+                    submissionsContainer.appendChild(card);
+                });
+                viewMoreBtn.style.display = 'none';
+            });
+
+            // Initial display of submissions
+            displaySubmissions();
+        });
+
+        
+// Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
+
+window.addEventListener('message', function (event) {
+ 
+ if (event.data && typeof event.data.darkMode === 'boolean') {
+   const isDarkMode = event.data.darkMode;
+
+   
+   if (isDarkMode) {
+     document.body.classList.add('dark-mode');
+   } else {
+     document.body.classList.remove('dark-mode');
+   }
+ }
 });
 
+// Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
     </script>
 </body>
 </html>
-
