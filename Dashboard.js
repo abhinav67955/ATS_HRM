@@ -1,6 +1,4 @@
 
-
-
 let currentMenuVisible = null;
 
 function toggleMenu(color) {
@@ -140,15 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-document.querySelector('.circle').addEventListener('click', function () {
-  const welcomeText = document.getElementById('welcome-text');
- 
-  if (welcomeText.style.display === 'none') {
-    welcomeText.style.display = 'block';
-  } else {
-    welcomeText.style.display = 'none';
-  }
-});
+
   setTimeout(function() {
             document.querySelector('.container').classList.add('active');
         }, 1000); 
@@ -203,7 +193,7 @@ function togg() {
   if (window.innerWidth <= 500) {
     // For mobile (400px width or smaller)
     if (circleContainer.classList.contains('visible')) {
-      iframeContainer.style.width = 'calc(100% - 60px)';  // Adjust iframe width for mobile when circle container is visible
+      iframeContainer.style.width = 'calc(100% - 90px)';  // Adjust iframe width for mobile when circle container is visible
     } else {
       iframeContainer.style.width = '100%';  // Reset width for mobile when circle container is hidden
     }
@@ -216,6 +206,50 @@ function togg() {
     }
   }
 }
+function toggleFooterVisibility() {
+  const footer = document.querySelector('.footer');
+
+  
+  if (window.innerWidth <= 480) {
+    footer.style.display = 'flex';
+  } else {
+    footer.style.display = 'none';
+  }
+}
+const languageIcon = document.getElementById("languag");
+const languageSelect = document.getElementById("languag-select");
+
+languageIcon.addEventListener("click", function() {
+  if (languageSelect.style.display === "none" || languageSelect.style.display === "") {
+    languageSelect.style.display = "block";
+  } else {
+    languageSelect.style.display = "none";
+  }
+});
+
+
+// Run the function on page load
+window.addEventListener('load', toggleFooterVisibility);
+
+// Run the function every time the window is resized
+window.addEventListener('resize', toggleFooterVisibility);
+document.getElementById('toggle-icon').addEventListener('click', function() {
+  const inputBar = document.getElementById('input-bar');
+  const inputField = document.getElementById('input-field');
+  
+  // Toggle visibility of the input bar
+  if (inputBar.style.display === "none" || inputBar.style.display === "") {
+    inputBar.style.display = "flex"; // Show input bar
+  } else {
+    inputBar.style.display = "none"; // Hide input bar
+  }
+});
+
+// Close button functionality
+document.getElementById('toggle-btn').addEventListener('click', function() {
+  document.getElementById('input-bar').style.display = 'none'; // Hide input bar when close button is clicked
+});
+
 
 // function togg() {
 //   var circleContainer = document.querySelector('.circle-container');
@@ -271,13 +305,46 @@ function togg() {
 //   }
 // }
 
+// Function to toggle dark mode
 function toggleDarkMode() {
   const body = document.body;
+  const darkModeIcon = document.getElementById('dark-mode-icon');
+
+  // Toggle dark mode class
   body.classList.toggle('dark-mode');
-  
+
+  // Check if dark mode is enabled
   const isDarkMode = body.classList.contains('dark-mode');
+
+  // Save preference to localStorage
   localStorage.setItem('darkMode', isDarkMode);
+
+  // Switch between moon and sun icons
+  if (isDarkMode) {
+    darkModeIcon.textContent = 'light_mode'; // Sun icon for light mode
+  } else {
+    darkModeIcon.textContent = 'dark_mode'; // Moon icon for dark mode
+  }
 }
+
+// Load dark mode preference from localStorage
+function loadDarkModePreference() {
+  const body = document.body;
+  const darkModeIcon = document.getElementById('dark-mode-icon');
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+  // Apply dark mode if enabled
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+    darkModeIcon.textContent = 'light_mode'; // Sun icon for light mode
+  } else {
+    body.classList.remove('dark-mode');
+    darkModeIcon.textContent = 'dark_mode'; // Moon icon for dark mode
+  }
+}
+
+// Load the preference when the page loads
+window.onload = loadDarkModePreference;
 
 
 window.onload = () => {
@@ -285,5 +352,33 @@ window.onload = () => {
   if (isDarkMode) {
     document.body.classList.add('dark-mode');
   }
+};// Select all bubble elements
+const bubbles = document.querySelectorAll('.bubble');
+
+// Function to move bubbles with a delay
+const moveBubbles = (e) => {
+  let delay = 0; // Delay for trailing bubbles
+  bubbles.forEach((bubble, index) => {
+    setTimeout(() => {
+      bubble.style.left = `${e.pageX}px`; // Set horizontal position
+      bubble.style.top = `${e.pageY}px`; // Set vertical position
+    }, delay);
+    delay += 50; // Increase delay for each trailing bubble
+  });
 };
 
+// Initialize bubble positions on page load
+const initializeBubbles = () => {
+  const initialX = window.innerWidth / 2; // Start at the center of the screen
+  const initialY = window.innerHeight / 2; // Start at the center of the screen
+  bubbles.forEach((bubble) => {
+    bubble.style.left = `${initialX}px`;
+    bubble.style.top = `${initialY}px`;
+  });
+};
+
+// Update bubble positions on mouse move
+document.addEventListener('mousemove', moveBubbles);
+
+// Initialize bubbles when the page loads
+window.addEventListener('load', initializeBubbles);
