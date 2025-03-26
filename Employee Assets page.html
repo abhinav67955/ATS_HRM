@@ -6,614 +6,1187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Assets</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto Mono', monospace;
-            background-color: #ffffff;
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+
+        header {
+            position: relative;
+            text-align: center;
+            height: 180px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             padding: 20px;
         }
 
-        .banner {
-    background-color: #3b145b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: 120px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    width: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-.banner h1 {
-    font-size: 36px;
-    font-weight: 600;
-}
+        header p {
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            opacity: 0.9;
+            z-index: 2;
+        }
 
-.banner p {
-    font-size: 18px;
-    margin-top: 10px;
-}
+        @keyframes moveCircles {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-50%); }
+            100% { transform: translateY(0) translateX(0); }
+        }
 
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: moveCircles 10s infinite linear;
+        }
+
+        .circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(3) {
+            top: 80%;
+            left: 40%;
+            animation-duration: 15s;
+        }
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            justify-content: center;
-            padding: 0 30px;
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
-       
-        .Assets-List {
-    padding: 20px;
-    background: linear-gradient(white);
-    border: 1px solid #ddd;
-    min-height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s;
-    display: flex;
-    flex-direction: column; /* Aligns children vertically */
-    justify-content: space-between; /* Pushes the button to the bottom */
-}
+        /* Card Styles */
+        .card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
 
-        .Assets-List:hover {
+        .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
-        .Assets-List h3 {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            color: #0d009e;
-            font-size: 24px;
-            margin-bottom: 10px;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #6c5ce7, #fd79a8);
         }
 
-        .Assets-List p {
-            margin: 5px 0;
-            color: #555;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
-button.view-details { 
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
-    margin-top: auto; /* Pushes the button to the bottom */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-        button.view-details:hover {
-            background: linear-gradient(135deg, #2575fc, #6a11cb);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(38, 50, 56, 0.3);
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3436;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        button.view-details:active {
-            transform: translateY(2px);
-            box-shadow: none;
+        .card-title i {
+            color: #6c5ce7;
+            font-size: 20px;
         }
 
-        button.submit-request {
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            color: white;
-            box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
+        .card-body {
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
-        button.submit-request:hover {
-            background: linear-gradient(135deg, #feb47b, #ff7e5f);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(38, 50, 56, 0.3);
+        .asset-info {
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
-        button.submit-request:active {
-            transform: translateY(2px);
-            box-shadow: none;
+        .asset-info i {
+            color: #6c5ce7;
+            margin-top: 3px;
         }
-        .request-form button {
-            background: linear-gradient(135deg, #4caf50, #8bc34a);
-            color: white;
-            font-weight: bold;
-            padding: 15px 20px;
+
+        .asset-detail {
+            display: flex;
+        }
+
+        .asset-label {
+            min-width: 120px;
+            color: #666;
+        }
+
+        .asset-value {
+            font-weight: 500;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
             border-radius: 8px;
-            font-size: 16px;
-            display: block;           
-            margin: 0 auto;         
-        }
-
-
-        .request-form button:hover {
-            background: linear-gradient(135deg, #8bc34a, #4caf50);
-            box-shadow: 0 5px 15px rgba(38, 50, 56, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .request-form button:active {
-            transform: translateY(2px);
-            box-shadow: none;
-        }
-
-        .request-form {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
             width: 100%;
         }
 
-        .request-form h2 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 20px;
+        .btn-primary {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Request Section */
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #2d3436;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #6c5ce7;
+        }
+
+        .requests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .request-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .request-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .request-title {
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .request-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .status-pending {
+            background-color: rgba(253, 203, 110, 0.2);
+            color: #e17055;
+        }
+
+        .status-approved {
+            background-color: rgba(0, 184, 148, 0.2);
+            color: #00b894;
+        }
+
+        .status-rejected {
+            background-color: rgba(214, 48, 49, 0.2);
+            color: #d63031;
+        }
+
+      
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+            display: none;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #6c5ce7;
             text-align: center;
         }
 
-        .request-form label {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
+            font-weight: 500;
+            color: #2d3436;
         }
 
-        .request-form input{
+        .form-control {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .request-form select{
-            width: 99.7%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .request-form textarea {
-            width: 98%;
-            height: 200px;
-            resize: none;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .request-form input{
-            width: 98%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .show-form-btn {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .show-form-btn button {
             border-radius: 8px;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            background-color: #01c8ff;
-            color: black;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .show-form-btn button:hover {
-            background-color: #138496;
+        .form-control:focus {
+            border-color: #6c5ce7;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: none;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #00b894, #55efc4);
             color: white;
         }
-        .asset-details p {
+
+        .btn-cancel {
+            background-color: #a1d8ff;
+            color: #000000;
+        }
+
+        .btn-cancel:hover {
+            background-color: #598bf8;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 100;
+            border: none;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(108, 92, 231, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .banner {
+                padding: 50px 30px;
+            }
+            
+            .banner h1 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner {
+                padding: 40px 20px;
+            }
+            
+            .banner h1 {
+                font-size: 2rem;
+            }
+            
+            .banner p {
+                font-size: 1rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .requests-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner {
+                padding: 30px 15px;
+            }
+            
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+        /* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .banner {
+    background: linear-gradient(135deg, #4a3dc8, #6a5acd);
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .card-title {
+    color: #e0e0e0;
+}
+
+.dark-mode .asset-label {
+    color: #a0a0a0;
+}
+
+.dark-mode .asset-value {
+    color: #ffffff;
+}
+
+.dark-mode .section-title {
+    color: #e0e0e0;
+}
+
+.dark-mode .request-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .request-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .request-header {
+    border-bottom: 1px solid #333;
+}
+
+.dark-mode .request-title {
+    color: #e0e0e0;
+}
+
+.dark-mode .form-container {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .form-label {
+    color: #e0e0e0;
+}
+
+.dark-mode .form-control {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+.dark-mode .btn-cancel {
+    background-color: #333;
+    color: #ccc;
+}
+
+.dark-mode .btn-cancel:hover {
+    background-color: #444;
+}
+
+/* Theme Toggle Button (optional) */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    margin: 5px 0;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    color: white;
+    font-size: 1.2rem;
 }
 
-.asset-details p i {
-    width: 25px;
-    color: #00719e;
-}
-
-.asset-details p span:nth-child(2) { 
-    flex: 2;
-    text-align: left;
-    font-weight: bold;
-}
-
-.asset-details p span:nth-child(3) { 
-    flex: 0.5;
-    text-align: center;
-}
-
-.asset-details p span:nth-child(4) { 
-    flex: 2;
-    text-align: left;
-}
-/* Responsive Design */
-
-/* Tablet View (1024px and below) */
-@media screen and (max-width: 1024px) {
-    .banner {
-        width: 95%;
-        height: auto;
-        padding: 20px;
-    }
-
-    .banner h1 {
-        font-size: 30px;
-    }
-
-    .banner p {
-        font-size: 16px;
-    }
-
-    .container {
-        padding: 0 15px;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
-
-    .Assets-List {
-        padding: 15px;
-    }
-
-    .Assets-List h3 {
-        font-size: 22px;
-    }
-
-    .request-form {
-        width: 90%;
-        padding: 15px;
-    }
-
-    .request-form h2 {
-        font-size: 24px;
-    }
-
-    .request-form input,
-    .request-form select,
-    .request-form textarea {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .request-form button {
-        font-size: 14px;
-        padding: 10px 15px;
-    }
-
-    .asset-details p {
-        font-size: 14px;
-    }
-}
-
-/* Mobile View (768px and below) */
-@media screen and (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    .banner {
-        width: 100%;
-        padding: 15px;
-        border-radius: 10px;
-    }
-
-    .banner h1 {
-        font-size: 26px;
-    }
-
-    .banner p {
-        font-size: 14px;
-    }
-
-    .container {
-        padding: 0 10px;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-
-    .Assets-List {
-        padding: 12px;
-    }
-
-    .Assets-List h3 {
-        font-size: 20px;
-    }
-
-    .Assets-List p {
-        font-size: 13px;
-    }
-
-    .request-form {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .request-form h2 {
-        font-size: 22px;
-    }
-
-    .request-form input,
-    .request-form select,
-    .request-form textarea {
-        font-size: 13px;
-        padding: 8px;
-    }
-
-    .request-form button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-
-    .asset-details p {
-        font-size: 13px;
-    }
-}
-
-/* Small Mobile View (450px and below) */
-@media screen and (max-width: 450px) {
-      body {
-        padding: 10px;
-    }
-
-    .banner {
-        width: 95%;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .banner h1 {
-        font-size: 20px;
-    }
-
-    .banner p {
-        font-size: 12px;
-    }
-
-    .container {
-        width: 98%;
-        padding: 0;
-    }
-
-    .Assets-List {
-        width: 98%;
-        padding: 10px;
-    }
-
-    .Assets-List h3 {
-        font-size: 18px;
-    }
-
-    .Assets-List p {
-        font-size: 12px;
-    }
-
-    .request-form {
-        width: 97%;
-        padding: 8px;
-    }
-
-    .request-form h2 {
-        font-size: 20px;
-    }
-
-    .request-form input,
-    .request-form select,
-    .request-form textarea {
-        font-size: 12px;
-        padding: 6px;
-    }
-
-    .request-form button {
-        font-size: 12px;
-        padding: 6px 10px;
-    }
-
-    .show-form-btn button {
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-
-    .asset-details p {
-        font-size: 12px;
-    }
+.dark-mode .theme-toggle {
+    background: rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
 }
 
 
+* {
+    transition: background-color 0.3s, color 0.3s;
+}
     </style>
 </head>
 
 <body>
-    <div class="banner">
-        <h1>Your Appraisals</h1>
-        <p>View & Manage your Assets and Request For New Assets</p>
-    </div>
+    <header>
+        <div class="banner-background">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <h1>My Assets</h1>
+        <p>View and manage all your allocated assets in one place</p>
+    </header>
+
+
     <div class="container">
-        <div class="Assets-List allocated-laptop">
-            <h3><i class="fas fa-laptop icon"></i> &nbsp; Allocated Laptop</h3>
-            <div class="asset-details">
-                <p><i class="fas fa-laptop icon"></i> <span>Brand</span> <span>:</span> <span>Lenovo</span></p>
-                <p><i class="fas fa-cogs icon"></i> <span>Model</span> <span>:</span> <span>ThinkPad</span></p>
-                <p><i class="fas fa-code-branch icon"></i> <span>Version</span> <span>:</span> <span>10.0.22631</span></p>
-                <p><i class="fas fa-calendar-alt icon"></i> <span>Allocated Date</span> <span>:</span> <span>06-09-2024</span></p>
+       
+        <div class="dashboard-grid">
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-laptop"></i>
+                        Allocated Laptop
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="asset-info">
+                        <i class="fas fa-laptop"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Brand:</span>
+                            <span class="asset-value">Lenovo</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-cogs"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Model:</span>
+                            <span class="asset-value">ThinkPad</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-code-branch"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Version:</span>
+                            <span class="asset-value">10.0.22631</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Allocated Date:</span>
+                            <span class="asset-value">06-09-2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" onclick="showdetails('Allocated Laptop: Lenovo ThinkPad')">
+                        <i class="fas fa-info-circle"></i>
+                        View Details
+                    </button>
+                </div>
             </div>
-            <button class="view-details" onclick="showdetails('Allocated Laptop: Lenovo ThinkPad')"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
+
+         
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-boxes"></i>
+                        Office Supplies
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="asset-info">
+                        <i class="fas fa-book"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Item:</span>
+                            <span class="asset-value">Note Book</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-pen"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Item:</span>
+                            <span class="asset-value">Pen</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-mouse"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Item:</span>
+                            <span class="asset-value">Mouse, Laptop Bag</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Allocated Date:</span>
+                            <span class="asset-value">06-09-2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Current Project Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Current Project
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="asset-info">
+                        <i class="fas fa-clipboard-list"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Project:</span>
+                            <span class="asset-value">New HRMS Website</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Started:</span>
+                            <span class="asset-value">07-09-2024</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Due Date:</span>
+                            <span class="asset-value">31-12-2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Current Assignment Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-tasks"></i>
+                        Current Assignment
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="asset-info">
+                        <i class="fas fa-clipboard-check"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Project:</span>
+                            <span class="asset-value">UI Designs</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Started:</span>
+                            <span class="asset-value">10-10-2024</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Due Date:</span>
+                            <span class="asset-value">15-10-2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bonus Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-dollar-sign"></i>
+                        Bonus
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="asset-info">
+                        <i class="fas fa-money-bill"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Amount:</span>
+                            <span class="asset-value">₹5000</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Credited Date:</span>
+                            <span class="asset-value">01-10-2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Training Program Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Training Program
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="asset-info">
+                        <i class="fas fa-book-open"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Course:</span>
+                            <span class="asset-value">Full Stack Web Development</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-laptop-code"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Current Topic:</span>
+                            <span class="asset-value">__</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-tv"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Mode:</span>
+                            <span class="asset-value">Online</span>
+                        </div>
+                    </div>
+                    <div class="asset-info">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <div class="asset-detail">
+                            <span class="asset-label">Platform:</span>
+                            <span class="asset-value">Udemy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i>
+                        View Details
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="Assets-List office-supplies">
-            <h3><i class="fas fa-boxes icon"></i> &nbsp; Office Supplies</h3>
-            <div class="asset-details">
-                <p><i class="fas fa-book icon"></i> <span>Item</span> <span>:</span> <span>Note Book</span></p>
-                <p><i class="fas fa-pen icon"></i> <span>Item</span> <span>:</span> <span>Pen</span></p>
-                <p><i class="fas fa-mouse icon"></i> <span>Item</span> <span>:</span> <span>Mouse, Laptop Bag</span></p>
-                <p><i class="fas fa-calendar-alt icon"></i> <span>Allocated Date</span> <span>:</span> <span>06-09-2024</span></p>
-            </div>
-            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
+        <!-- Requested Assets Section -->
+        <div class="requests-section">
+            <h2 class="section-title">
+                <i class="fas fa-file-alt"></i>
+                My Requests
+            </h2>
+            <div id="requests-container" class="requests-grid"></div>
         </div>
-        
-        <div class="Assets-List current-project">
-            <h3><i class="fas fa-project-diagram icon"></i> &nbsp; Current Project</h3>
-            <div class="asset-details">
-                <p><i class="fas fa-clipboard-list icon"></i> <span>Project</span> <span>:</span> <span>New HRMS Website</span></p>
-                <p><i class="fas fa-calendar-alt icon"></i> <span>Started</span> <span>:</span> <span>07-09-2024</span></p>
-                <p><i class="fas fa-calendar-check icon"></i> <span>Due Date</span> <span>:</span> <span>31-12-2024</span></p>
-            </div>
-            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
-        </div>
-        
-        <div class="Assets-List current-assignment">
-            <h3><i class="fas fa-tasks icon"></i> &nbsp; Current Assignment</h3>
-            <div class="asset-details">
-                <p><i class="fas fa-clipboard-check icon"></i> <span>Project</span> <span>:</span> <span>UI Designs</span></p>
-                <p><i class="fas fa-calendar-alt icon"></i> <span>Started</span> <span>:</span> <span>10-10-2024</span></p>
-                <p><i class="fas fa-calendar-check icon"></i> <span>Due Date</span> <span>:</span> <span>15-10-2024</span></p>
-            </div>
-            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
-        </div>
-        
-        <div class="Assets-List bonus">
-            <h3><i class="fas fa-dollar-sign icon"></i> &nbsp; Bonus</h3>
-            <div class="asset-details">
-                <p><i class="fas fa-money-bill icon"></i> <span>Amount</span> <span>:</span> <span>₹5000</span></p>
-                <p><i class="fas fa-calendar-alt icon"></i> <span>Credited Date</span> <span>:</span> <span>01-10-2024</span></p>
-            </div>
-            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
-        </div>
-        
-        <div class="Assets-List training-program">
-            <h3><i class="fas fa-graduation-cap icon"></i> &nbsp; Training Program</h3>
-            <div class="asset-details">
-                <p><i class="fas fa-book-open icon"></i> <span>Course</span> <span>:</span> <span>Full Stack Web Development</span></p>
-                <p><i class="fas fa-laptop-code icon"></i> <span>Current Topic</span> <span>:</span> <span>__</span></p>
-                <p><i class="fas fa-tv icon"></i> <span>Mode</span> <span>:</span> <span>Online</span></p>
-                <p><i class="fas fa-chalkboard-teacher icon"></i> <span>Platform</span> <span>:</span> <span>Udemy</span></p>
-            </div>
-            <button class="view-details"><i class="fas fa-info-circle icon"></i> &nbsp;View Details</button>
-        </div>
-        
     </div>
 
-    <div class="show-form-btn">
-        <button class="show-form-btn" onclick="document.getElementById('request-form').style.display='block'">Request New Asset</button>
-    </div>
-    <div id="request-form" class="request-form" style="display:none;">
-        <h2>Request New Asset</h2>
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="document.getElementById('request-form').style.display='block'">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Request Form -->
+    <div id="request-form" class="form-container">
+        <h2 class="form-title">Request New Asset</h2>
         <form id="asset-request-form">
-            <label for="employeeName">Employee Name</label>
-            <input type="text" id="employeeName"   
-                           required 
-                           minlength="3" 
-                           maxlength="100"
-                           pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
-                           title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
-    
-            <label for="emp-email">Email ID</label>
-            <input type="email" id="emp-email" name="emp-email" required min="8"
-            maxlength="50"
-            title="Please enter a valid email address">
-    
-            <label for="request-date">Date of Request</label>
-            <input type="date" id="request-date" name="request-date" required>
-    
-            <label for="asset-type">Asset Type</label>
-            <select id="asset-type" name="asset-type" required>
-                <option value="">Select Asset Type</option>
-                <option value="Laptop">Laptop</option>
-                <option value="Office Supplies">Office Supplies</option>
-                <option value="Training Program">Training Program</option>
-                <option value="Project">Project</option>
-                <option value="Bonus">Bonus</option>
-                <option value="Other">Other</option>
-            </select>
-    
-            <label for="asset-name">Asset Name</label>
-            <input type="text" id="asset-name" name="asset-name" required minlength="2" maxlength="40">
-    
-            <label for="asset-details">Additional Details</label>
-            <textarea id="asset-details" name="asset-details" rows="4" required minlength="3" maxlength="100"></textarea>
-    
-            <button class="submit-request" type="submit">Submit Request</button>
+            <div class="form-group">
+                <label for="employeeName" class="form-label">Employee Name</label>
+                <input type="text" id="employeeName" class="form-control" required minlength="3" maxlength="100"
+                       pattern="^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$"
+                       title="Username cannot start with a space, no consecutive spaces allowed, maximum 8 spaces and 3 periods allowed.">
+                <p id="employeeName-error" style="color: red; display: none;">Invalid employee name.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="emp-email" class="form-label">Email Address</label>
+                <input type="email" id="emp-email" name="emp-email" class="form-control" required minlength="8" maxlength="50"
+                       title="Please enter a valid email address">
+                <p id="emp-email-error" style="color: red; display: none;">Invalid email address.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="request-date" class="form-label">Date of Request</label>
+                <input type="date" id="request-date" name="request-date" class="form-control" required>
+                <p id="request-date-error" style="color: red; display: none;">Invalid request date.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="asset-type" class="form-label">Asset Type</label>
+                <select id="asset-type" name="asset-type" class="form-control" required>
+                    <option value="">Select Asset Type</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Office Supplies">Office Supplies</option>
+                    <option value="Training Program">Training Program</option>
+                    <option value="Project">Project</option>
+                    <option value="Bonus">Bonus</option>
+                    <option value="Other">Other</option>
+                </select>
+                <p id="asset-type-error" style="color: red; display: none;">Please select an asset type.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="asset-name" class="form-label">Asset Name</label>
+                <input type="text" id="asset-name" name="asset-name" class="form-control" required minlength="2" maxlength="40">
+                <p id="asset-name-error" style="color: red; display: none;">Invalid asset name.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="asset-details" class="form-label">Additional Details</label>
+                <textarea id="asset-details" name="asset-details" class="form-control" required minlength="3" maxlength="100"></textarea>
+                <p id="asset-details-error" style="color: red; display: none;">Invalid input.</p>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-cancel" onclick="document.getElementById('request-form').style.display='none'">Cancel</button>
+                <button type="submit" class="btn btn-submit">Submit Request</button>
+            </div>
         </form>
     </div>
-    
+
     <script>
-        document.getElementById('asset-request-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-    
-            const empName = document.getElementById('employeeName').value;
-            const empEmail = document.getElementById('emp-email').value;
-            const requestDate = document.getElementById('request-date').value;
-            const assetType = document.getElementById('asset-type').value;
-            const assetName = document.getElementById('asset-name').value;
-            const assetDetails = document.getElementById('asset-details').value;
-    
-            const currentDate = new Date().toISOString().split('T')[0];
-    
-            if (new Date(requestDate) < new Date(currentDate)) {
-                alert('Please select a valid Date');
-                return false;
+        document.addEventListener("DOMContentLoaded", function () {
+            // Add input event listeners for real-time validation
+            document.getElementById("employeeName").addEventListener("input", function () {
+                validateEmployeeName();
+            });
+
+            document.getElementById("emp-email").addEventListener("input", function () {
+                validateEmail();
+            });
+
+            document.getElementById("request-date").addEventListener("input", function () {
+                validateRequestDate();
+            });
+
+            document.getElementById("asset-name").addEventListener("input", function () {
+                validateAssetName();
+            });
+
+            document.getElementById("asset-details").addEventListener("input", function () {
+                validateAssetDetails();
+            });
+
+            // Form submission handler
+            document.getElementById('asset-request-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Validate all fields before submission
+                if (
+                    !validateEmployeeName() ||
+                    !validateEmail() ||
+                    !validateRequestDate() ||
+                    !validateAssetName() ||
+                    !validateAssetDetails()
+                ) {
+                    return; // Stop submission if any field is invalid
+                }
+
+                const empName = document.getElementById('employeeName').value;
+                const empEmail = document.getElementById('emp-email').value;
+                const requestDate = document.getElementById('request-date').value;
+                const assetType = document.getElementById('asset-type').value;
+                const assetName = document.getElementById('asset-name').value;
+                const assetDetails = document.getElementById('asset-details').value;
+
+                const currentDate = new Date().toISOString().split('T')[0];
+
+                // Validate request date
+                if (new Date(requestDate) < new Date(currentDate)) {
+                    alert('Please select a valid Date');
+                    return false;
+                }
+
+                // Save request to localStorage
+                let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+
+                const newRequest = {
+                    id: Date.now(),
+                    employeeName: empName,
+                    email: empEmail,
+                    requestDate: requestDate,
+                    type: assetType,
+                    name: assetName,
+                    details: assetDetails,
+                    date: new Date().toLocaleDateString(),
+                    status: "Pending"
+                };
+
+                requests.push(newRequest);
+                localStorage.setItem('assetRequests', JSON.stringify(requests));
+
+                // Notify user and reset form
+                alert('Asset Request Submitted');
+                document.getElementById('asset-request-form').reset();
+                document.getElementById('request-form').style.display = 'none';
+
+                // Display updated requests
+                displayRequests();
+            });
+
+            // Function to validate employee name
+            function validateEmployeeName() {
+                const input = document.getElementById("employeeName");
+                const errorMessage = document.getElementById("employeeName-error");
+                const value = input.value.trim();
+
+                const regex = /^[A-Za-z]+(?:\.[A-Za-z]+)*(?: [A-Za-z]+)*(?:\.[A-Za-z]+){0,3}$/;
+
+                if (!regex.test(value) || value.length < 3 || value.length > 100) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Invalid employee name.';
+                    input.setCustomValidity('Invalid employee name.');
+                    return false;
+                } else {
+                    errorMessage.style.display = 'none';
+                    input.setCustomValidity('');
+                    return true;
+                }
             }
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailPattern.test(empEmail)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-    
-            let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
-    
-            const newRequest = {
-                employeeName: empName,
-                email: empEmail,
-                requestDate: requestDate,
-                type: assetType,
-                name: assetName,
-                details: assetDetails,
-                date: new Date().toLocaleDateString()
-            };
-    
-            requests.push(newRequest);
-    
-            localStorage.setItem('assetRequests', JSON.stringify(requests));
-    
-            alert('Asset Request Submitted');
-            document.getElementById('request-form').style.display = 'none';
-            document.getElementById('asset-request-form').reset(); 
+
+            // Function to validate email
+            function validateEmail() {
+                const input = document.getElementById("emp-email");
+                const errorMessage = document.getElementById("emp-email-error");
+                const value = input.value.trim();
+
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                if (!emailPattern.test(value)) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Invalid email address.';
+                    input.setCustomValidity('Invalid email address.');
+                    return false;
+                } else {
+                    errorMessage.style.display = 'none';
+                    input.setCustomValidity('');
+                    return true;
+                }
+            }
+
+            function validateRequestDate() {
+                const input = document.getElementById("request-date");
+                const errorMessage = document.getElementById("request-date-error");
+                const value = input.value;
+
+                const currentDate = new Date().toISOString().split('T')[0];
+
+                if (new Date(value) < new Date(currentDate)) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Invalid request date.';
+                    input.setCustomValidity('Invalid request date.');
+                    return false;
+                } else {
+                    errorMessage.style.display = 'none';
+                    input.setCustomValidity('');
+                    return true;
+                }
+            }
+
+            // Function to validate asset name
+            function validateAssetName() {
+                const input = document.getElementById("asset-name");
+                const errorMessage = document.getElementById("asset-name-error");
+                const value = input.value.trim();
+
+                if (value.length < 2 || value.length > 40) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Asset name must be between 2 and 40 characters.';
+                    input.setCustomValidity('Invalid asset name.');
+                    return false;
+                } else {
+                    errorMessage.style.display = 'none';
+                    input.setCustomValidity('');
+                    return true;
+                }
+            }
+
+            // Function to validate asset details
+            function validateAssetDetails() {
+                const textarea = document.getElementById("asset-details");
+                const errorMessage = document.getElementById("asset-details-error");
+                const value = textarea.value.trim();
+
+                const regex = /^[A-Za-z][A-Za-z0-9\s,.]*$/;
+                const invalidConsecutive = /(,{2,}|\.{2,}|\s{2,}|,\s,|\.\s\.|,\s\.|\.\s,)/;
+
+                if (!regex.test(value) || invalidConsecutive.test(value)) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Invalid input. Please start with a letter and avoid consecutive spaces, commas, or periods.';
+                    textarea.setCustomValidity('Invalid input. Please follow the rules.');
+                    return false;
+                } else if (value.length < 3 || value.length > 100) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Details must be between 3 and 100 characters.';
+                    textarea.setCustomValidity('Invalid input. Please follow the rules.');
+                    return false;
+                } else {
+                    errorMessage.style.display = 'none';
+                    textarea.setCustomValidity('');
+                    return true;
+                }
+            }
+
+            // Function to get status color
+            function getStatusColor(status) {
+                switch (status.toLowerCase()) {
+                    case "pending":
+                        return "status-pending";
+                    case "approved":
+                        return "status-approved";
+                    case "rejected":
+                        return "status-rejected";
+                    default:
+                        return "";
+                }
+            }
+        
+            function displayRequests() {
+                let requests = JSON.parse(localStorage.getItem('assetRequests')) || [];
+                const container = document.getElementById('requests-container');
+                container.innerHTML = '';
+
+                if (requests.length === 0) {
+                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No requests found</p>';
+                    return;
+                }
+
+                requests.forEach((request) => {
+                    const statusClass = getStatusColor(request.status);
+                    const card = document.createElement('div');
+                    card.classList.add('request-card');
+
+                    card.innerHTML = `
+                        <div class="request-header">
+                            <h3 class="request-title">Request for ${request.type}</h3>
+                            <span class="request-status ${statusClass}">${request.status}</span>
+                        </div>
+                        <div class="asset-info">
+                            <i class="fas fa-user"></i>
+                            <div class="asset-detail">
+                                <span class="asset-label">Employee:</span>
+                                <span class="asset-value">${request.employeeName}</span>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <i class="fas fa-envelope"></i>
+                            <div class="asset-detail">
+                                <span class="asset-label">Email:</span>
+                                <span class="asset-value">${request.email}</span>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <i class="fas fa-laptop"></i>
+                            <div class="asset-detail">
+                                <span class="asset-label">Asset:</span>
+                                <span class="asset-value">${request.name}</span>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <i class="fas fa-info-circle"></i>
+                            <div class="asset-detail">
+                                <span class="asset-label">Details:</span>
+                                <span class="asset-value">${request.details}</span>
+                            </div>
+                        </div>
+                        <div class="asset-info">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div class="asset-detail">
+                                <span class="asset-label">Request Date:</span>
+                                <span class="asset-value">${request.requestDate}</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-info-circle"></i>
+                                View Details
+                            </button>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+        
+            // Display requests on page load
             displayRequests();
         });
-    
-        
-        
-       
 
-    function showdetails(message) {
-        alert(message);
-    }
+        function showdetails(details) {
+            alert(details);
+        }
 
+          
+window.addEventListener('message', function (event) {
+ 
+ if (event.data && typeof event.data.darkMode === 'boolean') {
+   const isDarkMode = event.data.darkMode;
 
-    
+   
+   if (isDarkMode) {
+     document.body.classList.add('dark-mode');
+   } else {
+     document.body.classList.remove('dark-mode');
+   }
+ }
+});
+
+// Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
     </script>
-    
 </body>
-
 </html>
