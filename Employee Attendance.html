@@ -471,6 +471,119 @@ header p{
 
    
 }
+
+
+.dark-mode {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.dark-mode header {
+    background-color: #3a0369;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode header h1 {
+    color: #bb86fc;
+}
+
+.dark-mode header p {
+    color: #b0b0b0;
+}
+
+.dark-mode .circle {
+    background: rgba(187, 134, 252, 0.1);
+}
+
+.dark-mode .main-container {
+    background-color: #121212;
+}
+
+.dark-mode h2 {
+    color: #bb86fc;
+}
+
+.dark-mode .employee-details {
+    background: linear-gradient(rgba(30, 30, 40, 0.9), rgba(40, 20, 40, 0.9));
+    color: #e0e0e0;
+    box-shadow: 0 1px 3px rgba(187, 134, 252, 0.3);
+}
+
+.dark-mode .employee-info {
+    color: #b0b0b0;
+}
+
+.dark-mode .employee-info span {
+    color: #e0e0e0;
+}
+
+.dark-mode .employee-info i {
+    color: #ff9e4f;
+}
+
+.dark-mode form {
+    background: linear-gradient(rgba(20, 40, 50, 0.9), rgba(40, 20, 40, 0.9));
+    box-shadow: 0 1px 3px rgba(187, 134, 252, 0.3);
+    color: #e0e0e0;
+}
+
+.dark-mode label {
+    color: #b0b0b0;
+}
+
+.dark-mode input {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+.dark-mode .password-container i {
+    color: #b0b0b0;
+}
+
+.dark-mode .password-container i:hover {
+    color: #ffffff;
+}
+
+.dark-mode .punch-in-text,
+.dark-mode .punch-out-text {
+    color: #e0e0e0;
+}
+
+.dark-mode .slider {
+    background-color: #555;
+}
+
+.dark-mode #punchStatusText {
+    color: #e0e0e0;
+}
+
+.dark-mode button {
+    background-color: #bb86fc;
+    color: #000000;
+}
+
+.dark-mode button:hover {
+    background-color: #a970f0;
+}
+
+/* Media Queries for Dark Mode */
+@media (max-width: 768px) {
+    .dark-mode .attendance-container h2 {
+        color: #bb86fc;
+    }
+}
+
+@media (max-width: 480px) {
+    .dark-mode .banner h1 {
+        color: #bb86fc;
+    }
+    
+    .dark-mode .banner p {
+        color: #b0b0b0;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -672,6 +785,40 @@ document.getElementById("attendanceForm").addEventListener("submit", function (e
 });
         // Initial render
         displayPunchRecords();
+
+        // Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
+
+window.addEventListener('message', function (event) {
+ 
+ if (event.data && typeof event.data.darkMode === 'boolean') {
+   const isDarkMode = event.data.darkMode;
+
+   
+   if (isDarkMode) {
+     document.body.classList.add('dark-mode');
+   } else {
+     document.body.classList.remove('dark-mode');
+   }
+ }
+});
+
+// Check localStorage for dark mode preference on iframe load
+window.onload = function () {
+ const isDarkMode = localStorage.getItem('darkMode') === 'true';
+ if (isDarkMode) {
+   document.body.classList.add('dark-mode');
+ } else {
+   document.body.classList.remove('dark-mode');
+ }
+};
     </script>
 </body>
 </html>
