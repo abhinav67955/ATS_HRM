@@ -38,4 +38,4 @@ jobs:
     - name: Deploy to S3
       run: |
         echo "Deploying to S3..."
-        aws s3 cp ./ s3://my-static-website --recursive --exclude "*" --include "*.html" --include "*.css" --include "*.js" --acl public-read
+        aws s3 cp ./ arn:aws:s3:::atshrmenv --recursive --exclude "*" --include "*.html" --include "*.css" --include "*.js" --acl public-read
