@@ -3,7 +3,7 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main
+      - hrm_dev
 
 jobs:
   deploy:
@@ -38,4 +38,4 @@ jobs:
     - name: Deploy to S3
       run: |
         echo "Deploying to S3..."
-        aws s3 cp ./ s3://atshrmenv --recursive --exclude "*" --include "*.html" --include "*.css" --include "*.js"
+        aws s3 sync ./ s3://atshrmdevenv --exclude "*" --include "*.html" --include "*.css" --include "*.js"
